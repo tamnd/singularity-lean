@@ -4,6 +4,16 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Algebra/NormalizationCharP.lean`: `finite_integralClosure`. Let $A$ be a domain that is a finitely generated algebra over a field $k$ of any characteristic. Then the integral closure of $A$ in $\operatorname{Frac} A$ is a finite $A$-module. This is the theorem of E. Noether. The file proves the purely inseparable case over $k[X_1, \dots, X_s]$ with the ring $k'[Y_1, \dots, Y_s]$, where $Y_i^q = X_i$ and $k'$ is a finite extension of $k$. Then it reduces the general case to this case and to the separable case with the normal closure.
+- `Singularity/Curves/Affine.lean`: `isDedekindDomain_integralClosure` and `isRegularRing_integralClosure`. The normalization of an affine curve over a field of any characteristic is a Dedekind domain, so it is a regular ring.
+
+### Changed
+
+- `Singularity/Algebra/Normalization.lean`: the new lemma `finite_integralClosure_of_finite_of_finite` has the step from the integral closure of $P$ to the integral closure of $A$. The lemma `finite_integralClosure_of_finite` now uses it.
+- `Singularity/Curves/Affine.lean`: the characteristic 0 theorems are now corollaries of the general theorems.
+
 ## 0.2.2 - 2026-11-24
 
 ### Added
