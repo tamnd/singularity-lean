@@ -39,19 +39,32 @@ theorem not_isResolution_codiag {X : Scheme.{u}} (x : X) (hx : x ∈ regularLocu
   have hinj : Function.Injective (codiag X ∣_ U).base :=
     (TopCat.homeoOfIso (Scheme.forgetToTop.mapIso (asIso (codiag X ∣_ U)))).injective
   have hl : (codiag X).base ((coprod.inl : X ⟶ X ⨿ X).base x) = x := by
-    rw [← Scheme.Hom.comp_apply, coprod.inl_desc, Scheme.id.base_apply]
+    first
+      | exact congrArg (fun f : X ⟶ X => f.base x) (coprod.inl_desc (𝟙 X) (𝟙 X))
+      | (rw [← Scheme.Hom.comp_apply, coprod.inl_desc]; rfl)
+      | simp [codiag, ← Scheme.Hom.comp_apply]
   have hr : (codiag X).base ((coprod.inr : X ⟶ X ⨿ X).base x) = x := by
-    rw [← Scheme.Hom.comp_apply, coprod.inr_desc, Scheme.id.base_apply]
-  let a : (codiag X ⁻¹ᵁ U : Set (X ⨿ X)) := ⟨(coprod.inl : X ⟶ X ⨿ X).base x, by
-    simp only [Scheme.Hom.coe_preimage, Set.mem_preimage, hl]; exact hxU⟩
-  let b : (codiag X ⁻¹ᵁ U : Set (X ⨿ X)) := ⟨(coprod.inr : X ⟶ X ⨿ X).base x, by
-    simp only [Scheme.Hom.coe_preimage, Set.mem_preimage, hr]; exact hxU⟩
-  have hab : a ≠ b := fun h => inl_ne_inr x (congrArg Subtype.val h)
-  apply hab
-  apply hinj
-  apply Subtype.ext
-  rw [morphismRestrict_base_coe, morphismRestrict_base_coe]
-  exact hl.trans hr.symm
+    first
+      | exact congrArg (fun f : X ⟶ X => f.base x) (coprod.inr_desc (𝟙 X) (𝟙 X))
+      | (rw [← Scheme.Hom.comp_apply, coprod.inr_desc]; rfl)
+      | simp [codiag, ← Scheme.Hom.comp_apply]
+  have ha : (coprod.inl : X ⟶ X ⨿ X).base x ∈ codiag X ⁻¹ᵁ U := by
+    first
+      | (rw [Scheme.Hom.mem_preimage, hl]; exact hxU)
+      | (show (codiag X).base _ ∈ U; rw [hl]; exact hxU)
+  have hb : (coprod.inr : X ⟶ X ⨿ X).base x ∈ codiag X ⁻¹ᵁ U := by
+    first
+      | (rw [Scheme.Hom.mem_preimage, hr]; exact hxU)
+      | (show (codiag X).base _ ∈ U; rw [hr]; exact hxU)
+  have heq : (codiag X ∣_ U).base ⟨_, ha⟩ = (codiag X ∣_ U).base ⟨_, hb⟩ := by
+    apply Subtype.ext
+    rw [morphismRestrict_base_coe, morphismRestrict_base_coe]
+    exact hl.trans hr.symm
+  have h2 := hinj heq
+  first
+    | exact inl_ne_inr x (congrArg Subtype.val h2)
+    | exact inl_ne_inr x (Subtype.mk.inj h2)
+    | exact inl_ne_inr x (by simpa using h2)
 
 /-- The codiagonal of a nonempty regular scheme is not a resolution. -/
 theorem not_isResolution_codiag_of_isRegularScheme {X : Scheme.{u}} (hX : IsRegularScheme X)
