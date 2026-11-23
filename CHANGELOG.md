@@ -6,7 +6,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
-- `Singularity/Algebra/RegularLocus.lean`: the regular locus $\operatorname{Reg}(A)$ of a Noetherian ring $A$ in $\operatorname{Spec} A$. The locus is stable under generization (`regularLocus_stableUnderGeneralization`). The criterion of Nagata ([Mat89, Theorem 24.4]): if for each $\mathfrak{p} \in \operatorname{Reg}(A)$ the set $\operatorname{Reg}(A/\mathfrak{p})$ contains a nonempty open set, then $\operatorname{Reg}(A)$ is open (`isOpen_regularLocus_of_exists_isOpen`). The proof spreads a regular system of parameters of $A_\mathfrak{p}/\mathfrak{p}A_\mathfrak{p}$ to a neighbourhood with an induction on the dimension. The file also proves $(A/\mathfrak{p})_{\mathfrak{q}} \cong A_\mathfrak{q}/\mathfrak{p}A_\mathfrak{q}$ (`localizationQuotientEquiv`).
+- `Singularity/Algebra/RegularLocus.lean`: the regular locus $\operatorname{Reg}(A)$ of a Noetherian ring $A$ in $\operatorname{Spec} A$. The locus is stable under generization (`regularLocus_stableUnderGeneralization`). The criterion of Nagata ([Mat89, Section 24]): if for each $\mathfrak{p} \in \operatorname{Reg}(A)$ the set $\operatorname{Reg}(A/\mathfrak{p})$ contains a nonempty open set, then $\operatorname{Reg}(A)$ is open (`isOpen_regularLocus_of_exists_isOpen`). The proof spreads a regular system of parameters of $A_\mathfrak{p}/\mathfrak{p}A_\mathfrak{p}$ to a neighbourhood with an induction on the dimension. The file also proves $(A/\mathfrak{p})_{\mathfrak{q}} \cong A_\mathfrak{q}/\mathfrak{p}A_\mathfrak{q}$ (`localizationQuotientEquiv`).
 
 ## 0.2.7 - 2026-11-24
 
