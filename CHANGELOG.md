@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.2.6 - 2026-11-24
+
 ### Added
 
 - `Singularity/Algebra/HilbertSamuel.lean`: the Hilbert-Samuel function `hilbertSamuel I M n`, the length of $M/I^n M$ in $\mathbb{N} \cup \{\infty\}$. The file proves its value at 0, the recursion $\chi(n+1) = \chi(n) + \ell(I^n M/I^{n+1} M)$, the monotony and the comparison of two ideals. If $R$ is Noetherian, $M$ is finite and $I$ contains a power of a maximal ideal, then each value is finite (`hilbertSamuel_ne_top`). The file also defines the order `order I f` of an element and proves its laws: the order of a sum and of a product, and the intersection theorem of Krull in the form "only 0 has order infinity" for a Noetherian local ring.
