@@ -10,10 +10,10 @@ import Lean
 Run this file after `lake build`:
 
 ```
-lake env lean --run scripts/Export.lean <commit> <mathlib commit> <date> > lean.json
+lake env lean --run scripts/Export.lean <commit> <mathlib commit> <date> [module] > lean.json
 ```
 
-It imports `Singularity` and writes one JSON object for each declaration in the namespace `Singularity`: its kind, its file, its line, its type and the axioms that it uses. The toolchain `sing index` of singularity-agent reads this record. A declaration that uses `sorryAx` gets the status `stated` and never `proved`.
+It imports the module, `Singularity` by default, and writes one JSON object for each declaration in the namespace `Singularity`: its kind, its file, its line, its type and the axioms that it uses. The toolchain `sing index` of singularity-agent reads this record. A declaration that uses `sorryAx` gets the status `stated` and never `proved`.
 -/
 
 open Lean Meta
@@ -33,7 +33,8 @@ def fileOf (env : Environment) (n : Name) : String :=
   match env.getModuleIdxFor? n with
   | some idx =>
     let m := env.header.moduleNames[idx.toNat]!
-    (m.toString.replace "." "/") ++ ".lean"
+    let path := (m.toString.replace "." "/") ++ ".lean"
+    if (`SingularityBase).isPrefixOf m then "base/" ++ path else path
   | none => ""
 
 def entry (env : Environment) (n : Name) (info : ConstantInfo) (kind : String) : CoreM Json := do
@@ -50,11 +51,15 @@ def entry (env : Environment) (n : Name) (info : ConstantInfo) (kind : String) :
     ("type", ty)]
 
 unsafe def main (args : List String) : IO UInt32 := do
-  let [commit, mathlib, date] := args
-    | IO.eprintln "usage: lean --run scripts/Export.lean <commit> <mathlib commit> <date>"; return 2
+  let (commit, mathlib, date, root) ← match args with
+    | [c, m, d] => pure (c, m, d, `Singularity)
+    | [c, m, d, r] => pure (c, m, d, r.toName)
+    | _ => do
+      IO.eprintln "usage: lean --run scripts/Export.lean <commit> <mathlib commit> <date> [module]"
+      return 2
   enableInitializersExecution
   initSearchPath (← findSysroot)
-  let env ← importModules #[{ module := `Singularity }] {} (loadExts := true)
+  let env ← importModules #[{ module := root }] {} (loadExts := true)
   let names := env.constants.fold (init := #[]) fun acc n info =>
     if keep env n then
       match kindOf info with

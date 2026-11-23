@@ -1,0 +1,91 @@
+name: base
+
+# Build the package in base/, which depends on the characteristic 0 base resolutionorg/hironaka. The first build of the base takes a long time, so the build of the base is kept in an actions cache. The key of the cache is the pin of the base and the toolchain.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "base/**"
+      - "Singularity/**"
+      - "Singularity.lean"
+      - "manifests/base.yaml"
+      - "scripts/**"
+      - ".github/workflows/base.yml"
+  pull_request:
+    paths:
+      - "base/**"
+      - "Singularity/**"
+      - "Singularity.lean"
+      - "manifests/base.yaml"
+      - "scripts/**"
+      - ".github/workflows/base.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: base-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  build:
+    name: lake build of the base package and the axioms
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    defaults:
+      run:
+        working-directory: base
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o elan-init.sh
+          sh elan-init.sh -y --default-toolchain none
+          rm elan-init.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: get the Mathlib cache
+        run: lake exe cache get
+      - name: read the pin of the base
+        id: pin
+        run: |
+          rev=$(grep -A3 'name = "hironaka"' lakefile.toml | sed -n 's/^rev = "\(.*\)"/\1/p')
+          echo "rev=$rev" >> "$GITHUB_OUTPUT"
+      - name: restore the build of the base
+        id: restore
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: base/.lake/packages/hironaka/.lake/build
+          key: hironaka-${{ steps.pin.outputs.rev }}-${{ hashFiles('lean-toolchain') }}
+      - name: build the base
+        run: |
+          lake build Hironaka.Resolution.Algebraic.Hir64.MainTheoremI \
+            Hironaka.Scheme.BlowUp.Glue.BlowUp \
+            Hironaka.Scheme.BlowUp.Glue.Trivial \
+            Hironaka.Scheme.BlowUp.Glue.Global
+      - name: save the build of the base
+        if: always() && steps.restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: base/.lake/packages/hironaka/.lake/build
+          key: hironaka-${{ steps.pin.outputs.rev }}-${{ hashFiles('lean-toolchain') }}
+      - name: build
+        run: lake build SingularityBase
+      - name: write the record of the build
+        env:
+          COMMIT: ${{ github.sha }}
+        run: |
+          mkdir -p ../records
+          if ! lake env lean --run ../scripts/Export.lean "$COMMIT" v4.35.0 "$(date -u +%Y-%m-%d)" SingularityBase > ../records/base-charzero.json; then
+            cat ../records/base-charzero.json
+            exit 1
+          fi
+      - name: check the axioms
+        run: python3 ../scripts/axioms.py ../records/base-charzero.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: lean-record-base
+          path: records/base-charzero.json
+          retention-days: 30

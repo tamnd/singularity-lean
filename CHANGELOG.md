@@ -4,6 +4,18 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Hypotheses/Integral.lean`: `IntegralResolutionInDim p n`, the main statement for integral varieties, and the named hypothesis `ReductionToIntegral`, the step from integral varieties to reduced varieties. The hypothesis is a `def ... : Prop`, not an axiom.
+- The package `base/` (`SingularityBase`). It depends on resolutionorg/hironaka at the pin in `manifests/base.yaml` and proves `Singularity.Base.integralResolutionInDim_zero`: each integral variety over a field of characteristic 0 has a resolution. The proof applies Main Theorem I of the base and proves that the exceptional divisor of the blowup has a dense complement.
+- `Singularity.resolutionInDim_zero`: resolution in characteristic 0 in each dimension, under the hypothesis `ReductionToIntegral`.
+- The workflow `base`, which builds the base package and keeps the build of resolutionorg/hironaka in an actions cache.
+
+### Changed
+
+- `scripts/Export.lean` accepts the root module as an optional fourth argument.
+- `scripts/scan.sh` also scans `base/`.
+
 ## 0.1.0 - 2026-11-23
 
 ### Added

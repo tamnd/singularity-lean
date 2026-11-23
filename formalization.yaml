@@ -25,6 +25,14 @@ sources:
     relationship: background
     note: The case of dimension 3 in each characteristic p > 0. Not formalized here yet.
     author_endorsement: false
+  - title: resolutionorg/hironaka, commit 044d89c9455859446fc5e986667319f910e15f4b
+    authors: [The resolutionorg contributors]
+    id: "singularity:hironaka"
+    type: code
+    location: https://github.com/resolutionorg/hironaka
+    relationship: dependency
+    note: The base package in base/ depends on it for Main Theorem I in characteristic 0. No file is copied.
+    author_endorsement: false
 classification:
   arxiv: [math.AG]
   msc2020: [14E15, 14B05, 13H05]
@@ -60,3 +68,11 @@ status:
     - name: Singularity.purelyInseparableHypersurfaceResolution_four
       kind: theorem
       status: proved
+    - name: Singularity.Base.integralResolutionInDim_zero
+      kind: theorem
+      status: proved
+      note: In the package base/. It depends on resolutionorg/hironaka.
+    - name: Singularity.resolutionInDim_zero
+      kind: theorem
+      status: proved
+      note: In the package base/. It takes the named hypothesis Singularity.ReductionToIntegral.

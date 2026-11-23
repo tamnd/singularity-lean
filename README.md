@@ -17,6 +17,8 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Fidelity/Negative.lean` | check F3: the codiagonal $X \sqcup X \to X$ is not a resolution |
 | `Singularity/Fidelity/Core.lean` | the core problem P1 is a special case of the main statement |
 | `Singularity/Known/DimZero.lean` | `resolutionInDim_dim_zero`, resolution in dimension 0 in each characteristic |
+| `Singularity/Hypotheses/Integral.lean` | `IntegralResolutionInDim` and the named hypothesis `ReductionToIntegral` |
+| `base/SingularityBase/CharZero.lean` | `integralResolutionInDim_zero` and `resolutionInDim_zero`, characteristic 0 from resolutionorg/hironaka |
 | `scripts/Export.lean` | writes the record of the build: each declaration, its type and its axioms |
 
 The statements use "regular" and not "smooth over $k$". Over an imperfect field a regular variety need not be smooth, so the statement with "smooth" is false there.
@@ -36,6 +38,19 @@ To write the record of the build:
 lake env lean --run scripts/Export.lean "$(git rev-parse HEAD)" v4.35.0 "$(date -u +%Y-%m-%d)" > records/lean.json
 python3 scripts/axioms.py records/lean.json
 ```
+
+## The base package
+
+The directory `base/` is a second Lake package, `SingularityBase`. It depends on this package and on resolutionorg/hironaka at the commit in `manifests/base.yaml`. The base has about 630 files in the import closure that this package uses, so the first build takes a long time. The workflow `base` builds it and keeps the build in an actions cache.
+
+```sh
+cd base
+lake exe cache get
+lake build SingularityBase
+lake env lean --run ../scripts/Export.lean "$(git rev-parse HEAD)" v4.35.0 "$(date -u +%Y-%m-%d)" SingularityBase > ../records/base-charzero.json
+```
+
+The base proves Main Theorem I for integral varieties only. The step to reduced varieties is the named hypothesis `ReductionToIntegral`, so `resolutionInDim_zero` takes it as an argument.
 
 ## Rules
 
