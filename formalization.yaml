@@ -54,3 +54,9 @@ status:
     - name: Singularity.resolutionInDim_dim_zero
       kind: theorem
       status: proved
+    - name: Singularity.purelyInseparableHypersurfaceResolution_of_resolutionInDim
+      kind: theorem
+      status: proved
+    - name: Singularity.purelyInseparableHypersurfaceResolution_four
+      kind: theorem
+      status: proved

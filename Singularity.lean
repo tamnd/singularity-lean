@@ -3,4 +3,5 @@ import Singularity.Statements.Main
 import Singularity.Statements.Core
 import Singularity.Fidelity.Positive
 import Singularity.Fidelity.Negative
+import Singularity.Fidelity.Core
 import Singularity.Known.DimZero
