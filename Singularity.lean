@@ -8,6 +8,7 @@ import Singularity.Algebra.GlobalDimension
 import Singularity.Algebra.SerreConverse
 import Singularity.Algebra.RegularLocalization
 import Singularity.Algebra.RegularLocus
+import Singularity.Algebra.Jacobian
 import Singularity.Algebra.Normalization
 import Singularity.Algebra.NormalizationCharP
 import Singularity.Scheme.NormalDimOne
