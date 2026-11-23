@@ -21,6 +21,8 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Scheme/NormalDimOne.lean` | a locally Noetherian scheme of dimension at most 1 with integrally closed local domains is regular |
 | `Singularity/Algebra/NormalizationCharP.lean` | the normalization of a domain that is a finitely generated algebra over a field is finite, in each characteristic (E. Noether) |
 | `Singularity/Curves/Affine.lean` | the normalization of an affine curve over a field is a Dedekind domain, so it is a regular ring |
+| `Singularity/Algebra/NormalLocus.lean` | the normal locus of a domain with a finite normalization is open: the conductor argument |
+| `Singularity/Curves/Resolution.lean` | `integralResolutionInDim_one`: the normalization of an integral curve over a field of each characteristic is a resolution |
 | `Singularity/Known/DimZero.lean` | `resolutionInDim_dim_zero`, resolution in dimension 0 in each characteristic |
 | `Singularity/Hypotheses/Integral.lean` | `IntegralResolutionInDim` and the named hypothesis `ReductionToIntegral` |
 | `Singularity/Bridge/FormalConjectures.lean` | the statements of google-deepmind/formal-conjectures, copied as propositions |

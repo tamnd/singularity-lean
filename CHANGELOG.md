@@ -4,6 +4,11 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Algebra/NormalLocus.lean`: let $A$ be a domain with a finite normalization $\tilde A$, and let $p$ be a prime ideal of $A$ such that $A_p$ is integrally closed. Then there is an element $s \notin p$ with $s \tilde A \subseteq A$, and $A_s$ is integrally closed. Thus the normal locus of $\operatorname{Spec} A$ is open.
+- `Singularity/Curves/Resolution.lean`: `integralResolutionInDim_one`. Let $X$ be an integral variety of dimension at most 1 over a field of any characteristic. Then the normalization $Y \to X$ is a resolution of singularities of $X$. The map is finite, $Y$ is regular, the regular locus of $X$ is open, and the map is an isomorphism over it. The theorem uses only the standard axioms. The corollary `resolutionInDim_one_of_reductionToIntegral` gives `ResolutionInDim p 1` under the named hypothesis `ReductionToIntegral`.
+
 ## 0.2.3 - 2026-11-24
 
 ### Added
