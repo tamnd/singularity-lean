@@ -5,7 +5,9 @@ import Singularity.Algebra.Regular
 import Singularity.Algebra.Normalization
 import Singularity.Algebra.NormalizationCharP
 import Singularity.Scheme.NormalDimOne
+import Singularity.Algebra.NormalLocus
 import Singularity.Curves.Affine
+import Singularity.Curves.Resolution
 import Singularity.Fidelity.Positive
 import Singularity.Fidelity.Negative
 import Singularity.Fidelity.Core
