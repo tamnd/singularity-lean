@@ -5,6 +5,7 @@ import Singularity.Algebra.Regular
 import Singularity.Algebra.RegularSequence
 import Singularity.Algebra.ExtCriterion
 import Singularity.Algebra.GlobalDimension
+import Singularity.Algebra.SerreConverse
 import Singularity.Algebra.Normalization
 import Singularity.Algebra.NormalizationCharP
 import Singularity.Scheme.NormalDimOne
