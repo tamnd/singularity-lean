@@ -16,6 +16,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Fidelity/Positive.lean` | check F2: the identity of a regular scheme is a resolution |
 | `Singularity/Fidelity/Negative.lean` | check F3: the codiagonal $X \sqcup X \to X$ is not a resolution |
 | `Singularity/Fidelity/Core.lean` | the core problem P1 is a special case of the main statement |
+| `Singularity/Algebra/Regular.lean` | regular local rings: the quotient by a parameter, a regular local ring is a domain, and in dimension 1 regular is the same as integrally closed |
 | `Singularity/Known/DimZero.lean` | `resolutionInDim_dim_zero`, resolution in dimension 0 in each characteristic |
 | `Singularity/Hypotheses/Integral.lean` | `IntegralResolutionInDim` and the named hypothesis `ReductionToIntegral` |
 | `Singularity/Bridge/FormalConjectures.lean` | the statements of google-deepmind/formal-conjectures, copied as propositions |
