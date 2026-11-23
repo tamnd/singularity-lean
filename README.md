@@ -22,12 +22,14 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Algebra/NormalizationCharP.lean` | the normalization of a domain that is a finitely generated algebra over a field is finite, in each characteristic (E. Noether) |
 | `Singularity/Curves/Affine.lean` | the normalization of an affine curve over a field is a Dedekind domain, so it is a regular ring |
 | `Singularity/Algebra/NormalLocus.lean` | the normal locus of a domain with a finite normalization is open: the conductor argument |
-| `Singularity/Curves/Resolution.lean` | `integralResolutionInDim_one`: the normalization of an integral curve over a field of each characteristic is a resolution |
+| `Singularity/Scheme/Components.lean` | the irreducible components of a reduced Noetherian scheme: each component is integral, and a point with a domain as local ring lies on one component only |
+| `Singularity/Scheme/Reduction.lean` | `reductionToIntegral`: the proof of `ReductionToIntegral`, and the lemma that a finite disjoint union of proper maps is proper |
+| `Singularity/Curves/Resolution.lean` | `integralResolutionInDim_one` and `resolutionInDim_one`: each curve over a field of each characteristic has a resolution |
 | `Singularity/Known/DimZero.lean` | `resolutionInDim_dim_zero`, resolution in dimension 0 in each characteristic |
-| `Singularity/Hypotheses/Integral.lean` | `IntegralResolutionInDim` and the named hypothesis `ReductionToIntegral` |
+| `Singularity/Hypotheses/Integral.lean` | `IntegralResolutionInDim` and the statement `ReductionToIntegral` |
 | `Singularity/Bridge/FormalConjectures.lean` | the statements of google-deepmind/formal-conjectures, copied as propositions |
 | `base/SingularityBase/Bridge.lean` | the bridge: the statement of the project implies the statement of formal-conjectures |
-| `base/SingularityBase/CharZero.lean` | `integralResolutionInDim_zero` and `resolutionInDim_zero`, characteristic 0 from resolutionorg/hironaka |
+| `base/SingularityBase/CharZero.lean` | `integralResolutionInDim_zero` and `resolutionInDim_charZero`, characteristic 0 from resolutionorg/hironaka |
 | `scripts/Export.lean` | writes the record of the build: each declaration, its type and its axioms |
 
 The statements use "regular" and not "smooth over $k$". Over an imperfect field a regular variety need not be smooth, so the statement with "smooth" is false there.
@@ -59,7 +61,7 @@ lake build SingularityBase
 lake env lean --run ../scripts/Export.lean "$(git rev-parse HEAD)" v4.35.0 "$(date -u +%Y-%m-%d)" SingularityBase > ../records/base-charzero.json
 ```
 
-The base proves Main Theorem I for integral varieties only. The step to reduced varieties is the named hypothesis `ReductionToIntegral`, so `resolutionInDim_zero` takes it as an argument.
+The base proves Main Theorem I for integral varieties only. The step to reduced varieties is `Singularity.Reduction.reductionToIntegral` in the main package. Thus `resolutionInDim_charZero` gives `ResolutionInDim 0 n` for each `n` with no hypothesis.
 
 ## Rules
 

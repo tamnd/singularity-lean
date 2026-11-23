@@ -6,6 +6,7 @@ import Singularity.Algebra.NormalLocus
 import Singularity.Curves.Affine
 import Singularity.Scheme.NormalDimOne
 import Singularity.Hypotheses.Integral
+import Singularity.Scheme.Reduction
 import Mathlib.AlgebraicGeometry.Normalization
 import Mathlib.AlgebraicGeometry.FunctionField
 import Mathlib.AlgebraicGeometry.Morphisms.Finite
@@ -29,7 +30,8 @@ The proof has five steps.
 
 * `isResolution_normalizationHom`: the normalization of an integral curve is a resolution.
 * `integralResolutionInDim_one`: `IntegralResolutionInDim p 1` for each `p`.
-* `resolutionInDim_one_of_reductionToIntegral`: `ResolutionInDim p 1` for each `p`, under the named hypothesis `ReductionToIntegral`.
+* `resolutionInDim_one_of_reductionToIntegral`: `ResolutionInDim p 1` for each `p`, under the hypothesis `ReductionToIntegral`.
+* `resolutionInDim_one`: `ResolutionInDim p 1` for each `p`. The reduction to integral varieties is `Singularity.Reduction.reductionToIntegral`, so this theorem takes no hypothesis.
 -/
 
 open AlgebraicGeometry CategoryTheory Opposite TopologicalSpace
@@ -345,9 +347,13 @@ theorem integralResolutionInDim_one (p : ℕ) : IntegralResolutionInDim.{u} p 1 
   have := hV.finiteType
   exact ⟨_, normalizationHom X, isResolution_normalizationHom f (by exact_mod_cast hX)⟩
 
-/-- Resolution of singularities for curves over a field of each characteristic, under the named hypothesis `ReductionToIntegral`. -/
+/-- Resolution of singularities for curves over a field of each characteristic, under the hypothesis `ReductionToIntegral`. -/
 theorem resolutionInDim_one_of_reductionToIntegral (h : ReductionToIntegral.{u}) (p : ℕ) :
     ResolutionInDim.{u} p 1 :=
   h p 1 (integralResolutionInDim_one p)
+
+/-- Resolution of singularities for curves over a field of each characteristic. Let `X` be a variety of dimension at most 1 over a field `k`. Then `X` has a resolution. The variety `X` need not be irreducible. -/
+theorem resolutionInDim_one (p : ℕ) : ResolutionInDim.{u} p 1 :=
+  resolutionInDim_one_of_reductionToIntegral Reduction.reductionToIntegral p
 
 end Singularity.Curves

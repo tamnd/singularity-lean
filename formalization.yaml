@@ -83,7 +83,17 @@ status:
     - name: Singularity.resolutionInDim_zero
       kind: theorem
       status: proved
-      note: In the package base/. It takes the named hypothesis Singularity.ReductionToIntegral.
+      note: In the package base/. It takes Singularity.ReductionToIntegral as a hypothesis.
+    - name: Singularity.resolutionInDim_charZero
+      kind: theorem
+      status: proved
+      note: In the package base/. It applies resolutionInDim_zero to Singularity.Reduction.reductionToIntegral, so it takes no hypothesis.
+    - name: Singularity.Reduction.reductionToIntegral
+      kind: theorem
+      status: proved
+    - name: Singularity.Curves.resolutionInDim_one
+      kind: theorem
+      status: proved
     - name: Singularity.Base.fcResolutionInDim_of_resolutionInDim
       kind: theorem
       status: proved
