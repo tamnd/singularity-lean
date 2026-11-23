@@ -10,7 +10,7 @@ import Mathlib.RingTheory.FiniteType
 /-!
 # The normalization of an affine curve
 
-Let `k` be a field and let `A` be a domain that is a finitely generated `k`-algebra of dimension at most 1. This file proves that the normalization `Ã` of `A` is a Dedekind domain. Thus each local ring of `Ã` is regular. This is Corollary 2.3.6 of Volume 1 of the handbook in characteristic 0, and Corollary 2.4.6 in each characteristic. It is the affine part of the resolution of curves.
+Let `k` be a field and let `A` be a domain that is a finitely generated `k`-algebra of dimension at most 1. This file proves that the normalization `Ã` of `A` is a Dedekind domain. Thus each local ring of `Ã` is regular. This is Corollary 2.3.6 of Volume 1 of the handbook in characteristic 0, and Corollary 2.4.8 in each characteristic. It is the affine part of the resolution of curves.
 
 The proof has three parts.
 
