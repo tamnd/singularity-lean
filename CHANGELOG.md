@@ -9,6 +9,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 - The statements of the problem: `regularLocus`, `IsRegularScheme`, `IsResolution`, `IsVariety`, `ResolutionInDim`, `ResolutionOfSingularities`, `ResolutionDimFourCharP` and `PurelyInseparableHypersurfaceResolution`.
 - Fidelity check F2: `isResolution_id`, the identity of a regular scheme is a resolution.
 - Fidelity check F3: `not_isResolution_codiag`, the codiagonal $X \sqcup X \to X$ is not a resolution when $X$ has a regular point.
+- `resolutionInDim_dim_zero`: each variety of dimension at most 0 has a resolution, in each characteristic. A reduced scheme of dimension at most 0 is regular, so the identity is a resolution.
 - `scripts/Export.lean`, which writes the record of the build, and `scripts/axioms.py`, which checks the axioms in the record.
 - `scripts/scan.sh`, which finds `sorry`, `admit`, `axiom` and `native_decide` in the main tree.
 - The workflows `build`, `check` and `scorecard`.
