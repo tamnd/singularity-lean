@@ -11,7 +11,7 @@ import Mathlib.RingTheory.Spectrum.Prime.Topology
 
 Let `A` be a Noetherian ring. The regular locus `Reg(A)` is the set of the primes `p` such that
 `A_p` is a regular local ring. This file proves the criterion of Nagata for the openness of
-`Reg(A)` ([Mat89, Theorem 24.4]).
+`Reg(A)` ([Mat89, Section 24]).
 
 ## Main results
 
@@ -316,7 +316,7 @@ theorem exists_notMem_isRegularLocalRing_of_quotient [IsNoetherianRing A] (p : I
 
 /-- A set `U` of primes of a Noetherian ring is open if it is closed under generization and
 each `p ∈ U` has `f ∉ p` such that each prime `q ⊇ p` with `f ∉ q` is in `U`
-([Mat89, Lemma 24.2]). -/
+([Mat89, Theorem 24.2]). -/
 theorem isOpen_of_stableUnderGeneralization [IsNoetherianRing A] (U : Set (PrimeSpectrum A))
     (hU : StableUnderGeneralization U)
     (h : ∀ p ∈ U, ∃ f : A, f ∉ p.asIdeal ∧
@@ -360,7 +360,7 @@ theorem isOpen_of_stableUnderGeneralization [IsNoetherianRing A] (U : Set (Prime
   intro hzU
   exact hmin P hP hP.1.1 (hU ((PrimeSpectrum.le_iff_specializes ⟨P, hP.1.1⟩ z).mp hPz) hzU)
 
-/-- The criterion of Nagata ([Mat89, Theorem 24.4]). Let `A` be a Noetherian ring. Assume that
+/-- The criterion of Nagata ([Mat89, Section 24]). Let `A` be a Noetherian ring. Assume that
 each `p ∈ Reg(A)` has `g ∉ p` such that `A_q / p A_q` is regular for each prime `q ⊇ p` with
 `g ∉ q`. Then the regular locus of `A` is open. -/
 theorem isOpen_regularLocus [IsNoetherianRing A]
@@ -429,7 +429,7 @@ noncomputable def localizationQuotientEquiv (p q : Ideal A) [q.IsPrime] (hpq : p
   haveI := isLocalization_localization_quotient p q hpq
   (IsLocalization.algEquiv (q.map (Ideal.Quotient.mk p)).primeCompl _ _).toRingEquiv
 
-/-- The criterion of Nagata in the form of [Mat89, Theorem 24.4]. Let `A` be a Noetherian ring.
+/-- The criterion of Nagata in the form of [Mat89, Section 24]. Let `A` be a Noetherian ring.
 Assume that for each `p ∈ Reg(A)` the regular locus of `A / p` contains a nonempty open set.
 Then the regular locus of `A` is open. -/
 theorem isOpen_regularLocus_of_exists_isOpen [IsNoetherianRing A]
