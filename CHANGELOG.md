@@ -6,6 +6,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- The workflow `trust`. Each week, and on request, it replays each declaration of `Singularity` and of `SingularityBase` in a fresh environment with `leanchecker` of the toolchain. This is a part of check Q3. `leanchecker` uses the kernel of Lean itself, thus it is not an independent kernel.
 - `Singularity/Hypotheses/Integral.lean`: `IntegralResolutionInDim p n`, the main statement for integral varieties, and the named hypothesis `ReductionToIntegral`, the step from integral varieties to reduced varieties. The hypothesis is a `def ... : Prop`, not an axiom.
 - The package `base/` (`SingularityBase`). It depends on resolutionorg/hironaka at the pin in `manifests/base.yaml` and proves `Singularity.Base.integralResolutionInDim_zero`: each integral variety over a field of characteristic 0 has a resolution. The proof applies Main Theorem I of the base and proves that the exceptional divisor of the blowup has a dense complement.
 - `Singularity.resolutionInDim_zero`: resolution in characteristic 0 in each dimension, under the hypothesis `ReductionToIntegral`.
