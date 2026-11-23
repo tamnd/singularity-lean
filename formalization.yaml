@@ -48,3 +48,6 @@ status:
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
+    - name: Singularity.resolutionInDim_zero
+      kind: theorem
+      status: proved
