@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.2.0 - 2026-11-23
+
 ### Added
 
 - The workflow `trust`. Each week, and on request, it replays each declaration of `Singularity` and of `SingularityBase` in a fresh environment with `leanchecker` of the toolchain. This is a part of check Q3. `leanchecker` uses the kernel of Lean itself, thus it is not an independent kernel.
