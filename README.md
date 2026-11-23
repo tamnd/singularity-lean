@@ -27,6 +27,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Algebra/ExtCriterion.lean` | over a Noetherian local ring, a finite module $M$ has $\operatorname{pd} M \le n$ if and only if $\operatorname{Ext}^{n+1}(M, k) = 0$ |
 | `Singularity/Algebra/GlobalDimension.lean` | over a regular local ring $R$, each finite module has projective dimension at most $\dim R$ |
 | `Singularity/Algebra/SerreConverse.lean` | the converse of the theorem of Serre: a Noetherian local ring $R$ with $\operatorname{pd} k < \infty$ is regular |
+| `Singularity/Algebra/RegularLocalization.lean` | the localization of a regular local ring at a prime ideal is a regular local ring |
 | `Singularity/Scheme/Components.lean` | the irreducible components of a reduced Noetherian scheme: each component is integral, and a point with a domain as local ring lies on one component only |
 | `Singularity/Scheme/Reduction.lean` | `reductionToIntegral`: the proof of `ReductionToIntegral`, and the lemma that a finite disjoint union of proper maps is proper |
 | `Singularity/Curves/Resolution.lean` | `integralResolutionInDim_one` and `resolutionInDim_one`: each curve over a field of each characteristic has a resolution |
