@@ -41,7 +41,7 @@ dimension `m`, so `(x)` is prime by induction. Let `P ⊆ (x)` be a minimal prim
 is `z x` with `z ∈ P`, thus `P = x P`, and Nakayama's lemma gives `P = 0`.
 
 Mathlib does not have the theorem that a localization of a regular local ring at a prime is
-regular (Serre). This file does not prove it.
+regular (Serre). The file `RegularLocalization` proves it with the characterization of Serre.
 
 ## References
 
