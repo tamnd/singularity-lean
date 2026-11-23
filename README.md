@@ -19,7 +19,8 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Algebra/Regular.lean` | regular local rings: the quotient by a parameter, a regular local ring is a domain, and in dimension 1 regular is the same as integrally closed |
 | `Singularity/Algebra/Normalization.lean` | the integral closure of a domain is finite over it, when its fraction field is separable over a Noetherian normal subring, and for each finitely generated domain in characteristic 0 |
 | `Singularity/Scheme/NormalDimOne.lean` | a locally Noetherian scheme of dimension at most 1 with integrally closed local domains is regular |
-| `Singularity/Curves/Affine.lean` | the normalization of an affine curve in characteristic 0 is a Dedekind domain, so it is a regular ring |
+| `Singularity/Algebra/NormalizationCharP.lean` | the normalization of a domain that is a finitely generated algebra over a field is finite, in each characteristic (E. Noether) |
+| `Singularity/Curves/Affine.lean` | the normalization of an affine curve over a field is a Dedekind domain, so it is a regular ring |
 | `Singularity/Known/DimZero.lean` | `resolutionInDim_dim_zero`, resolution in dimension 0 in each characteristic |
 | `Singularity/Hypotheses/Integral.lean` | `IntegralResolutionInDim` and the named hypothesis `ReductionToIntegral` |
 | `Singularity/Bridge/FormalConjectures.lean` | the statements of google-deepmind/formal-conjectures, copied as propositions |

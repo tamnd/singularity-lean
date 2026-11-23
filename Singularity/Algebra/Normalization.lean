@@ -19,7 +19,7 @@ The proof has three steps.
 2. The ring `P` is Noetherian and integrally closed, because it is a unique factorization domain. If `Frac A` is separable over `Frac P`, then the integral closure of `P` in `Frac A` is a finite `P`-module (`IsIntegralClosure.finite` in Mathlib, by the trace form).
 3. An element of `Frac A` that is integral over `A` is integral over `P`, because `A` is integral over `P`. Thus the integral closure of `A` is a `P`-submodule of a Noetherian `P`-module, so it is finite over `P`, and so it is finite over `A`.
 
-The general case in characteristic `p` needs a purely inseparable extension of `Frac P`, and it is not in this file.
+The general case in characteristic `p` needs a purely inseparable extension of `Frac P`. It is in `Singularity/Algebra/NormalizationCharP.lean`, which uses `finite_integralClosure_of_finite_of_finite` from this file.
 -/
 
 open Module
@@ -31,14 +31,11 @@ namespace Singularity.Algebra
 
 attribute [local instance] FractionRing.liftAlgebra
 
-/-- Let `P → A` be a finite injective map of domains, with `P` Noetherian and integrally closed. If `Frac A` is separable over `Frac P`, then the integral closure of `A` in `Frac A` is a finite `A`-module. -/
-theorem finite_integralClosure_of_finite (P A : Type*) [CommRing P] [IsDomain P]
-    [IsIntegrallyClosed P] [IsNoetherianRing P] [CommRing A] [IsDomain A] [Algebra P A]
-    [IsTorsionFree P A] [Module.Finite P A]
-    [Algebra.IsSeparable (FractionRing P) (FractionRing A)] :
+/-- Let `P → A` be a finite injective map of domains, with `P` Noetherian. If the integral closure of `P` in `Frac A` is a finite `P`-module, then the integral closure of `A` in `Frac A` is a finite `A`-module. -/
+theorem finite_integralClosure_of_finite_of_finite (P A : Type*) [CommRing P] [IsDomain P]
+    [IsNoetherianRing P] [CommRing A] [IsDomain A] [Algebra P A] [IsTorsionFree P A]
+    [Module.Finite P A] (hC : Module.Finite P (integralClosure P (FractionRing A))) :
     Module.Finite A (integralClosure A (FractionRing A)) := by
-  have hC : Module.Finite P (integralClosure P (FractionRing A)) :=
-    IsIntegralClosure.finite P (FractionRing P) (FractionRing A) (integralClosure P (FractionRing A))
   have hN : IsNoetherian P (integralClosure P (FractionRing A)) :=
     isNoetherian_of_isNoetherianRing_of_finite _ _
   have hN' : IsNoetherian P (Subalgebra.toSubmodule
@@ -49,6 +46,15 @@ theorem finite_integralClosure_of_finite (P A : Type*) [CommRing P] [IsDomain P]
   have hfg : ((Subalgebra.toSubmodule (integralClosure A (FractionRing A))).restrictScalars P).FG :=
     Module.Finite.iff_fg.mp (isNoetherian_of_le hle).finite
   exact Module.Finite.iff_fg.mpr (Submodule.FG.of_restrictScalars P hfg)
+
+/-- Let `P → A` be a finite injective map of domains, with `P` Noetherian and integrally closed. If `Frac A` is separable over `Frac P`, then the integral closure of `A` in `Frac A` is a finite `A`-module. -/
+theorem finite_integralClosure_of_finite (P A : Type*) [CommRing P] [IsDomain P]
+    [IsIntegrallyClosed P] [IsNoetherianRing P] [CommRing A] [IsDomain A] [Algebra P A]
+    [IsTorsionFree P A] [Module.Finite P A]
+    [Algebra.IsSeparable (FractionRing P) (FractionRing A)] :
+    Module.Finite A (integralClosure A (FractionRing A)) :=
+  finite_integralClosure_of_finite_of_finite P A
+    (IsIntegralClosure.finite P (FractionRing P) (FractionRing A) (integralClosure P (FractionRing A)))
 
 /-- Let `A` be a domain that is a finitely generated algebra over a field `k` of characteristic 0. Then the integral closure of `A` in `Frac A` is a finite `A`-module. -/
 theorem finite_integralClosure_of_charZero (k A : Type u) [Field k] [CharZero k] [CommRing A]
