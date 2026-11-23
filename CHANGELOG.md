@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.2.7 - 2026-11-24
+
 ### Added
 
 - `Singularity/Algebra/RegularLocalization.lean`: let $R$ be a regular local ring and let $\mathfrak{p}$ be a prime ideal. Then $R_\mathfrak{p}$ is a regular local ring (`isRegularLocalRing_localization`). The proof shows $\operatorname{pd} \kappa(\mathfrak{p}) < \infty$ over $R_\mathfrak{p}$ with the module $(R/\mathfrak{p})_\mathfrak{p} \cong \kappa(\mathfrak{p})$. The file also states the characterization of Serre in both directions (`isRegularLocalRing_iff_exists_hasProjectiveDimensionLT`).
