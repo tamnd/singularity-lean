@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.2.3 - 2026-11-24
+
 ### Added
 
 - `Singularity/Algebra/NormalizationCharP.lean`: `finite_integralClosure`. Let $A$ be a domain that is a finitely generated algebra over a field $k$ of any characteristic. Then the integral closure of $A$ in $\operatorname{Frac} A$ is a finite $A$-module. This is the theorem of E. Noether. The file proves the purely inseparable case over $k[X_1, \dots, X_s]$ with the ring $k'[Y_1, \dots, Y_s]$, where $Y_i^q = X_i$ and $k'$ is a finite extension of $k$. Then it reduces the general case to this case and to the separable case with the normal closure.
@@ -20,7 +22,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 - `Singularity/Curves/Affine.lean`: `isDedekindDomain_integralClosure_of_charZero` and `isRegularRing_integralClosure_of_charZero`. Let $A$ be a domain of dimension at most 1 that is a finitely generated algebra over a field of characteristic 0. Then the normalization of $A$ is a Dedekind domain, and so its localization at each prime ideal is a regular local ring. This is the affine part of the resolution of curves in characteristic 0.
 - `Singularity/Scheme/NormalDimOne.lean`: `isRegularScheme_of_isIntegrallyClosed_stalk`. Let $X$ be a locally Noetherian scheme of dimension at most 1. If each local ring of $X$ is an integrally closed domain, then $X$ is regular. Mathlib has no class for normal schemes, so the hypothesis is written on the local rings.
-- `Singularity/Algebra/Normalization.lean`: `finite_integralClosure_of_finite`. Let $P \to A$ be a finite injective map of domains, with $P$ Noetherian and integrally closed, and with $\operatorname{Frac} A$ separable over $\operatorname{Frac} P$. Then the integral closure of $A$ is a finite $A$-module. The corollary `finite_integralClosure_of_charZero` gives the finiteness of the normalization of each finitely generated domain over a field of characteristic 0. The case of characteristic $p$ is still open in Lean.
+- `Singularity/Algebra/Normalization.lean`: `finite_integralClosure_of_finite`. Let $P \to A$ be a finite injective map of domains, with $P$ Noetherian and integrally closed, and with $\operatorname{Frac} A$ separable over $\operatorname{Frac} P$. Then the integral closure of $A$ is a finite $A$-module. The corollary `finite_integralClosure_of_charZero` gives the finiteness of the normalization of each finitely generated domain over a field of characteristic 0.
 
 ## 0.2.1 - 2026-11-24
 
