@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- The workflow `trust` has a new job `lean4lean`. It checks each declaration of the package Singularity again with lean4lean, a type checker for Lean written in Lean. The job checks each module and takes its imports as correct, so it does not check Mathlib again. lean4lean follows the design of the C++ kernel, so this is a second implementation but not an independent design.
+
 ## 0.2.6 - 2026-11-24
 
 ### Added
