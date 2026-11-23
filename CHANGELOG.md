@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Algebra/Regular.lean`: the first facts about regular local rings. If $x \in \mathfrak{m} \setminus \mathfrak{m}^2$, then $R/(x)$ is regular of dimension $\dim R - 1$. A regular local ring is a domain. A Noetherian local domain of dimension 1 is regular if and only if it is a discrete valuation ring, and if and only if it is integrally closed. Sections 1 to 4 are adapted from resolutionorg/hironaka with attribution.
+
 ## 0.2.0 - 2026-11-23
 
 ### Added
