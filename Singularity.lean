@@ -6,6 +6,7 @@ import Singularity.Algebra.Normalization
 import Singularity.Algebra.NormalizationCharP
 import Singularity.Scheme.NormalDimOne
 import Singularity.Algebra.NormalLocus
+import Singularity.Algebra.HilbertSamuel
 import Singularity.Curves.Affine
 import Singularity.Scheme.Components
 import Singularity.Scheme.Reduction

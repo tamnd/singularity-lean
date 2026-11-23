@@ -22,6 +22,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Algebra/NormalizationCharP.lean` | the normalization of a domain that is a finitely generated algebra over a field is finite, in each characteristic (E. Noether) |
 | `Singularity/Curves/Affine.lean` | the normalization of an affine curve over a field is a Dedekind domain, so it is a regular ring |
 | `Singularity/Algebra/NormalLocus.lean` | the normal locus of a domain with a finite normalization is open: the conductor argument |
+| `Singularity/Algebra/HilbertSamuel.lean` | the Hilbert-Samuel function $n \mapsto \ell(M/I^n M)$ with its laws and its finiteness, and the order of an element with its laws |
 | `Singularity/Scheme/Components.lean` | the irreducible components of a reduced Noetherian scheme: each component is integral, and a point with a domain as local ring lies on one component only |
 | `Singularity/Scheme/Reduction.lean` | `reductionToIntegral`: the proof of `ReductionToIntegral`, and the lemma that a finite disjoint union of proper maps is proper |
 | `Singularity/Curves/Resolution.lean` | `integralResolutionInDim_one` and `resolutionInDim_one`: each curve over a field of each characteristic has a resolution |
