@@ -29,6 +29,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Algebra/SerreConverse.lean` | the converse of the theorem of Serre: a Noetherian local ring $R$ with $\operatorname{pd} k < \infty$ is regular |
 | `Singularity/Algebra/RegularLocalization.lean` | the localization of a regular local ring at a prime ideal is a regular local ring |
 | `Singularity/Algebra/RegularLocus.lean` | the regular locus of a Noetherian ring is stable under generization, and the criterion of Nagata for the openness of the regular locus |
+| `Singularity/Algebra/Jacobian.lean` | the Jacobian criterion for a hypersurface: if $D F \notin \mathfrak{q}$ for a derivation $D$, then $A_\mathfrak{q}/(F)$ is regular |
 | `Singularity/Scheme/Components.lean` | the irreducible components of a reduced Noetherian scheme: each component is integral, and a point with a domain as local ring lies on one component only |
 | `Singularity/Scheme/Reduction.lean` | `reductionToIntegral`: the proof of `ReductionToIntegral`, and the lemma that a finite disjoint union of proper maps is proper |
 | `Singularity/Curves/Resolution.lean` | `integralResolutionInDim_one` and `resolutionInDim_one`: each curve over a field of each characteristic has a resolution |
