@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.1.0 - 2026-11-23
+
 ### Added
 
 - The statements of the problem: `regularLocus`, `IsRegularScheme`, `IsResolution`, `IsVariety`, `ResolutionInDim`, `ResolutionOfSingularities`, `ResolutionDimFourCharP` and `PurelyInseparableHypersurfaceResolution`.
