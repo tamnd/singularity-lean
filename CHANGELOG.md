@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.2.5 - 2026-11-24
+
 ### Added
 
 - `Singularity/Scheme/Components.lean`: facts about the irreducible components of a reduced Noetherian scheme $X$. Each component, with its subscheme structure, is reduced and integral. A point whose local ring is a domain lies on one component only. Over the complement of the other components, the inclusion of a component is an isomorphism.
