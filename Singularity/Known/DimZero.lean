@@ -8,7 +8,7 @@ import Singularity.Fidelity.Positive
 /-!
 # Resolution in dimension 0
 
-This file proves `resolutionInDim_zero`: each variety of dimension at most 0 over a field has a resolution, in each characteristic. The resolution is the identity.
+This file proves `resolutionInDim_dim_zero`: each variety of dimension at most 0 over a field has a resolution, in each characteristic. The resolution is the identity.
 
 The proof has three steps.
 
@@ -48,7 +48,7 @@ theorem isRegularScheme_of_topologicalKrullDim_le_zero {X : Scheme.{u}} [IsReduc
   exact isRegularLocalRing_of_isField Ring.KrullDimLE.isField_of_isReduced
 
 /-- Resolution of singularities in dimension 0, in each characteristic. -/
-theorem resolutionInDim_zero (p : ℕ) : ResolutionInDim.{u} p 0 := by
+theorem resolutionInDim_dim_zero (p : ℕ) : ResolutionInDim.{u} p 0 := by
   intro k _ _ X f hX hdim
   have := hX.reduced
   exact ⟨X, 𝟙 X, Fidelity.isResolution_id

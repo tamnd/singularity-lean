@@ -14,7 +14,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Statements/Main.lean` | `ResolutionInDim`, `ResolutionOfSingularities` and `ResolutionDimFourCharP` |
 | `Singularity/Statements/Core.lean` | the purely inseparable hypersurfaces $z^p + g = 0$, the core case of route R5 |
 | `Singularity/Fidelity/Positive.lean` | check F2: the identity of a regular scheme is a resolution |
-| `Singularity/Known/DimZero.lean` | `resolutionInDim_zero`, resolution in dimension 0 in each characteristic |
+| `Singularity/Known/DimZero.lean` | `resolutionInDim_dim_zero`, resolution in dimension 0 in each characteristic |
 | `scripts/Export.lean` | writes the record of the build: each declaration, its type and its axioms |
 
 The statements use "regular" and not "smooth over $k$". Over an imperfect field a regular variety need not be smooth, so the statement with "smooth" is false there.
