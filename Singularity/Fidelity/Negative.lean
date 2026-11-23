@@ -58,8 +58,11 @@ theorem not_isResolution_codiag {X : Scheme.{u}} (x : X) (hx : x ∈ regularLocu
       | (show (codiag X).base _ ∈ U; rw [hr]; exact hxU)
   have heq : (codiag X ∣_ U).base ⟨_, ha⟩ = (codiag X ∣_ U).base ⟨_, hb⟩ := by
     apply Subtype.ext
-    rw [morphismRestrict_base_coe, morphismRestrict_base_coe]
-    exact hl.trans hr.symm
+    first
+      | exact (morphismRestrict_base_coe (codiag X) U ⟨_, ha⟩).trans
+          (hl.trans (hr.trans (morphismRestrict_base_coe (codiag X) U ⟨_, hb⟩).symm))
+      | (simp only [morphismRestrict_base_coe]; exact hl.trans hr.symm)
+      | (erw [morphismRestrict_base_coe, morphismRestrict_base_coe]; exact hl.trans hr.symm)
   have h2 := hinj heq
   first
     | exact inl_ne_inr x (congrArg Subtype.val h2)
