@@ -4,12 +4,11 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.2.2 - 2026-11-24
+
 ### Added
 
 - `Singularity/Curves/Affine.lean`: `isDedekindDomain_integralClosure_of_charZero` and `isRegularRing_integralClosure_of_charZero`. Let $A$ be a domain of dimension at most 1 that is a finitely generated algebra over a field of characteristic 0. Then the normalization of $A$ is a Dedekind domain, and so its localization at each prime ideal is a regular local ring. This is the affine part of the resolution of curves in characteristic 0.
-
-### Added
-
 - `Singularity/Scheme/NormalDimOne.lean`: `isRegularScheme_of_isIntegrallyClosed_stalk`. Let $X$ be a locally Noetherian scheme of dimension at most 1. If each local ring of $X$ is an integrally closed domain, then $X$ is regular. Mathlib has no class for normal schemes, so the hypothesis is written on the local rings.
 - `Singularity/Algebra/Normalization.lean`: `finite_integralClosure_of_finite`. Let $P \to A$ be a finite injective map of domains, with $P$ Noetherian and integrally closed, and with $\operatorname{Frac} A$ separable over $\operatorname{Frac} P$. Then the integral closure of $A$ is a finite $A$-module. The corollary `finite_integralClosure_of_charZero` gives the finiteness of the normalization of each finitely generated domain over a field of characteristic 0. The case of characteristic $p$ is still open in Lean.
 
