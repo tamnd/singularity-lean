@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.2.4 - 2026-11-24
+
 ### Added
 
 - `Singularity/Algebra/NormalLocus.lean`: let $A$ be a domain with a finite normalization $\tilde A$, and let $p$ be a prime ideal of $A$ such that $A_p$ is integrally closed. Then there is an element $s \notin p$ with $s \tilde A \subseteq A$, and $A_s$ is integrally closed. Thus the normal locus of $\operatorname{Spec} A$ is open.
