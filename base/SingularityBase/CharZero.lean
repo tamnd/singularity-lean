@@ -82,16 +82,16 @@ lemma regularLocus_eq_compl_singularLocus (X : Scheme.{u}) :
 theorem exists_isResolution_of_isIntegral {k : Type u} [Field k] [CharZero k] (X : Scheme.{u})
     (f : X ⟶ Spec (.of k)) [hX : IsVariety X f] [IsIntegral X] :
     ∃ (Y : Scheme.{u}) (π : Y ⟶ X), IsResolution π := by
-  haveI : LocallyOfFiniteType f := hX.finiteType
-  haveI : QuasiCompact f := hX.quasiCompact
-  haveI : IsSeparated f := hX.separated
+  have : LocallyOfFiniteType f := hX.finiteType
+  have : QuasiCompact f := hX.quasiCompact
+  have : IsSeparated f := hX.separated
   have hft : FiniteType f := inferInstance
   let Xa : AlgScheme k := MorphismProperty.Over.mk ⊤ f ⟨hft, hX.separated⟩
-  haveI : IsIntegral Xa.left := ‹IsIntegral X›
+  have : IsIntegral Xa.left := ‹IsIntegral X›
   obtain ⟨D, hD, hreg⟩ : ∃ D : X.IdealSheafData,
       (D.support : Set X) = X.singularLocus ∧ IsRegular D.blowUp :=
     exists_support_eq_singularLocus_isRegular_blowUp Xa
-  haveI : IsLocallyNoetherian X := LocallyOfFiniteType.isLocallyNoetherian f
+  have : IsLocallyNoetherian X := LocallyOfFiniteType.isLocallyNoetherian f
   have hU : ((D.support.compl : X.Opens) : Set X) = regularLocus X := by
     rw [regularLocus_eq_compl_singularLocus, ← hD]
     rfl
@@ -109,7 +109,7 @@ theorem exists_isResolution_of_isIntegral {k : Type u} [Field k] [CharZero k] (X
 /-- The integral case of the main statement in characteristic 0, in each dimension. -/
 theorem integralResolutionInDim_zero (n : ℕ) : IntegralResolutionInDim.{u} 0 n := by
   intro k _ _ X f _ _ _
-  haveI : CharZero k := CharP.charP_to_charZero k
+  have : CharZero k := CharP.charP_to_charZero k
   exact exists_isResolution_of_isIntegral X f
 
 end Singularity.Base

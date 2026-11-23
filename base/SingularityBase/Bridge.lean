@@ -4,6 +4,7 @@ Released under the Apache 2.0 licence as described in the file LICENSE.
 -/
 import SingularityBase.CharZero
 import Singularity.Bridge.FormalConjectures
+import Singularity.Known.DimZero
 import Hironaka.Algebra.Local.Regular
 import Hironaka.Algebra.RegularSmooth.RegularSmoothEquiv
 
@@ -46,8 +47,8 @@ theorem hasResolution_of_isResolution {k : Type u} [Field k] [PerfectField k] {X
     (sX : X ⟶ Spec (.of k)) [IsIntegral X] [LocallyOfFiniteType sX] (π : Y ⟶ X)
     (h : IsResolution π) : Bridge.HasResolution sX := by
   obtain ⟨U, hU, hiso⟩ := h.isIso_over
-  haveI := hiso
-  haveI := h.proper
+  have := hiso
+  have := h.proper
   have hη : genericPoint X ∈ (U : Set X) := hU ▸ genericPoint_mem_regularLocus X
   have hUd : Dense (U : Set X) := U.isOpen.dense ⟨_, hη⟩
   have hV : ((π ⁻¹ᵁ U : Y.Opens) : Set Y) = π.base ⁻¹' regularLocus X := by
@@ -55,20 +56,20 @@ theorem hasResolution_of_isResolution {k : Type u} [Field k] [PerfectField k] {X
     rfl
   have hVd : Dense ((π ⁻¹ᵁ U : Y.Opens) : Set Y) := hV ▸ h.dense
   -- `Y` is integral
-  haveI : Nonempty U.toScheme := ⟨⟨_, hη⟩⟩
-  haveI : IsIntegral U.toScheme := isIntegral_of_isOpenImmersion U.ι
-  haveI : Nonempty (π ⁻¹ᵁ U).toScheme := ⟨(inv (π ∣_ U)) ⟨_, hη⟩⟩
-  haveI : IsIntegral (π ⁻¹ᵁ U).toScheme := isIntegral_of_isOpenImmersion (π ∣_ U)
+  have : Nonempty U.toScheme := ⟨⟨_, hη⟩⟩
+  have : IsIntegral U.toScheme := isIntegral_of_isOpenImmersion U.ι
+  have : Nonempty (π ⁻¹ᵁ U).toScheme := ⟨(inv (π ∣_ U)) ⟨_, hη⟩⟩
+  have : IsIntegral (π ⁻¹ᵁ U).toScheme := isIntegral_of_isOpenImmersion (π ∣_ U)
   have hirr : IsIrreducible (Set.range (π ⁻¹ᵁ U).ι) := by
     rw [← Set.image_univ]
     exact (IrreducibleSpace.isIrreducible_univ _).image _ (π ⁻¹ᵁ U).ι.continuous.continuousOn
   have hrange : Set.range (π ⁻¹ᵁ U).ι = ((π ⁻¹ᵁ U : Y.Opens) : Set Y) :=
     Scheme.Opens.range_ι _
-  haveI : IrreducibleSpace Y := by
-    rw [irreducibleSpace_def, ← hVd.closure_eq, ← hrange]
+  have : IrreducibleSpace Y := by
+    rw [irreducibleSpace_def, Set.top_eq_univ, ← hVd.closure_eq, ← hrange]
     exact isIrreducible_iff_closure.mpr hirr
-  haveI : IsReduced Y := isReduced_of_isRegularScheme h.regular
-  haveI : IsIntegral Y := isIntegral_of_irreducibleSpace_of_isReduced Y
+  have : IsReduced Y := isReduced_of_isRegularScheme h.regular
+  have : IsIntegral Y := isIntegral_of_irreducibleSpace_of_isReduced Y
   -- `Y` is smooth over `k`
   have hsm : Smooth (π ≫ sX) := (Scheme.smooth_iff_isRegular (π ≫ sX)).mpr ⟨h.regular⟩
   -- `π` is birational over `X`
@@ -86,7 +87,7 @@ theorem hasResolution_of_isResolution {k : Type u} [Field k] [PerfectField k] {X
 theorem fcResolutionInDim_of_integralResolutionInDim {p n : ℕ}
     (h : IntegralResolutionInDim.{u} p n) : Bridge.FCResolutionInDim.{u} p n := by
   intro k _ _ _ X sX _ _ _ _ hX
-  haveI : IsVariety X sX := ⟨inferInstance, ‹_›, ‹_›, ‹_›⟩
+  have : IsVariety X sX := ⟨inferInstance, ‹_›, ‹_›, ‹_›⟩
   obtain ⟨Y, π, hπ⟩ := h k X sX hX
   exact hasResolution_of_isResolution sX π hπ
 
@@ -98,7 +99,7 @@ theorem fcResolutionInDim_of_resolutionInDim {p n : ℕ} (h : ResolutionInDim.{u
 /-- Hironaka's theorem in the form of formal-conjectures (`resolution_of_singularities_of_charZero`). The proof uses Main Theorem I of the base and the bridge of this file. It takes no named hypothesis. -/
 theorem fcResolutionCharZero : Bridge.FCResolutionCharZero.{u} := by
   intro k _ _ X sX _ _ _ _
-  haveI : IsVariety X sX := ⟨inferInstance, ‹_›, ‹_›, ‹_›⟩
+  have : IsVariety X sX := ⟨inferInstance, ‹_›, ‹_›, ‹_›⟩
   obtain ⟨Y, π, hπ⟩ := exists_isResolution_of_isIntegral X sX
   exact hasResolution_of_isResolution sX π hπ
 
