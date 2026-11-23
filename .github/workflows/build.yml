@@ -37,7 +37,10 @@ jobs:
           COMMIT: ${{ github.sha }}
         run: |
           mkdir -p records
-          lake env lean --run scripts/Export.lean "$COMMIT" v4.35.0 "$(date -u +%Y-%m-%d)" > records/lean.json
+          if ! lake env lean --run scripts/Export.lean "$COMMIT" v4.35.0 "$(date -u +%Y-%m-%d)" > records/lean.json; then
+            cat records/lean.json
+            exit 1
+          fi
       - name: check the axioms
         run: python3 scripts/axioms.py records/lean.json
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

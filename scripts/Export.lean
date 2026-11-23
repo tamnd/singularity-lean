@@ -49,9 +49,10 @@ def entry (env : Environment) (n : Name) (info : ConstantInfo) (kind : String) :
     ("axioms", toJson (axioms.map Name.toString |>.qsort (· < ·))),
     ("type", ty)]
 
-def main (args : List String) : IO UInt32 := do
+unsafe def main (args : List String) : IO UInt32 := do
   let [commit, mathlib, date] := args
     | IO.eprintln "usage: lean --run scripts/Export.lean <commit> <mathlib commit> <date>"; return 2
+  enableInitializersExecution
   initSearchPath (← findSysroot)
   let env ← importModules #[{ module := `Singularity }] {} (loadExts := true)
   let names := env.constants.fold (init := #[]) fun acc n info =>
