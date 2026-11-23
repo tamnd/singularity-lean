@@ -3,6 +3,7 @@ import Singularity.Statements.Main
 import Singularity.Statements.Core
 import Singularity.Algebra.Regular
 import Singularity.Algebra.RegularSequence
+import Singularity.Algebra.ExtCriterion
 import Singularity.Algebra.Normalization
 import Singularity.Algebra.NormalizationCharP
 import Singularity.Scheme.NormalDimOne

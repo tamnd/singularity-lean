@@ -6,6 +6,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Algebra/ExtCriterion.lean`: let $R$ be a Noetherian local ring with residue field $k$, and let $M$ be a finite $R$-module. Then $\operatorname{pd} M \le n$ if and only if $\operatorname{Ext}^{n+1}(M, k) = 0$ (`projectiveDimension_le_iff_subsingleton_ext`). The case $n = 0$ is the statement that $M$ is free if $\operatorname{Ext}^1(M, k) = 0$. Mathlib has the criterion with all finite test modules. This file needs only the test module $k$.
 - The workflow `trust` has a new job `lean4lean`. It checks each declaration of the package Singularity again with lean4lean, a type checker for Lean written in Lean. The job checks each module and takes its imports as correct, so it does not check Mathlib again. lean4lean follows the design of the C++ kernel, so this is a second implementation but not an independent design.
 
 ## 0.2.6 - 2026-11-24
