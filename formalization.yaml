@@ -1,0 +1,50 @@
+# The metadata of this formalization. The keys follow the formalization.yaml schema of version 0.4 that resolutionorg/hironaka uses.
+version: "0.4"
+project:
+  name: singularity-lean
+  description: Statements in Lean 4 of resolution of singularities in characteristic p > 0, the known cases, and the work on the open case of dimension 4 and higher.
+  authors:
+    - The singularity authors
+  responsible_maintainers:
+    - tamnd
+  license: Apache-2.0
+sources:
+  - title: Resolution of singularities of an algebraic variety over a field of characteristic zero
+    authors: [Heisuke Hironaka]
+    id: "singularity:Hir64"
+    type: paper
+    location: Annals of Mathematics 79 (1964)
+    relationship: background
+    note: The case of characteristic 0. The statements here use the same form of a resolution.
+    author_endorsement: false
+  - title: Resolution of singularities of threefolds in positive characteristic II
+    authors: [Vincent Cossart, Olivier Piltant]
+    id: "singularity:CP09"
+    type: paper
+    location: Journal of Algebra 321 (2009)
+    relationship: background
+    note: The case of dimension 3 in each characteristic p > 0. Not formalized here yet.
+    author_endorsement: false
+classification:
+  arxiv: [math.AG]
+  msc2020: [14E15, 14B05, 13H05]
+status:
+  scope: statements
+  sorry_count: 0
+  sorry_in_definitions: false
+  axioms: [propext, Classical.choice, Quot.sound]
+  main_results:
+    - name: Singularity.ResolutionDimFourCharP
+      kind: statement
+      status: open
+      note: This is a definition of a proposition. The package does not prove it.
+    - name: Singularity.ResolutionOfSingularities
+      kind: statement
+      status: open
+    - name: Singularity.PurelyInseparableHypersurfaceResolution
+      kind: statement
+      status: open
+      note: Open for n at least 4.
+    - name: Singularity.Fidelity.isResolution_id
+      kind: theorem
+      status: proved

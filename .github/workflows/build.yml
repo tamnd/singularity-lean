@@ -1,0 +1,47 @@
+name: build
+
+# Build the package on top of the Mathlib cache, check the axioms of each declaration, and upload the record of the build. The record is the input of sing index in tamnd/singularity.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  build:
+    name: lake build and the axioms
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o elan-init.sh
+          sh elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: get the Mathlib cache
+        run: lake exe cache get
+      - name: build
+        run: lake build
+      - name: write the record of the build
+        env:
+          COMMIT: ${{ github.sha }}
+        run: |
+          mkdir -p records
+          lake env lean --run scripts/Export.lean "$COMMIT" v4.35.0 "$(date -u +%Y-%m-%d)" > records/lean.json
+      - name: check the axioms
+        run: python3 scripts/axioms.py records/lean.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: lean-record
+          path: records/lean.json
+          retention-days: 30
