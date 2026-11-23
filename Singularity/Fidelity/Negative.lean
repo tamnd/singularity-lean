@@ -50,10 +50,8 @@ theorem not_isResolution_codiag {X : Scheme.{u}} (x : X) (hx : x ∈ regularLocu
     exact hxU
   have heq : (codiag X ∣_ U).base ⟨_, ha⟩ = (codiag X ∣_ U).base ⟨_, hb⟩ := by
     apply Subtype.ext
-    first
-      | exact (morphismRestrict_base_coe (codiag X) U ⟨_, ha⟩).trans
-          (hl.trans (hr.trans (morphismRestrict_base_coe (codiag X) U ⟨_, hb⟩).symm))
-      | (simp only [morphismRestrict_base_coe]; exact hl.trans hr.symm)
+    erw [morphismRestrict_base_coe, morphismRestrict_base_coe]
+    exact hl.trans hr.symm
   exact inl_ne_inr x (congrArg Subtype.val (hinj heq))
 
 /-- The codiagonal of a nonempty regular scheme is not a resolution. -/
