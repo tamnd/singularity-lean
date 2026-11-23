@@ -4,6 +4,17 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Scheme/Components.lean`: facts about the irreducible components of a reduced Noetherian scheme $X$. Each component, with its subscheme structure, is reduced and integral. A point whose local ring is a domain lies on one component only. Over the complement of the other components, the inclusion of a component is an isomorphism.
+- `Singularity/Scheme/Reduction.lean`: `reductionToIntegral`, the proof of `ReductionToIntegral`. Let $X$ be a variety over $k$ with irreducible components $X_1, \dots, X_r$. Resolve each $X_i$, and let $Y$ be the disjoint union of the resolutions. Then $Y \to X$ is a resolution of $X$. The file also proves that a finite disjoint union of proper maps to one scheme is proper, with the valuative criterion. The theorem uses only the standard axioms.
+- `Singularity/Curves/Resolution.lean`: `resolutionInDim_one`. Each variety of dimension at most 1 over a field of any characteristic has a resolution. The theorem takes no hypothesis.
+- `base/SingularityBase/CharZero.lean`: `resolutionInDim_charZero`. Each variety over a field of characteristic 0 has a resolution, with no hypothesis.
+
+### Changed
+
+- `ReductionToIntegral` is no longer an open hypothesis. The theorems that take it as an argument stay, and the new theorems apply them to `reductionToIntegral`.
+
 ## 0.2.4 - 2026-11-24
 
 ### Added

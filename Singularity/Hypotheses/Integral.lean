@@ -9,7 +9,7 @@ import Singularity.Statements.Main
 
 A variety in the sense of `IsVariety` is reduced, but it need not be irreducible. The characteristic 0 base, resolutionorg/hironaka, resolves integral varieties only. This file states the integral case of `ResolutionInDim` and the reduction from the reduced case to the integral case.
 
-The reduction is true, and the proof is known. Let `X_1, ..., X_r` be the irreducible components of `X`, with the reduced structure. Resolve each `X_i`, and let `Y` be the disjoint union of the resolutions. A regular point of `X` lies on one component only, because a regular local ring is a domain. Thus the map `Y ⟶ X` is an isomorphism over the regular locus of `X`. The proof in Lean is planned. Until then, each theorem that uses the reduction takes `ReductionToIntegral` as a hypothesis, and the map lists that hypothesis.
+The reduction is true, and the proof is known. Let `X_1, ..., X_r` be the irreducible components of `X`, with the reduced structure. Resolve each `X_i`, and let `Y` be the disjoint union of the resolutions. A regular point of `X` lies on one component only, because a regular local ring is a domain. Thus the map `Y ⟶ X` is an isomorphism over the regular locus of `X`. The proof in Lean is `Singularity.Reduction.reductionToIntegral` in `Singularity/Scheme/Reduction.lean`. This file cannot import that file, so the theorems of this file and of the base take `ReductionToIntegral` as a hypothesis. The theorem `reductionToIntegral` discharges it.
 -/
 
 open AlgebraicGeometry
@@ -23,7 +23,7 @@ def IntegralResolutionInDim (p n : ℕ) : Prop :=
   ∀ (k : Type u) [Field k] [CharP k p] (X : Scheme.{u}) (f : X ⟶ Spec (.of k)) [IsVariety X f]
     [IsIntegral X], topologicalKrullDim X ≤ n → ∃ (Y : Scheme.{u}) (π : Y ⟶ X), IsResolution π
 
-/-- The reduction to integral varieties: for each `p` and `n`, the integral case of `ResolutionInDim p n` implies the full case. This is a named hypothesis. It is true, but its proof in Lean is planned. -/
+/-- The reduction to integral varieties: for each `p` and `n`, the integral case of `ResolutionInDim p n` implies the full case. The proof is `Singularity.Reduction.reductionToIntegral`. -/
 def ReductionToIntegral : Prop :=
   ∀ p n : ℕ, IntegralResolutionInDim.{u} p n → ResolutionInDim.{u} p n
 

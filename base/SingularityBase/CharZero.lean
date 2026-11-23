@@ -3,6 +3,7 @@ Copyright (c) 2026 The singularity authors. All rights reserved.
 Released under the Apache 2.0 licence as described in the file LICENSE.
 -/
 import Singularity.Hypotheses.Integral
+import Singularity.Scheme.Reduction
 import Hironaka.Resolution.Algebraic.Hir64.MainTheoremI
 import Hironaka.Scheme.BlowUp.Glue.BlowUp
 import Hironaka.Scheme.BlowUp.Glue.Trivial
@@ -20,7 +21,7 @@ Main Theorem I gives, for an integral variety `X` over a field of characteristic
 * `π` is an isomorphism off the centre (`blowUp.isIso_π_restrict_compl_support` of the base), and the complement of the centre is the regular locus;
 * the preimage of the regular locus is the complement of the exceptional divisor, and the exceptional divisor is invertible (`blowUp.isInvertible_comap_π` of the base). The complement of the support of an invertible ideal sheaf is dense. This file proves that last fact.
 
-Main Theorem I in the base needs `X` integral. The step from integral to reduced is the named hypothesis `ReductionToIntegral`.
+Main Theorem I in the base needs `X` integral. The step from integral to reduced is `Singularity.Reduction.reductionToIntegral`.
 -/
 
 open AlgebraicGeometry CategoryTheory Topology
@@ -116,8 +117,12 @@ end Singularity.Base
 
 namespace Singularity
 
-/-- Resolution in characteristic 0, in each dimension, from the base and the named hypothesis `ReductionToIntegral`. -/
+/-- Resolution in characteristic 0, in each dimension, from the base and the hypothesis `ReductionToIntegral`. -/
 theorem resolutionInDim_zero (h : ReductionToIntegral.{u}) (n : ℕ) : ResolutionInDim.{u} 0 n :=
   h 0 n (Base.integralResolutionInDim_zero n)
+
+/-- Resolution in characteristic 0, in each dimension. This is Hironaka's theorem in the form of the project. It uses Main Theorem I of the base and the reduction to integral varieties. It takes no hypothesis. -/
+theorem resolutionInDim_charZero (n : ℕ) : ResolutionInDim.{u} 0 n :=
+  resolutionInDim_zero Reduction.reductionToIntegral n
 
 end Singularity
