@@ -4,6 +4,7 @@ import Singularity.Statements.Core
 import Singularity.Algebra.Regular
 import Singularity.Algebra.Normalization
 import Singularity.Scheme.NormalDimOne
+import Singularity.Curves.Affine
 import Singularity.Fidelity.Positive
 import Singularity.Fidelity.Negative
 import Singularity.Fidelity.Core
