@@ -1,0 +1,23 @@
+# The part of singularity-lean that depends on the characteristic 0 base, resolutionorg/hironaka.
+# It is a separate package, so that the main package builds in minutes and this one builds in its own workflow.
+name = "SingularityBase"
+version = "0.2.0"
+defaultTargets = ["SingularityBase"]
+
+[leanOptions]
+pp.unicode.fun = true
+autoImplicit = false
+relaxedAutoImplicit = false
+
+[[require]]
+name = "Singularity"
+path = ".."
+
+# The pin of the base. Change it only together with manifests/base.yaml.
+[[require]]
+name = "hironaka"
+git = "https://github.com/resolutionorg/hironaka"
+rev = "044d89c9455859446fc5e986667319f910e15f4b"
+
+[[lean_lib]]
+name = "SingularityBase"
