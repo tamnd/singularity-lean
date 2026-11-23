@@ -6,3 +6,4 @@ import Singularity.Fidelity.Negative
 import Singularity.Fidelity.Core
 import Singularity.Known.DimZero
 import Singularity.Hypotheses.Integral
+import Singularity.Bridge.FormalConjectures

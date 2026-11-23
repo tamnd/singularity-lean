@@ -18,6 +18,8 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Fidelity/Core.lean` | the core problem P1 is a special case of the main statement |
 | `Singularity/Known/DimZero.lean` | `resolutionInDim_dim_zero`, resolution in dimension 0 in each characteristic |
 | `Singularity/Hypotheses/Integral.lean` | `IntegralResolutionInDim` and the named hypothesis `ReductionToIntegral` |
+| `Singularity/Bridge/FormalConjectures.lean` | the statements of google-deepmind/formal-conjectures, copied as propositions |
+| `base/SingularityBase/Bridge.lean` | the bridge: the statement of the project implies the statement of formal-conjectures |
 | `base/SingularityBase/CharZero.lean` | `integralResolutionInDim_zero` and `resolutionInDim_zero`, characteristic 0 from resolutionorg/hironaka |
 | `scripts/Export.lean` | writes the record of the build: each declaration, its type and its axioms |
 

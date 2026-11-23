@@ -61,7 +61,8 @@ lemma dense_compl_support_of_locally_nonZeroDivisor {Y : Scheme.{u}} (J : Y.Idea
     (dense_basicOpen_of_mem_nonZeroDivisors hg).inter_open_nonempty _ hW hWne
   refine ⟨hU.fromSpec q, hqV, ?_⟩
   have hqU : hU.fromSpec q ∈ U.1 := by
-    rw [← hU.range_fromSpec]; exact ⟨q, rfl⟩
+    have h := hU.range_fromSpec.subset ⟨q, rfl⟩
+    exact h
   intro hmem
   rw [SetLike.mem_coe, Scheme.IdealSheafData.mem_support_iff_of_mem hqU] at hmem
   have h2 : q ∈ PrimeSpectrum.zeroLocus (J.ideal U : Set Γ(Y, U)) := by

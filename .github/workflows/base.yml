@@ -53,24 +53,26 @@ jobs:
         run: |
           rev=$(grep -A3 'name = "hironaka"' lakefile.toml | sed -n 's/^rev = "\(.*\)"/\1/p')
           echo "rev=$rev" >> "$GITHUB_OUTPUT"
+          mods=$(grep -h '^import Hironaka' SingularityBase/*.lean | sort -u | sha256sum | cut -c1-16)
+          echo "mods=$mods" >> "$GITHUB_OUTPUT"
       - name: restore the build of the base
         id: restore
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: base/.lake/packages/hironaka/.lake/build
-          key: hironaka-${{ steps.pin.outputs.rev }}-${{ hashFiles('lean-toolchain') }}
+          key: hironaka-${{ steps.pin.outputs.rev }}-${{ hashFiles('lean-toolchain') }}-${{ steps.pin.outputs.mods }}
+          restore-keys: hironaka-${{ steps.pin.outputs.rev }}-${{ hashFiles('lean-toolchain') }}
       - name: build the base
+        # The modules of the base that the files of base/ import.
         run: |
-          lake build Hironaka.Resolution.Algebraic.Hir64.MainTheoremI \
-            Hironaka.Scheme.BlowUp.Glue.BlowUp \
-            Hironaka.Scheme.BlowUp.Glue.Trivial \
-            Hironaka.Scheme.BlowUp.Glue.Global
+          mapfile -t mods < <(grep -h '^import Hironaka' SingularityBase/*.lean | sed 's/^import //' | sort -u)
+          lake build "${mods[@]}"
       - name: save the build of the base
         if: always() && steps.restore.outputs.cache-hit != 'true'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: base/.lake/packages/hironaka/.lake/build
-          key: hironaka-${{ steps.pin.outputs.rev }}-${{ hashFiles('lean-toolchain') }}
+          key: hironaka-${{ steps.pin.outputs.rev }}-${{ hashFiles('lean-toolchain') }}-${{ steps.pin.outputs.mods }}
       - name: build
         run: lake build SingularityBase
       - name: write the record of the build
