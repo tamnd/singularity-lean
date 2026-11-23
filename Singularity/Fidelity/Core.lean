@@ -35,15 +35,17 @@ lemma p1_equation_ne_zero (hp : p ≠ 0) (g : MvPolynomial (Fin n) k) :
     (X none : MvPolynomial (Option (Fin n)) k) ^ p + rename some g ≠ 0 := by
   classical
   intro h
-  have h1 := congrArg (coeff (Finsupp.single none p)) h
-  rw [coeff_add, coeff_X_pow, if_pos rfl, coeff_zero, coeff_rename_eq_zero] at h1
-  · simp at h1
-  · intro u hu
+  have h0 : (rename some g).coeff (Finsupp.single none p) = 0 := by
+    apply coeff_rename_eq_zero
+    intro u hu
     exfalso
     have h2 := congrArg (fun d => d none) hu
     simp only [Finsupp.single_eq_same] at h2
-    rw [Finsupp.mapDomain_notin_range _ _ (by rintro ⟨y, hy⟩; exact Option.some_ne_none y hy)] at h2
+    rw [Finsupp.mapDomain_of_notMem_range _ _ (by rintro ⟨y, hy⟩; exact Option.some_ne_none y hy)]
+      at h2
     exact hp h2.symm
+  have h1 := congrArg (fun q : MvPolynomial (Option (Fin n)) k => q.coeff (Finsupp.single none p)) h
+  simp [coeff_X_pow, h0] at h1
 
 /-- If `d + 1 ≤ m + 1` in `WithBot ℕ∞`, then `d ≤ m`. -/
 lemma le_of_add_one_le_add_one {d : WithBot ℕ∞} {m : ℕ} (h : d + 1 ≤ (m : WithBot ℕ∞) + 1) :
@@ -90,11 +92,7 @@ lemma isVariety_p1Hypersurface (g : MvPolynomial (Fin n) k) (hred : IsReduced (P
   reduced := hred
   finiteType := by
     rw [HasRingHomProperty.Spec_iff (P := @LocallyOfFiniteType)]
-    first
-      | exact RingHom.finiteType_algebraMap.mpr inferInstance
-      | exact (inferInstance : Algebra.FiniteType k (P1Ring k p n g))
-      | exact RingHom.finiteType_algebraMap.mpr (Algebra.FiniteType.of_surjective inferInstance
-          (Ideal.Quotient.mkₐ k _) (Ideal.Quotient.mkₐ_surjective k _))
+    exact RingHom.finiteType_algebraMap.mpr inferInstance
   quasiCompact := inferInstance
   separated := inferInstance
 
