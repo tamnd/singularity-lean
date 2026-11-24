@@ -448,6 +448,141 @@ theorem KeyPolynomial.augmentedValuationFun_sub_sum_filter_lt {μ : Valuation K[
 
 end MacLaneUnique
 
+section LimitAugmentation
+
+/-- `Singularity/Valuation/LimitAugmentation.lean`: a continuous family of augmented valuations `μᵢ = [μ; φᵢ, γᵢ]` of constant degree (Vaquié, [Vaq07]). -/
+structure ContinuousFamily (μ : Valuation K[X] Γ₀) (ι : Type*) [LinearOrder ι] where
+  /-- The key polynomial `φᵢ`. -/
+  key : ι → K[X]
+  /-- The value `γᵢ`. -/
+  value : ι → Γ₀
+  keyPolynomial : ∀ i, KeyPolynomial μ (key i)
+  natDegree_eq : ∀ i j, (key i).natDegree = (key j).natDegree
+  value_lt : ∀ i, value i < μ (key i)
+  value_strictAnti : StrictAnti value
+  map_sub_le : ∀ i j, i < j → μ (key j - key i) ≤ value i
+
+namespace ContinuousFamily
+
+variable {μ : Valuation K[X] Γ₀} {ι : Type*} [LinearOrder ι] (F : ContinuousFamily μ ι)
+
+/-- `Singularity/Valuation/LimitAugmentation.lean`: the polynomial `f` is stable for the family if the value `μᵢ f` is constant for `i` large. -/
+def IsStable (f : K[X]) : Prop :=
+  ∃ i, ∀ j, i ≤ j → augmentedValuationFun μ (F.key j) (F.value j) f =
+    augmentedValuationFun μ (F.key i) (F.value i) f
+
+open Classical in
+/-- `Singularity/Valuation/LimitAugmentation.lean`: the limit `μ_∞ f`, the eventual value of `μᵢ f` for a stable `f`, and `0` otherwise. -/
+noncomputable def stableValue (f : K[X]) : Γ₀ :=
+  if h : F.IsStable f then augmentedValuationFun μ (F.key h.choose) (F.value h.choose) f else 0
+
+/-- `Singularity/Valuation/LimitAugmentation.lean`: a limit key polynomial, a monic polynomial of least degree among the polynomials that are not stable. -/
+structure IsLimitKeyPolynomial (φ : K[X]) : Prop where
+  monic : φ.Monic
+  not_isStable : ¬ F.IsStable φ
+  natDegree_le : ∀ f, ¬ F.IsStable f → φ.natDegree ≤ f.natDegree
+
+/-- `Singularity/Valuation/LimitAugmentation.lean`: `φ` divides `f` in the limit. -/
+def LimitDvd (φ f : K[X]) : Prop :=
+  ∃ i, ∀ j, i ≤ j → ∃ h : K[X], augmentedValuationFun μ (F.key j) (F.value j) (f - φ * h) <
+    augmentedValuationFun μ (F.key j) (F.value j) f
+
+/-- `Singularity/Valuation/LimitAugmentation.lean`: the limit augmentation `[μ_∞; φ, γ]` as a function. -/
+noncomputable def limitAugmentedValuationFun (φ : K[X]) (γ : Γ₀) (f : K[X]) : Γ₀ :=
+  (Finset.range (f.natDegree + 1)).sup fun j => F.stableValue (expansionCoeff φ f j) * γ ^ j
+
+section Stable
+
+variable {F}
+
+/-- `Singularity/Valuation/LimitAugmentation.lean`: if `μᵢ ≤ ν` for each `i` in additive notation and `ν` agrees with `μ` in degree less than `d`, then the limit value of a stable polynomial is its value for `ν`. -/
+theorem stableValue_eq_of_isStable [NoMaxOrder ι] {ν : Valuation K[X] Γ₀}
+    (hν : ∀ i f, ν f ≤ augmentedValuationFun μ (F.key i) (F.value i) f)
+    (hlow : ∀ i (a : K[X]), a.degree < (F.key i).degree → ν a = μ a) {f : K[X]}
+    (hf : F.IsStable f) : F.stableValue f = ν f := sorry
+
+/-- `Singularity/Valuation/LimitAugmentation.lean`: under the same hypotheses, some polynomial is not stable if and only if the family does not reach `ν`. -/
+theorem exists_not_isStable_iff [NoMaxOrder ι] {ν : Valuation K[X] Γ₀}
+    (hν : ∀ i f, ν f ≤ augmentedValuationFun μ (F.key i) (F.value i) f)
+    (hlow : ∀ i (a : K[X]), a.degree < (F.key i).degree → ν a = μ a) :
+    (∃ f, ¬ F.IsStable f) ↔ ∃ f, ∀ i, augmentedValuationFun μ (F.key i) (F.value i) f ≠ ν f :=
+  sorry
+
+end Stable
+
+section LimitKey
+
+variable {F}
+
+/-- `Singularity/Valuation/LimitAugmentation.lean`: if some polynomial is not stable, then a limit key polynomial exists. -/
+theorem exists_isLimitKeyPolynomial [Nonempty ι] (h : ∃ f, ¬ F.IsStable f) :
+    ∃ φ, F.IsLimitKeyPolynomial φ := sorry
+
+namespace IsLimitKeyPolynomial
+
+variable {φ : K[X]} (hφ : F.IsLimitKeyPolynomial φ)
+include hφ
+
+variable [Nonempty ι] [NoMaxOrder ι]
+
+/-- `Singularity/Valuation/LimitAugmentation.lean`: a limit key polynomial divides `f` in the limit if and only if `f` is not stable. -/
+theorem limitDvd_iff {f : K[X]} : F.LimitDvd φ f ↔ ¬ F.IsStable f := sorry
+
+end IsLimitKeyPolynomial
+
+end LimitKey
+
+section Augmentation
+
+variable {F} [Nonempty ι] {φ : K[X]} {γ : Γ₀}
+
+namespace IsLimitKeyPolynomial
+
+variable (hφ : F.IsLimitKeyPolynomial φ)
+include hφ
+
+/-- `Singularity/Valuation/LimitAugmentation.lean`: the limit augmentation satisfies the ultrametric inequality. -/
+theorem limitAugmentedValuationFun_add_le_max (f g : K[X]) :
+    F.limitAugmentedValuationFun φ γ (f + g) ≤
+      max (F.limitAugmentedValuationFun φ γ f) (F.limitAugmentedValuationFun φ γ g) := sorry
+
+variable [NoMaxOrder ι]
+
+/-- `Singularity/Valuation/LimitAugmentation.lean`: the limit augmentation is multiplicative for `γ ≥ μᵢ(φ)` for each `i` in additive notation. -/
+theorem limitAugmentedValuationFun_mul
+    (hγ : ∀ i, γ ≤ augmentedValuationFun μ (F.key i) (F.value i) φ) (f g : K[X]) :
+    F.limitAugmentedValuationFun φ γ (f * g) =
+      F.limitAugmentedValuationFun φ γ f * F.limitAugmentedValuationFun φ γ g := sorry
+
+end IsLimitKeyPolynomial
+
+variable [NoMaxOrder ι]
+
+namespace IsLimitKeyPolynomial
+
+variable (hφ : F.IsLimitKeyPolynomial φ)
+include hφ
+
+/-- `Singularity/Valuation/LimitAugmentation.lean`: `μᵢ ≤ [μ_∞; φ, γ]` for each `i` in additive notation. -/
+theorem limitAugmentedValuationFun_le
+    (hγ : ∀ i, γ ≤ augmentedValuationFun μ (F.key i) (F.value i) φ) (i : ι) (f : K[X]) :
+    F.limitAugmentedValuationFun φ γ f ≤ augmentedValuationFun μ (F.key i) (F.value i) f :=
+  sorry
+
+/-- `Singularity/Valuation/LimitAugmentation.lean`: `[μ_∞; φ, γ] ≤ ν` in additive notation for `γ ≤ ν(φ)`. -/
+theorem map_le_limitAugmentedValuationFun {ν : Valuation K[X] Γ₀}
+    (hν : ∀ i f, ν f ≤ augmentedValuationFun μ (F.key i) (F.value i) f)
+    (hlow : ∀ i (a : K[X]), a.degree < (F.key i).degree → ν a = μ a) (hγ : ν φ ≤ γ)
+    (f : K[X]) : ν f ≤ F.limitAugmentedValuationFun φ γ f := sorry
+
+end IsLimitKeyPolynomial
+
+end Augmentation
+
+end ContinuousFamily
+
+end LimitAugmentation
+
 end KeyPolynomials
 
 section CharacteristicPolyhedron

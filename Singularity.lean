@@ -58,5 +58,6 @@ import Singularity.Valuation.Augmentation
 import Singularity.Valuation.MacLaneStep
 import Singularity.Valuation.MacLaneChain
 import Singularity.Valuation.MacLaneUnique
+import Singularity.Valuation.LimitAugmentation
 import Singularity.Valuation.LocalUniformizationCurves
 import Singularity.Valuation.LocalUniformizationDivisorial
