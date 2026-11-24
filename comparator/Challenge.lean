@@ -5,6 +5,7 @@ Released under the Apache 2.0 licence as described in the file LICENSE.
 import Singularity.Statements.Main
 import Singularity.Statements.Core
 import Singularity.Statements.Embedded
+import Singularity.Statements.LocalUniformization
 import Mathlib.RingTheory.Valuation.ValuationSubring
 import Mathlib.RingTheory.AlgebraicIndependent.Basic
 import Mathlib.LinearAlgebra.Dimension.Localization
@@ -67,6 +68,24 @@ theorem isSncDivisor_of_codim_one {Z : Scheme.{u}} (hZ : IsRegularScheme Z)
 theorem isEmbeddedResolution_id_of_codim_one {Z : Scheme.{u}} (hZ : IsRegularScheme Z)
     {X : Z.IdealSheafData} (hX : IsRegularCodimOne X) (hrad : X.radical = X) :
     IsEmbeddedResolution X (𝟙 Z) ⊤ ⊤ := sorry
+
+section LocalUniformization
+
+variable {k K : Type*} [Field k] [Field K] [Algebra k K]
+
+/-- `Singularity/Fidelity/LocalUniformization.lean`: the trivial valuation of a function field has local uniformization. -/
+theorem Fidelity.hasLocalUniformization_top (hK : IsFunctionField k K) :
+    HasLocalUniformization k (⊤ : ValuationSubring K) := sorry
+
+/-- `Singularity/Fidelity/LocalUniformization.lean`: a valuation subring with local uniformization over `k` contains `k`. -/
+theorem Fidelity.algebraMap_mem_of_hasLocalUniformization {V : ValuationSubring K}
+    (h : HasLocalUniformization k V) (a : k) : algebraMap k K a ∈ V := sorry
+
+/-- `Singularity/Fidelity/LocalUniformization.lean`: a field with a valuation that has local uniformization over `k` is a function field over `k`. -/
+theorem Fidelity.isFunctionField_of_hasLocalUniformization {V : ValuationSubring K}
+    (h : HasLocalUniformization k V) : IsFunctionField k K := sorry
+
+end LocalUniformization
 
 section Abhyankar
 
