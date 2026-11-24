@@ -31,3 +31,7 @@ import Singularity.Fidelity.Core
 import Singularity.Known.DimZero
 import Singularity.Hypotheses.Integral
 import Singularity.Bridge.FormalConjectures
+import Singularity.Invariant.Order
+import Singularity.Invariant.Newton
+import Singularity.Invariant.Residual
+import Singularity.Example.HauserPerlega

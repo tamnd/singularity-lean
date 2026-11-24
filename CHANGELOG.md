@@ -4,6 +4,13 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/Order.lean`: the order `ord f` of a polynomial at the origin, the smallest total degree of a monomial of `f`, defined through `MvPowerSeries.order`. The file proves that $\operatorname{ord}(fg) = \operatorname{ord} f + \operatorname{ord} g$ over a domain (`ord_mul`), that the order of a sum is at least the smaller order (`min_ord_le_ord_add`), and that $\operatorname{ord} f \ge n$ if and only if $f \in \mathfrak{m}^n$ (`le_ord_iff_mem_pow`). It defines the order of an ideal (`idealOrd`) and proves that the order of a product of ideals is the sum (`idealOrd_mul`). The order does not change under an invertible linear change of coordinates (`ord_linearChange`). It agrees with the order `Singularity.Algebra.order` for the ideal of the variables (`ord_eq_order_idealOfVars`).
+- `Singularity/Invariant/Newton.lean`: the Newton polyhedron `newtonPolyhedron f`, the convex hull of the exponents of `f` plus the positive orthant. The polyhedron of a product is in the Minkowski sum of the polyhedra (`newtonPolyhedron_mul_subset`). The file defines weighted orders and initial forms, and proves that the initial form of a product is the product of the initial forms over a domain (`initialForm_mul`). The order is the least total degree on the polyhedron (`isLeast_sum_newtonPolyhedron`).
+- `Singularity/Invariant/Residual.lean`: cleaning and the residual order of a purely inseparable equation $z^q + F$. `residualOrder q F` is the largest order of $F + h^q$, and in characteristic $p$ with $q = p^e$ it is the order of the clean part of $F$ over a perfect field (`residualOrder_eq_ord_cleanPart`). `residualOrderAlong` is the residual order along a normal crossings divisor [HP19a, §2]. The file defines the charts of a point blowup and the weak transform (`pointChartZ_purelyInseparable`). The bound of Moh on the increase of the residual order under one blowup is stated as the proposition `moh_bound`, and it is not proved.
+- `Singularity/Example/HauserPerlega.lean`: the example of Hauser and Perlega [HP19a, §3] in characteristic 2 (`kangaroo`). The residual order of $z^4 + x^2 y^2 w^3 (w (x+y)^4 + x^{13})$ is 5, and after a permissible point blowup it is 7. The increase is 2, so the bound of Moh holds with equality, and the bound 6 from the proof of the stability theorem of Moh fails (`kangaroo_increase`).
+
 ## 0.2.13 - 2026-11-24
 
 ### Added
