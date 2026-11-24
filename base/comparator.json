@@ -1,0 +1,6 @@
+{
+  "challenge_module": "ChallengeBase",
+  "solution_module": "SingularityBase",
+  "theorem_names": ["Singularity.resolutionInDim_charZero"],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}
