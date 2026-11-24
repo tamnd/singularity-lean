@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/MacLaneUnique.lean`: the choice of the key polynomial in the step of MacLane, and the claim of part 3 of Theorem 3.3.5 of Volume 3 of the handbook on the graded algebra. Let `ν f ≤ μ f` for each `f`, let `φ` be monic with `ν φ < μ φ`, and let `ν f = μ f` for each `f` of degree less than the degree of `φ`. Two monic polynomials of least degree with this property have the same degree (`natDegree_eq_of_map_lt`). A monic `ψ` of the degree of `φ` has `ν ψ < μ ψ` if and only if `ψ` is `μ`-equivalent to `φ` (`muEquiv_iff_map_lt`, `muEquiv_macLaneChainKey_iff`). Key polynomials `φ`, `ψ` of the same degree with `μ (ψ - φ) ≤ γ` give the same augmentation (`augmentedValuation_eq_of_map_sub_le`, `KeyPolynomial.augmentedValuationFun_eq_of_map_sub_le`). The augmentation `[μ; φ, ν φ]` is not unique: if `ν φ ≤ ν ψ`, then `μ (ψ - φ) ≤ ν ψ` and `[μ; φ, ν φ] f ≤ [μ; ψ, ν ψ] f` (`map_sub_le_of_map_le`, `augmentedValuation_le_of_map_le`, `augmentedValuationFun_le_of_map_le`), with equality if `ν φ = ν ψ` (`augmentedValuation_eq_of_map_eq`). The docstring gives an example over `ℚ` where the two augmentations differ, so the statement that they are always equal is false. For the graded algebra, the file proves in elementwise form that the initial form of each `f` for `[μ; φ, γ]` is a polynomial in the initial form of `φ` over the initial forms of degree less than the degree of `φ` (`KeyPolynomial.muEquiv_augmentedValuation_sum_filter`, `KeyPolynomial.augmentedValuationFun_sub_sum_filter_lt`), and gives the transcendence in the form of the valuation (`KeyPolynomial.augmentedValuation_sum_mul_pow`). The file does not define the graded algebra.
+
 ## 0.4.6 - 2026-11-25
 
 ### Added
