@@ -112,6 +112,16 @@ status:
     - name: Singularity.Fidelity.exists_regularCenter_of_hasLocalUniformization
       kind: theorem
       status: proved
+    - name: Singularity.hasLocalUniformization_of_trdeg_le_one
+      kind: theorem
+      status: proved
+      note: Local uniformization in transcendence degree at most 1, over a field of each characteristic (the paragraph after Definition 4.1.1 of Volume 3 of the handbook). The model is the integral closure of an affine model that contains the given finite set.
+    - name: Singularity.localUniformizationInDim_zero
+      kind: theorem
+      status: proved
+    - name: Singularity.localUniformizationInDim_one
+      kind: theorem
+      status: proved
     - name: Singularity.abhyankar_inequality
       kind: theorem
       status: proved

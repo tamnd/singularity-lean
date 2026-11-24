@@ -93,6 +93,21 @@ theorem Fidelity.exists_regularCenter_of_hasLocalUniformization {V : ValuationSu
 
 end LocalUniformization
 
+section LocalUniformizationCurves
+
+/-- `Singularity/Valuation/LocalUniformizationCurves.lean`: each valuation of a function field of transcendence degree at most 1 has local uniformization. -/
+theorem hasLocalUniformization_of_trdeg_le_one {k K : Type u} [Field k] [Field K] [Algebra k K]
+    (hK : IsFunctionField k K) (htr : Algebra.trdeg k K ≤ 1) (V : ValuationSubring K)
+    [Algebra k V] [IsScalarTower k V K] : HasLocalUniformization k V := sorry
+
+/-- `Singularity/Valuation/LocalUniformizationCurves.lean`: local uniformization in transcendence degree 0. -/
+theorem localUniformizationInDim_zero (p : ℕ) : LocalUniformizationInDim.{u} p 0 := sorry
+
+/-- `Singularity/Valuation/LocalUniformizationCurves.lean`: local uniformization in transcendence degree 1. -/
+theorem localUniformizationInDim_one (p : ℕ) : LocalUniformizationInDim.{u} p 1 := sorry
+
+end LocalUniformizationCurves
+
 section Abhyankar
 
 open MvPolynomial Cardinal TensorProduct
