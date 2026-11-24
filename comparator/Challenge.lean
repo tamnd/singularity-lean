@@ -1236,4 +1236,100 @@ end Algebra.MvHasse
 
 end MvHasse
 
+section LogJacobianNonincrease
+
+open MvPolynomial Finsupp
+
+section Divisibility
+
+variable {σ k : Type*} [Field k]
+
+/-- `Singularity/Invariant/LogJacobianNonincrease.lean`: `x^b` divides `f` if and only if each
+monomial of `f` is divisible by `x^b`. -/
+theorem monomial_one_dvd_iff {b : σ →₀ ℕ} {f : MvPolynomial σ k} :
+    monomial b (1 : k) ∣ f ↔ ∀ a ∈ f.support, b ≤ a := sorry
+
+/-- `Singularity/Invariant/LogJacobianNonincrease.lean`: the cancellation of a factor `u` with a
+nonzero constant term. -/
+theorem monomial_one_dvd_of_dvd_mul {b : σ →₀ ℕ} {u f : MvPolynomial σ k}
+    (hu : constantCoeff u ≠ 0) (h : monomial b (1 : k) ∣ u * f) : monomial b (1 : k) ∣ f := sorry
+
+end Divisibility
+
+section Chart
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k]
+
+/-- `Singularity/Invariant/MohBound.lean`: the exponents of the factors `x_l` of `π(x^r)` for
+`l ≠ j` with `t_l = 0`. -/
+noncomputable def chartExponent (j : σ) (t : σ → k) (r : σ →₀ ℕ) : σ →₀ ℕ :=
+  r.filter fun l => l ≠ j ∧ t l = 0
+
+/-- `Singularity/Invariant/LogJacobianNonincrease.lean`: `x_j^(|r| + c) x^e` divides `π(h)`. -/
+theorem dvd_pointChart_of_monomial_one_dvd {j : σ} {t : σ → k} {r : σ →₀ ℕ} {c : ℕ}
+    {h : MvPolynomial σ k} (hr : monomial r (1 : k) ∣ h)
+    (hc : ((degree r + c : ℕ) : ℕ∞) ≤ ord h) :
+    X j ^ (degree r + c) * monomial (chartExponent j t r) (1 : k) ∣ pointChart j t h := sorry
+
+/-- `Singularity/Invariant/LogJacobianNonincrease.lean`: the image of an ideal under the chart,
+through its generators. -/
+theorem map_pointChart_span_le {j : σ} {t : σ → k} {S : Set (MvPolynomial σ k)} {r : σ →₀ ℕ}
+    {c : ℕ} (hS : ∀ s ∈ S, monomial r (1 : k) ∣ s ∧ ((degree r + c : ℕ) : ℕ∞) ≤ ord s) :
+    Ideal.map (pointChart j t) (Ideal.span S) ≤
+      Ideal.span {X j ^ (degree r + c) * monomial (chartExponent j t r) (1 : k)} := sorry
+
+/-- `Singularity/Invariant/LogJacobianNonincrease.lean`: the constant term of `u` is not `0`. -/
+theorem constantCoeff_blowupUnit_ne_zero (Δ : Finset σ) (j : σ) (t : σ → k) :
+    constantCoeff (blowupUnit Δ j t) ≠ 0 := sorry
+
+end Chart
+
+section Order
+
+variable {σ k : Type*} [Field k] {Δ : Finset σ} {g : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/LogJacobianNonincrease.lean`: `ord Θ₀(g) ≥ ord g`. -/
+theorem le_idealOrd_logJacobianTangent {n : ℕ} (hn : (n : ℕ∞) ≤ ord g) :
+    (n : ℕ∞) ≤ idealOrd (logJacobianTangent Δ g) := sorry
+
+variable (p : ℕ) [CharP k p]
+
+/-- `Singularity/Invariant/LogJacobianNonincrease.lean`: the cancellation of a monomial factor in
+the residual ideal. -/
+theorem logJacobianOrder_le_of_mem (hg : g ≠ 0) (hc : IsClean p g) {b : σ →₀ ℕ}
+    (hb : ∀ i, i ∉ Δ → b i = 0) (hle : logJacobian Δ g ≤ Ideal.span {monomial b 1})
+    {φ : MvPolynomial σ k} (hφ : φ ∈ logJacobian Δ g) {n : ℕ∞} (hn : ord φ ≤ degree b + n) :
+    logJacobianOrder Δ g ≤ n := sorry
+
+end Order
+
+section Nonincrease
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] [Fintype σ] (p : ℕ) [CharP k p]
+  {Δ : Finset σ} {j : σ} {t : σ → k} {g g' : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/LogJacobianNonincrease.lean`: `ρ` does not go up, Theorem 3.2.4. -/
+theorem logJacobianOrder_cleanPart_le (hg : g ≠ 0) (hc : IsClean p g) (hord : (p : ℕ∞) ≤ ord g)
+    (h : pointChart j t g = X j ^ p * g') :
+    cleanPart p g' ≠ 0 ∧
+      logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') ≤ logJacobianOrder Δ g := sorry
+
+/-- `Singularity/Invariant/LogJacobianNonincrease.lean`: `d' ≤ ρ(g'_c) + 1 ≤ ρ + 1 ≤ d + 1`,
+Corollary 3.2.5. -/
+theorem residualOrderAlong_pointChart_le_logJacobianOrder (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') :
+    residualOrderAlong (blowupDivisor Δ j t) p g' ≤
+        logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') + 1 ∧
+      logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') + 1 ≤ logJacobianOrder Δ g + 1 ∧
+      logJacobianOrder Δ g + 1 ≤ residualOrderAlong Δ p g + 1 := sorry
+
+/-- `Singularity/Invariant/LogJacobianNonincrease.lean`: `d' ≤ d + 1`, Corollary 3.2.5. -/
+theorem residualOrderAlong_pointChart_le_add_one (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') :
+    residualOrderAlong (blowupDivisor Δ j t) p g' ≤ residualOrderAlong Δ p g + 1 := sorry
+
+end Nonincrease
+
+end LogJacobianNonincrease
+
 end Singularity

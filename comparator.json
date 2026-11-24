@@ -127,7 +127,17 @@
     "Singularity.Algebra.MvHasse.le_ord_aeval_X_add_C_iff",
     "Singularity.Algebra.MvHasse.exists_expand_eq_iff",
     "Singularity.Algebra.MvHasse.exists_expand_eq_iff_hasseDeriv",
-    "Singularity.Algebra.MvHasse.hasseDeriv_expand_mul"
+    "Singularity.Algebra.MvHasse.hasseDeriv_expand_mul",
+    "Singularity.monomial_one_dvd_iff",
+    "Singularity.monomial_one_dvd_of_dvd_mul",
+    "Singularity.dvd_pointChart_of_monomial_one_dvd",
+    "Singularity.map_pointChart_span_le",
+    "Singularity.constantCoeff_blowupUnit_ne_zero",
+    "Singularity.le_idealOrd_logJacobianTangent",
+    "Singularity.logJacobianOrder_le_of_mem",
+    "Singularity.logJacobianOrder_cleanPart_le",
+    "Singularity.residualOrderAlong_pointChart_le_logJacobianOrder",
+    "Singularity.residualOrderAlong_pointChart_le_add_one"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }
