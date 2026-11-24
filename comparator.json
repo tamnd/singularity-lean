@@ -101,7 +101,15 @@
     "Singularity.exists_eq_sum_smul_X_mul_pderiv_of_not_isResonant",
     "Singularity.eval_eq_zero_of_isCriticalPoint_of_not_isResonant",
     "Singularity.not_isResonant_of_isWeightedHomogeneous",
-    "Singularity.not_isResonant_initialForm"
+    "Singularity.not_isResonant_initialForm",
+    "Singularity.pderiv_pointChart_of_ne",
+    "Singularity.X_mul_pderiv_pointChart",
+    "Singularity.pderiv_X_pow_mul_of_ne",
+    "Singularity.X_mul_pderiv_X_pow_mul",
+    "Singularity.map_pointChart_logJacobianTangent_le",
+    "Singularity.span_mul_logJacobian_pointChart_le",
+    "Singularity.map_pointChart_logJacobianTangent_le_span_mul",
+    "Singularity.span_mul_logJacobian_le_map_pointChart"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

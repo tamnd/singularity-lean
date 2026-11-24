@@ -48,6 +48,7 @@ import Singularity.Invariant.CharacteristicPolyhedronClean
 import Singularity.Invariant.RigidLayer
 import Singularity.Invariant.LogJacobian
 import Singularity.Invariant.FrobeniusNewton
+import Singularity.Invariant.LogJacobianBlowup
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
