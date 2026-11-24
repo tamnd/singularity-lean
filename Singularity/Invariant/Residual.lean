@@ -36,7 +36,8 @@ With a normal crossings divisor `E = V(∏_{i ∈ Δ} x_i)`, [HP19a, §2] writes
 of `f` along `E` is `ord G`. This is `residualOrderAlong Δ q F`.
 
 The file also defines the chart of a point blowup [HP19a, §2] as a ring map on polynomials, and
-states Moh's bound for one blowup as a proposition, `moh_bound`. The bound is only stated here.
+states Moh's bound for one blowup as a proposition, `moh_bound`. The bound is proved in
+`Singularity/Invariant/MohBound.lean` (`moh_bound_holds`).
 
 ## Main definitions
 
@@ -458,7 +459,8 @@ end Equation
 
 /-! ### Moh's bound -/
 
-/-- **Moh's bound** for one blowup, stated and not proved.
+/-- **Moh's bound** for one blowup. It is proved in `Singularity/Invariant/MohBound.lean`
+(`moh_bound_holds`).
 
 Let `k` be an algebraically closed field of characteristic `p`, let `q = p^e` with `e ≥ 1`, and
 let `f = z^q + F(x)` with `F` clean and `ord F ≥ q`, so that `ord f = q`. Let `E` be the divisor
@@ -477,9 +479,9 @@ of [Moh87], which claims the same bound `d + p^(e-1)` along a whole sequence of 
 for `e ≥ 3` [HP19a, §4]; it is not stated here.
 
 The residual order depends on the coordinates. The papers measure it in coordinates that the
-resolution process chooses, and this statement measures it in the given coordinates. So the
-statement may need a hypothesis on the choice of the coordinates before it is true. Do not use
-it as a hypothesis of a theorem until it is proved. -/
+resolution process chooses, and this statement measures it in the given coordinates. The bound
+is true in the given coordinates. The proof (`residualOrderAlong_pointChart_le`) does not use
+`IsAlgClosed k`, `1 ≤ e` or the hypothesis `ord F' ≥ q`. -/
 def moh_bound : Prop :=
   ∀ (k : Type) [Field k] [IsAlgClosed k] [DecidableEq k] (p : ℕ) [Fact p.Prime] [CharP k p]
     (e n : ℕ) (Δ : Finset (Fin n)) (j : Fin n) (t : Fin n → k) (F F' : MvPolynomial (Fin n) k),
