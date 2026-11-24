@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/Abhyankar.lean`: the inequality of Abhyankar (Theorem 2.1.5 of Volume 3 of the handbook, node SG0000000Y). Let `A` be a valuation subring of a field `K` that is an algebra over a field `k`. Then the rank over `ℚ` of `ℚ ⊗[ℤ] Γ` plus the transcendence degree of the residue field of `A` over `k` is at most the transcendence degree of `K` over `k`, where `Γ` is the value group of `A` (`abhyankar_inequality`). The proof is the monomial argument (`algebraicIndependent_sumElim_of_monoidHom`): units with values that are independent over `ℤ`, together with elements whose residues are algebraically independent, are algebraically independent (`algebraicIndependent_sumElim_of_valuationSubring`). The file also proves Lemma 2.1.2 (`exists_valuation_aeval_eq`) and Theorem 2.1.4 (`algebraicIndependent_sumElim_of_hasExtension`) for an extension of valued fields, and the relative inequality (`abhyankar_inequality_relative`). In the relative inequality, the value group of `L` modulo the value group of `K` is the image of the value group of `vL` in the quotient of `Γ₁ˣ` by the value group of the restriction of `vL` to `K`.
+
 ## 0.4.1 - 2026-11-24
 
 ### Added

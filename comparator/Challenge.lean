@@ -5,11 +5,18 @@ Released under the Apache 2.0 licence as described in the file LICENSE.
 import Singularity.Statements.Main
 import Singularity.Statements.Core
 import Singularity.Statements.Embedded
+import Mathlib.RingTheory.Valuation.ValuationSubring
+import Mathlib.RingTheory.AlgebraicIndependent.Basic
+import Mathlib.LinearAlgebra.Dimension.Localization
+import Mathlib.RingTheory.Localization.BaseChange
+import Mathlib.Algebra.MvPolynomial.Equiv
+import Mathlib.RingTheory.Valuation.Extension
+import Mathlib.RingTheory.MvPolynomial.Tower
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files only. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean` imports. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -55,5 +62,52 @@ theorem isSncDivisor_of_codim_one {Z : Scheme.{u}} (hZ : IsRegularScheme Z)
 theorem isEmbeddedResolution_id_of_codim_one {Z : Scheme.{u}} (hZ : IsRegularScheme Z)
     {X : Z.IdealSheafData} (hX : IsRegularCodimOne X) (hrad : X.radical = X) :
     IsEmbeddedResolution X (𝟙 Z) ⊤ ⊤ := sorry
+
+section Abhyankar
+
+open MvPolynomial Cardinal TensorProduct
+
+/-- `Singularity/Valuation/Abhyankar.lean`: units with values that are independent over `ℤ`, together with elements of `A` with algebraically independent residues, are algebraically independent. -/
+theorem algebraicIndependent_sumElim_of_valuationSubring {K : Type*} [Field K]
+    (A : ValuationSubring K) {k : Type*} [CommRing k] [Algebra k K]
+    [Algebra k A] [IsScalarTower k A K] {ι κ : Type*} (x : ι → Kˣ)
+    (hx : LinearIndependent ℤ
+      (fun i => Additive.ofMul (Units.map (A.valuation : K →* A.ValueGroup) (x i))))
+    (y : κ → A) (hy : AlgebraicIndependent k (fun j => IsLocalRing.residue A (y j))) :
+    AlgebraicIndependent k (Sum.elim (fun i => (x i : K)) (fun j => (y j : K))) := sorry
+
+/-- `Singularity/Valuation/Abhyankar.lean`: the inequality of Abhyankar (node SG0000000Y). -/
+theorem abhyankar_inequality {K : Type*} [Field K] (A : ValuationSubring K) {k : Type*} [Field k]
+    [Algebra k K] [Algebra k A] [IsScalarTower k A K] :
+    Module.rank ℚ (ℚ ⊗[ℤ] Additive A.ValueGroupˣ) +
+        Algebra.trdeg k (IsLocalRing.ResidueField A) ≤ Algebra.trdeg k K := sorry
+
+open IsLocalRing
+
+/-- `Singularity/Valuation/Abhyankar.lean`: Theorem 2.1.4 of Volume 3 of the handbook, for an extension of valued fields. -/
+theorem algebraicIndependent_sumElim_of_hasExtension {K L : Type*} [Field K] [Field L]
+    [Algebra K L] {Γ₀ Γ₁ : Type*} [LinearOrderedCommGroupWithZero Γ₀]
+    [LinearOrderedCommGroupWithZero Γ₁] (vK : Valuation K Γ₀) (vL : Valuation L Γ₁)
+    [vK.HasExtension vL] {ι κ : Type*} (x : ι → Lˣ)
+    (hx : LinearIndependent ℤ (fun i => Additive.ofMul
+      (QuotientGroup.mk' (vL.comap (algebraMap K L) : K →*₀ Γ₁).valueGroup
+        (Units.map (vL : L →* Γ₁) (x i)))))
+    (y : κ → vL.valuationSubring)
+    (hy : AlgebraicIndependent (ResidueField vK.valuationSubring) (fun j => residue _ (y j))) :
+    AlgebraicIndependent K (Sum.elim (fun i => (x i : L)) (fun j => (y j : L))) := sorry
+
+universe uL uΓ
+
+/-- `Singularity/Valuation/Abhyankar.lean`: the relative inequality of Abhyankar for an extension of valued fields. -/
+theorem abhyankar_inequality_relative {K : Type*} {L : Type uL} [Field K] [Field L]
+    [Algebra K L] {Γ₀ : Type*} {Γ₁ : Type uΓ} [LinearOrderedCommGroupWithZero Γ₀]
+    [LinearOrderedCommGroupWithZero Γ₁] (vK : Valuation K Γ₀) (vL : Valuation L Γ₁)
+    [vK.HasExtension vL] :
+    lift.{uL} (Module.rank ℚ (ℚ ⊗[ℤ] Additive ((vL : L →*₀ Γ₁).valueGroup.map
+        (QuotientGroup.mk' (vL.comap (algebraMap K L) : K →*₀ Γ₁).valueGroup)))) +
+      lift.{uΓ} (Algebra.trdeg (ResidueField vK.valuationSubring)
+        (ResidueField vL.valuationSubring)) ≤ lift.{uΓ} (Algebra.trdeg K L) := sorry
+
+end Abhyankar
 
 end Singularity

@@ -46,3 +46,4 @@ import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
 import Singularity.Fidelity.Embedded
 import Singularity.Scheme.Embedded
+import Singularity.Valuation.Abhyankar
