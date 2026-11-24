@@ -29,6 +29,7 @@ import Mathlib.RingTheory.MvPolynomial.Expand
 import Mathlib.Algebra.MvPolynomial.Division
 import Mathlib.Algebra.CharP.Lemmas
 import Mathlib.FieldTheory.IsAlgClosed.Basic
+import Mathlib.RingTheory.EssentialFiniteness
 
 /-!
 # The challenge of the comparator
@@ -118,6 +119,36 @@ theorem localUniformizationInDim_zero (p : ℕ) : LocalUniformizationInDim.{u} p
 theorem localUniformizationInDim_one (p : ℕ) : LocalUniformizationInDim.{u} p 1 := sorry
 
 end LocalUniformizationCurves
+
+section LocalUniformizationDivisorial
+
+open IsLocalRing
+
+variable {k K : Type u} [Field k] [Field K] [Algebra k K]
+
+/-- `Singularity/Valuation/LocalUniformizationDivisorial.lean`: a valuation ring that is essentially of finite type over `k` has local uniformization. -/
+theorem hasLocalUniformization_of_essFiniteType (V : ValuationSubring K) [Algebra k V]
+    [IsScalarTower k V K] [Algebra.EssFiniteType k V] : HasLocalUniformization k V := sorry
+
+/-- `Singularity/Valuation/LocalUniformizationDivisorial.lean`: if `trdeg_k K ≤ trdeg_k κ_V + 1`, then `V` is essentially of finite type over `k`. -/
+theorem essFiniteType_of_trdeg_le_trdeg_residueField_add_one (hK : IsFunctionField k K)
+    (V : ValuationSubring K) [Algebra k V] [IsScalarTower k V K]
+    (htr : Algebra.trdeg k K ≤ Algebra.trdeg k (ResidueField V) + 1) :
+    Algebra.EssFiniteType k V := sorry
+
+/-- `Singularity/Valuation/LocalUniformizationDivisorial.lean`: if `trdeg_k K ≤ trdeg_k κ_V + 1`, then `V` has local uniformization. -/
+theorem hasLocalUniformization_of_trdeg_le_trdeg_residueField_add_one (hK : IsFunctionField k K)
+    (V : ValuationSubring K) [Algebra k V] [IsScalarTower k V K]
+    (htr : Algebra.trdeg k K ≤ Algebra.trdeg k (ResidueField V) + 1) :
+    HasLocalUniformization k V := sorry
+
+/-- `Singularity/Valuation/LocalUniformizationDivisorial.lean`: each divisorial valuation has local uniformization. -/
+theorem hasLocalUniformization_of_divisorial (hK : IsFunctionField k K)
+    (V : ValuationSubring K) [Algebra k V] [IsScalarTower k V K]
+    (hdiv : Algebra.trdeg k (ResidueField V) + 1 = Algebra.trdeg k K) :
+    HasLocalUniformization k V := sorry
+
+end LocalUniformizationDivisorial
 
 section Abhyankar
 

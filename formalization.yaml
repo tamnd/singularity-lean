@@ -122,6 +122,21 @@ status:
     - name: Singularity.localUniformizationInDim_one
       kind: theorem
       status: proved
+    - name: Singularity.hasLocalUniformization_of_essFiniteType
+      kind: theorem
+      status: proved
+      note: A valuation ring that is essentially of finite type over k has local uniformization (part 1 of Proposition 4.1.8 of Volume 3 of the handbook).
+    - name: Singularity.essFiniteType_of_trdeg_le_trdeg_residueField_add_one
+      kind: theorem
+      status: proved
+      note: If the transcendence degree of K is at most the transcendence degree of the residue field plus 1, then the valuation ring is essentially of finite type over k (part 2 of Proposition 4.1.8 of Volume 3 of the handbook).
+    - name: Singularity.hasLocalUniformization_of_trdeg_le_trdeg_residueField_add_one
+      kind: theorem
+      status: proved
+    - name: Singularity.hasLocalUniformization_of_divisorial
+      kind: theorem
+      status: proved
+      note: Each divisorial valuation of a function field has local uniformization, in each characteristic (part 3 of Proposition 4.1.8 of Volume 3 of the handbook).
     - name: Singularity.abhyankar_inequality
       kind: theorem
       status: proved
