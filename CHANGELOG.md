@@ -6,7 +6,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
-- `Singularity/Invariant/OrderBlowup.lean`: the order does not go up under a point blowup [Hau03, Proposition 6]. If $m \le \operatorname{ord} f$, the $x_j$-chart sends $f$ to $x_j^m f'$ (`exists_pointChart_eq_X_pow_mul`). If $\operatorname{ord} f = m$, then $\operatorname{ord} f' \le m$ (`ord_le_of_pointChart`). The chart is injective (`pointChart_injective`), so $f' \ne 0$ when $f \ne 0$ (`ne_zero_of_pointChart_eq_X_pow_mul`).
+- `Singularity/Invariant/OrderBlowup.lean`: the order does not go up under a point blowup [Hau03]. If $m \le \operatorname{ord} f$, the $x_j$-chart sends $f$ to $x_j^m f'$ (`exists_pointChart_eq_X_pow_mul`). If $\operatorname{ord} f = m$, then $\operatorname{ord} f' \le m$ (`ord_le_of_pointChart`). The chart is injective (`pointChart_injective`), so $f' \ne 0$ when $f \ne 0$ (`ne_zero_of_pointChart_eq_X_pow_mul`).
 
 ## 0.2.15 - 2026-11-24
 

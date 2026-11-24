@@ -10,7 +10,7 @@ import Singularity.Invariant.Residual
 Let `k` be a field and let `f` be a polynomial in `k[x_i : i ∈ σ]` with `ord f = m`. Look at the
 `x_j`-chart of the blowup of the origin with translations `t`: `x_j ↦ x_j` and
 `x_i ↦ x_j (x_i + t_i)` for `i ≠ j` (`pointChart j t`). Then the image of `f` is `x_j^m f'`, and
-`ord f' ≤ m` [Hau03, Proposition 6].
+`ord f' ≤ m` [Hau03].
 
 The proof. Each variable goes to `x_j` times its image under the substitution `ρ`: `x_j ↦ 1`,
 `x_i ↦ x_i + t_i`. So a monomial `x^a` goes to `x_j^|a| ρ(x^a)`, and
@@ -245,7 +245,7 @@ theorem ord_chartTransform_le (j : σ) (t : σ → k) {m : ℕ} {f : MvPolynomia
     _ ≤ ((chartShift j t q).totalDegree : ℕ∞) := ord_le_totalDegree hs0
     _ ≤ m := by exact_mod_cast (totalDegree_chartShift_le j t q).trans hdq
 
-/-- **The order does not go up under a point blowup** [Hau03, Proposition 6]. If `ord f = m`
+/-- **The order does not go up under a point blowup** [Hau03]. If `ord f = m`
 and the `x_j`-chart sends `f` to `x_j^m f'`, then `ord f' ≤ m`. -/
 theorem ord_le_of_pointChart {j : σ} {t : σ → k} {f f' : MvPolynomial σ k} {m : ℕ}
     (hf : ord f = m) (h : pointChart j t f = X j ^ m * f') : ord f' ≤ m := by
