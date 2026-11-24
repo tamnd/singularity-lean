@@ -52,4 +52,5 @@ import Singularity.Valuation.Abhyankar
 import Singularity.Valuation.ZariskiRiemann
 import Singularity.Valuation.KeyPolynomials
 import Singularity.Valuation.Augmentation
+import Singularity.Valuation.MacLaneStep
 import Singularity.Valuation.LocalUniformizationCurves

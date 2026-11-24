@@ -296,6 +296,36 @@ theorem KeyPolynomial.keyPolynomial_of_forall_eq (hφ : KeyPolynomial μ φ)
 
 end Augmented
 
+section MacLaneStep
+
+/-- `Singularity/Valuation/MacLaneStep.lean`: under the hypotheses of the step of MacLane, `φ` `μ`-divides `f` if and only if `ν f < μ f`. -/
+theorem muDvd_iff_map_lt {μ ν : Valuation K[X] Γ₀} {φ : K[X]} (hle : ∀ f, ν f ≤ μ f)
+    (hφ : φ.Monic) (hlt : ν φ < μ φ) (hlow : ∀ f : K[X], f.degree < φ.degree → ν f = μ f)
+    {f : K[X]} :
+    MuDvd μ φ f ↔ ν f < μ f := sorry
+
+/-- `Singularity/Valuation/MacLaneStep.lean`: the step of MacLane-Vaquié, part (a). A monic `φ` of least degree with `μ(φ) < ν(φ)` in additive notation is a key polynomial for `μ`. -/
+theorem keyPolynomial_of_map_lt {μ ν : Valuation K[X] Γ₀} {φ : K[X]} (hle : ∀ f, ν f ≤ μ f)
+    (hφ : φ.Monic) (hlt : ν φ < μ φ) (hlow : ∀ f : K[X], f.degree < φ.degree → ν f = μ f) :
+    KeyPolynomial μ φ := sorry
+
+/-- `Singularity/Valuation/MacLaneStep.lean`: the step of MacLane-Vaquié, part (b). The augmentation `[μ; φ, ν(φ)]` is at most `ν` in additive notation. -/
+theorem map_le_augmentedValuationFun_of_map_eq {μ ν : Valuation K[X] Γ₀} {φ : K[X]}
+    (hφ : φ.Monic) (hd : 0 < φ.natDegree) (hlow : ∀ f : K[X], f.degree < φ.degree → ν f = μ f)
+    (f : K[X]) :
+    ν f ≤ augmentedValuationFun μ φ (ν φ) f := sorry
+
+/-- `Singularity/Valuation/MacLaneStep.lean`: a monic `φ` of least degree with `μ(φ) < ν(φ)` in additive notation exists if `μ ≠ ν`. -/
+theorem exists_monic_map_lt {μ ν : Valuation K[X] Γ₀} (hC : ∀ c, ν (C c) = μ (C c))
+    (hle : ∀ f, ν f ≤ μ f) (hne : μ ≠ ν) : ∃ φ : K[X], φ.Monic ∧ ν φ < μ φ ∧
+      ∀ f : K[X], f.degree < φ.degree → ν f = μ f := sorry
+
+/-- `Singularity/Valuation/MacLaneStep.lean`: the first step of the chain of MacLane, `[v; X, ν(X)] ≤ ν` in additive notation. -/
+theorem map_le_monomialValuationFun {v : Valuation K Γ₀} {ν : Valuation K[X] Γ₀}
+    (hν : ∀ a, ν (C a) = v a) (f : K[X]) : ν f ≤ monomialValuationFun v (ν X) f := sorry
+
+end MacLaneStep
+
 end KeyPolynomials
 
 end Singularity

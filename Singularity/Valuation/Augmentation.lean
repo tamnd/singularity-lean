@@ -30,7 +30,7 @@ The conventions are those of `Singularity/Valuation/KeyPolynomials.lean`. The va
 * `Singularity.muDvd_iff_of_forall_eq`: the criterion for `[μ; φ, γ]`-divisibility by `φ`.
 * `Singularity.augmentedValuationFun_sum_mul_pow` and `Singularity.KeyPolynomial.muEquiv_augmentedValuation_mul_modByMonic`: two elementwise parts of the second claim of part 3. The first gives the value of `∑ cⱼ φ ^ j` for `cⱼ` of degree less than the degree of `φ`. The second says that for `γ < μ φ` a product `a * b` of such polynomials is `[μ; φ, γ]`-equivalent to its remainder modulo `φ`.
 
-The file does not prove the rest of part 3 of Theorem 3.3.5, that is the description of the graded algebra of `[μ; φ, γ]` as a polynomial ring. It does not prove part 4.
+The file does not prove the rest of part 3 of Theorem 3.3.5, that is the description of the graded algebra of `[μ; φ, γ]` as a polynomial ring. It does not prove part 4. The file `Singularity/Valuation/MacLaneStep.lean` proves one step of the chain of part 4.
 
 ## References
 

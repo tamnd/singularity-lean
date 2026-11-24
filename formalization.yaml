@@ -177,6 +177,30 @@ status:
       kind: theorem
       status: proved
       note: A key polynomial φ for μ is a key polynomial for the augmented valuation [μ; φ, γ], for each γ ≤ μ φ in multiplicative notation (Theorem 3.3.5 (3), first claim). The description of the graded algebra in part 3 and part 4 of Theorem 3.3.5 are not proved.
+    - name: Singularity.keyPolynomial_of_map_lt
+      kind: theorem
+      status: proved
+      note: The step of MacLane-Vaquié, part (a). If μ ≤ ν in additive notation and φ is monic of least degree with μ(φ) < ν(φ), then φ is a key polynomial for μ (Lemma 3.3.9 of Volume 3 of the handbook).
+    - name: Singularity.muDvd_iff_map_lt
+      kind: theorem
+      status: proved
+      note: Under the hypotheses of the step of MacLane, φ μ-divides f if and only if μ(f) < ν(f) in additive notation.
+    - name: Singularity.map_le_augmentedValuationFun_of_map_eq
+      kind: theorem
+      status: proved
+      note: The step of MacLane-Vaquié, part (b). The augmentation [μ; φ, ν(φ)] is at most ν in additive notation if ν and μ agree in degree less than the degree of φ.
+    - name: Singularity.exists_monic_map_lt
+      kind: theorem
+      status: proved
+      note: If μ ≤ ν agree on the constants and μ ≠ ν, then there is a monic φ of least degree with μ(φ) < ν(φ) in additive notation.
+    - name: Singularity.exists_keyPolynomial_augmentedValuation
+      kind: theorem
+      status: proved
+      note: The step of MacLane-Vaquié (Lemma 3.3.9 of Volume 3 of the handbook). For μ ≤ ν with μ ≠ ν there is a key polynomial φ for μ with μ ≤ [μ; φ, ν(φ)] ≤ ν in additive notation. Part 4 of Theorem 3.3.5 is not proved.
+    - name: Singularity.map_le_monomialValuationFun
+      kind: theorem
+      status: proved
+      note: The first step of the chain of MacLane. If ν extends v, then [v; X, ν(X)] ≤ ν in additive notation.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved

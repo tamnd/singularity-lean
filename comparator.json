@@ -30,7 +30,12 @@
     "Singularity.isMuMinimal_iff",
     "Singularity.IsMuMinimal.augmentedValuationFun_le",
     "Singularity.KeyPolynomial.augmentedValuationFun_mul",
-    "Singularity.KeyPolynomial.keyPolynomial_of_forall_eq"
+    "Singularity.KeyPolynomial.keyPolynomial_of_forall_eq",
+    "Singularity.muDvd_iff_map_lt",
+    "Singularity.keyPolynomial_of_map_lt",
+    "Singularity.map_le_augmentedValuationFun_of_map_eq",
+    "Singularity.exists_monic_map_lt",
+    "Singularity.map_le_monomialValuationFun"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

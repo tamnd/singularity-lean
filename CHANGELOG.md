@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/MacLaneStep.lean`: the step of the theorem of MacLane-Vaquié that builds the chain of part 4 of Theorem 3.3.5 (Lemma 3.3.9 of Volume 3 of the handbook). Let `μ` and `ν` be valuations on `K[X]` with `ν f ≤ μ f` for each `f` (that is `μ ≤ ν` in additive notation). Let `φ` be monic with `ν φ < μ φ`, and let `ν f = μ f` for each `f` of degree less than the degree of `φ`. Then `φ` `μ`-divides `f` if and only if `ν f < μ f` (`muDvd_iff_map_lt`), and `φ` is a key polynomial for `μ` (`keyPolynomial_of_map_lt`). The augmentation `[μ; φ, ν φ]` lies between `μ` and `ν` and agrees with `ν` in degree less than the degree of `φ` (`map_le_augmentedValuationFun_of_map_eq`, `map_le_augmentedValuation_of_map_lt`, `augmentedValuation_eq_of_map_lt`). The theorems do not need the support `0` or that `μ` is an augmentation. If `μ ≠ ν` and the two valuations agree on the constants, then such a `φ` exists, of least degree (`exists_monic_map_lt`, `exists_keyPolynomial_augmentedValuation`). The file also proves the first step: if `ν` extends `v`, then `ν f ≤ [v; X, ν X] f` (`map_le_monomialValuationFun`). The file does not prove that the chain reaches `ν` or has `ν` as its limit, and it does not construct the limit augmentations.
+
 ## 0.4.5 - 2026-11-24
 
 ### Added
