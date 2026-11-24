@@ -331,6 +331,45 @@ theorem map_le_monomialValuationFun {v : Valuation K Γ₀} {ν : Valuation K[X]
 
 end MacLaneStep
 
+section MacLaneChain
+
+/-- `Singularity/Valuation/MacLaneChain.lean`: under the hypotheses of the step of MacLane, the augmentation `[μ; φ, ν φ]` changes the value of `f` if and only if `ν f < μ f`. -/
+theorem augmentedValuationFun_lt_iff_map_lt {μ ν : Valuation K[X] Γ₀} {φ : K[X]}
+    (hle : ∀ f, ν f ≤ μ f) (hφ : φ.Monic)
+    (hlt : ν φ < μ φ) (hlow : ∀ f : K[X], f.degree < φ.degree → ν f = μ f) (f : K[X]) :
+    augmentedValuationFun μ φ (ν φ) f < μ f ↔ ν f < μ f := sorry
+
+/-- `Singularity/Valuation/MacLaneChain.lean`: the next key polynomial of the chain of MacLane has degree at least the degree of `φ`. -/
+theorem natDegree_le_of_map_lt_augmentedValuationFun {μ ν : Valuation K[X] Γ₀} {φ ψ : K[X]}
+    (hφ : φ.Monic) (hd : 0 < φ.natDegree)
+    (hlow : ∀ f : K[X], f.degree < φ.degree → ν f = μ f)
+    (hlt : ν ψ < augmentedValuationFun μ φ (ν φ) ψ) : φ.natDegree ≤ ψ.natDegree := sorry
+
+/-- `Singularity/Valuation/MacLaneChain.lean`: if the next key polynomial `ψ` of the chain of MacLane has the same degree as `φ`, then `ν(φ) < ν(ψ)` in additive notation. -/
+theorem map_lt_map_of_natDegree_eq {μ ν : Valuation K[X] Γ₀} {φ ψ : K[X]}
+    (hφ : φ.Monic) (hd : 0 < φ.natDegree)
+    (hlow : ∀ f : K[X], f.degree < φ.degree → ν f = μ f) (hψ : ψ.Monic)
+    (hdeg : ψ.natDegree = φ.natDegree) (hlt : ν ψ < augmentedValuationFun μ φ (ν φ) ψ) :
+    ν ψ < ν φ := sorry
+
+/-- `Singularity/Valuation/MacLaneChain.lean`: the limit principle of MacLane for a value group of `ν` that is discrete of rank 1. -/
+theorem eventually_le_of_succ_lt {ν : Valuation K[X] Γ₀}
+    (hdisc : ∀ c d : Γ₀, c ≠ 0 → (Set.Icc c d ∩ Set.range ν).Finite)
+    {μ : ℕ → Valuation K[X] Γ₀} (hsucc : ∀ n f, μ (n + 1) f ≤ μ n f)
+    (hlt : ∀ n f, ν f < μ n f → μ (n + 1) f < μ n f) (hr : ∀ n f, μ n f ∈ Set.range ν)
+    (f : K[X]) {c : Γ₀} (hc : c ≠ 0) (hfc : ν f ≤ c) :
+    ∃ N, ∀ n, N ≤ n → μ n f ≤ c := sorry
+
+/-- `Singularity/Valuation/MacLaneChain.lean`: the limit principle of MacLane. The values `μₙ f` reach `ν f` if `ν f ≠ 0`. -/
+theorem eventually_eq_of_succ_lt {ν : Valuation K[X] Γ₀}
+    (hdisc : ∀ c d : Γ₀, c ≠ 0 → (Set.Icc c d ∩ Set.range ν).Finite)
+    {μ : ℕ → Valuation K[X] Γ₀} (hle : ∀ n f, ν f ≤ μ n f) (hsucc : ∀ n f, μ (n + 1) f ≤ μ n f)
+    (hlt : ∀ n f, ν f < μ n f → μ (n + 1) f < μ n f) (hr : ∀ n f, μ n f ∈ Set.range ν)
+    (f : K[X]) (hf : ν f ≠ 0) :
+    ∃ N, ∀ n, N ≤ n → μ n f = ν f := sorry
+
+end MacLaneChain
+
 end KeyPolynomials
 
 section CharacteristicPolyhedron
