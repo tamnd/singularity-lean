@@ -33,8 +33,10 @@ transform, the weak transform has order at least 4, the new divisor is `x w = 0`
 order of the weak transform along it is 7. All of it is checked by computation in the polynomial
 ring over an arbitrary field of characteristic 2.
 
-What the file does not certify: the cycles of [HP19a, §4], where the residual order goes to infinity
-along an infinite sequence of blowups, and the value `p^r = 2` that enters the false bound 6.
+What the file does not certify: the value `p^r = 2` that enters the false bound 6. The file
+`Singularity/Example/HauserPerlegaCycle.lean` certifies one cycle of [HP19a, §4] for one choice of
+the parameters. The claim that the residual order goes to infinity along the iterated cycles is not
+certified.
 
 ## References
 

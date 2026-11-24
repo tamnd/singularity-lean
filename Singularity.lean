@@ -37,3 +37,4 @@ import Singularity.Invariant.Order
 import Singularity.Invariant.Newton
 import Singularity.Invariant.Residual
 import Singularity.Example.HauserPerlega
+import Singularity.Example.HauserPerlegaCycle
