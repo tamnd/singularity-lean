@@ -221,6 +221,42 @@ status:
       kind: theorem
       status: proved
       note: One direction of the vertex criterion of Hironaka [Hir67]. If the projected Newton polyhedron is the characteristic polyhedron, then no vertex v other than 0 is solvable. The converse is not proved.
+    - name: Singularity.augmentedValuationFun_lt_iff_map_lt
+      kind: theorem
+      status: proved
+      note: Under the hypotheses of the step of MacLane, the augmentation μ' = [μ; φ, ν(φ)] changes the value of f if and only if μ(f) < ν(f) in additive notation.
+    - name: Singularity.map_lt_map_of_natDegree_eq
+      kind: theorem
+      status: proved
+      note: If the next key polynomial ψ of the chain of MacLane has the same degree as φ, then ν(φ) < ν(ψ) in additive notation.
+    - name: Singularity.natDegree_le_of_map_lt_augmentedValuationFun
+      kind: theorem
+      status: proved
+      note: The degrees of the key polynomials of the chain of MacLane do not decrease.
+    - name: Singularity.eventually_eq_of_succ_lt
+      kind: theorem
+      status: proved
+      note: The limit principle of MacLane. If the value group of ν is discrete of rank 1 and the values μₙ(f) increase strictly while μₙ(f) < ν(f), then μₙ(f) = ν(f) for all large n if ν(f) is finite.
+    - name: Singularity.eventually_le_of_succ_lt
+      kind: theorem
+      status: proved
+      note: The limit principle of MacLane for the support of ν. Under the same hypotheses, the values μₙ(f) become larger than each finite value at most ν(f) in additive notation.
+    - name: Singularity.macLaneChain_eventually_eq
+      kind: theorem
+      status: proved
+      note: The theorem of MacLane (part 4 of Theorem 3.3.5 of Volume 3 of the handbook, without limit augmentations). If ν extends v and the value group of ν is discrete of rank 1, then ν is the limit of the chain of MacLane. The chain need not be finite.
+    - name: Singularity.exists_macLaneChain_eq
+      kind: theorem
+      status: proved
+      note: If the value group of ν is discrete of rank 1 and the degrees and the finite values of the key polynomials of the chain of MacLane are bounded, then the chain is finite and ends with ν.
+    - name: Singularity.map_macLaneChainKey_succ_lt
+      kind: theorem
+      status: proved
+      note: In the chain of MacLane, key polynomials of the same degree have strictly increasing values ν(φᵢ) in additive notation.
+    - name: Singularity.natDegree_macLaneChainKey_le_of_map_eq_zero
+      kind: theorem
+      status: proved
+      note: If ν(F) = ∞ for some F ≠ 0, then the key polynomials of the chain of MacLane have degree at most the degree of F.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
