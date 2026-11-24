@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.9 - 2026-11-25
+
 ### Added
 
 - `Singularity/Algebra/MvHasse.lean`: the Hasse-Schmidt derivatives `D^α` of `R[x_i : i ∈ σ]` over a commutative semiring `R` (the operators `∂^(β)` of Volume 1, Section 6.3 of the handbook). The operator `hasseDeriv α` is the coefficient of `y^α` in `f(x + y)`, and it is `R`-linear. On monomials `D^α (r x^β) = binom(β, α) r x^(β - α)` with `binom(β, α) = ∏_i binom(β_i, α_i)` (`hasseDeriv_monomial`). The file proves the first values (`hasseDeriv_zero`, `hasseDeriv_C`, `hasseDeriv_X`), the agreement with `Polynomial.hasseDeriv` in one variable (`uniqueAlgEquiv_hasseDeriv`, Proposition 6.3.2), `D^(e_i) = ∂_i` (`hasseDeriv_single_one`), the Leibniz rule (`hasseDeriv_mul`), the composition rule `D^α D^β = binom(α + β, α) D^(α + β)` (`hasseDeriv_comp`) and the Taylor formula at the origin and at a point (`taylor_eq_sum`, `aeval_X_add_C_eq_sum`). It proves the criterion for the order of Proposition 1.1.4 of Volume 7: `ord f ≥ d` if and only if `(D^α f)(a) = 0` for `|α| < d`, at the origin (`le_ord_iff_hasseDeriv`) and at a point `a` (`le_ord_aeval_X_add_C_iff`). Over a semiring of characteristic `p`, with `q = p^e`, `f` is a polynomial in the `x_i^q` if and only if `D^α f = 0` for each `α ≠ 0` with `α_i < q` (`exists_expand_eq_iff_hasseDeriv`), by the theorem of Lucas. For such `α`, `D^α (g(x^q) f) = g(x^q) D^α f` (`hasseDeriv_expand_mul`, the first claim of Theorem 6.3.6).
