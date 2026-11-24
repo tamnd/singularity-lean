@@ -26,7 +26,8 @@
     "Singularity.eq_sum_expansionCoeff",
     "Singularity.isMuMinimal_iff",
     "Singularity.IsMuMinimal.augmentedValuationFun_le",
-    "Singularity.KeyPolynomial.augmentedValuationFun_mul"
+    "Singularity.KeyPolynomial.augmentedValuationFun_mul",
+    "Singularity.KeyPolynomial.keyPolynomial_of_forall_eq"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }
