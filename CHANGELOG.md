@@ -4,6 +4,12 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Statements/Embedded.lean`: the statement of the embedded resolution of surfaces of Cossart, Jannsen and Saito [CJS20] (Theorem 3.1.4 of Volume 4 of the handbook, node SG0000001C). `EmbeddedResolutionSurface` is a definition of a proposition, and the package does not prove it. It asks for a regular scheme `Z` of finite type over a field and a reduced closed subscheme `X` of dimension at most 2. Then there is a proper morphism `π : Z' ⟶ Z` with `Z'` regular, an open `U` that contains each point where `X` is regular, and an ideal sheaf `E` on `Z'` such that `π` is an isomorphism over `U`, the support of `E` is the preimage of the complement of `U`, `E` has simple normal crossings, and the strict transform of `X` has normal crossings with `E` (`IsEmbeddedResolution`). Mathlib has no excellent schemes and no blowups of schemes, so the statement does not ask for an excellent `Z` or for a sequence of blowups in permissible centers. The file defines the vocabulary: a regular system of parameters (`IsRegularSystemOfParameters`), the stalk of an ideal sheaf (`stalkIdeal`), a divisor with simple normal crossings (`IsSncDivisor`, node SG0000000V, Stacks tag 0BI9), normal crossings of a subscheme with a divisor (`HasNormalCrossings`), normal flatness (`IsNormallyFlatAt`), a permissible center (`IsPermissible`, node SG0000000T), a regular subscheme of codimension 1 (`IsRegularCodimOne`) and the strict transform (`strictTransform`).
+- `Singularity/Fidelity/Embedded.lean`: the fidelity checks of the statement. The identity of a regular scheme is an embedded resolution of the empty subscheme (`isEmbeddedResolution_id_top`). On a nonempty regular scheme the zero ideal sheaf is not a divisor with simple normal crossings (`not_isSncDivisor_bot`).
+- `Singularity/Scheme/Embedded.lean`: a closed point is a permissible center (`isPermissible_vanishingIdeal_singleton`, node SG0000000T), because each module over a field is flat. A regular closed subscheme of codimension 1 in a regular scheme is a divisor with simple normal crossings (`isSncDivisor_of_codim_one`, node SG0000000V), because it is defined at each point by one member of a regular system of parameters ([Mat89, Theorem 14.2]). The identity is an embedded resolution of such a subscheme when it is reduced (`isEmbeddedResolution_id_of_codim_one`).
+
 ## 0.4.0 - 2026-11-24
 
 ### Changed

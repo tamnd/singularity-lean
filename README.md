@@ -13,9 +13,11 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Statements/Basic.lean` | the vocabulary: `regularLocus`, `IsRegularScheme`, `IsResolution` and `IsVariety` |
 | `Singularity/Statements/Main.lean` | `ResolutionInDim`, `ResolutionOfSingularities` and `ResolutionDimFourCharP` |
 | `Singularity/Statements/Core.lean` | the purely inseparable hypersurfaces $z^p + g = 0$, the core case of route R5 |
+| `Singularity/Statements/Embedded.lean` | `EmbeddedResolutionSurface`, the embedded resolution of surfaces [CJS20], with simple normal crossings, permissible centers and the strict transform |
 | `Singularity/Fidelity/Positive.lean` | check F2: the identity of a regular scheme is a resolution |
 | `Singularity/Fidelity/Negative.lean` | check F3: the codiagonal $X \sqcup X \to X$ is not a resolution |
 | `Singularity/Fidelity/Core.lean` | the core problem P1 is a special case of the main statement |
+| `Singularity/Fidelity/Embedded.lean` | the identity is an embedded resolution of the empty subscheme, and the zero ideal sheaf is not a divisor with simple normal crossings |
 | `Singularity/Algebra/Regular.lean` | regular local rings: the quotient by a parameter, a regular local ring is a domain, and in dimension 1 regular is the same as integrally closed |
 | `Singularity/Algebra/Normalization.lean` | the integral closure of a domain is finite over it, when its fraction field is separable over a Noetherian normal subring, and for each finitely generated domain in characteristic 0 |
 | `Singularity/Scheme/NormalDimOne.lean` | a locally Noetherian scheme of dimension at most 1 with integrally closed local domains is regular |
@@ -40,6 +42,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Algebra/CurveOnSurface.lean` | a regular curve on a regular surface is given by one equation: if $R$ and $R/P$ are regular local rings with $\dim R/P + 1 = \dim R$, then $P = (x)$ with $x \in \mathfrak m \setminus \mathfrak m^2$, and the chart $R[P/x]$ of the blowup along $P$ is $R$ |
 | `Singularity/Scheme/Components.lean` | the irreducible components of a reduced Noetherian scheme: each component is integral, and a point with a domain as local ring lies on one component only |
 | `Singularity/Scheme/Reduction.lean` | `reductionToIntegral`: the proof of `ReductionToIntegral`, and the lemma that a finite disjoint union of proper maps is proper |
+| `Singularity/Scheme/Embedded.lean` | a closed point is a permissible center, and a regular subscheme of codimension 1 is a divisor with simple normal crossings |
 | `Singularity/Scheme/RegularLocus.lean` | the regular locus of a scheme that is locally of finite type over a field of characteristic $0$ is open |
 | `Singularity/Curves/Resolution.lean` | `integralResolutionInDim_one` and `resolutionInDim_one`: each curve over a field of each characteristic has a resolution |
 | `Singularity/Known/DimZero.lean` | `resolutionInDim_dim_zero`, resolution in dimension 0 in each characteristic |

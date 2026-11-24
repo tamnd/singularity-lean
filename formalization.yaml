@@ -61,6 +61,25 @@ status:
       kind: statement
       status: open
       note: Open for n at least 4.
+    - name: Singularity.EmbeddedResolutionSurface
+      kind: statement
+      status: known
+      note: The theorem of Cossart, Jannsen and Saito, for a regular scheme of finite type over a field. This is a definition of a proposition. The package does not prove it.
+    - name: Singularity.Fidelity.isEmbeddedResolution_id_top
+      kind: theorem
+      status: proved
+    - name: Singularity.Fidelity.not_isSncDivisor_bot
+      kind: theorem
+      status: proved
+    - name: Singularity.isPermissible_vanishingIdeal_singleton
+      kind: theorem
+      status: proved
+    - name: Singularity.isSncDivisor_of_codim_one
+      kind: theorem
+      status: proved
+    - name: Singularity.isEmbeddedResolution_id_of_codim_one
+      kind: theorem
+      status: proved
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
