@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.2.9 - 2026-11-24
+
 ### Added
 
 - `Singularity/Algebra/Jacobian.lean`: the Jacobian criterion for a hypersurface. Let $A$ be a Noetherian ring, let $\mathfrak{q}$ be a prime with $A_\mathfrak{q}$ regular, and let $F \in \mathfrak{q}$. If a derivation $D$ of $A$ has $D F \notin \mathfrak{q}$, then $A_\mathfrak{q}/(F)$ is regular (`isRegularLocalRing_quotient_of_derivation`). If $A$ is a regular ring, then the open set $D(\overline{DF})$ of $\operatorname{Spec} A/(F)$ is in the regular locus (`regularLocus_quotient_of_derivation`).
