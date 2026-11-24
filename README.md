@@ -43,6 +43,10 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Known/DimZero.lean` | `resolutionInDim_dim_zero`, resolution in dimension 0 in each characteristic |
 | `Singularity/Hypotheses/Integral.lean` | `IntegralResolutionInDim` and the statement `ReductionToIntegral` |
 | `Singularity/Bridge/FormalConjectures.lean` | the statements of google-deepmind/formal-conjectures, copied as propositions |
+| `Singularity/Invariant/Order.lean` | the order of a polynomial at the origin and of an ideal, with the laws for sums, products, powers and linear changes of coordinates, and $\operatorname{ord} f \ge n$ if and only if $f \in \mathfrak{m}^n$ |
+| `Singularity/Invariant/Newton.lean` | `newtonPolyhedron`, weighted orders and initial forms, the Newton polyhedron of a product, and the order as the least total degree on the polyhedron |
+| `Singularity/Invariant/Residual.lean` | `residualOrder` of $z^q + F$, cleaning, the residual order along a normal crossings divisor, the point blowup charts, and the bound of Moh stated as the proposition `moh_bound` |
+| `Singularity/Example/HauserPerlega.lean` | `kangaroo`: the example of Hauser and Perlega in characteristic 2, where the residual order goes from 5 to 7 under a permissible point blowup |
 | `base/SingularityBase/Bridge.lean` | the bridge: the statement of the project implies the statement of formal-conjectures |
 | `base/SingularityBase/CharZero.lean` | `integralResolutionInDim_zero` and `resolutionInDim_charZero`, characteristic 0 from resolutionorg/hironaka |
 | `scripts/Export.lean` | writes the record of the build: each declaration, its type and its axioms |
