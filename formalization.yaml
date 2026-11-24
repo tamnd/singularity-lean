@@ -424,6 +424,38 @@ status:
       kind: theorem
       status: proved
       note: The lifting test (Lemma 10.5 of Volume 7, Chapter 4 of the handbook). For q = p^e, z^q + g lies in (z - h, I)^q if and only if g + h^q lies in I^q.
+    - name: Singularity.logJacobian_add_pow
+      kind: theorem
+      status: proved
+      note: The log-Jacobian ideal does not change when a p-th power is added to g (Lemma 3.6 (1) of Volume 7, Chapter 3 of the handbook).
+    - name: Singularity.logJacobian_monomial_mul
+      kind: theorem
+      status: proved
+      note: If r is supported in the divisor, the log-Jacobian ideal of x^r G is x^r times the residual log-Jacobian ideal of G.
+    - name: Singularity.residualLogJacobian_not_le_span_X
+      kind: theorem
+      status: proved
+      note: For a clean g other than 0, the residual log-Jacobian ideal is not contained in (x_i) for a boundary coordinate x_i (Theorem 3.7 (1) of Volume 7, Chapter 3 of the handbook).
+    - name: Singularity.le_divisorExponent_of_logJacobian_le
+      kind: theorem
+      status: proved
+      note: For a clean g other than 0, the monomial factor of the log-Jacobian ideal is the monomial factor x^r of g.
+    - name: Singularity.logJacobianOrder_le_residualOrderAlong
+      kind: theorem
+      status: proved
+      note: For a clean g, the order rho of the residual log-Jacobian ideal is at most the residual order d along the divisor.
+    - name: Singularity.residualOrderAlong_le_logJacobianOrder_add_one
+      kind: theorem
+      status: proved
+      note: For a clean g, the residual order d along the divisor is at most rho + 1.
+    - name: Singularity.logJacobianOrder_eq_or
+      kind: theorem
+      status: proved
+      note: For a clean g, rho = d or rho + 1 = d. This is the dichotomy (Theorem 3.7 (2) of Volume 7, Chapter 3 of the handbook).
+    - name: Singularity.logJacobianOrder_add_one_eq_iff
+      kind: theorem
+      status: proved
+      note: For a clean g with ord G = d, rho + 1 = d if and only if the derivative of the initial form of G along some free coordinate is not 0 (Theorem 3.7 (3) of Volume 7, Chapter 3 of the handbook).
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
