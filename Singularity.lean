@@ -10,6 +10,7 @@ import Singularity.Algebra.RegularLocalization
 import Singularity.Algebra.RegularLocus
 import Singularity.Algebra.Jacobian
 import Singularity.Algebra.GenericRegular
+import Singularity.Algebra.GenericRegularPerfect
 import Singularity.Algebra.Normalization
 import Singularity.Algebra.NormalizationCharP
 import Singularity.Scheme.NormalDimOne

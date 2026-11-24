@@ -31,6 +31,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Algebra/RegularLocus.lean` | the regular locus of a Noetherian ring is stable under generization, and the criterion of Nagata for the openness of the regular locus |
 | `Singularity/Algebra/Jacobian.lean` | the Jacobian criterion for a hypersurface: if $D F \notin \mathfrak{q}$ for a derivation $D$, then $A_\mathfrak{q}/(F)$ is regular |
 | `Singularity/Algebra/GenericRegular.lean` | generic regularity in characteristic $0$: a domain of finite type over a field of characteristic $0$ has a nonempty open regular locus, and the regular locus of an algebra of finite type over such a field is open |
+| `Singularity/Algebra/GenericRegularPerfect.lean` | generic regularity over a perfect field: a domain of finite type over a perfect field has a nonempty open regular locus, and the regular locus of an algebra of finite type over a perfect field is open |
 | `Singularity/Algebra/FiniteDifference.lean` | functions $\mathbb{N} \to \mathbb{Z}$ that are eventually polynomial, with the criterion by forward differences |
 | `Singularity/Algebra/HilbertSerre.lean` | the theorem of Hilbert and Serre for graded modules, and the Hilbert-Samuel function as an eventual polynomial of degree at most the number of generators of the ideal |
 | `Singularity/Algebra/Multiplicity.lean` | the Samuel multiplicity $e_d(I, M)$ with its laws: positivity, the comparison of two ideals, and the value $1$ for a field and a discrete valuation ring |
