@@ -15,6 +15,9 @@ import Singularity.Algebra.NormalizationCharP
 import Singularity.Scheme.NormalDimOne
 import Singularity.Algebra.NormalLocus
 import Singularity.Algebra.HilbertSamuel
+import Singularity.Algebra.FiniteDifference
+import Singularity.Algebra.HilbertSerre
+import Singularity.Algebra.Multiplicity
 import Singularity.Curves.Affine
 import Singularity.Scheme.Components
 import Singularity.Scheme.Reduction
