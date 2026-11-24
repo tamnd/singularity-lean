@@ -45,7 +45,10 @@
     "Singularity.natDegree_le_of_map_lt_augmentedValuationFun",
     "Singularity.map_lt_map_of_natDegree_eq",
     "Singularity.eventually_le_of_succ_lt",
-    "Singularity.eventually_eq_of_succ_lt"
+    "Singularity.eventually_eq_of_succ_lt",
+    "Singularity.residualOrderAlong_pointChart_le",
+    "Singularity.residualOrderAlong_pointChart_le_of_not_dvd",
+    "Singularity.moh_bound_holds"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

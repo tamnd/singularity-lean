@@ -43,6 +43,7 @@ import Singularity.Invariant.Residual
 import Singularity.Invariant.OrderBlowup
 import Singularity.Invariant.Directrix
 import Singularity.Invariant.CharacteristicPolyhedron
+import Singularity.Invariant.MohBound
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan

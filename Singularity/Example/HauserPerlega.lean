@@ -23,7 +23,7 @@ order of `f'` is `d' = 7`. The residual order goes up under a permissible blowup
 point of order `4 = p^e` of `f`, and the new point is again a point of order 4. The point is a
 kangaroo point.
 
-The increase `7 - 5 = 2 = p^(e-1)` is the largest one allowed by Moh's bound (`moh_bound`), so the
+The increase `7 - 5 = 2 = p^(e-1)` is the largest one allowed by Moh's bound (`moh_bound`, proved as `moh_bound_holds`), so the
 bound is sharp here. The paper uses the example to show that the bound
 `d' ≤ [d / p^r] p^r + p^r = 6` in Moh's proof of his stability theorem is false.
 

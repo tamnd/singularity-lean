@@ -23,11 +23,17 @@ import Mathlib.Analysis.Convex.Combination
 import Mathlib.Analysis.Convex.Extreme
 import Mathlib.Basic.Real.Basic
 import Mathlib.RingTheory.MvPowerSeries.Basic
+import Mathlib.RingTheory.MvPowerSeries.NoZeroDivisors
+import Mathlib.RingTheory.MvPolynomial.Ideal
+import Mathlib.RingTheory.MvPolynomial.Expand
+import Mathlib.Algebra.MvPolynomial.Division
+import Mathlib.Algebra.CharP.Lemmas
+import Mathlib.FieldTheory.IsAlgClosed.Basic
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean` and `Singularity/Invariant/CharacteristicPolyhedron.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean` and `Singularity/Invariant/Residual.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -449,5 +455,80 @@ theorem not_isSolvableVertex_of_charPolyhedron_eq {f : (MvPowerSeries σ k)[X]} 
 end Ring
 
 end CharacteristicPolyhedron
+
+section Moh
+
+open MvPolynomial Finsupp
+
+section Defs
+
+variable {σ R : Type*} [CommSemiring R]
+
+/-- `Singularity/Invariant/Order.lean`: the order of a polynomial at the origin. -/
+noncomputable def ord (f : MvPolynomial σ R) : ℕ∞ :=
+  (f : MvPowerSeries σ R).order
+
+/-- `Singularity/Invariant/Residual.lean`: no exponent of `F` lies in `q ℕ^σ`. -/
+def IsClean (q : ℕ) (F : MvPolynomial σ R) : Prop :=
+  ∀ d ∈ F.support, ¬ ∀ i, q ∣ d i
+
+open Classical in
+/-- `Singularity/Invariant/Residual.lean`: the clean part of `F` for `q`. -/
+noncomputable def cleanPart (q : ℕ) (F : MvPolynomial σ R) : MvPolynomial σ R :=
+  ∑ d ∈ F.support.filter (fun d => ¬ ∀ i, q ∣ d i), monomial d (F.coeff d)
+
+open Classical in
+/-- `Singularity/Invariant/Residual.lean`: the exponents of the monomial factor along `Δ`. -/
+noncomputable def divisorExponent (Δ : Finset σ) (F : MvPolynomial σ R) : σ →₀ ℕ :=
+  ∑ i ∈ Δ, Finsupp.single i (sInf ((fun d : σ →₀ ℕ => d i) '' (F.support : Set (σ →₀ ℕ))))
+
+/-- `Singularity/Invariant/Residual.lean`: the residual factor of `F` along `Δ`. -/
+noncomputable def residualFactor (Δ : Finset σ) (F : MvPolynomial σ R) : MvPolynomial σ R :=
+  divMonomial F (divisorExponent Δ F)
+
+/-- `Singularity/Invariant/Residual.lean`: the residual order of `z^q + F` along `Δ`. -/
+noncomputable def residualOrderAlong (Δ : Finset σ) (q : ℕ) (F : MvPolynomial σ R) : ℕ∞ :=
+  ord (residualFactor Δ (cleanPart q F))
+
+variable [DecidableEq σ]
+
+/-- `Singularity/Invariant/Residual.lean`: the `x_j`-chart of the point blowup with translations `t`. -/
+noncomputable def pointChart (j : σ) (t : σ → R) : MvPolynomial σ R →ₐ[R] MvPolynomial σ R :=
+  aeval fun i => if i = j then X j else X j * (X i + C (t i))
+
+/-- `Singularity/Invariant/Residual.lean`: the transform of the divisor under the chart. -/
+noncomputable def blowupDivisor [DecidableEq R] (Δ : Finset σ) (j : σ) (t : σ → R) : Finset σ :=
+  insert j (Δ.filter fun i => i ≠ j ∧ t i = 0)
+
+end Defs
+
+/-- `Singularity/Invariant/Residual.lean`: the statement of Moh's bound for one blowup. -/
+def moh_bound : Prop :=
+  ∀ (k : Type) [Field k] [IsAlgClosed k] [DecidableEq k] (p : ℕ) [Fact p.Prime] [CharP k p]
+    (e n : ℕ) (Δ : Finset (Fin n)) (j : Fin n) (t : Fin n → k) (F F' : MvPolynomial (Fin n) k),
+    1 ≤ e → IsClean (p ^ e) F → ((p ^ e : ℕ) : ℕ∞) ≤ ord F →
+    pointChart j t F = X j ^ p ^ e * F' → ((p ^ e : ℕ) : ℕ∞) ≤ ord F' →
+    residualOrderAlong (blowupDivisor Δ j t) (p ^ e) F' ≤
+      residualOrderAlong Δ (p ^ e) F + ((p ^ (e - 1) : ℕ) : ℕ∞)
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] (p : ℕ) [Fact p.Prime] [CharP k p]
+
+/-- `Singularity/Invariant/MohBound.lean`: Moh's bound, the residual order goes up by at most `p^(e-1)`. -/
+theorem residualOrderAlong_pointChart_le (Δ : Finset σ) (j : σ) (t : σ → k) {e : ℕ}
+    {F F' : MvPolynomial σ k} (hF : IsClean (p ^ e) F) (hord : ((p ^ e : ℕ) : ℕ∞) ≤ ord F)
+    (hπ : pointChart j t F = X j ^ p ^ e * F') :
+    residualOrderAlong (blowupDivisor Δ j t) (p ^ e) F' ≤
+      residualOrderAlong Δ (p ^ e) F + ((p ^ (e - 1) : ℕ) : ℕ∞) := sorry
+
+/-- `Singularity/Invariant/MohBound.lean`: if `q ∤ ord F`, the residual order does not go up. -/
+theorem residualOrderAlong_pointChart_le_of_not_dvd (Δ : Finset σ) (j : σ) (t : σ → k) {e m : ℕ}
+    {F F' : MvPolynomial σ k} (hF : IsClean (p ^ e) F) (hord : ((p ^ e : ℕ) : ℕ∞) ≤ ord F)
+    (hm : ord F = m) (hdvd : ¬ p ^ e ∣ m) (hπ : pointChart j t F = X j ^ p ^ e * F') :
+    residualOrderAlong (blowupDivisor Δ j t) (p ^ e) F' ≤ residualOrderAlong Δ (p ^ e) F := sorry
+
+/-- `Singularity/Invariant/MohBound.lean`: the proposition `moh_bound` holds. -/
+theorem moh_bound_holds : moh_bound := sorry
+
+end Moh
 
 end Singularity
