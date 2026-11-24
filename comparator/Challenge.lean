@@ -274,6 +274,11 @@ theorem KeyPolynomial.augmentedValuationFun_mul (hφ : KeyPolynomial μ φ) (hγ
     (f g : K[X]) : augmentedValuationFun μ φ γ (f * g) =
       augmentedValuationFun μ φ γ f * augmentedValuationFun μ φ γ g := sorry
 
+/-- `Singularity/Valuation/Augmentation.lean`: Theorem 3.3.5 (3) of MacLane-Vaquié, first claim. A key polynomial `φ` for `μ` is a key polynomial for each valuation with the values of the augmentation `[μ; φ, γ]`. -/
+theorem KeyPolynomial.keyPolynomial_of_forall_eq (hφ : KeyPolynomial μ φ)
+    {ν : Valuation K[X] Γ₀} (hν : ∀ f, ν f = augmentedValuationFun μ φ γ f) :
+    KeyPolynomial ν φ := sorry
+
 end Augmented
 
 end KeyPolynomials

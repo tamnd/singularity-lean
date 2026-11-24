@@ -150,7 +150,7 @@ status:
     - name: Singularity.KeyPolynomial.augmentedValuationFun_mul
       kind: theorem
       status: proved
-      note: The augmented valuation [μ; φ, γ] of a key polynomial φ is multiplicative, so Singularity.augmentedValuation is a valuation (Theorem 3.3.5 (1) of Volume 3 of the handbook, MacLane-Vaquié). The theorem takes γ ≤ μ φ in multiplicative notation. Parts 3 and 4 of Theorem 3.3.5 are not proved.
+      note: The augmented valuation [μ; φ, γ] of a key polynomial φ is multiplicative, so Singularity.augmentedValuation is a valuation (Theorem 3.3.5 (1) of Volume 3 of the handbook, MacLane-Vaquié). The theorem takes γ ≤ μ φ in multiplicative notation.
     - name: Singularity.augmentedValuation_le
       kind: theorem
       status: proved
@@ -159,6 +159,14 @@ status:
       kind: theorem
       status: proved
       note: A monic polynomial φ of positive degree is μ-minimal if and only if μ of a φ-expansion is the minimum of the values of its terms, in additive notation.
+    - name: Singularity.KeyPolynomial.keyPolynomial_of_forall_eq
+      kind: theorem
+      status: proved
+      note: A key polynomial φ for μ is a key polynomial for each valuation with the values of the augmentation [μ; φ, γ] (Theorem 3.3.5 (3) of Volume 3 of the handbook, first claim).
+    - name: Singularity.KeyPolynomial.keyPolynomial_augmentedValuation
+      kind: theorem
+      status: proved
+      note: A key polynomial φ for μ is a key polynomial for the augmented valuation [μ; φ, γ], for each γ ≤ μ φ in multiplicative notation (Theorem 3.3.5 (3), first claim). The description of the graded algebra in part 3 and part 4 of Theorem 3.3.5 are not proved.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved

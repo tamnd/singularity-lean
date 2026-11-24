@@ -7,7 +7,7 @@ import Singularity.Valuation.KeyPolynomials
 /-!
 # The augmented valuation
 
-Let `μ` be a valuation on `K[X]` and let `φ` be a key polynomial for `μ`. This file proves that the augmentation `[μ; φ, γ]` of Definition 3.3.4 is a valuation on `K[X]`. This is part 1 of Theorem 3.3.5 of Volume 3 of the handbook (MacLane-Vaquié). The file also proves part 2.
+Let `μ` be a valuation on `K[X]` and let `φ` be a key polynomial for `μ`. This file proves that the augmentation `[μ; φ, γ]` of Definition 3.3.4 is a valuation on `K[X]`. This is part 1 of Theorem 3.3.5 of Volume 3 of the handbook (MacLane-Vaquié). The file also proves part 2, and the first claim of part 3: `φ` is a key polynomial for `[μ; φ, γ]`.
 
 The conventions are those of `Singularity/Valuation/KeyPolynomials.lean`. The valuations are multiplicative. Thus the handbook condition `γ > μ(φ)` is `γ < μ φ` here, the inequality `μ ≤ μ'` of the handbook is `μ' f ≤ μ f` here, and `γ = ∞` is `γ = 0`. The file assumes only `γ ≤ μ φ`. For `γ = μ φ` the augmentation is `μ` (`augmentedValuation_eq_self`).
 
@@ -16,6 +16,7 @@ The conventions are those of `Singularity/Valuation/KeyPolynomials.lean`. The va
 * The minimality of `φ` gives `μ (r + φ * q) = max (μ r) (μ (φ * q))` if `deg r < deg φ`. By induction, `μ f` is the maximum of `μ aⱼ * μ φ ^ j` for the `φ`-expansion `f = ∑ aⱼ φ ^ j`. The converse also holds (`isMuMinimal_iff`).
 * Let `a` and `b` have degree less than the degree of `φ`. The irreducibility and the minimality of `φ` give `μ (a * b %ₘ φ) = μ (a * b)`. Otherwise `φ` `μ`-divides `a * b`, so it `μ`-divides `a` or `b`. This is false by minimality.
 * For the product `f * g = ∑ φ ^ (i + j) * aᵢ * bⱼ`, the coefficient of index `k` of the `φ`-expansion is a sum of terms, one for each pair `(i, j)`. Each term is at most `μ aᵢ * γ ^ i * (μ bⱼ * γ ^ j)`. Let `i₀` and `j₀` be the smallest indices where the values of `f` and `g` are attained. For `k = i₀ + j₀`, the term of `(i₀, j₀)` is `aᵢ₀ * bⱼ₀ %ₘ φ`, and each other term is strictly smaller. This is the argument of Lemma 3.3.2.
+* Let `ν = [μ; φ, γ]`. Then `φ` `ν`-divides `f` if and only if `μ (f %ₘ φ) < ν f`. In additive notation, the minimum of the terms of the `φ`-expansion of `f` is not attained at `j = 0`. If this minimum is attained at `j = 0` for `f` and for `g`, then the remainder of `f * g` has the value `ν f * ν g` by the second step. Thus `φ` is `ν`-irreducible. The criterion also gives the `ν`-minimality.
 
 ## Main results
 
@@ -25,8 +26,11 @@ The conventions are those of `Singularity/Valuation/KeyPolynomials.lean`. The va
 * `Singularity.augmentedValuation`: the augmented valuation `[μ; φ, γ]` as a `Valuation` (Theorem 3.3.5 (1)).
 * `Singularity.augmentedValuation_le`: `μ ≤ [μ; φ, γ]` in the notation of the handbook (Theorem 3.3.5 (2)).
 * `Singularity.augmentedValuation_eq_zero_iff` and `Singularity.augmentedValuation_zero_eq_zero_iff`: the support is `0` if `γ ≠ 0` and `(φ)` if `γ = 0`, when `μ` has support `0` (Theorem 3.3.5 (1)).
+* `Singularity.KeyPolynomial.keyPolynomial_augmentedValuation` and `Singularity.KeyPolynomial.keyPolynomial_of_forall_eq`: the polynomial `φ` is a key polynomial for `[μ; φ, γ]` (Theorem 3.3.5 (3), first claim). The theorem holds for each `γ ≤ μ φ`.
+* `Singularity.muDvd_iff_of_forall_eq`: the criterion for `[μ; φ, γ]`-divisibility by `φ`.
+* `Singularity.augmentedValuationFun_sum_mul_pow` and `Singularity.KeyPolynomial.muEquiv_augmentedValuation_mul_modByMonic`: two elementwise parts of the second claim of part 3. The first gives the value of `∑ cⱼ φ ^ j` for `cⱼ` of degree less than the degree of `φ`. The second says that for `γ < μ φ` a product `a * b` of such polynomials is `[μ; φ, γ]`-equivalent to its remainder modulo `φ`.
 
-The file does not prove parts 3 and 4 of Theorem 3.3.5.
+The file does not prove the rest of part 3 of Theorem 3.3.5, that is the description of the graded algebra of `[μ; φ, γ]` as a polynomial ring. It does not prove part 4.
 
 ## References
 
@@ -434,6 +438,147 @@ theorem augmentedValuation_zero_eq_zero_iff (hφ : KeyPolynomial μ φ)
     modByMonic_eq_zero_iff_dvd hφ.monic]
 
 end Augmented
+
+section KeyAugmented
+
+variable {μ : Valuation K[X] Γ₀} {φ : K[X]} {γ : Γ₀}
+
+/-- The value of the remainder of `f` modulo `φ` is at most the augmented value of `f`. In additive notation, `μ(a₀) ≥ μ'(f)` for the coefficient `a₀` of the `φ`-expansion of `f`. -/
+theorem map_modByMonic_le_augmentedValuationFun (hφ : φ.Monic) (hd : 0 < φ.natDegree)
+    (f : K[X]) : μ (f %ₘ φ) ≤ augmentedValuationFun μ φ γ f := by
+  simpa [expansionCoeff_zero_eq_modByMonic] using
+    le_augmentedValuationFun (μ := μ) (γ := γ) hφ hd f 0
+
+/-- Let `ν` be a valuation with the values of the augmentation `[μ; φ, γ]`. Then `φ` `ν`-divides `f` if and only if `μ (f %ₘ φ) < ν f`. In additive notation, `φ` `μ'`-divides `f` if and only if `μ'(a₀) > μ'(f)`, that is, the minimum of the terms of the `φ`-expansion of `f` is not attained at `j = 0`. -/
+theorem muDvd_iff_of_forall_eq (hφ : φ.Monic) (hd : 0 < φ.natDegree) {ν : Valuation K[X] Γ₀}
+    (hν : ∀ f, ν f = augmentedValuationFun μ φ γ f) {f : K[X]} :
+    MuDvd ν φ f ↔ μ (f %ₘ φ) < ν f := by
+  constructor
+  · rintro ⟨h, hh⟩
+    have h0 : (f - φ * h) %ₘ φ = f %ₘ φ := by
+      rw [sub_modByMonic, (modByMonic_eq_zero_iff_dvd hφ).2 (dvd_mul_right _ _), sub_zero]
+    have hle := map_modByMonic_le_augmentedValuationFun (μ := μ) (γ := γ) hφ hd (f - φ * h)
+    rw [h0, ← hν] at hle
+    exact lt_of_le_of_lt hle hh
+  · intro hf
+    refine ⟨f /ₘ φ, ?_⟩
+    unfold MuEquiv
+    rwa [sub_eq_of_eq_add (modByMonic_add_div f φ).symm, hν,
+      augmentedValuationFun_of_degree_lt hφ hd (degree_modByMonic_lt f hφ)]
+
+/-- Theorem 3.3.5 (3) in part: let `φ` be a key polynomial for `μ` and let `ν` be a valuation with the values of the augmentation `[μ; φ, γ]`. Then `φ` is a key polynomial for `ν`. The proof uses the criterion `muDvd_iff_of_forall_eq`. If `φ` does not `ν`-divide `f` or `g`, then `μ (f %ₘ φ) = ν f` and `μ (g %ₘ φ) = ν g`. The remainder of `f * g` is the remainder of `(f %ₘ φ) * (g %ₘ φ)`, and by `KeyPolynomial.map_mul_modByMonic` it has the value `ν f * ν g = ν (f * g)`. Thus `φ` does not `ν`-divide `f * g`. -/
+theorem KeyPolynomial.keyPolynomial_of_forall_eq (hφ : KeyPolynomial μ φ)
+    {ν : Valuation K[X] Γ₀} (hν : ∀ f, ν f = augmentedValuationFun μ φ γ f) :
+    KeyPolynomial ν φ := by
+  have hm := hφ.monic
+  have hd := hφ.natDegree_pos
+  have hdvd := fun f => muDvd_iff_of_forall_eq (f := f) hm hd hν
+  -- a polynomial of degree less than the degree of `φ` is not `ν`-divided by `φ`
+  have hlow : ∀ f : K[X], f.degree < φ.degree → ¬ MuDvd ν φ f := fun f hf h => by
+    rw [hdvd, (modByMonic_eq_self_iff hm).2 hf, hν, augmentedValuationFun_of_degree_lt hm hd hf]
+      at h
+    exact lt_irrefl _ h
+  -- the value of the remainder of `f` is at most `ν f`
+  have hle : ∀ f : K[X], μ (f %ₘ φ) ≤ ν f := fun f =>
+    (hν f).symm ▸ map_modByMonic_le_augmentedValuationFun hm hd f
+  refine ⟨hm, ⟨hlow 1 ?_, fun f g hfg => ?_⟩, fun f _ h => ?_⟩
+  · rw [degree_one]
+    exact natDegree_pos_iff_degree_pos.1 hd
+  · rw [hdvd] at hfg
+    rw [hdvd, hdvd]
+    by_contra hne
+    rw [not_or, not_lt, not_lt] at hne
+    have hf := le_antisymm (hle f) hne.1
+    have hg := le_antisymm (hle g) hne.2
+    rw [mul_modByMonic, hφ.map_mul_modByMonic (degree_modByMonic_lt f hm)
+      (degree_modByMonic_lt g hm), Valuation.map_mul, Valuation.map_mul, hf, hg] at hfg
+    exact lt_irrefl _ hfg
+  · by_contra hlt
+    rw [not_le] at hlt
+    exact hlow f (degree_lt_degree hlt) h
+
+/-- Theorem 3.3.5 (3) in part: a key polynomial `φ` for `μ` is a key polynomial for the augmented valuation `[μ; φ, γ]`. The handbook assumes `γ < μ φ` and `γ ≠ 0` in multiplicative notation. The theorem holds for each `γ ≤ μ φ`. For `γ = μ φ` the augmentation is `μ`. For `γ = 0` the polynomial `φ` `ν`-divides no polynomial, because `ν f = μ (f %ₘ φ)`. -/
+theorem KeyPolynomial.keyPolynomial_augmentedValuation (hφ : KeyPolynomial μ φ)
+    (hγ : γ ≤ μ φ) : KeyPolynomial (augmentedValuation μ φ γ hφ hγ) φ :=
+  hφ.keyPolynomial_of_forall_eq fun _ => rfl
+
+/-- The `φ`-expansion is unique: if `c` has degree less than the degree of `φ`, then the coefficient of index `k` of the `φ`-expansion of `φ ^ n * c` is `c` for `k = n` and `0` otherwise. -/
+theorem expansionCoeff_pow_mul_of_degree_lt (hφ : φ.Monic) {c : K[X]}
+    (hc : c.degree < φ.degree) (n k : ℕ) :
+    expansionCoeff φ (φ ^ n * c) k = if k = n then c else 0 := by
+  rcases lt_trichotomy k n with hk | rfl | hk
+  · rw [ite_eq_right hk.ne, expansionCoeff_pow_mul_of_lt hφ c hk]
+  · have := expansionCoeff_pow_mul_add hφ c k 0
+    rw [zero_add] at this
+    rw [ite_eq_left rfl, this, expansionCoeff_zero_eq_modByMonic, (modByMonic_eq_self_iff hφ).2 hc]
+  · obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_lt hk
+    rw [ite_eq_right (by omega), show n + m + 1 = m + 1 + n by omega, expansionCoeff_pow_mul_add hφ,
+      expansionCoeff_succ, (divByMonic_eq_zero_iff hφ).2 hc, expansionCoeff_zero]
+
+/-- The `φ`-expansion is unique: if each `cⱼ` has degree less than the degree of `φ`, then the coefficients of the `φ`-expansion of `∑ cⱼ φ ^ j` are the `cⱼ`. -/
+theorem expansionCoeff_sum_mul_pow (hφ : φ.Monic) {c : ℕ → K[X]} {N : ℕ}
+    (hc : ∀ j < N, (c j).degree < φ.degree) (k : ℕ) :
+    expansionCoeff φ (∑ j ∈ Finset.range N, c j * φ ^ j) k = if k < N then c k else 0 := by
+  rw [expansionCoeff_sum]
+  rw [Finset.sum_congr rfl fun j hj => by
+    rw [mul_comm, expansionCoeff_pow_mul_of_degree_lt hφ (hc j (Finset.mem_range.1 hj))]]
+  simp only [Finset.sum_ite_eq, Finset.mem_range]
+
+/-- Theorem 3.3.5 (3) in part, in elementwise form: if each `cⱼ` has degree less than the degree of `φ`, then the augmented value of `∑ cⱼ φ ^ j` is the maximum of `μ cⱼ * γ ^ j`. In additive notation, `μ'(∑ cⱼ φ ^ j) = min_j (μ(cⱼ) + jγ)`. Thus a sum of terms `in(cⱼ) (in φ) ^ j` of the same degree is not `0` in the graded algebra of `μ'` when some `cⱼ` has a nonzero value. This is the transcendence of `in φ` over the initial forms of the polynomials of degree less than the degree of `φ`. -/
+theorem augmentedValuationFun_sum_mul_pow (hφ : φ.Monic) (hd : 0 < φ.natDegree)
+    {c : ℕ → K[X]} {N : ℕ} (hc : ∀ j < N, (c j).degree < φ.degree) :
+    augmentedValuationFun μ φ γ (∑ j ∈ Finset.range N, c j * φ ^ j) =
+      (Finset.range N).sup fun j => μ (c j) * γ ^ j := by
+  refine le_antisymm ((augmentedValuationFun_le_iff hφ hd).2 fun k => ?_)
+    (Finset.sup_le fun j hj => ?_)
+  · rw [expansionCoeff_sum_mul_pow hφ hc]
+    split_ifs with hk
+    · exact Finset.le_sup (f := fun j => μ (c j) * γ ^ j) (Finset.mem_range.2 hk)
+    · rw [Valuation.map_zero, zero_mul]
+      exact zero_le
+  · have := le_augmentedValuationFun (μ := μ) (γ := γ) hφ hd
+      (∑ j ∈ Finset.range N, c j * φ ^ j) j
+    rwa [expansionCoeff_sum_mul_pow hφ hc, ite_eq_left (Finset.mem_range.1 hj)] at this
+
+/-- Theorem 3.3.5 (3) in part: let `γ < μ φ` and let `a` and `b` have degree less than the degree of `φ`. Then `a * b` is `[μ; φ, γ]`-equivalent to its remainder modulo `φ`, if `μ (a * b) ≠ 0`. Thus the product of the initial forms of `a` and `b` is the initial form of a polynomial of degree less than the degree of `φ`. The strict inequality is needed. -/
+theorem KeyPolynomial.muEquiv_augmentedValuation_mul_modByMonic (hφ : KeyPolynomial μ φ)
+    (hγ : γ < μ φ) {a b : K[X]} (ha : a.degree < φ.degree) (hb : b.degree < φ.degree)
+    (h0 : μ (a * b) ≠ 0) : MuEquiv (augmentedValuation μ φ γ hφ hγ.le) (a * b) (a * b %ₘ φ) := by
+  have hm := hφ.monic
+  have hd := hφ.natDegree_pos
+  set q := a * b /ₘ φ
+  have hab : a * b ≠ 0 := fun h => h0 (by rw [h, Valuation.map_zero])
+  have ha0 : a ≠ 0 := left_ne_zero_of_mul hab
+  have hb0 : b ≠ 0 := right_ne_zero_of_mul hab
+  have hq : q.degree < φ.degree := by
+    by_cases hq0 : q = 0
+    · rw [hq0, degree_zero]
+      exact bot_lt_iff_ne_bot.2 (fun h => hm.ne_zero (degree_eq_bot.1 h))
+    · refine degree_lt_degree ?_
+      have h1 := natDegree_lt_natDegree ha0 ha
+      have h2 := natDegree_lt_natDegree hb0 hb
+      have h3 := natDegree_mul_le (p := a) (q := b)
+      rw [natDegree_divByMonic _ hm]
+      omega
+  have e : a * b - a * b %ₘ φ = φ * q := by
+    rw [sub_eq_iff_eq_add']
+    exact (modByMonic_add_div (a * b) φ).symm
+  have hνab : augmentedValuation μ φ γ hφ hγ.le (a * b) = μ (a * b) := by
+    rw [Valuation.map_mul, Valuation.map_mul, augmentedValuation_of_degree_lt hφ hγ.le ha,
+      augmentedValuation_of_degree_lt hφ hγ.le hb]
+  unfold MuEquiv
+  rw [e, hνab, Valuation.map_mul (augmentedValuation μ φ γ hφ hγ.le), augmentedValuation_self,
+    augmentedValuation_of_degree_lt hφ hγ.le hq]
+  have hle : μ (φ * q) ≤ μ (a * b) := by
+    rw [hφ.isMuMinimal.map_eq_max hm (a * b)]
+    exact le_max_right _ _
+  by_cases hq0 : μ q = 0
+  · rw [hq0, mul_zero]
+    exact zero_lt_iff.2 h0
+  · rw [Valuation.map_mul] at hle
+    exact lt_of_lt_of_le (mul_lt_mul_of_pos_right hγ (zero_lt_iff.2 hq0)) hle
+
+end KeyAugmented
 
 end Singularity
 
