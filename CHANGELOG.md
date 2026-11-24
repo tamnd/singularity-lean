@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.0 - 2026-11-24
+
 ### Changed
 
 - The milestone S3 is complete with this release. The Lean code is the same as in 0.3.2. The lab of tamnd/singularity-agent tests the bound of Moh, which `Singularity.moh_bound` states, on random point blowups. The runs are in tamnd/singularity#72, and no run has a step over the bound.
