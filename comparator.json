@@ -89,7 +89,19 @@
     "Singularity.logJacobianOrder_le_residualOrderAlong",
     "Singularity.residualOrderAlong_le_logJacobianOrder_add_one",
     "Singularity.logJacobianOrder_eq_or",
-    "Singularity.logJacobianOrder_add_one_eq_iff"
+    "Singularity.logJacobianOrder_add_one_eq_iff",
+    "Singularity.isSingularPoint_purelyInseparable_iff",
+    "Singularity.exists_isSingularPoint_purelyInseparable_iff",
+    "Singularity.exists_torus_isCriticalPoint_iff",
+    "Singularity.eq_sum_smul_X_mul_pderiv",
+    "Singularity.eq_inv_smul_sum_X_mul_pderiv",
+    "Singularity.eval_eq_zero_of_isCriticalPoint_of_isWeightedHomogeneous",
+    "Singularity.pderiv_monomial_eq_zero_of_dvd",
+    "Singularity.exists_torus_isSingularPoint_purelyInseparable_monomial",
+    "Singularity.exists_eq_sum_smul_X_mul_pderiv_of_not_isResonant",
+    "Singularity.eval_eq_zero_of_isCriticalPoint_of_not_isResonant",
+    "Singularity.not_isResonant_of_isWeightedHomogeneous",
+    "Singularity.not_isResonant_initialForm"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

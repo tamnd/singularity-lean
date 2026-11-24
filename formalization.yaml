@@ -456,6 +456,54 @@ status:
       kind: theorem
       status: proved
       note: For a clean g with ord G = d, rho + 1 = d if and only if the derivative of the initial form of G along some free coordinate is not 0 (Theorem 3.7 (3) of Volume 7, Chapter 3 of the handbook).
+    - name: Singularity.isSingularPoint_purelyInseparable_iff
+      kind: theorem
+      status: proved
+      note: The point (z, v) is a singular point of z^p + h if and only if z^p + h(v) = 0 and v is a critical point of h, over a commutative semiring of characteristic p.
+    - name: Singularity.exists_isSingularPoint_purelyInseparable_iff
+      kind: theorem
+      status: proved
+      note: Over a perfect reduced ring of characteristic p, some z ≠ 0 makes (z, v) a singular point of z^p + h if and only if h(v) ≠ 0 and v is a critical point of h.
+    - name: Singularity.exists_torus_isCriticalPoint_iff
+      kind: theorem
+      status: proved
+      note: Theorem 5.3 of Volume 7, Chapter 3 of the handbook, face by face. The polynomial h has a critical point in the torus if and only if {h = 0} or {z^p + h = 0} has a singular point in the torus. The faces of the Newton polyhedron of z^p + g are not formalized.
+    - name: Singularity.eq_sum_smul_X_mul_pderiv
+      kind: theorem
+      status: proved
+      note: Proposition 5.6 of Volume 7, Chapter 3 of the handbook. If the sum of w_i a_i is 1 for each exponent a of h, then h is the sum of w_i x_i ∂_i h.
+    - name: Singularity.eq_inv_smul_sum_X_mul_pderiv
+      kind: theorem
+      status: proved
+      note: Corollary 5.7 of Volume 7, Chapter 3 of the handbook. A weighted homogeneous h of degree D with D ≠ 0 in k is D⁻¹ times the sum of w_i x_i ∂_i h.
+    - name: Singularity.eval_eq_zero_of_isCriticalPoint_of_isWeightedHomogeneous
+      kind: theorem
+      status: proved
+      note: A critical point of a weighted homogeneous h of degree D with D ≠ 0 in k lies on {h = 0}.
+    - name: Singularity.pderiv_monomial_eq_zero_of_dvd
+      kind: theorem
+      status: proved
+      note: Corollary 5.5 of Volume 7, Chapter 3 of the handbook. Each partial derivative of c x^a with a in p ℕ^σ is 0 in characteristic p.
+    - name: Singularity.exists_torus_isSingularPoint_purelyInseparable_monomial
+      kind: theorem
+      status: proved
+      note: Over a perfect reduced ring of characteristic p, z^p + c x^a with c ≠ 0 and a in p ℕ^σ has a singular point in the torus.
+    - name: Singularity.exists_eq_sum_smul_X_mul_pderiv_of_not_isResonant
+      kind: theorem
+      status: proved
+      note: Definition 5.8 of Volume 7, Chapter 3 of the handbook. A polynomial with a support that is not resonant satisfies a mod p Euler identity.
+    - name: Singularity.eval_eq_zero_of_isCriticalPoint_of_not_isResonant
+      kind: theorem
+      status: proved
+      note: A critical point of a polynomial with a support that is not resonant lies on its zero set.
+    - name: Singularity.not_isResonant_of_isWeightedHomogeneous
+      kind: theorem
+      status: proved
+      note: A weighted homogeneous polynomial of degree D with p not dividing D has a support that is not resonant.
+    - name: Singularity.not_isResonant_initialForm
+      kind: theorem
+      status: proved
+      note: The initial form of g for w is not resonant if p does not divide the weighted order of g.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
