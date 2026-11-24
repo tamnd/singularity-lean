@@ -474,7 +474,12 @@ This is Moh's proposition, [Moh87], as stated by Hauser [Hau08, §B, Proposition
 a single blowup is bounded by `p^(e-1)`". The statement here is for polynomials rather than power
 series and for point blowups only; the hypotheses are those of [HP19a, §2]. The stability theorem
 of [Moh87], which claims the same bound `d + p^(e-1)` along a whole sequence of blowups, is false
-for `e ≥ 3` [HP19a, §4]; it is not stated here. -/
+for `e ≥ 3` [HP19a, §4]; it is not stated here.
+
+The residual order depends on the coordinates. The papers measure it in coordinates that the
+resolution process chooses, and this statement measures it in the given coordinates. So the
+statement may need a hypothesis on the choice of the coordinates before it is true. Do not use
+it as a hypothesis of a theorem until it is proved. -/
 def moh_bound : Prop :=
   ∀ (k : Type) [Field k] [IsAlgClosed k] [DecidableEq k] (p : ℕ) [Fact p.Prime] [CharP k p]
     (e n : ℕ) (Δ : Finset (Fin n)) (j : Fin n) (t : Fin n → k) (F F' : MvPolynomial (Fin n) k),
