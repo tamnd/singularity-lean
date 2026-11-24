@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.3.1 - 2026-11-24
+
 ### Added
 
 - `Singularity/Invariant/Directrix.lean`: the points where the order stays the same under a point blowup lie in the directrix [Hir67]. The directrix of $g$ is the subspace of the vectors $v$ with $g(x + s v) = g(x)$ in $k[x, s]$ (`directrix`). If $v$ is in the directrix, then $g(x + c v) = g(x)$ for each $c \in k$ (`aeval_add_smul_of_mem_directrix`). Let $\operatorname{ord} f = m$, and let the $x_j$-chart with translations $t$ send $f$ to $x_j^m f'$. If $\operatorname{ord} f' = m$, then the vector of the chart lies in the directrix of the part $f_m$ of $f$ of degree $m$ (`mem_directrix_of_ord_pointChart_eq`). The field can have any characteristic.
