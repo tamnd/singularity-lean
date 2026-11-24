@@ -114,7 +114,19 @@ status:
     - name: Singularity.eq_sum_expansionCoeff
       kind: theorem
       status: proved
-      note: The expansion of a polynomial in powers of a monic polynomial of positive degree, used to define the augmented valuation of Definition 3.3.4. Theorem 3.3.5 of MacLane-Vaquié is not proved.
+      note: The expansion of a polynomial in powers of a monic polynomial of positive degree, used to define the augmented valuation of Definition 3.3.4.
+    - name: Singularity.KeyPolynomial.augmentedValuationFun_mul
+      kind: theorem
+      status: proved
+      note: The augmented valuation [μ; φ, γ] of a key polynomial φ is multiplicative, so Singularity.augmentedValuation is a valuation (Theorem 3.3.5 (1) of Volume 3 of the handbook, MacLane-Vaquié). The theorem takes γ ≤ μ φ in multiplicative notation. Parts 3 and 4 of Theorem 3.3.5 are not proved.
+    - name: Singularity.augmentedValuation_le
+      kind: theorem
+      status: proved
+      note: The inequality μ ≤ [μ; φ, γ] in additive notation (Theorem 3.3.5 (2) of Volume 3 of the handbook).
+    - name: Singularity.isMuMinimal_iff
+      kind: theorem
+      status: proved
+      note: A monic polynomial φ of positive degree is μ-minimal if and only if μ of a φ-expansion is the minimum of the values of its terms, in additive notation.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
