@@ -30,6 +30,7 @@ import Mathlib.Algebra.MvPolynomial.Division
 import Mathlib.Algebra.CharP.Lemmas
 import Mathlib.FieldTheory.IsAlgClosed.Basic
 import Mathlib.RingTheory.EssentialFiniteness
+import Mathlib.Algebra.CharP.Defs
 
 /-!
 # The challenge of the comparator
@@ -601,5 +602,52 @@ theorem residualOrderAlong_pointChart_le_of_not_dvd (Δ : Finset σ) (j : σ) (t
 theorem moh_bound_holds : moh_bound := sorry
 
 end Moh
+
+section CharacteristicPolyhedronClean
+
+open Polynomial Pointwise
+
+variable {σ k : Type*}
+
+/-- `Singularity/Invariant/Newton.lean`: the Newton polyhedron of a polynomial. -/
+noncomputable def newtonPolyhedron {R : Type*} [CommSemiring R] (f : MvPolynomial σ R) :
+    Set (σ → ℝ) :=
+  convexHull ℝ (expToReal '' (f.support : Set (σ →₀ ℕ))) + orthant σ
+
+/-- `Singularity/Invariant/CharacteristicPolyhedronClean.lean`: for a polynomial `F`, `Δ(z^n + F; x; z) = (1/n) N(F)`. -/
+theorem projPolyhedron_X_pow_add_C_coe [CommSemiring k] [Nontrivial k] {n : ℕ} (hn : 1 ≤ n)
+    (F : MvPolynomial σ k) :
+    projPolyhedron (X ^ n + C (F : MvPowerSeries σ k)) = (n : ℝ)⁻¹ • newtonPolyhedron F := sorry
+
+variable [CommRing k] (p : ℕ) [ExpChar k p]
+
+/-- `Singularity/Invariant/CharacteristicPolyhedronClean.lean`: every exponent of `φ^(p^e)` lies in `p^e ℕ^σ`. -/
+theorem coeff_pow_expChar_pow_eq_zero (e : ℕ) (φ : MvPowerSeries σ k) {d : σ →₀ ℕ}
+    (hd : ¬ ∀ i, p ^ e ∣ d i) : MvPowerSeries.coeff d (φ ^ p ^ e) = 0 := sorry
+
+/-- `Singularity/Invariant/CharacteristicPolyhedronClean.lean`: `(z + φ)^q + F = z^q + (φ^q + F)` for `q = p^e`. -/
+theorem taylor_X_pow_add_C (e : ℕ) (φ F : MvPowerSeries σ k) :
+    taylor φ (X ^ p ^ e + C F) = X ^ p ^ e + C (φ ^ p ^ e + F) := sorry
+
+variable [Nontrivial k]
+
+/-- `Singularity/Invariant/CharacteristicPolyhedronClean.lean`: for clean `F`, the coordinate `z` attains the characteristic polyhedron of `z^q + F`. -/
+theorem charPolyhedron_X_pow_add_C_of_clean (e : ℕ) {F : MvPowerSeries σ k}
+    (hF : ∀ α, MvPowerSeries.coeff α F ≠ 0 → ¬ ∀ i, p ^ e ∣ α i) :
+    charPolyhedron (X ^ p ^ e + C F) = projPolyhedron (X ^ p ^ e + C F) := sorry
+
+/-- `Singularity/Invariant/CharacteristicPolyhedronClean.lean`: for a clean polynomial `F`, the characteristic polyhedron of `z^q + F` is `(1/q) N(F)`. -/
+theorem charPolyhedron_X_pow_add_C_eq_smul_newtonPolyhedron (e : ℕ) {F : MvPolynomial σ k}
+    (hF : IsClean (p ^ e) F) :
+    charPolyhedron (X ^ p ^ e + C (F : MvPowerSeries σ k)) =
+      ((p ^ e : ℕ) : ℝ)⁻¹ • newtonPolyhedron F := sorry
+
+/-- `Singularity/Invariant/CharacteristicPolyhedronClean.lean`: for clean `F`, no vertex `v ≠ 0` of `Δ(z^q + F; x; z)` is solvable. -/
+theorem not_isSolvableVertex_of_clean (e : ℕ) {F : MvPowerSeries σ k}
+    (hF : ∀ α, MvPowerSeries.coeff α F ≠ 0 → ¬ ∀ i, p ^ e ∣ α i) {v : σ →₀ ℕ} (hv0 : v ≠ 0)
+    (hv : expToReal v ∈ (projPolyhedron (X ^ p ^ e + C F)).extremePoints ℝ) (c : k) :
+    ¬ IsSolvableVertex (X ^ p ^ e + C F) v c := sorry
+
+end CharacteristicPolyhedronClean
 
 end Singularity

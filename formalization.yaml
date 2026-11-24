@@ -332,6 +332,30 @@ status:
       kind: theorem
       status: proved
       note: Theorem 3.3.5 (3) of MacLane-Vaquié, the transcendence of in(φ) in elementwise form. The value of a sum of terms cⱼφ^j with deg cⱼ < deg φ is the least value of a term in additive notation.
+    - name: Singularity.coeff_pow_expChar_pow_eq_zero
+      kind: theorem
+      status: proved
+      note: In exponential characteristic p, every exponent of the power series φ^(p^e) lies in p^e ℕ^n.
+    - name: Singularity.taylor_X_pow_add_C
+      kind: theorem
+      status: proved
+      note: In exponential characteristic p and with q = p^e, the change of coordinate z to z + φ sends z^q + F to z^q + (φ^q + F).
+    - name: Singularity.projPolyhedron_X_pow_add_C_coe
+      kind: theorem
+      status: proved
+      note: For a polynomial F and n at least 1, the projected Newton polyhedron of z^n + F is (1/n) N(F), where N(F) is the Newton polyhedron of F.
+    - name: Singularity.charPolyhedron_X_pow_add_C_of_clean
+      kind: theorem
+      status: proved
+      note: The converse direction of the vertex criterion of Hironaka [Hir67] for z^q + F with q = p^e over a nontrivial commutative ring of exponential characteristic p. If no exponent of F lies in q ℕ^n, then Δ(f; x) = Δ(f; x; z). The converse direction for a general f is not proved.
+    - name: Singularity.charPolyhedron_X_pow_add_C_eq_smul_newtonPolyhedron
+      kind: theorem
+      status: proved
+      note: For q = p^e and a clean polynomial F, the characteristic polyhedron of z^q + F is (1/q) N(F), where N(F) is the Newton polyhedron of F.
+    - name: Singularity.not_isSolvableVertex_of_clean
+      kind: theorem
+      status: proved
+      note: For z^q + F with q = p^e and F clean, no vertex v other than 0 of the projected Newton polyhedron is solvable.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
