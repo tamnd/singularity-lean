@@ -18,11 +18,16 @@ import Mathlib.Topology.Compactness.Compact
 import Mathlib.RingTheory.Valuation.Basic
 import Mathlib.Algebra.Polynomial.Div
 import Mathlib.Algebra.Polynomial.Inductions
+import Mathlib.Algebra.Polynomial.Taylor
+import Mathlib.Analysis.Convex.Combination
+import Mathlib.Analysis.Convex.Extreme
+import Mathlib.Basic.Real.Basic
+import Mathlib.RingTheory.MvPowerSeries.Basic
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean` and `Singularity/Valuation/KeyPolynomials.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean` and `Singularity/Invariant/CharacteristicPolyhedron.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -327,5 +332,83 @@ theorem map_le_monomialValuationFun {v : Valuation K Γ₀} {ν : Valuation K[X]
 end MacLaneStep
 
 end KeyPolynomials
+
+section CharacteristicPolyhedron
+
+open Polynomial Pointwise
+
+/-- `Singularity/Invariant/Newton.lean`: an exponent vector as a point of `σ → ℝ`. -/
+noncomputable def expToReal {σ : Type*} : (σ →₀ ℕ) →+ (σ → ℝ) where
+  toFun d i := d i
+  map_zero' := by ext; simp
+  map_add' a b := by ext; simp
+
+/-- `Singularity/Invariant/Newton.lean`: the positive orthant of `σ → ℝ`. -/
+def orthant (σ : Type*) : Set (σ → ℝ) := {v | ∀ i, 0 ≤ v i}
+
+/-- `Singularity/Invariant/CharacteristicPolyhedron.lean`: the translation formula for a polynomial in `z`. -/
+theorem coeff_taylor_eq_sum {A : Type*} [CommSemiring A] (f : A[X]) (h : A) (d : ℕ) :
+    (taylor h f).coeff d =
+      ∑ e ∈ Finset.range (f.natDegree + 1), (e.choose d : A) * f.coeff e * h ^ (e - d) := sorry
+
+variable {σ k : Type*}
+
+section Semiring
+
+variable [CommSemiring k]
+
+/-- `Singularity/Invariant/CharacteristicPolyhedron.lean`: the points `α / i` of `f`. -/
+def projPoints (f : (MvPowerSeries σ k)[X]) : Set (σ → ℝ) :=
+  {u | ∃ i : ℕ, 1 ≤ i ∧ i ≤ f.natDegree ∧ ∃ α : σ →₀ ℕ,
+    MvPowerSeries.coeff α (f.coeff (f.natDegree - i)) ≠ 0 ∧ u = (i : ℝ)⁻¹ • expToReal α}
+
+/-- `Singularity/Invariant/CharacteristicPolyhedron.lean`: the projected Newton polyhedron `Δ(f; x; z)`. -/
+noncomputable def projPolyhedron (f : (MvPowerSeries σ k)[X]) : Set (σ → ℝ) :=
+  convexHull ℝ (projPoints f) + orthant σ
+
+/-- `Singularity/Invariant/CharacteristicPolyhedron.lean`: the initial polynomial of `f` at `v`. -/
+noncomputable def vertexPoly (f : (MvPowerSeries σ k)[X]) (v : σ →₀ ℕ) : k[X] :=
+  ∑ d ∈ Finset.range (f.natDegree + 1),
+    Polynomial.monomial d (MvPowerSeries.coeff ((f.natDegree - d) • v) (f.coeff d))
+
+/-- `Singularity/Invariant/CharacteristicPolyhedron.lean`: the characteristic polyhedron `Δ(f; x)`. -/
+noncomputable def charPolyhedron (f : (MvPowerSeries σ k)[X]) : Set (σ → ℝ) :=
+  ⋂ φ : MvPowerSeries σ k, ⋂ (_ : MvPowerSeries.constantCoeff φ = 0),
+    projPolyhedron (taylor φ f)
+
+/-- `Singularity/Invariant/CharacteristicPolyhedron.lean`: the translation `z ↦ z + c x^β` moves `Δ(f; x; z)` into the convex hull of `Δ(f; x; z)` and `β + ℝ_{≥0}^σ`. -/
+theorem projPolyhedron_taylor_monomial_subset (f : (MvPowerSeries σ k)[X]) (β : σ →₀ ℕ) (c : k) :
+    projPolyhedron (taylor (MvPowerSeries.monomial β c) f) ⊆
+      convexHull ℝ (projPolyhedron f ∪ ({expToReal β} + orthant σ)) := sorry
+
+/-- `Singularity/Invariant/CharacteristicPolyhedron.lean`: the initial polynomial at `v` of `f(z + c x^v)` is the shift by `c` of the initial polynomial of `f` at `v`. -/
+theorem vertexPoly_taylor_monomial (f : (MvPowerSeries σ k)[X]) (v : σ →₀ ℕ) (c : k) :
+    vertexPoly (taylor (MvPowerSeries.monomial v c) f) v = taylor c (vertexPoly f v) := sorry
+
+end Semiring
+
+section Ring
+
+variable [CommRing k]
+
+/-- `Singularity/Invariant/CharacteristicPolyhedron.lean`: the vertex `v` is solvable with the constant `c`. -/
+def IsSolvableVertex (f : (MvPowerSeries σ k)[X]) (v : σ →₀ ℕ) (c : k) : Prop :=
+  vertexPoly f v = (X + C c) ^ f.natDegree
+
+/-- `Singularity/Invariant/CharacteristicPolyhedron.lean`: the translation `z ↦ z - c x^v` at a solvable vertex `v` makes `Δ(f; x; z)` smaller. -/
+theorem projPolyhedron_taylor_ssubset_of_isSolvable {f : (MvPowerSeries σ k)[X]} {v : σ →₀ ℕ}
+    {c : k} (hv : expToReal v ∈ (projPolyhedron f).extremePoints ℝ)
+    (hs : IsSolvableVertex f v c) :
+    projPolyhedron (taylor (MvPowerSeries.monomial v (-c)) f) ⊂ projPolyhedron f := sorry
+
+/-- `Singularity/Invariant/CharacteristicPolyhedron.lean`: one direction of the vertex criterion of Hironaka. -/
+theorem not_isSolvableVertex_of_charPolyhedron_eq {f : (MvPowerSeries σ k)[X]} {v : σ →₀ ℕ}
+    (h : charPolyhedron f = projPolyhedron f) (hv0 : v ≠ 0)
+    (hv : expToReal v ∈ (projPolyhedron f).extremePoints ℝ) (c : k) :
+    ¬ IsSolvableVertex f v c := sorry
+
+end Ring
+
+end CharacteristicPolyhedron
 
 end Singularity
