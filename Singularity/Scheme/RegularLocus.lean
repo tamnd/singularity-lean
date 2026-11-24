@@ -3,25 +3,27 @@ Copyright (c) 2026 The singularity authors. All rights reserved.
 Released under the Apache 2.0 licence as described in the file LICENSE.
 -/
 import Singularity.Statements.Basic
-import Singularity.Algebra.GenericRegularPerfect
+import Singularity.Algebra.RegularLocusField
 import Mathlib.AlgebraicGeometry.Morphisms.FiniteType
 import Mathlib.AlgebraicGeometry.AffineScheme
 
 /-!
-# The regular locus of a scheme over a perfect field
+# The regular locus of a scheme over a field
 
-This file proves that the regular locus of a scheme that is locally of finite type over a perfect
-field is open. In particular, this is true over a field of characteristic `0`.
+This file proves that the regular locus of a scheme that is locally of finite type over a field
+is open. The field may be imperfect.
 
 The proof is local. Let `U` be an affine open set of `X`. The stalk of `X` at a point `x` of `U`
 is the localization of `Γ(X, U)` at the prime of `x`. Thus the regular locus of `X` meets `U` in
 the image of the regular locus of `Spec Γ(X, U)`. The ring `Γ(X, U)` is of finite type over the
-field, so this set is open by `Singularity.Algebra.isOpen_regularLocus_of_perfectField`.
+field, so this set is open by `Singularity.Algebra.isOpen_regularLocus_of_field`.
 
 ## Main results
 
 * `Singularity.mem_regularLocus_iff_of_isAffineOpen`: a point of an affine open set `U` is in the
   regular locus of `X` if and only if its prime is in the regular locus of `Γ(X, U)`.
+* `Singularity.regularLocus_isOpen_of_field`: the regular locus of a scheme that is locally of
+  finite type over a field is open.
 * `Singularity.regularLocus_isOpen_of_perfectField`: the regular locus of a scheme that is locally
   of finite type over a perfect field is open.
 * `Singularity.regularLocus_isOpen_of_charZero`: the regular locus of a scheme that is locally of
@@ -30,6 +32,7 @@ field, so this set is open by `Singularity.Algebra.isOpen_regularLocus_of_perfec
 ## References
 
 * [Mat89] H. Matsumura, *Commutative Ring Theory*, Section 24.
+* [Stacks] The Stacks project, Tag 07R5.
 -/
 
 open AlgebraicGeometry CategoryTheory
@@ -51,8 +54,9 @@ theorem mem_regularLocus_iff_of_isAffineOpen {X : Scheme.{u}} {U : X.Opens} (hU 
   exact ⟨fun _ => IsRegularLocalRing.of_ringEquiv e.symm,
     fun _ => IsRegularLocalRing.of_ringEquiv e⟩
 
-/-- The regular locus of a scheme that is locally of finite type over a perfect field is open. -/
-theorem regularLocus_isOpen_of_perfectField {k : Type u} [Field k] [PerfectField k] (X : Scheme.{u})
+/-- The regular locus of a scheme that is locally of finite type over a field is open. The field
+may be imperfect. -/
+theorem regularLocus_isOpen_of_field {k : Type u} [Field k] (X : Scheme.{u})
     (f : X ⟶ Spec (.of k)) [LocallyOfFiniteType f] : IsOpen (regularLocus X) := by
   rw [isOpen_iff_forall_mem_open]
   intro x hx
@@ -66,7 +70,7 @@ theorem regularLocus_isOpen_of_perfectField {k : Type u} [Field k] [PerfectField
   let _ : Algebra k Γ(X, U) := φ.toAlgebra
   have : Algebra.FiniteType k Γ(X, U) := hφ
   have hopen : IsOpen (hU.primeIdealOf ⁻¹' Singularity.Algebra.regularLocus Γ(X, U)) :=
-    (Singularity.Algebra.isOpen_regularLocus_of_perfectField k Γ(X, U)).preimage
+    (Singularity.Algebra.isOpen_regularLocus_of_field k Γ(X, U)).preimage
       hU.isoSpec.hom.continuous
   refine ⟨Subtype.val '' (hU.primeIdealOf ⁻¹' Singularity.Algebra.regularLocus Γ(X, U)), ?_, ?_,
     ⟨⟨x, hxU⟩, (mem_regularLocus_iff_of_isAffineOpen hU ⟨x, hxU⟩).mp hx, rfl⟩⟩
@@ -74,10 +78,15 @@ theorem regularLocus_isOpen_of_perfectField {k : Type u} [Field k] [PerfectField
     exact (mem_regularLocus_iff_of_isAffineOpen hU y).mpr hy
   · exact U.isOpen.isOpenMap_subtype_val _ hopen
 
+/-- The regular locus of a scheme that is locally of finite type over a perfect field is open. -/
+theorem regularLocus_isOpen_of_perfectField {k : Type u} [Field k] [PerfectField k] (X : Scheme.{u})
+    (f : X ⟶ Spec (.of k)) [LocallyOfFiniteType f] : IsOpen (regularLocus X) :=
+  regularLocus_isOpen_of_field X f
+
 /-- The regular locus of a scheme that is locally of finite type over a field of characteristic
 `0` is open. -/
 theorem regularLocus_isOpen_of_charZero {k : Type u} [Field k] [CharZero k] (X : Scheme.{u})
     (f : X ⟶ Spec (.of k)) [LocallyOfFiniteType f] : IsOpen (regularLocus X) :=
-  regularLocus_isOpen_of_perfectField X f
+  regularLocus_isOpen_of_field X f
 
 end Singularity
