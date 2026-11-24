@@ -5,7 +5,12 @@
     "Singularity.resolutionInDim_dim_zero",
     "Singularity.Curves.resolutionInDim_one",
     "Singularity.purelyInseparableHypersurfaceResolution_of_resolutionInDim",
-    "Singularity.purelyInseparableHypersurfaceResolution_four"
+    "Singularity.purelyInseparableHypersurfaceResolution_four",
+    "Singularity.Fidelity.isEmbeddedResolution_id_top",
+    "Singularity.Fidelity.not_isSncDivisor_bot",
+    "Singularity.isPermissible_vanishingIdeal_singleton",
+    "Singularity.isSncDivisor_of_codim_one",
+    "Singularity.isEmbeddedResolution_id_of_codim_one"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }
