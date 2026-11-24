@@ -14,9 +14,11 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Statements/Main.lean` | `ResolutionInDim`, `ResolutionOfSingularities` and `ResolutionDimFourCharP` |
 | `Singularity/Statements/Core.lean` | the purely inseparable hypersurfaces $z^p + g = 0$, the core case of route R5 |
 | `Singularity/Statements/Embedded.lean` | `EmbeddedResolutionSurface`, the embedded resolution of surfaces [CJS20], with simple normal crossings, permissible centers and the strict transform |
+| `Singularity/Statements/LocalUniformization.lean` | local uniformization of valuations of function fields: `HasLocalUniformization`, `IsAbhyankarValuation`, the known cases of Knaf-Kuhlmann [KK05], Temkin [Tem13] and Cossart-Piltant, and the open cases `LocalUniformizationFour` and `resolution_of_localUniformization_four` |
 | `Singularity/Fidelity/Positive.lean` | check F2: the identity of a regular scheme is a resolution |
 | `Singularity/Fidelity/Negative.lean` | check F3: the codiagonal $X \sqcup X \to X$ is not a resolution |
 | `Singularity/Fidelity/Core.lean` | the core problem P1 is a special case of the main statement |
+| `Singularity/Fidelity/LocalUniformization.lean` | the trivial valuation of a function field has local uniformization, and a field with a valuation that has local uniformization is a function field |
 | `Singularity/Fidelity/Embedded.lean` | the identity is an embedded resolution of the empty subscheme, and the zero ideal sheaf is not a divisor with simple normal crossings |
 | `Singularity/Algebra/Regular.lean` | regular local rings: the quotient by a parameter, a regular local ring is a domain, and in dimension 1 regular is the same as integrally closed |
 | `Singularity/Algebra/Normalization.lean` | the integral closure of a domain is finite over it, when its fraction field is separable over a Noetherian normal subring, and for each finitely generated domain in characteristic 0 |

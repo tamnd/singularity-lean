@@ -80,6 +80,35 @@ status:
     - name: Singularity.isEmbeddedResolution_id_of_codim_one
       kind: theorem
       status: proved
+    - name: Singularity.localUniformization_abhyankar
+      kind: statement
+      status: known
+      note: The theorem of Knaf-Kuhlmann, for an Abhyankar valuation with a separable residue field (node SG0000001E). This is a definition of a proposition. The package does not prove it.
+    - name: Singularity.localUniformization_inseparable
+      kind: statement
+      status: known
+      note: The theorem of Temkin, local uniformization after a finite purely inseparable extension of the function field (node SG0000001G). This is a definition of a proposition. The package does not prove it.
+    - name: Singularity.localUniformization_three
+      kind: statement
+      status: known
+      note: The theorem of Cossart-Piltant, local uniformization in transcendence degree 3 in characteristic p > 0 (node SG0000001F). This is a definition of a proposition. The package does not prove it.
+    - name: Singularity.LocalUniformizationFour
+      kind: statement
+      status: open
+      note: Local uniformization in transcendence degree 4 in characteristic p > 0 (node SG0000001H).
+    - name: Singularity.resolution_of_localUniformization_four
+      kind: statement
+      status: open
+      note: Local uniformization in transcendence degree at most 4 gives resolution in dimension 4 (node SG0000001J).
+    - name: Singularity.Fidelity.hasLocalUniformization_top
+      kind: theorem
+      status: proved
+    - name: Singularity.Fidelity.algebraMap_mem_of_hasLocalUniformization
+      kind: theorem
+      status: proved
+    - name: Singularity.Fidelity.isFunctionField_of_hasLocalUniformization
+      kind: theorem
+      status: proved
     - name: Singularity.abhyankar_inequality
       kind: theorem
       status: proved

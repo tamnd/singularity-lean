@@ -2,6 +2,7 @@ import Singularity.Statements.Basic
 import Singularity.Statements.Main
 import Singularity.Statements.Core
 import Singularity.Statements.Embedded
+import Singularity.Statements.LocalUniformization
 import Singularity.Algebra.Regular
 import Singularity.Algebra.RegularSequence
 import Singularity.Algebra.ExtCriterion
@@ -45,6 +46,7 @@ import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
 import Singularity.Fidelity.Embedded
+import Singularity.Fidelity.LocalUniformization
 import Singularity.Scheme.Embedded
 import Singularity.Valuation.Abhyankar
 import Singularity.Valuation.ZariskiRiemann
