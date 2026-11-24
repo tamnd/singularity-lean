@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.5 - 2026-11-24
+
 ### Added
 
 - `Singularity/Valuation/Augmentation.lean`: the first claim of part 3 of Theorem 3.3.5 of MacLane-Vaquié. Let `φ` be a key polynomial for `μ` and let `γ ≤ μ φ` in multiplicative notation. Then `φ` is a key polynomial for the augmented valuation `[μ; φ, γ]` (`KeyPolynomial.keyPolynomial_augmentedValuation`, `KeyPolynomial.keyPolynomial_of_forall_eq`). The handbook assumes `γ < μ φ` and `γ ≠ 0`, but the theorem holds for each `γ ≤ μ φ`. The proof uses a criterion: `φ` `[μ; φ, γ]`-divides `f` if and only if `μ (f %ₘ φ) < [μ; φ, γ] f` (`muDvd_iff_of_forall_eq`). The file also proves that the `φ`-expansion is unique (`expansionCoeff_sum_mul_pow`), gives the value of `∑ cⱼ φ ^ j` for `cⱼ` of degree less than the degree of `φ` (`augmentedValuationFun_sum_mul_pow`), and proves that for `γ < μ φ` a product of two such polynomials is `[μ; φ, γ]`-equivalent to its remainder modulo `φ` (`KeyPolynomial.muEquiv_augmentedValuation_mul_modByMonic`). The description of the graded algebra in part 3 and part 4 of Theorem 3.3.5 are not proved.
