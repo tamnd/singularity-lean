@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.2.12 - 2026-11-24
+
 ### Added
 
 - `Singularity/Algebra/GenericRegularPerfect.lean`: generic regularity over a perfect field. Let $D$ be a domain of finite type over a perfect field $k$. Then some $f \neq 0$ in $D$ has $D(f)$ in the regular locus (`exists_ne_zero_basicOpen_subset_regularLocus_of_perfectField`). The proof takes a separating transcendence basis of the fraction field (`exists_isTranscendenceBasis_and_isSeparable_of_perfectField` in Mathlib), clears the denominators, and makes $D$ finite over a localization of a polynomial ring. With the criterion of Nagata, the regular locus of an algebra of finite type over $k$ is open (`isOpen_regularLocus_of_perfectField`). The file also proves that a localization of a regular ring is regular (`isRegularRing_of_isLocalization`).
