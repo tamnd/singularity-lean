@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Example/HauserPerlegaCycle.lean`: one full cycle of the first example of Hauser and Perlega [HP19a, Section 4] (`hauserPerlegaCycle`). The instance has characteristic 2, $n = 5$, $q = 8$, $d = 2$, $a = b = r = 0$, $s = 1$, $\lambda = 1$, $A = 1$ and $Q = 0$. The file certifies the 7 steps of the cycle (20 point blowups). At each blowup the total transform is $x_j^8 F'$ with $\operatorname{ord} F' \ge 8$. The residual order along the divisor is 2 at the start, 6 after step (1), 5 after steps (2) to (5), and 4 after step (6) and during step (7). The final equation has the shape of the start with $d + 2$ and with $y$ and $u$ exchanged.
+
 ## 0.2.14 - 2026-11-24
 
 ### Added
