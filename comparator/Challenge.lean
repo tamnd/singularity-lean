@@ -14,11 +14,14 @@ import Mathlib.RingTheory.Valuation.Extension
 import Mathlib.RingTheory.MvPolynomial.Tower
 import Mathlib.Topology.Bases
 import Mathlib.Topology.Compactness.Compact
+import Mathlib.RingTheory.Valuation.Basic
+import Mathlib.Algebra.Polynomial.Div
+import Mathlib.Algebra.Polynomial.Inductions
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean` and `Singularity/Valuation/ZariskiRiemann.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean` and `Singularity/Valuation/KeyPolynomials.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -144,5 +147,84 @@ theorem compactSpace : CompactSpace (ZariskiRiemann A K) := sorry
 end ZariskiRiemann
 
 end ZariskiRiemann
+
+section KeyPolynomials
+
+open Polynomial
+
+variable {K : Type*} [Field K] {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀]
+
+section Equiv
+
+variable (μ : Valuation K[X] Γ₀)
+
+/-- `Singularity/Valuation/KeyPolynomials.lean`: `f` and `g` are `μ`-equivalent, that is `μ (f - g) < μ f`. -/
+def MuEquiv (f g : K[X]) : Prop :=
+  μ (f - g) < μ f
+
+/-- `Singularity/Valuation/KeyPolynomials.lean`: `φ` `μ`-divides `f`. -/
+def MuDvd (φ f : K[X]) : Prop :=
+  ∃ h : K[X], MuEquiv μ f (φ * h)
+
+/-- `Singularity/Valuation/KeyPolynomials.lean`: `φ` is `μ`-irreducible. -/
+def IsMuIrreducible (φ : K[X]) : Prop :=
+  ¬ MuDvd μ φ 1 ∧ ∀ f g : K[X], MuDvd μ φ (f * g) → MuDvd μ φ f ∨ MuDvd μ φ g
+
+/-- `Singularity/Valuation/KeyPolynomials.lean`: `φ` is `μ`-minimal. -/
+def IsMuMinimal (φ : K[X]) : Prop :=
+  ∀ f : K[X], f ≠ 0 → MuDvd μ φ f → φ.natDegree ≤ f.natDegree
+
+/-- `Singularity/Valuation/KeyPolynomials.lean`: a key polynomial for `μ` (Definition 3.3.3 of Volume 3 of the handbook, node SG0000000Z). -/
+structure KeyPolynomial (φ : K[X]) : Prop where
+  monic : φ.Monic
+  isMuIrreducible : IsMuIrreducible μ φ
+  isMuMinimal : IsMuMinimal μ φ
+
+variable {μ}
+
+/-- `Singularity/Valuation/KeyPolynomials.lean`: a key polynomial has positive degree. -/
+theorem KeyPolynomial.natDegree_pos {φ : K[X]} (hφ : KeyPolynomial μ φ) : 0 < φ.natDegree :=
+  sorry
+
+end Equiv
+
+section Monomial
+
+variable (v : Valuation K Γ₀) (γ : Γ₀)
+
+/-- `Singularity/Valuation/KeyPolynomials.lean`: the monomial valuation `[v; X, γ]` as a function. -/
+noncomputable def monomialValuationFun (f : K[X]) : Γ₀ :=
+  f.support.sup fun i => v (f.coeff i) * γ ^ i
+
+variable {v γ}
+
+/-- `Singularity/Valuation/KeyPolynomials.lean`: Lemma 3.3.2, the monomial valuation is multiplicative. -/
+theorem monomialValuationFun_mul (f g : K[X]) :
+    monomialValuationFun v γ (f * g) =
+      monomialValuationFun v γ f * monomialValuationFun v γ g := sorry
+
+/-- `Singularity/Valuation/KeyPolynomials.lean`: `X` is a key polynomial for a valuation with the values of `[v; X, γ]`. -/
+theorem keyPolynomial_X_of_forall_eq {μ : Valuation K[X] Γ₀}
+    (hμ : ∀ f, μ f = monomialValuationFun v γ f) : KeyPolynomial μ X := sorry
+
+end Monomial
+
+section Expansion
+
+variable (φ : K[X])
+
+/-- `Singularity/Valuation/KeyPolynomials.lean`: the coefficient `aⱼ` of the `φ`-expansion of `f`. -/
+noncomputable def expansionCoeff (f : K[X]) (j : ℕ) : K[X] :=
+  ((fun g => g /ₘ φ)^[j] f) %ₘ φ
+
+variable {φ}
+
+/-- `Singularity/Valuation/KeyPolynomials.lean`: the `φ`-expansion `f = ∑ aⱼ φ ^ j`. -/
+theorem eq_sum_expansionCoeff (hφ : φ.Monic) (hd : 0 < φ.natDegree) (f : K[X]) :
+    f = ∑ j ∈ Finset.range (f.natDegree + 1), expansionCoeff φ f j * φ ^ j := sorry
+
+end Expansion
+
+end KeyPolynomials
 
 end Singularity
