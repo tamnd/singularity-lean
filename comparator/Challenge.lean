@@ -33,11 +33,14 @@ import Mathlib.RingTheory.EssentialFiniteness
 import Mathlib.Algebra.CharP.Defs
 import Mathlib.Algebra.Polynomial.Expand
 import Mathlib.RingTheory.Polynomial.Basic
+import Mathlib.Algebra.MvPolynomial.PDeriv
+import Mathlib.RingTheory.MvPolynomial.Basic
+import Mathlib.RingTheory.MvPolynomial.Homogeneous
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean` and `Singularity/Invariant/RigidLayer.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean` and `Singularity/Invariant/LogJacobian.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -848,5 +851,76 @@ theorem X_pow_add_C_mem_pow_iff {R : Type*} [CommRing R] (p : ℕ) [ExpChar R p]
       g + h ^ p ^ e ∈ I ^ p ^ e := sorry
 
 end RigidLayer
+
+section LogJacobian
+
+open MvPolynomial Finsupp
+
+section Defs
+
+variable {σ k : Type*} [CommSemiring k]
+
+/-- `Singularity/Invariant/Order.lean`: the order of an ideal at the origin. -/
+noncomputable def idealOrd (I : Ideal (MvPolynomial σ k)) : ℕ∞ :=
+  sInf (ord '' (I : Set (MvPolynomial σ k)))
+
+/-- `Singularity/Invariant/LogJacobian.lean`: the log-Jacobian ideal `Θ(g)` along `Δ`. -/
+noncomputable def logJacobian (Δ : Finset σ) (g : MvPolynomial σ k) : Ideal (MvPolynomial σ k) :=
+  Ideal.span ((fun i => X i * pderiv i g) '' (Δ : Set σ) ∪ (fun j => pderiv j g) '' (Δ : Set σ)ᶜ)
+
+/-- `Singularity/Invariant/LogJacobian.lean`: the residual log-Jacobian ideal `Θ̃(G)`. -/
+noncomputable def residualLogJacobian (Δ : Finset σ) (r : σ →₀ ℕ) (G : MvPolynomial σ k) :
+    Ideal (MvPolynomial σ k) :=
+  Ideal.span ((fun i => (r i : k) • G + X i * pderiv i G) '' (Δ : Set σ) ∪
+    (fun j => pderiv j G) '' (Δ : Set σ)ᶜ)
+
+/-- `Singularity/Invariant/LogJacobian.lean`: the order `ρ` of `Θ̃(G)` for `g = x^r G`. -/
+noncomputable def logJacobianOrder (Δ : Finset σ) (g : MvPolynomial σ k) : ℕ∞ :=
+  idealOrd (residualLogJacobian Δ (divisorExponent Δ g) (residualFactor Δ g))
+
+end Defs
+
+/-- `Singularity/Invariant/LogJacobian.lean`: `Θ(g + h^p) = Θ(g)`. -/
+theorem logJacobian_add_pow {σ k : Type*} [CommSemiring k] (p : ℕ) [CharP k p] (Δ : Finset σ)
+    (g h : MvPolynomial σ k) : logJacobian Δ (g + h ^ p) = logJacobian Δ g := sorry
+
+/-- `Singularity/Invariant/LogJacobian.lean`: `Θ(x^r G) = (x^r) Θ̃(G)`. -/
+theorem logJacobian_monomial_mul {σ k : Type*} [CommSemiring k] {Δ : Finset σ} {r : σ →₀ ℕ}
+    (hr : ∀ i, i ∉ Δ → r i = 0) (G : MvPolynomial σ k) :
+    logJacobian Δ (monomial r 1 * G) = Ideal.span {monomial r 1} * residualLogJacobian Δ r G :=
+  sorry
+
+variable {σ k : Type*} [Field k] (p : ℕ) [CharP k p] {Δ : Finset σ} {g : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/LogJacobian.lean`: `Θ̃(G)` is not contained in `(x_i)` for `i ∈ Δ`. -/
+theorem residualLogJacobian_not_le_span_X (hg : g ≠ 0) (hc : IsClean p g) {i : σ} (hi : i ∈ Δ) :
+    ¬ residualLogJacobian Δ (divisorExponent Δ g) (residualFactor Δ g) ≤ Ideal.span {X i} := sorry
+
+/-- `Singularity/Invariant/LogJacobian.lean`: the monomial factor of `Θ(g)` is `x^r`. -/
+theorem le_divisorExponent_of_logJacobian_le (hg : g ≠ 0) (hc : IsClean p g) {s : σ →₀ ℕ}
+    (hs : ∀ i, i ∉ Δ → s i = 0) (h : logJacobian Δ g ≤ Ideal.span {monomial s 1}) :
+    s ≤ divisorExponent Δ g := sorry
+
+/-- `Singularity/Invariant/LogJacobian.lean`: `ρ ≤ d`. -/
+theorem logJacobianOrder_le_residualOrderAlong (hc : IsClean p g) :
+    logJacobianOrder Δ g ≤ residualOrderAlong Δ p g := sorry
+
+/-- `Singularity/Invariant/LogJacobian.lean`: `d ≤ ρ + 1`. -/
+theorem residualOrderAlong_le_logJacobianOrder_add_one (hc : IsClean p g) :
+    residualOrderAlong Δ p g ≤ logJacobianOrder Δ g + 1 := sorry
+
+/-- `Singularity/Invariant/LogJacobian.lean`: the dichotomy `ρ ∈ {d - 1, d}`. -/
+theorem logJacobianOrder_eq_or (hc : IsClean p g) :
+    logJacobianOrder Δ g = residualOrderAlong Δ p g ∨
+      logJacobianOrder Δ g + 1 = residualOrderAlong Δ p g := sorry
+
+/-- `Singularity/Invariant/LogJacobian.lean`: `ρ + 1 = d` if and only if `∂_j in(G) ≠ 0` for some
+`j ∉ Δ`. -/
+theorem logJacobianOrder_add_one_eq_iff (hc : IsClean p g) {d : ℕ}
+    (hd : ord (residualFactor Δ g) = d) :
+    logJacobianOrder Δ g + 1 = d ↔
+      ∃ j ∉ Δ, pderiv j (homogeneousComponent d (residualFactor Δ g)) ≠ 0 := sorry
+
+end LogJacobian
 
 end Singularity

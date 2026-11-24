@@ -81,7 +81,15 @@
     "Singularity.coeff_taylor_natDegree_sub_one",
     "Singularity.coeff_taylor_sub_pow",
     "Singularity.coeff_taylor_sub_pow_of_eq_zero",
-    "Singularity.X_pow_add_C_mem_pow_iff"
+    "Singularity.X_pow_add_C_mem_pow_iff",
+    "Singularity.logJacobian_add_pow",
+    "Singularity.logJacobian_monomial_mul",
+    "Singularity.residualLogJacobian_not_le_span_X",
+    "Singularity.le_divisorExponent_of_logJacobian_le",
+    "Singularity.logJacobianOrder_le_residualOrderAlong",
+    "Singularity.residualOrderAlong_le_logJacobianOrder_add_one",
+    "Singularity.logJacobianOrder_eq_or",
+    "Singularity.logJacobianOrder_add_one_eq_iff"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }
