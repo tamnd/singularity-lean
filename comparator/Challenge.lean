@@ -1028,4 +1028,86 @@ theorem not_isResonant_initialForm {σ R : Type*} [CommSemiring R] (p : ℕ) [Fa
 
 end FrobeniusNewton
 
+section LogJacobianBlowup
+
+open MvPolynomial
+
+section Defs
+
+variable {σ k : Type*} [CommSemiring k]
+
+/-- `Singularity/Invariant/LogJacobianBlowup.lean`: the log-Jacobian ideal `Θ₀(g)` tangent to the
+origin. -/
+noncomputable def logJacobianTangent (Δ : Finset σ) (g : MvPolynomial σ k) :
+    Ideal (MvPolynomial σ k) :=
+  Ideal.span ((fun i => X i * pderiv i g) '' (Δ : Set σ) ∪
+    (fun a : σ × σ => X a.1 * pderiv a.2 g) '' {a | a.2 ∉ Δ})
+
+/-- `Singularity/Invariant/LogJacobianBlowup.lean`: the unit `u` of the transformation law. -/
+noncomputable def blowupUnit [DecidableEq σ] [DecidableEq k] (Δ : Finset σ) (j : σ) (t : σ → k) :
+    MvPolynomial σ k :=
+  ∏ i ∈ Δ.filter (fun i => i ≠ j ∧ t i ≠ 0), (X i + C (t i))
+
+end Defs
+
+section Chain
+
+variable {σ k : Type*} [CommSemiring k] [DecidableEq σ]
+
+/-- `Singularity/Invariant/LogJacobianBlowup.lean`: `∂_i π(h) = x_j π(∂_i h)` for `i ≠ j`. -/
+theorem pderiv_pointChart_of_ne {i j : σ} (hij : i ≠ j) (t : σ → k) (h : MvPolynomial σ k) :
+    pderiv i (pointChart j t h) = X j * pointChart j t (pderiv i h) := sorry
+
+/-- `Singularity/Invariant/LogJacobianBlowup.lean`: `x_j ∂_j π(h) = π(∑_i x_i ∂_i h)`. -/
+theorem X_mul_pderiv_pointChart [Fintype σ] (j : σ) (t : σ → k) (h : MvPolynomial σ k) :
+    X j * pderiv j (pointChart j t h) = pointChart j t (∑ i, X i * pderiv i h) := sorry
+
+end Chain
+
+section Factor
+
+variable {σ k : Type*} [CommSemiring k]
+
+/-- `Singularity/Invariant/LogJacobianBlowup.lean`: `∂_i (x_j^n u) = x_j^n ∂_i u` for `i ≠ j`. -/
+theorem pderiv_X_pow_mul_of_ne {i j : σ} (hij : i ≠ j) (n : ℕ) (u : MvPolynomial σ k) :
+    pderiv i (X j ^ n * u) = X j ^ n * pderiv i u := sorry
+
+/-- `Singularity/Invariant/LogJacobianBlowup.lean`: `x_j ∂_j (x_j^p u) = x_j^p (x_j ∂_j u)`. -/
+theorem X_mul_pderiv_X_pow_mul (p : ℕ) [CharP k p] (j : σ) (u : MvPolynomial σ k) :
+    X j * pderiv j (X j ^ p * u) = X j ^ p * (X j * pderiv j u) := sorry
+
+end Factor
+
+section Law
+
+variable {σ k : Type*} [CommRing k] [DecidableEq σ] [DecidableEq k] [Fintype σ]
+
+/-- `Singularity/Invariant/LogJacobianBlowup.lean`: `π(Θ₀(g)) ⊆ Θ'(π(g))`. -/
+theorem map_pointChart_logJacobianTangent_le (Δ : Finset σ) (j : σ) (t : σ → k)
+    (g : MvPolynomial σ k) :
+    Ideal.map (pointChart j t) (logJacobianTangent Δ g) ≤
+      logJacobian (blowupDivisor Δ j t) (pointChart j t g) := sorry
+
+/-- `Singularity/Invariant/LogJacobianBlowup.lean`: `u Θ'(π(g)) ⊆ π(Θ₀(g))`. -/
+theorem span_mul_logJacobian_pointChart_le (Δ : Finset σ) (j : σ) (t : σ → k)
+    (g : MvPolynomial σ k) :
+    Ideal.span {blowupUnit Δ j t} * logJacobian (blowupDivisor Δ j t) (pointChart j t g) ≤
+      Ideal.map (pointChart j t) (logJacobianTangent Δ g) := sorry
+
+variable (p : ℕ) [CharP k p] {Δ : Finset σ} {j : σ} {t : σ → k} {g g' : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/LogJacobianBlowup.lean`: `π(Θ₀(g)) ⊆ (x_j^p) Θ'(g')`. -/
+theorem map_pointChart_logJacobianTangent_le_span_mul (hg : pointChart j t g = X j ^ p * g') :
+    Ideal.map (pointChart j t) (logJacobianTangent Δ g) ≤
+      Ideal.span {X j ^ p} * logJacobian (blowupDivisor Δ j t) g' := sorry
+
+/-- `Singularity/Invariant/LogJacobianBlowup.lean`: `(x_j^p u) Θ'(g') ⊆ π(Θ₀(g))`. -/
+theorem span_mul_logJacobian_le_map_pointChart (hg : pointChart j t g = X j ^ p * g') :
+    Ideal.span {X j ^ p * blowupUnit Δ j t} * logJacobian (blowupDivisor Δ j t) g' ≤
+      Ideal.map (pointChart j t) (logJacobianTangent Δ g) := sorry
+
+end Law
+
+end LogJacobianBlowup
+
 end Singularity

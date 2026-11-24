@@ -504,6 +504,38 @@ status:
       kind: theorem
       status: proved
       note: The initial form of g for w is not resonant if p does not divide the weighted order of g.
+    - name: Singularity.pderiv_pointChart_of_ne
+      kind: theorem
+      status: proved
+      note: The chain rule for the x_j-chart pi of a point blowup. For i other than j, the derivative of pi(h) along x_i is x_j pi(d_i h) (Lemma 3.2.2 of Volume 7, Section 3.2 of the handbook).
+    - name: Singularity.X_mul_pderiv_pointChart
+      kind: theorem
+      status: proved
+      note: The chain rule for the x_j-chart pi of a point blowup. The equation is x_j d_j pi(h) = pi(sum of x_i d_i h) (Lemma 3.2.2 of Volume 7, Section 3.2 of the handbook).
+    - name: Singularity.pderiv_X_pow_mul_of_ne
+      kind: theorem
+      status: proved
+      note: For i other than j, d_i(x_j^n u) = x_j^n d_i u.
+    - name: Singularity.X_mul_pderiv_X_pow_mul
+      kind: theorem
+      status: proved
+      note: In characteristic p, x_j d_j (x_j^p u) = x_j^p x_j d_j u.
+    - name: Singularity.map_pointChart_logJacobianTangent_le
+      kind: theorem
+      status: proved
+      note: The chart sends the log-Jacobian ideal tangent to the origin of g into the log-Jacobian ideal of pi(g) for the new divisor.
+    - name: Singularity.span_mul_logJacobian_pointChart_le
+      kind: theorem
+      status: proved
+      note: The unit u of the translated directions times the log-Jacobian ideal of pi(g) for the new divisor lies in the image of the log-Jacobian ideal tangent to the origin of g.
+    - name: Singularity.map_pointChart_logJacobianTangent_le_span_mul
+      kind: theorem
+      status: proved
+      note: The transformation law, first inclusion (Theorem 3.2.3 of Volume 7, Section 3.2 of the handbook). If pi(g) = x_j^p g', the image of the log-Jacobian ideal tangent to the origin of g lies in (x_j^p) times the log-Jacobian ideal of g' for the new divisor.
+    - name: Singularity.span_mul_logJacobian_le_map_pointChart
+      kind: theorem
+      status: proved
+      note: The transformation law, second inclusion (Theorem 3.2.3 of Volume 7, Section 3.2 of the handbook). If pi(g) = x_j^p g', then (x_j^p u) times the log-Jacobian ideal of g' for the new divisor lies in the image of the log-Jacobian ideal tangent to the origin of g. The polynomial u is a unit in the power series ring.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
