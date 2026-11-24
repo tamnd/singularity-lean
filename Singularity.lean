@@ -23,6 +23,7 @@ import Singularity.Algebra.HilbertSerre
 import Singularity.Algebra.Multiplicity
 import Singularity.Algebra.MultiplicityRegular
 import Singularity.Algebra.BlowupChart
+import Singularity.Algebra.CurveOnSurface
 import Singularity.Curves.Affine
 import Singularity.Scheme.Components
 import Singularity.Scheme.Reduction
