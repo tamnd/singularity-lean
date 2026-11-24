@@ -7,6 +7,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 ### Added
 
 - `Singularity/Algebra/Jacobian.lean`: the Jacobian criterion for a hypersurface. Let $A$ be a Noetherian ring, let $\mathfrak{q}$ be a prime with $A_\mathfrak{q}$ regular, and let $F \in \mathfrak{q}$. If a derivation $D$ of $A$ has $D F \notin \mathfrak{q}$, then $A_\mathfrak{q}/(F)$ is regular (`isRegularLocalRing_quotient_of_derivation`). If $A$ is a regular ring, then the open set $D(\overline{DF})$ of $\operatorname{Spec} A/(F)$ is in the regular locus (`regularLocus_quotient_of_derivation`).
+- `Singularity/Algebra/GenericRegular.lean`: generic regularity in characteristic $0$. Let $D$ be a domain of finite type over a field $k$ of characteristic $0$. Then some $f \neq 0$ in $D$ has $D(f)$ in the regular locus (`exists_ne_zero_basicOpen_subset_regularLocus_of_field`). The proof uses Noether normalization, a primitive element, a conductor element and the Jacobian criterion. With the criterion of Nagata, the regular locus of an algebra of finite type over $k$ is open (`isOpen_regularLocus_of_charZero`).
 
 ## 0.2.8 - 2026-11-24
 
