@@ -15,7 +15,11 @@
     "Singularity.abhyankar_inequality",
     "Singularity.algebraicIndependent_sumElim_of_hasExtension",
     "Singularity.abhyankar_inequality_relative",
-    "Singularity.ZariskiRiemann.compactSpace"
+    "Singularity.ZariskiRiemann.compactSpace",
+    "Singularity.KeyPolynomial.natDegree_pos",
+    "Singularity.monomialValuationFun_mul",
+    "Singularity.keyPolynomial_X_of_forall_eq",
+    "Singularity.eq_sum_expansionCoeff"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

@@ -99,6 +99,22 @@ status:
       kind: theorem
       status: proved
       note: The Zariski-Riemann space of the valuation subrings of K that contain the image of A is quasi-compact (Theorem 1.5.3 of Volume 3 of the handbook, node SG0000000X).
+    - name: Singularity.KeyPolynomial.natDegree_pos
+      kind: theorem
+      status: proved
+      note: A key polynomial of MacLane has positive degree (Definition 3.3.3 of Volume 3 of the handbook, node SG0000000Z). The definition Singularity.KeyPolynomial states the conditions on initial forms with polynomials.
+    - name: Singularity.monomialValuationFun_mul
+      kind: theorem
+      status: proved
+      note: The monomial valuation [v; X, γ] is multiplicative (Lemma 3.3.2 of Volume 3 of the handbook).
+    - name: Singularity.keyPolynomial_X_of_forall_eq
+      kind: theorem
+      status: proved
+      note: The polynomial X is a key polynomial for the monomial valuation [v; X, γ].
+    - name: Singularity.eq_sum_expansionCoeff
+      kind: theorem
+      status: proved
+      note: The expansion of a polynomial in powers of a monic polynomial of positive degree, used to define the augmented valuation of Definition 3.3.4. Theorem 3.3.5 of MacLane-Vaquié is not proved.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
