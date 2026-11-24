@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.2.13 - 2026-11-24
+
 ### Added
 
 - `Singularity/Algebra/MultiplicityRegular.lean`: a regular local ring of dimension $d$ has $\ell(R/\mathfrak{m}^{n+1}) = \binom{n+d}{d}$ (`hilbertSamuel_succ_eq_choose`) and Samuel multiplicity $1$ (`samuelMultiplicity_regular`). The proof uses that $(\mathfrak{m}^{n+1} : a) = \mathfrak{m}^n$ for the first element $a$ of a regular sequence that generates $\mathfrak{m}$ (`mem_maximalIdeal_pow_of_mul_mem`).
