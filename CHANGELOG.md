@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.2.14 - 2026-11-24
+
 ### Added
 
 - `Singularity/Invariant/Order.lean`: the order `ord f` of a polynomial at the origin, the smallest total degree of a monomial of `f`, defined through `MvPowerSeries.order`. The file proves that $\operatorname{ord}(fg) = \operatorname{ord} f + \operatorname{ord} g$ over a domain (`ord_mul`), that the order of a sum is at least the smaller order (`min_ord_le_ord_add`), and that $\operatorname{ord} f \ge n$ if and only if $f \in \mathfrak{m}^n$ (`le_ord_iff_mem_pow`). It defines the order of an ideal (`idealOrd`) and proves that the order of a product of ideals is the sum (`idealOrd_mul`). The order does not change under an invertible linear change of coordinates (`ord_linearChange`). It agrees with the order `Singularity.Algebra.order` for the ideal of the variables (`ord_eq_order_idealOfVars`).
