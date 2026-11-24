@@ -159,7 +159,13 @@
     "Singularity.centerExample_H1",
     "Singularity.centerExample_not_H2",
     "Singularity.centerExample_logJacobianOrder",
-    "Singularity.centerExample_logJacobianOrder_cleanPart"
+    "Singularity.centerExample_logJacobianOrder_cleanPart",
+    "Singularity.le_ord_zMonic_iff",
+    "Singularity.tschirnhausen_transformation",
+    "Singularity.eq_zero_of_le_ord_translate",
+    "Singularity.le_ord_translate_zMonic_iff",
+    "Singularity.tschirnhausen_pointChart",
+    "Singularity.not_tschirnhausen_charTwo"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

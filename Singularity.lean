@@ -53,6 +53,7 @@ import Singularity.Invariant.LogJacobianBlowup
 import Singularity.Invariant.LogJacobianNonincrease
 import Singularity.Invariant.LogJacobianCenter
 import Singularity.Invariant.LogJacobianCenterNonincrease
+import Singularity.Invariant.Tschirnhausen
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
