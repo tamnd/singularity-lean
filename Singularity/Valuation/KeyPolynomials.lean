@@ -47,7 +47,7 @@ Thus, for a valuation `μ` with support `0`, a polynomial `φ` satisfies `KeyPol
 * `Singularity.augmentedValuationFun_of_degree_lt` and `Singularity.augmentedValuationFun_self`: the augmented valuation agrees with `μ` in degree less than the degree of `φ`, and it sends `φ` to `γ` (parts of Theorem 3.3.5 (2)).
 * `Singularity.augmentedValuationFun_X`: the augmentation `[μ; X, γ]` of a valuation that extends `v` is `[v; X, γ]`.
 
-The file does not prove Theorem 3.3.5 (the theorem of MacLane-Vaquié). In particular it does not prove that the augmented valuation is multiplicative.
+The file does not prove Theorem 3.3.5 (the theorem of MacLane-Vaquié). The file `Singularity/Valuation/Augmentation.lean` proves parts 1 and 2 of the theorem.
 
 ## References
 

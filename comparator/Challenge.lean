@@ -225,6 +225,32 @@ theorem eq_sum_expansionCoeff (hφ : φ.Monic) (hd : 0 < φ.natDegree) (f : K[X]
 
 end Expansion
 
+section Augmented
+
+variable (μ : Valuation K[X] Γ₀) (φ : K[X]) (γ : Γ₀)
+
+/-- `Singularity/Valuation/KeyPolynomials.lean`: the augmented valuation `[μ; φ, γ]` as a function. -/
+noncomputable def augmentedValuationFun (f : K[X]) : Γ₀ :=
+  (Finset.range (f.natDegree + 1)).sup fun j => μ (expansionCoeff φ f j) * γ ^ j
+
+variable {μ φ γ}
+
+/-- `Singularity/Valuation/Augmentation.lean`: `φ` is `μ`-minimal if and only if `μ` is equal to the augmentation `[μ; φ, μ φ]`. -/
+theorem isMuMinimal_iff (hφ : φ.Monic) (hd : 0 < φ.natDegree) :
+    IsMuMinimal μ φ ↔ ∀ f, μ f = augmentedValuationFun μ φ (μ φ) f := sorry
+
+/-- `Singularity/Valuation/Augmentation.lean`: for `γ ≤ μ φ`, the augmented value of `f` is at most `μ f`. This is `μ ≤ [μ; φ, γ]` in additive notation (Theorem 3.3.5 (2)). -/
+theorem IsMuMinimal.augmentedValuationFun_le (hφ : φ.Monic) (hd : 0 < φ.natDegree)
+    (hmin : IsMuMinimal μ φ) (hγ : γ ≤ μ φ) (f : K[X]) :
+    augmentedValuationFun μ φ γ f ≤ μ f := sorry
+
+/-- `Singularity/Valuation/Augmentation.lean`: Theorem 3.3.5 (1) of MacLane-Vaquié, the augmented valuation is multiplicative. -/
+theorem KeyPolynomial.augmentedValuationFun_mul (hφ : KeyPolynomial μ φ) (hγ : γ ≤ μ φ)
+    (f g : K[X]) : augmentedValuationFun μ φ γ (f * g) =
+      augmentedValuationFun μ φ γ f * augmentedValuationFun μ φ γ g := sorry
+
+end Augmented
+
 end KeyPolynomials
 
 end Singularity

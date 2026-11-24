@@ -19,7 +19,10 @@
     "Singularity.KeyPolynomial.natDegree_pos",
     "Singularity.monomialValuationFun_mul",
     "Singularity.keyPolynomial_X_of_forall_eq",
-    "Singularity.eq_sum_expansionCoeff"
+    "Singularity.eq_sum_expansionCoeff",
+    "Singularity.isMuMinimal_iff",
+    "Singularity.IsMuMinimal.augmentedValuationFun_le",
+    "Singularity.KeyPolynomial.augmentedValuationFun_mul"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

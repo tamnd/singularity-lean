@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/Augmentation.lean`: parts 1 and 2 of Theorem 3.3.5 of MacLane-Vaquié (Section 3.3 of Volume 3 of the handbook). Let `φ` be a key polynomial for a valuation `μ` on `K[X]`, and let `γ ≤ μ φ` in multiplicative notation. Then the augmentation `[μ; φ, γ]` is a valuation (`augmentedValuation`, `KeyPolynomial.augmentedValuationFun_mul`). It satisfies `μ ≤ [μ; φ, γ]` in additive notation (`augmentedValuation_le`), it agrees with `μ` in degree less than the degree of `φ`, and it sends `φ` to `γ`. If `μ` has support `0`, then the support is `0` for `γ ≠ 0` and `(φ)` for `γ = 0` (`augmentedValuation_eq_zero_iff`, `augmentedValuation_zero_eq_zero_iff`). The file also proves that `φ` is `μ`-minimal if and only if `μ` is equal to `[μ; φ, μ φ]` (`isMuMinimal_iff`). Parts 3 and 4 of Theorem 3.3.5 are not proved.
+
 ## 0.4.3 - 2026-11-24
 
 ### Added
