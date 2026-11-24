@@ -403,7 +403,7 @@ status:
     - name: Singularity.coeff_taylor_sub_of_lt_pow
       kind: theorem
       status: proved
-      note: The inseparable layer is rigid (Lemma 10.4 of Volume 7, Chapter 4 of the handbook). For deg f = p^e m_0 and 0 < i < p^e, a'_i = a_i + sum over 0 < j < i of binom(m - j, i - j) a_j c^(i-j).
+      note: The inseparable layer is rigid (Theorem 4.1.3 of Volume 7 of the handbook). For deg f = p^e m_0 and 0 < i < p^e, a'_i = a_i + sum over 0 < j < i of binom(m - j, i - j) a_j c^(i-j).
     - name: Singularity.coeff_taylor_sub_of_lt_pow_of_eq_zero
       kind: theorem
       status: proved
@@ -415,7 +415,7 @@ status:
     - name: Singularity.coeff_taylor_sub_pow
       kind: theorem
       status: proved
-      note: The step of Lucas and Tschirnhausen (Lemma 10.3 of Volume 7, Chapter 4 of the handbook). For monic f of degree p^e m_0, a'_(p^e) = a_(p^e) + m_0 c^(p^e) + sum over 0 < j < p^e of binom(m - j, p^e - j) a_j c^(p^e - j).
+      note: The step of Lucas and Tschirnhausen (Proposition 4.1.4 of Volume 7 of the handbook). For monic f of degree p^e m_0, a'_(p^e) = a_(p^e) + m_0 c^(p^e) + sum over 0 < j < p^e of binom(m - j, p^e - j) a_j c^(p^e - j).
     - name: Singularity.coeff_taylor_sub_pow_of_eq_zero
       kind: theorem
       status: proved
@@ -423,11 +423,11 @@ status:
     - name: Singularity.X_pow_add_C_mem_pow_iff
       kind: theorem
       status: proved
-      note: The lifting test (Lemma 10.5 of Volume 7, Chapter 4 of the handbook). For q = p^e, z^q + g lies in (z - h, I)^q if and only if g + h^q lies in I^q.
+      note: The lifting test (Proposition 4.2.1 of Volume 7 of the handbook). For q = p^e, z^q + g lies in (z - h, I)^q if and only if g + h^q lies in I^q.
     - name: Singularity.logJacobian_add_pow
       kind: theorem
       status: proved
-      note: The log-Jacobian ideal does not change when a p-th power is added to g (Lemma 3.6 (1) of Volume 7, Chapter 3 of the handbook).
+      note: The log-Jacobian ideal does not change when a p-th power is added to g (Lemma 3.1.2 of Volume 7 of the handbook).
     - name: Singularity.logJacobian_monomial_mul
       kind: theorem
       status: proved
@@ -435,7 +435,7 @@ status:
     - name: Singularity.residualLogJacobian_not_le_span_X
       kind: theorem
       status: proved
-      note: For a clean g other than 0, the residual log-Jacobian ideal is not contained in (x_i) for a boundary coordinate x_i (Theorem 3.7 (1) of Volume 7, Chapter 3 of the handbook).
+      note: For a clean g other than 0, the residual log-Jacobian ideal is not contained in (x_i) for a boundary coordinate x_i (Theorem 3.1.4 (1) of Volume 7 of the handbook).
     - name: Singularity.le_divisorExponent_of_logJacobian_le
       kind: theorem
       status: proved
@@ -451,11 +451,11 @@ status:
     - name: Singularity.logJacobianOrder_eq_or
       kind: theorem
       status: proved
-      note: For a clean g, rho = d or rho + 1 = d. This is the dichotomy (Theorem 3.7 (2) of Volume 7, Chapter 3 of the handbook).
+      note: For a clean g, rho = d or rho + 1 = d. This is the dichotomy (Theorem 3.1.4 (2) of Volume 7 of the handbook).
     - name: Singularity.logJacobianOrder_add_one_eq_iff
       kind: theorem
       status: proved
-      note: For a clean g with ord G = d, rho + 1 = d if and only if the derivative of the initial form of G along some free coordinate is not 0 (Theorem 3.7 (3) of Volume 7, Chapter 3 of the handbook).
+      note: For a clean g with ord G = d, rho + 1 = d if and only if the derivative of the initial form of G along some free coordinate is not 0 (Theorem 3.1.4 (3) of Volume 7 of the handbook).
     - name: Singularity.isSingularPoint_purelyInseparable_iff
       kind: theorem
       status: proved
@@ -467,15 +467,15 @@ status:
     - name: Singularity.exists_torus_isCriticalPoint_iff
       kind: theorem
       status: proved
-      note: Theorem 5.3 of Volume 7, Chapter 3 of the handbook, face by face. The polynomial h has a critical point in the torus if and only if {h = 0} or {z^p + h = 0} has a singular point in the torus. The faces of the Newton polyhedron of z^p + g are not formalized.
+      note: Theorem 3.3.3 of Volume 7 of the handbook, face by face. The polynomial h has a critical point in the torus if and only if {h = 0} or {z^p + h = 0} has a singular point in the torus. The faces of the Newton polyhedron of z^p + g are not formalized.
     - name: Singularity.eq_sum_smul_X_mul_pderiv
       kind: theorem
       status: proved
-      note: Proposition 5.6 of Volume 7, Chapter 3 of the handbook. If the sum of w_i a_i is 1 for each exponent a of h, then h is the sum of w_i x_i ∂_i h.
+      note: Proposition 3.3.6 of Volume 7 of the handbook. If the sum of w_i a_i is 1 for each exponent a of h, then h is the sum of w_i x_i ∂_i h.
     - name: Singularity.eq_inv_smul_sum_X_mul_pderiv
       kind: theorem
       status: proved
-      note: Corollary 5.7 of Volume 7, Chapter 3 of the handbook. A weighted homogeneous h of degree D with D ≠ 0 in k is D⁻¹ times the sum of w_i x_i ∂_i h.
+      note: Corollary 3.3.7 of Volume 7 of the handbook. A weighted homogeneous h of degree D with D ≠ 0 in k is D⁻¹ times the sum of w_i x_i ∂_i h.
     - name: Singularity.eval_eq_zero_of_isCriticalPoint_of_isWeightedHomogeneous
       kind: theorem
       status: proved
@@ -483,7 +483,7 @@ status:
     - name: Singularity.pderiv_monomial_eq_zero_of_dvd
       kind: theorem
       status: proved
-      note: Corollary 5.5 of Volume 7, Chapter 3 of the handbook. Each partial derivative of c x^a with a in p ℕ^σ is 0 in characteristic p.
+      note: Corollary 3.3.5 of Volume 7 of the handbook. Each partial derivative of c x^a with a in p ℕ^σ is 0 in characteristic p.
     - name: Singularity.exists_torus_isSingularPoint_purelyInseparable_monomial
       kind: theorem
       status: proved
@@ -491,7 +491,7 @@ status:
     - name: Singularity.exists_eq_sum_smul_X_mul_pderiv_of_not_isResonant
       kind: theorem
       status: proved
-      note: Definition 5.8 of Volume 7, Chapter 3 of the handbook. A polynomial with a support that is not resonant satisfies a mod p Euler identity.
+      note: Definition 3.3.8 of Volume 7 of the handbook. A polynomial with a support that is not resonant satisfies a mod p Euler identity.
     - name: Singularity.eval_eq_zero_of_isCriticalPoint_of_not_isResonant
       kind: theorem
       status: proved

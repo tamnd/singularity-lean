@@ -10,7 +10,7 @@ import Mathlib.RingTheory.Polynomial.Basic
 /-!
 # The rigid layer of a translation in characteristic `p`
 
-Let `R` be a commutative ring of exponential characteristic `p`, and let `f = z^m + a_1 z^(m-1) + ... + a_m` be a polynomial in `z` over `R`. Here `a_i` is the coefficient `f.coeff (m - i)` of `z^(m-i)`. A translation `z ↦ z + c` changes `f` into `f(z + c) = Polynomial.taylor c f`. This file computes how the translation changes the coefficients `a_i` (Lemmas 10.3, 10.4 and 10.5 of Volume 7, Chapter 4 of the handbook).
+Let `R` be a commutative ring of exponential characteristic `p`, and let `f = z^m + a_1 z^(m-1) + ... + a_m` be a polynomial in `z` over `R`. Here `a_i` is the coefficient `f.coeff (m - i)` of `z^(m-i)`. A translation `z ↦ z + c` changes `f` into `f(z + c) = Polynomial.taylor c f`. This file computes how the translation changes the coefficients `a_i` (Theorem 4.1.3 and Propositions 4.1.4 and 4.2.1 of Volume 7 of the handbook).
 
 In characteristic `0` the translation `z ↦ z - a_1 / m` kills `a_1`. This is the step of Tschirnhausen. After it, the hypersurface `z = 0` has maximal contact with `f`. The same step works in characteristic `p` if `p` does not divide `m`. Now let `m = p^e m_0` with `e ≥ 1`. Then no translation changes `a_1, ..., a_(p^e - 1)` modulo the earlier coefficients: if `a_1 = ... = a_(i-1) = 0` and `i < p^e`, then `a_i` is the same for each `c`. In particular `a_1` never changes. So these coefficients are invariants of the equation under translations. A resolution algorithm cannot make them vanish with a change of coordinates. It must make them small with blowups. This is why multiplicities divisible by `p` are hard.
 
@@ -23,10 +23,10 @@ The proofs do not use the theorem of Lucas on binomial coefficients. They use th
 * `Singularity.X_add_C_pow_pow_mul`: the Frobenius identity `(X + c)^(p^e m_0) = (X^(p^e) + c^(p^e))^(m_0)`.
 * `Singularity.coeff_X_add_C_pow_pow_mul_eq_zero`, `Singularity.cast_choose_pow_mul_eq_zero`: the coefficient of `X^n` in `(X + c)^(p^e m_0)`, and the binomial coefficient `binom(p^e m_0, n)` in `R`, are `0` if `p^e` does not divide `n`.
 * `Singularity.coeff_taylor_natDegree_sub`: the translation formula `a'_i = ∑_(j ≤ i) binom(m - j, i - j) a_j c^(i-j)` for `i ≤ m`.
-* `Singularity.coeff_taylor_sub_of_lt_pow`: the inseparable layer is rigid (Lemma 10.4). For `0 < i < p^e`, `a'_i = a_i + ∑_(0 < j < i) binom(m - j, i - j) a_j c^(i-j)`.
+* `Singularity.coeff_taylor_sub_of_lt_pow`: the inseparable layer is rigid (Theorem 4.1.3). For `0 < i < p^e`, `a'_i = a_i + ∑_(0 < j < i) binom(m - j, i - j) a_j c^(i-j)`.
 * `Singularity.coeff_taylor_sub_of_lt_pow_of_eq_zero`, `Singularity.coeff_taylor_natDegree_sub_one`: if `a_1 = ... = a_(i-1) = 0` and `0 < i < p^e`, then `a'_i = a_i`. If `p` divides `m`, then `a'_1 = a_1`.
-* `Singularity.coeff_taylor_sub_pow`, `Singularity.coeff_taylor_sub_pow_of_eq_zero`: the step of Lucas and Tschirnhausen (Lemma 10.3). For monic `f`, `a'_(p^e) = a_(p^e) + m_0 c^(p^e) + ∑_(0 < j < p^e) binom(m - j, p^e - j) a_j c^(p^e - j)`.
-* `Singularity.X_pow_add_C_mem_pow_iff`: the lifting test (Lemma 10.5). Let `q = p^e`, let `I` be an ideal of `R`, and let `J = (z - h) + I R[z]`. Then `z^q + g ∈ J^q` if and only if `g + h^q ∈ I^q`.
+* `Singularity.coeff_taylor_sub_pow`, `Singularity.coeff_taylor_sub_pow_of_eq_zero`: the step of Lucas and Tschirnhausen (Proposition 4.1.4). For monic `f`, `a'_(p^e) = a_(p^e) + m_0 c^(p^e) + ∑_(0 < j < p^e) binom(m - j, p^e - j) a_j c^(p^e - j)`.
+* `Singularity.X_pow_add_C_mem_pow_iff`: the lifting test (Proposition 4.2.1). Let `q = p^e`, let `I` be an ideal of `R`, and let `J = (z - h) + I R[z]`. Then `z^q + g ∈ J^q` if and only if `g + h^q ∈ I^q`.
 -/
 
 open Polynomial
@@ -144,7 +144,7 @@ private theorem coeff_taylor_of_natDegree_eq_zero {f : R[X]} (hf : f.natDegree =
   rw [Nat.choose_eq_zero_of_lt (by omega)]
   simp
 
-/-- The inseparable layer is rigid (Lemma 10.4 of Volume 7, Chapter 4 of the handbook). Let `f` have degree `m = p^e m_0`, and let `a_i = f.coeff (m - i)`. Let `a'_i` be the coefficients of `f(z + c)`. For `0 < i < p^e`, `a'_i = a_i + ∑_(0 < j < i) binom(m - j, i - j) a_j c^(i-j)`. So the term `binom(m, i) c^i` of `a_0` is `0`. -/
+/-- The inseparable layer is rigid (Theorem 4.1.3 of Volume 7 of the handbook). Let `f` have degree `m = p^e m_0`, and let `a_i = f.coeff (m - i)`. Let `a'_i` be the coefficients of `f(z + c)`. For `0 < i < p^e`, `a'_i = a_i + ∑_(0 < j < i) binom(m - j, i - j) a_j c^(i-j)`. So the term `binom(m, i) c^i` of `a_0` is `0`. -/
 theorem coeff_taylor_sub_of_lt_pow {f : R[X]} {e m₀ m : ℕ} (hm : m = p ^ e * m₀)
     (hf : f.natDegree = m) (c : R) {i : ℕ} (hi₀ : 0 < i) (hi : i < p ^ e) :
     (taylor c f).coeff (m - i) = f.coeff (m - i) +
@@ -160,7 +160,7 @@ theorem coeff_taylor_sub_of_lt_pow {f : R[X]} {e m₀ m : ℕ} (hm : m = p ^ e *
     rw [h, hm, cast_choose_pow_mul_eq_zero p (Nat.not_dvd_of_pos_of_lt hi₀ hi), zero_mul, zero_mul,
       add_zero]
 
-/-- If `a_1 = ... = a_(i-1) = 0` and `0 < i < p^e`, then the translation does not change `a_i` (Lemma 10.4 of Volume 7, Chapter 4 of the handbook). -/
+/-- If `a_1 = ... = a_(i-1) = 0` and `0 < i < p^e`, then the translation does not change `a_i` (Theorem 4.1.3 of Volume 7 of the handbook). -/
 theorem coeff_taylor_sub_of_lt_pow_of_eq_zero {f : R[X]} {e m₀ m : ℕ} (hm : m = p ^ e * m₀)
     (hf : f.natDegree = m) (c : R) {i : ℕ} (hi₀ : 0 < i) (hi : i < p ^ e)
     (h : ∀ j, 0 < j → j < i → f.coeff (m - j) = 0) :
@@ -170,14 +170,14 @@ theorem coeff_taylor_sub_of_lt_pow_of_eq_zero {f : R[X]} {e m₀ m : ℕ} (hm : 
   rw [Finset.mem_Ioo] at hj
   rw [h j hj.1 hj.2, mul_zero, zero_mul]
 
-/-- If the prime `p` divides the degree `m` of `f`, then the translation `z ↦ z + c` does not change the coefficient `a_1` of `z^(m-1)` (Lemma 10.4 of Volume 7, Chapter 4 of the handbook). In characteristic `0` the translation by `c = -a_1 / m` kills `a_1`. -/
+/-- If the prime `p` divides the degree `m` of `f`, then the translation `z ↦ z + c` does not change the coefficient `a_1` of `z^(m-1)` (Theorem 4.1.3 of Volume 7 of the handbook). In characteristic `0` the translation by `c = -a_1 / m` kills `a_1`. -/
 theorem coeff_taylor_natDegree_sub_one [Fact p.Prime] {f : R[X]} (hdvd : p ∣ f.natDegree)
     (c : R) : (taylor c f).coeff (f.natDegree - 1) = f.coeff (f.natDegree - 1) := by
   obtain ⟨m₀, hm₀⟩ := hdvd
   exact coeff_taylor_sub_of_lt_pow_of_eq_zero p (e := 1) (m₀ := m₀) (by rw [pow_one, hm₀]) rfl c one_pos
     (by rw [pow_one]; exact (Fact.out : p.Prime).one_lt) fun j hj hj' => by omega
 
-/-- The step of Lucas and Tschirnhausen (Lemma 10.3 of Volume 7, Chapter 4 of the handbook). Let `f` be monic of degree `m = p^e m_0`, and let `a_i = f.coeff (m - i)`. Let `a'_i` be the coefficients of `f(z + c)`. Then `a'_(p^e) = a_(p^e) + m_0 c^(p^e) + ∑_(0 < j < p^e) binom(m - j, p^e - j) a_j c^(p^e - j)`. -/
+/-- The step of Lucas and Tschirnhausen (Proposition 4.1.4 of Volume 7 of the handbook). Let `f` be monic of degree `m = p^e m_0`, and let `a_i = f.coeff (m - i)`. Let `a'_i` be the coefficients of `f(z + c)`. Then `a'_(p^e) = a_(p^e) + m_0 c^(p^e) + ∑_(0 < j < p^e) binom(m - j, p^e - j) a_j c^(p^e - j)`. -/
 theorem coeff_taylor_sub_pow {f : R[X]} (hmonic : f.Monic) {e m₀ m : ℕ} (hm : m = p ^ e * m₀)
     (hf : f.natDegree = m) (c : R) :
     (taylor c f).coeff (m - p ^ e) = f.coeff (m - p ^ e) + m₀ * c ^ p ^ e +
@@ -194,7 +194,7 @@ theorem coeff_taylor_sub_pow {f : R[X]} (hmonic : f.Monic) {e m₀ m : ℕ} (hm 
     rw [hmonic.coeff_natDegree, hf] at h
     rw [h, hm, cast_choose_pow_mul_pow, mul_one]
 
-/-- If `a_1 = ... = a_(p^e - 1) = 0`, then the translation `z ↦ z + c` adds `m_0 c^(p^e)` to `a_(p^e)` (Lemma 10.3 of Volume 7, Chapter 4 of the handbook). -/
+/-- If `a_1 = ... = a_(p^e - 1) = 0`, then the translation `z ↦ z + c` adds `m_0 c^(p^e)` to `a_(p^e)` (Proposition 4.1.4 of Volume 7 of the handbook). -/
 theorem coeff_taylor_sub_pow_of_eq_zero {f : R[X]} (hmonic : f.Monic) {e m₀ m : ℕ}
     (hm : m = p ^ e * m₀) (hf : f.natDegree = m) (c : R)
     (h : ∀ j, 0 < j → j < p ^ e → f.coeff (m - j) = 0) :
@@ -212,7 +212,7 @@ section Lift
 
 variable {R : Type*} [CommRing R] (p : ℕ) [ExpChar R p]
 
-/-- The lifting test (Lemma 10.5 of Volume 7, Chapter 4 of the handbook). Let `q = p^e`, let `I` be an ideal of `R`, let `g, h ∈ R`, and let `J = (z - h) + I R[z]` be the ideal of the centre `z = h` over `V(I)`. Then `z^q + g ∈ J^q` if and only if `g + h^q ∈ I^q`. -/
+/-- The lifting test (Proposition 4.2.1 of Volume 7 of the handbook). Let `q = p^e`, let `I` be an ideal of `R`, let `g, h ∈ R`, and let `J = (z - h) + I R[z]` be the ideal of the centre `z = h` over `V(I)`. Then `z^q + g ∈ J^q` if and only if `g + h^q ∈ I^q`. -/
 theorem X_pow_add_C_mem_pow_iff (I : Ideal R) (g h : R) (e : ℕ) :
     X ^ p ^ e + C g ∈ (Ideal.span {X - C h} ⊔ I.map (C : R →+* R[X])) ^ p ^ e ↔
       g + h ^ p ^ e ∈ I ^ p ^ e := by
