@@ -80,6 +80,21 @@ status:
     - name: Singularity.isEmbeddedResolution_id_of_codim_one
       kind: theorem
       status: proved
+    - name: Singularity.abhyankar_inequality
+      kind: theorem
+      status: proved
+      note: The inequality of Abhyankar for a valuation subring that contains the base field (Theorem 2.1.5 of Volume 3 of the handbook, node SG0000000Y).
+    - name: Singularity.algebraicIndependent_sumElim_of_valuationSubring
+      kind: theorem
+      status: proved
+    - name: Singularity.algebraicIndependent_sumElim_of_hasExtension
+      kind: theorem
+      status: proved
+      note: Theorem 2.1.4 of Volume 3 of the handbook, for families of each size.
+    - name: Singularity.abhyankar_inequality_relative
+      kind: theorem
+      status: proved
+      note: The relative value group is the image of the value group of vL in the quotient of the units of the value monoid by the value group of the restriction of vL to K.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
