@@ -36,11 +36,15 @@ import Mathlib.RingTheory.Polynomial.Basic
 import Mathlib.Algebra.MvPolynomial.PDeriv
 import Mathlib.RingTheory.MvPolynomial.Basic
 import Mathlib.RingTheory.MvPolynomial.Homogeneous
+import Mathlib.RingTheory.MvPolynomial.WeightedHomogeneous
+import Mathlib.RingTheory.MvPowerSeries.Order
+import Mathlib.Data.ZMod.Basic
+import Mathlib.FieldTheory.Perfect
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean` and `Singularity/Invariant/LogJacobian.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean` and `Singularity/Invariant/FrobeniusNewton.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -922,5 +926,106 @@ theorem logJacobianOrder_add_one_eq_iff (hc : IsClean p g) {d : ℕ}
       ∃ j ∉ Δ, pderiv j (homogeneousComponent d (residualFactor Δ g)) ≠ 0 := sorry
 
 end LogJacobian
+
+section FrobeniusNewton
+
+open MvPolynomial Finsupp
+
+section Defs
+
+variable {σ R : Type*} [CommSemiring R]
+
+/-- `Singularity/Invariant/Residual.lean`: the polynomial `z^q + F` in `k[z, x]`. -/
+noncomputable def purelyInseparable (q : ℕ) (F : MvPolynomial σ R) : MvPolynomial (Option σ) R :=
+  X none ^ q + rename Option.some F
+
+/-- `Singularity/Invariant/Newton.lean`: the order of `f` for the weight vector `w`. -/
+noncomputable def weightedOrd (w : σ → ℕ) (f : MvPolynomial σ R) : ℕ∞ :=
+  (f : MvPowerSeries σ R).weightedOrder w
+
+/-- `Singularity/Invariant/Newton.lean`: the initial form of `f` for `w`. -/
+noncomputable def initialForm (w : σ → ℕ) (f : MvPolynomial σ R) : MvPolynomial σ R :=
+  weightedHomogeneousComponent w (weightedOrd w f).toNat f
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: each partial derivative of `h` vanishes at `v`. -/
+def IsCriticalPoint (h : MvPolynomial σ R) (v : σ → R) : Prop :=
+  ∀ i, eval v (pderiv i h) = 0
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: `h` and each partial derivative of `h` vanish at `v`. -/
+def IsSingularPoint (h : MvPolynomial σ R) (v : σ → R) : Prop :=
+  eval v h = 0 ∧ IsCriticalPoint h v
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: no `w : σ → ZMod p` has `∑ w_i a_i = 1` for each `a ∈ S`. -/
+def IsResonant (p : ℕ) (S : Finset (σ →₀ ℕ)) : Prop :=
+  ¬ ∃ w : σ → ZMod p, ∀ a ∈ S, ∑ i ∈ a.support, w i * (a i : ZMod p) = 1
+
+end Defs
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: `(z, v)` is a singular point of `z^p + h` if and only if `z^p + h(v) = 0` and `v` is a critical point of `h`. -/
+theorem isSingularPoint_purelyInseparable_iff {σ k : Type*} [CommSemiring k] (p : ℕ) [CharP k p]
+    (h : MvPolynomial σ k) (z : k) (v : σ → k) :
+    IsSingularPoint (purelyInseparable p h) (fun o => Option.elim o z v) ↔
+      z ^ p + eval v h = 0 ∧ IsCriticalPoint h v := sorry
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: some `z ≠ 0` makes `(z, v)` a singular point of `z^p + h` if and only if `h(v) ≠ 0` and `v` is critical. -/
+theorem exists_isSingularPoint_purelyInseparable_iff {σ k : Type*} [CommRing k] [IsReduced k]
+    (p : ℕ) [Fact p.Prime] [CharP k p] [PerfectRing k p] (h : MvPolynomial σ k) (v : σ → k) :
+    (∃ z ≠ 0, IsSingularPoint (purelyInseparable p h) (fun o => Option.elim o z v)) ↔
+      eval v h ≠ 0 ∧ IsCriticalPoint h v := sorry
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: the torus criterion for one face. -/
+theorem exists_torus_isCriticalPoint_iff {σ k : Type*} [CommRing k] [IsReduced k] (p : ℕ)
+    [Fact p.Prime] [CharP k p] [PerfectRing k p] (h : MvPolynomial σ k) :
+    (∃ v : σ → k, (∀ i, v i ≠ 0) ∧ IsCriticalPoint h v) ↔
+      (∃ v : σ → k, (∀ i, v i ≠ 0) ∧ IsSingularPoint h v) ∨
+        ∃ u : Option σ → k, (∀ o, u o ≠ 0) ∧ IsSingularPoint (purelyInseparable p h) u := sorry
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: the mod `p` Euler identity. -/
+theorem eq_sum_smul_X_mul_pderiv {σ k : Type*} [Fintype σ] [CommSemiring k] (w : σ → k)
+    {h : MvPolynomial σ k} (hw : ∀ a ∈ h.support, ∑ i ∈ a.support, w i * (a i : k) = 1) :
+    h = ∑ i, w i • (X i * pderiv i h) := sorry
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: the Euler identity for a weighted homogeneous polynomial. -/
+theorem eq_inv_smul_sum_X_mul_pderiv {σ k : Type*} [Fintype σ] [Field k] {w : σ → ℕ} {D : ℕ}
+    {h : MvPolynomial σ k} (hh : IsWeightedHomogeneous w h D) (hD : (D : k) ≠ 0) :
+    h = (D : k)⁻¹ • ∑ i, (w i : k) • (X i * pderiv i h) := sorry
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: a critical point of a weighted homogeneous `h` of degree `D ≠ 0` in `k` lies on `{h = 0}`. -/
+theorem eval_eq_zero_of_isCriticalPoint_of_isWeightedHomogeneous {σ k : Type*} [Fintype σ]
+    [Field k] {w : σ → ℕ} {D : ℕ} {h : MvPolynomial σ k} (hh : IsWeightedHomogeneous w h D)
+    (hD : (D : k) ≠ 0) {v : σ → k} (hv : IsCriticalPoint h v) : eval v h = 0 := sorry
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: each partial derivative of `c x^a` with `a ∈ p ℕ^σ` is `0`. -/
+theorem pderiv_monomial_eq_zero_of_dvd {σ k : Type*} [CommSemiring k] (p : ℕ) [CharP k p]
+    {a : σ →₀ ℕ} (ha : ∀ i, p ∣ a i) (c : k) (i : σ) : pderiv i (monomial a c) = 0 := sorry
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: `z^p + c x^a` with `a ∈ p ℕ^σ` and `c ≠ 0` has a singular point in the torus. -/
+theorem exists_torus_isSingularPoint_purelyInseparable_monomial {σ k : Type*} [CommRing k]
+    [IsReduced k] (p : ℕ) [Fact p.Prime] [CharP k p] [PerfectRing k p] {a : σ →₀ ℕ}
+    (ha : ∀ i, p ∣ a i) {c : k} (hc : c ≠ 0) :
+    ∃ u : Option σ → k, (∀ o, u o ≠ 0) ∧ IsSingularPoint (purelyInseparable p (monomial a c)) u :=
+  sorry
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: a support that is not resonant gives a mod `p` Euler identity. -/
+theorem exists_eq_sum_smul_X_mul_pderiv_of_not_isResonant {σ k : Type*} [CommRing k] (p : ℕ)
+    [CharP k p] [Fintype σ] {h : MvPolynomial σ k} (hh : ¬ IsResonant p h.support) :
+    ∃ w : σ → k, h = ∑ i, w i • (X i * pderiv i h) := sorry
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: a critical point of a polynomial with a support that is not resonant lies on its zero set. -/
+theorem eval_eq_zero_of_isCriticalPoint_of_not_isResonant {σ k : Type*} [CommRing k] (p : ℕ)
+    [CharP k p] [Fintype σ] {h : MvPolynomial σ k} (hh : ¬ IsResonant p h.support) {v : σ → k}
+    (hv : IsCriticalPoint h v) : eval v h = 0 := sorry
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: a weighted homogeneous polynomial of degree `D` with `p ∤ D` is not resonant. -/
+theorem not_isResonant_of_isWeightedHomogeneous {σ R : Type*} [CommSemiring R] (p : ℕ)
+    [Fact p.Prime] {w : σ → ℕ} {D : ℕ} {h : MvPolynomial σ R} (hh : IsWeightedHomogeneous w h D)
+    (hD : ¬ p ∣ D) : ¬ IsResonant p h.support := sorry
+
+/-- `Singularity/Invariant/FrobeniusNewton.lean`: the initial form is not resonant if `p` does not divide the weighted order. -/
+theorem not_isResonant_initialForm {σ R : Type*} [CommSemiring R] (p : ℕ) [Fact p.Prime]
+    (w : σ → ℕ) (g : MvPolynomial σ R) (hD : ¬ p ∣ (weightedOrd w g).toNat) :
+    ¬ IsResonant p (initialForm w g).support := sorry
+
+end FrobeniusNewton
 
 end Singularity
