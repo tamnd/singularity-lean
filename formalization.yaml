@@ -608,6 +608,46 @@ status:
       kind: theorem
       status: proved
       note: For α with α_i < q = p^e for each i, D^α (g(x^q) f) = g(x^q) D^α f in characteristic p (the first claim of Theorem 6.3.6 of Volume 1 of the handbook).
+    - name: Singularity.monomial_one_dvd_iff
+      kind: theorem
+      status: proved
+      note: The monomial x^b divides f if and only if each monomial of f is divisible by x^b.
+    - name: Singularity.monomial_one_dvd_of_dvd_mul
+      kind: theorem
+      status: proved
+      note: If x^b divides u f and the constant term of u is not 0, then x^b divides f. Each variable is prime and does not divide u.
+    - name: Singularity.dvd_pointChart_of_monomial_one_dvd
+      kind: theorem
+      status: proved
+      note: If x^r divides h and the order of h is at least |r| + c, then x_j^(|r| + c) x^e divides pi(h), with e the exponent of the factors x_l of pi(x^r) for l other than j with t_l = 0.
+    - name: Singularity.map_pointChart_span_le
+      kind: theorem
+      status: proved
+      note: If each generator of an ideal is divisible by x^r and has order at least |r| + c, then the image of the ideal under the chart pi lies in the ideal of x_j^(|r| + c) x^e.
+    - name: Singularity.constantCoeff_blowupUnit_ne_zero
+      kind: theorem
+      status: proved
+      note: The constant term of the unit u of the transformation law is not 0.
+    - name: Singularity.le_idealOrd_logJacobianTangent
+      kind: theorem
+      status: proved
+      note: The order of the log-Jacobian ideal tangent to the origin of g is at least the order of g.
+    - name: Singularity.logJacobianOrder_le_of_mem
+      kind: theorem
+      status: proved
+      note: For a clean g other than 0, let x^b divide the log-Jacobian ideal of g with b supported in the divisor. If an element phi of the ideal has order at most |b| + n, then rho(g) is at most n.
+    - name: Singularity.logJacobianOrder_cleanPart_le
+      kind: theorem
+      status: proved
+      note: rho does not go up (Theorem 3.2.4 of Volume 7, Section 3.2 of the handbook). For a clean g other than 0 with ord g at least p and pi(g) = x_j^p g', the clean part of g' is not 0 and its rho for the new divisor is at most rho(g).
+    - name: Singularity.residualOrderAlong_pointChart_le_logJacobianOrder
+      kind: theorem
+      status: proved
+      note: Corollary 3.2.5 of Volume 7, Section 3.2 of the handbook. The residual orders satisfy d' at most rho(g'_c) + 1, rho(g'_c) + 1 at most rho + 1, and rho + 1 at most d + 1.
+    - name: Singularity.residualOrderAlong_pointChart_le_add_one
+      kind: theorem
+      status: proved
+      note: The residual order goes up by at most one under a point blowup (Corollary 3.2.5 of Volume 7, Section 3.2 of the handbook).
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
