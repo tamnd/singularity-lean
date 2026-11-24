@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.1 - 2026-11-24
+
 ### Added
 
 - `Singularity/Statements/Embedded.lean`: the statement of the embedded resolution of surfaces of Cossart, Jannsen and Saito [CJS20] (Theorem 3.1.4 of Volume 4 of the handbook, node SG0000001C). `EmbeddedResolutionSurface` is a definition of a proposition, and the package does not prove it. It asks for a regular scheme `Z` of finite type over a field and a reduced closed subscheme `X` of dimension at most 2. Then there is a proper morphism `π : Z' ⟶ Z` with `Z'` regular, an open `U` that contains each point where `X` is regular, and an ideal sheaf `E` on `Z'` such that `π` is an isomorphism over `U`, the support of `E` is the preimage of the complement of `U`, `E` has simple normal crossings, and the strict transform of `X` has normal crossings with `E` (`IsEmbeddedResolution`). Mathlib has no excellent schemes and no blowups of schemes, so the statement does not ask for an excellent `Z` or for a sequence of blowups in permissible centers. The file defines the vocabulary: a regular system of parameters (`IsRegularSystemOfParameters`), the stalk of an ideal sheaf (`stalkIdeal`), a divisor with simple normal crossings (`IsSncDivisor`, node SG0000000V, Stacks tag 0BI9), normal crossings of a subscheme with a divisor (`HasNormalCrossings`), normal flatness (`IsNormallyFlatAt`), a permissible center (`IsPermissible`, node SG0000000T), a regular subscheme of codimension 1 (`IsRegularCodimOne`) and the strict transform (`strictTransform`).
