@@ -86,17 +86,11 @@ jobs:
           start=$(date +%s)
           lake env leanchecker --fresh SingularityBase
           echo "the replay took $(( $(date +%s) - start )) s"
-      # The comparator of the base uses base/comparator.json and the challenge base/comparator/ChallengeBase.lean. See the job comparator for the sandbox.
-      - name: install bubblewrap
-        run: |
-          sudo apt-get update -q
-          sudo apt-get install -y -q bubblewrap
-          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
-          bwrap --ro-bind / / --dev /dev --proc /proc --unshare-all true
+      # The comparator of the base uses base/comparator.json and the challenge base/comparator/ChallengeBase.lean. The base package requires Singularity at the path "..", and the bwrap sandbox of the comparator binds only the directory base. Thus the comparator of the base runs without the sandbox. The kernel checks and the statement check are the same as in the job comparator. Only the isolation of the build is not there, so the record of check Q4 says this.
       - name: compare
         run: |
           start=$(date +%s)
-          lake comparator --paranoid
+          lake comparator --paranoid --inadvisably-no-sandbox
           echo "the comparator took $(( $(date +%s) - start )) s"
 
   lean4lean:
