@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.6 - 2026-11-25
+
 ### Added
 
 - `Singularity/Valuation/MacLaneChain.lean`: the chain of MacLane of part 4 of Theorem 3.3.5 of Volume 3 of the handbook, and the theorem of MacLane for a valuation `ν` on `K[X]` whose value group is discrete of rank 1. The chain `macLaneChain v ν` starts with `[v; X, ν X]` and iterates the step of MacLane (`macLaneStep`), with the key polynomials `macLaneChainKey v ν`. The step changes the value of `f` if and only if `ν f < μ f` (`augmentedValuationFun_lt_iff_map_lt`, `macLaneStep_lt_iff`). The degrees of the key polynomials do not decrease (`natDegree_le_of_map_lt_augmentedValuationFun`, `natDegree_macLaneChainKey_le_succ`), and in equal degree the value `ν φᵢ` decreases strictly in multiplicative notation (`map_lt_map_of_natDegree_eq`, `map_macLaneChainKey_succ_lt`). If `ν φᵢ = 0`, then the chain ends with `ν` (`macLaneChain_succ_eq_of_map_eq_zero`). If `ν F = 0` for some `F ≠ 0`, then the degrees are at most the degree of `F` (`natDegree_macLaneChainKey_le_of_map_eq_zero`). If only finitely many values of `ν` lie between `c ≠ 0` and `d`, then `μᵢ f = ν f` for all large `i` and each `f` with `ν f ≠ 0` (`eventually_eq_of_succ_lt`, `macLaneChain_eventually_eq`, `macLaneChain_eventually_le`). If in addition the degrees and the nonzero values `ν φᵢ` are bounded, then the chain is finite (`exists_macLaneChain_eq`, `exists_macLaneChain_eq_of_map_eq_zero`). The chain need not be finite, and the limit augmentations of Vaquié are not constructed.
