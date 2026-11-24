@@ -14,7 +14,8 @@
     "Singularity.algebraicIndependent_sumElim_of_valuationSubring",
     "Singularity.abhyankar_inequality",
     "Singularity.algebraicIndependent_sumElim_of_hasExtension",
-    "Singularity.abhyankar_inequality_relative"
+    "Singularity.abhyankar_inequality_relative",
+    "Singularity.ZariskiRiemann.compactSpace"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

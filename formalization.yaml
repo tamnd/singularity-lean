@@ -95,6 +95,10 @@ status:
       kind: theorem
       status: proved
       note: The relative value group is the image of the value group of vL in the quotient of the units of the value monoid by the value group of the restriction of vL to K.
+    - name: Singularity.ZariskiRiemann.compactSpace
+      kind: theorem
+      status: proved
+      note: The Zariski-Riemann space of the valuation subrings of K that contain the image of A is quasi-compact (Theorem 1.5.3 of Volume 3 of the handbook, node SG0000000X).
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
