@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/LimitAugmentation.lean`: the limit augmentation of Vaquié [Vaq07] for a continuous family of augmented valuations `μᵢ = [μ; φᵢ, γᵢ]` of constant degree `d`, indexed by a totally ordered set without a largest element. The limit `μ_∞ f` is the eventual value of `μᵢ f` for a stable `f`. Let `μᵢ ≤ ν` for each `i` in additive notation, and let `ν` agree with `μ` in degree less than `d`. Then `μ_∞ f = ν f` for each stable `f` (`ContinuousFamily.stableValue_eq_of_isStable`), and some polynomial is unstable if and only if some `f` has `μᵢ f ≠ ν f` for each `i` (`ContinuousFamily.exists_not_isStable_iff`). A monic unstable polynomial of least degree exists (`ContinuousFamily.exists_isLimitKeyPolynomial`), and it divides `f` in the limit if and only if `f` is unstable (`ContinuousFamily.IsLimitKeyPolynomial.limitDvd_iff`). For such a limit key polynomial `φ` and `γ ≥ μᵢ(φ)` for each `i` in additive notation, the limit augmentation `[μ_∞; φ, γ]` is a valuation (`ContinuousFamily.limitAugmentedValuation`), with `μᵢ ≤ [μ_∞; φ, γ]` for each `i` (`IsLimitKeyPolynomial.limitAugmentedValuationFun_le`). If also `γ ≤ ν(φ)`, then `[μ_∞; φ, γ] ≤ ν` (`IsLimitKeyPolynomial.map_le_limitAugmentedValuationFun`).
+
 ## 0.4.7 - 2026-11-25
 
 ### Added

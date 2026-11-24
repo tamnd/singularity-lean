@@ -356,6 +356,38 @@ status:
       kind: theorem
       status: proved
       note: For z^q + F with q = p^e and F clean, no vertex v other than 0 of the projected Newton polyhedron is solvable.
+    - name: Singularity.ContinuousFamily.stableValue_eq_of_isStable
+      kind: theorem
+      status: proved
+      note: For a continuous family μᵢ ≤ ν that agrees with ν in degree less than d, the limit value of a stable polynomial is its value for ν.
+    - name: Singularity.ContinuousFamily.exists_not_isStable_iff
+      kind: theorem
+      status: proved
+      note: Some polynomial is not stable for a continuous family below ν if and only if the family does not reach ν, that is some f has μᵢ(f) ≠ ν(f) for each i.
+    - name: Singularity.ContinuousFamily.exists_isLimitKeyPolynomial
+      kind: theorem
+      status: proved
+      note: If some polynomial is not stable for a continuous family, then a limit key polynomial exists, a monic unstable polynomial of least degree.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.limitDvd_iff
+      kind: theorem
+      status: proved
+      note: A limit key polynomial divides f in the limit if and only if f is not stable.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.limitAugmentedValuationFun_add_le_max
+      kind: theorem
+      status: proved
+      note: The limit augmentation of Vaquié satisfies the ultrametric inequality.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.limitAugmentedValuationFun_mul
+      kind: theorem
+      status: proved
+      note: The limit augmentation of Vaquié [μ_∞; φ, γ] is multiplicative for γ ≥ μᵢ(φ) for each i in additive notation, so it is a valuation.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.limitAugmentedValuationFun_le
+      kind: theorem
+      status: proved
+      note: Each valuation μᵢ of the continuous family is at most the limit augmentation [μ_∞; φ, γ] in additive notation.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.map_le_limitAugmentedValuationFun
+      kind: theorem
+      status: proved
+      note: The limit augmentation [μ_∞; φ, γ] is at most ν in additive notation if γ ≤ ν(φ).
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
