@@ -376,6 +376,46 @@ theorem eventually_eq_of_succ_lt {ν : Valuation K[X] Γ₀}
 
 end MacLaneChain
 
+section MacLaneUnique
+
+/-- `Singularity/Valuation/MacLaneUnique.lean`: two monic polynomials of least degree with `μ(f) < ν(f)` in additive notation have the same degree. -/
+theorem natDegree_eq_of_map_lt {μ ν : Valuation K[X] Γ₀} {φ ψ : K[X]} (hlt : ν φ < μ φ)
+    (hlow : ∀ f : K[X], f.degree < φ.degree → ν f = μ f) (hψlt : ν ψ < μ ψ)
+    (hψlow : ∀ f : K[X], f.degree < ψ.degree → ν f = μ f) : ψ.natDegree = φ.natDegree := sorry
+
+/-- `Singularity/Valuation/MacLaneUnique.lean`: a monic `ψ` of the degree of `φ` has `μ(ψ) < ν(ψ)` in additive notation if and only if `ψ` is `μ`-equivalent to `φ`. -/
+theorem muEquiv_iff_map_lt {μ ν : Valuation K[X] Γ₀} {φ ψ : K[X]} (hφ : φ.Monic)
+    (hlt : ν φ < μ φ) (hlow : ∀ f : K[X], f.degree < φ.degree → ν f = μ f) (hψ : ψ.Monic)
+    (hdeg : ψ.natDegree = φ.natDegree) : MuEquiv μ φ ψ ↔ ν ψ < μ ψ := sorry
+
+/-- `Singularity/Valuation/MacLaneUnique.lean`: if `ν(ψ) ≤ ν(φ)` in additive notation, then `μ(ψ - φ) ≥ ν(ψ)`. -/
+theorem map_sub_le_of_map_le {μ ν : Valuation K[X] Γ₀} {φ ψ : K[X]} (hφ : φ.Monic)
+    (hlow : ∀ f : K[X], f.degree < φ.degree → ν f = μ f) (hψ : ψ.Monic)
+    (hdeg : ψ.natDegree = φ.natDegree) (hν : ν φ ≤ ν ψ) : μ (ψ - φ) ≤ ν ψ := sorry
+
+/-- `Singularity/Valuation/MacLaneUnique.lean`: key polynomials `φ` and `ψ` of the same degree with `μ(ψ - φ) ≥ γ` in additive notation give the same augmentation. -/
+theorem KeyPolynomial.augmentedValuationFun_eq_of_map_sub_le {μ : Valuation K[X] Γ₀}
+    {φ ψ : K[X]} {γ : Γ₀} (hφ : KeyPolynomial μ φ) (hψ : KeyPolynomial μ ψ)
+    (hdeg : ψ.natDegree = φ.natDegree) (hγφ : γ ≤ μ φ) (hγψ : γ ≤ μ ψ) (h : μ (ψ - φ) ≤ γ)
+    (f : K[X]) : augmentedValuationFun μ φ γ f = augmentedValuationFun μ ψ γ f := sorry
+
+/-- `Singularity/Valuation/MacLaneUnique.lean`: if `μ(ψ) < ν(ψ) ≤ ν(φ)` in additive notation, then `[μ; ψ, ν(ψ)] ≤ [μ; φ, ν(φ)]`. -/
+theorem augmentedValuationFun_le_of_map_le {μ ν : Valuation K[X] Γ₀} {φ ψ : K[X]}
+    (hle : ∀ f, ν f ≤ μ f) (hφ : φ.Monic)
+    (hlt : ν φ < μ φ) (hlow : ∀ f : K[X], f.degree < φ.degree → ν f = μ f) (hψ : ψ.Monic)
+    (hdeg : ψ.natDegree = φ.natDegree) (hψlt : ν ψ < μ ψ) (hν : ν φ ≤ ν ψ) (f : K[X]) :
+    augmentedValuationFun μ φ (ν φ) f ≤ augmentedValuationFun μ ψ (ν ψ) f := sorry
+
+/-- `Singularity/Valuation/MacLaneUnique.lean`: Theorem 3.3.5 (3), the graded algebra in elementwise form. The terms of least value of the `φ`-expansion of `f` give the initial form of `f`. -/
+theorem KeyPolynomial.augmentedValuationFun_sub_sum_filter_lt {μ : Valuation K[X] Γ₀}
+    {φ : K[X]} {γ : Γ₀} (hφ : KeyPolynomial μ φ)
+    (hγ : γ ≤ μ φ) {f : K[X]} (hf : augmentedValuationFun μ φ γ f ≠ 0) :
+    augmentedValuationFun μ φ γ (f - ∑ j ∈ (Finset.range (f.natDegree + 1)).filter
+        (fun j => μ (expansionCoeff φ f j) * γ ^ j = augmentedValuationFun μ φ γ f),
+        expansionCoeff φ f j * φ ^ j) < augmentedValuationFun μ φ γ f := sorry
+
+end MacLaneUnique
+
 end KeyPolynomials
 
 section CharacteristicPolyhedron
