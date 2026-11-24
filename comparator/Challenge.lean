@@ -40,11 +40,14 @@ import Mathlib.RingTheory.MvPolynomial.WeightedHomogeneous
 import Mathlib.RingTheory.MvPowerSeries.Order
 import Mathlib.Data.ZMod.Basic
 import Mathlib.FieldTheory.Perfect
+import Mathlib.Algebra.MvPolynomial.Expand
+import Mathlib.Algebra.Polynomial.HasseDeriv
+import Mathlib.Data.Finsupp.Interval
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean` and `Singularity/Invariant/FrobeniusNewton.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean` and `Singularity/Algebra/MvHasse.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -1109,5 +1112,128 @@ theorem span_mul_logJacobian_le_map_pointChart (hg : pointChart j t g = X j ^ p 
 end Law
 
 end LogJacobianBlowup
+
+section MvHasse
+
+namespace Algebra.MvHasse
+
+open MvPolynomial Finsupp
+
+section Defs
+
+variable {σ : Type*}
+
+/-- `Singularity/Algebra/MvHasse.lean`: the binomial coefficient of two multi-indices. -/
+def choose (β α : σ →₀ ℕ) : ℕ :=
+  ∏ i ∈ α.support, (β i).choose (α i)
+
+end Defs
+
+section Defs
+
+variable {σ R : Type*} [CommSemiring R]
+
+variable (σ R) in
+/-- `Singularity/Algebra/MvHasse.lean`: the Taylor substitution `x_i ↦ x_i + y_i`. -/
+noncomputable def taylor : MvPolynomial σ R →ₐ[R] MvPolynomial σ (MvPolynomial σ R) :=
+  aeval fun i => C (X i) + X i
+
+/-- `Singularity/Algebra/MvHasse.lean`: the Hasse-Schmidt derivative `D^α`. -/
+noncomputable def hasseDeriv (α : σ →₀ ℕ) : MvPolynomial σ R →ₗ[R] MvPolynomial σ R where
+  toFun f := (taylor σ R f).coeff α
+  map_add' f g := by rw [map_add, AddMonoidAlgebra.coeff_add, Finsupp.add_apply]
+  map_smul' c f := by rw [map_smul, coeff_smul, RingHom.id_apply]
+
+end Defs
+
+/-- `Singularity/Algebra/MvHasse.lean`: `D^α (r x^β) = binom(β, α) r x^(β - α)`. -/
+theorem hasseDeriv_monomial {σ R : Type*} [CommSemiring R] (α β : σ →₀ ℕ) (r : R) :
+    hasseDeriv α (monomial β r) = monomial (β - α) ((choose β α : R) * r) := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: `D^0` is the identity. -/
+theorem hasseDeriv_zero {σ R : Type*} [CommSemiring R] :
+    (hasseDeriv 0 : MvPolynomial σ R →ₗ[R] MvPolynomial σ R) = LinearMap.id := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: `D^α` on the constants. -/
+theorem hasseDeriv_C {σ R : Type*} [CommSemiring R] [DecidableEq σ] (α : σ →₀ ℕ) (r : R) :
+    hasseDeriv α (C r : MvPolynomial σ R) = if α = 0 then C r else 0 := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: `D^α` on the variables. -/
+theorem hasseDeriv_X {σ R : Type*} [CommSemiring R] [DecidableEq σ] (α : σ →₀ ℕ) (i : σ) :
+    hasseDeriv α (X i : MvPolynomial σ R) =
+      if α = 0 then X i else if α = single i 1 then 1 else 0 := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: in one variable, `D^α` is `Polynomial.hasseDeriv`. -/
+theorem uniqueAlgEquiv_hasseDeriv {σ R : Type*} [CommSemiring R] [Unique σ] (α : σ →₀ ℕ)
+    (f : MvPolynomial σ R) :
+    uniqueAlgEquiv R σ (hasseDeriv α f) =
+      Polynomial.hasseDeriv (α default) (uniqueAlgEquiv R σ f) := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: `D^(e_i)` is the partial derivative `∂_i`. -/
+theorem hasseDeriv_single_one {σ R : Type*} [CommSemiring R] (i : σ) (f : MvPolynomial σ R) :
+    hasseDeriv (single i 1) f = pderiv i f := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: the Leibniz rule. -/
+theorem hasseDeriv_mul {σ R : Type*} [CommSemiring R] [DecidableEq σ] (α : σ →₀ ℕ)
+    (f g : MvPolynomial σ R) :
+    hasseDeriv α (f * g) =
+      ∑ x ∈ Finset.antidiagonal α, hasseDeriv x.1 f * hasseDeriv x.2 g := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: the composition rule. -/
+theorem hasseDeriv_comp {σ R : Type*} [CommSemiring R] (α β : σ →₀ ℕ) (f : MvPolynomial σ R) :
+    hasseDeriv α (hasseDeriv β f) = choose (α + β) α • hasseDeriv (α + β) f := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: the coefficients of `D^α f`. -/
+theorem coeff_hasseDeriv {σ R : Type*} [CommSemiring R] (α γ : σ →₀ ℕ) (f : MvPolynomial σ R) :
+    (hasseDeriv α f).coeff γ = (choose (γ + α) α : R) * f.coeff (γ + α) := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: `(D^α f)(0)` is the coefficient of `x^α` in `f`. -/
+theorem constantCoeff_hasseDeriv {σ R : Type*} [CommSemiring R] (α : σ →₀ ℕ)
+    (f : MvPolynomial σ R) :
+    constantCoeff (hasseDeriv α f) = f.coeff α := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: the order criterion at the origin. -/
+theorem le_ord_iff_hasseDeriv {σ R : Type*} [CommSemiring R] {f : MvPolynomial σ R} {d : ℕ} :
+    (d : ℕ∞) ≤ ord f ↔ ∀ α : σ →₀ ℕ, degree α < d → constantCoeff (hasseDeriv α f) = 0 := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: the Taylor formula. -/
+theorem taylor_eq_sum {σ R : Type*} [CommSemiring R] [DecidableEq σ] (f : MvPolynomial σ R) :
+    taylor σ R f = ∑ α ∈ Finset.Iic (f.support.sup id), monomial α (hasseDeriv α f) := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: the coefficients of `f(a + y)`. -/
+theorem coeff_aeval_X_add_C {σ R : Type*} [CommSemiring R] (a : σ → R) (α : σ →₀ ℕ)
+    (f : MvPolynomial σ R) :
+    (aeval (fun i => X i + C (a i)) f).coeff α = eval a (hasseDeriv α f) := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: the Taylor formula at a point `a`. -/
+theorem aeval_X_add_C_eq_sum {σ R : Type*} [CommSemiring R] [DecidableEq σ] (a : σ → R)
+    (f : MvPolynomial σ R) :
+    aeval (fun i => X i + C (a i)) f =
+      ∑ α ∈ Finset.Iic (f.support.sup id), monomial α (eval a (hasseDeriv α f)) := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: the order criterion at a point `a`. -/
+theorem le_ord_aeval_X_add_C_iff {σ R : Type*} [CommSemiring R] (a : σ → R)
+    {f : MvPolynomial σ R} {d : ℕ} :
+    (d : ℕ∞) ≤ ord (aeval (fun i => X i + C (a i)) f) ↔
+      ∀ α : σ →₀ ℕ, degree α < d → eval a (hasseDeriv α f) = 0 := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: the polynomials in the `x_i^q`. -/
+theorem exists_expand_eq_iff {σ R : Type*} [CommSemiring R] {q : ℕ} (f : MvPolynomial σ R) :
+    (∃ g, expand q g = f) ↔ ∀ β ∈ f.support, ∀ i, q ∣ β i := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: the test for `q`-th powers in characteristic `p`. -/
+theorem exists_expand_eq_iff_hasseDeriv {σ R : Type*} [CommSemiring R] (p : ℕ) [Fact p.Prime]
+    [CharP R p] (e : ℕ) (f : MvPolynomial σ R) :
+    (∃ g, expand (p ^ e) g = f) ↔
+      ∀ α : σ →₀ ℕ, α ≠ 0 → (∀ i, α i < p ^ e) → hasseDeriv α f = 0 := sorry
+
+/-- `Singularity/Algebra/MvHasse.lean`: `D^α (g(x^q) f) = g(x^q) D^α f` for `α_i < q`. -/
+theorem hasseDeriv_expand_mul {σ R : Type*} [CommSemiring R] (p : ℕ) [Fact p.Prime] [CharP R p]
+    (e : ℕ) {α : σ →₀ ℕ} (hα : ∀ i, α i < p ^ e) (g f : MvPolynomial σ R) :
+    hasseDeriv α (expand (p ^ e) g * f) = expand (p ^ e) g * hasseDeriv α f := sorry
+
+end Algebra.MvHasse
+
+end MvHasse
 
 end Singularity

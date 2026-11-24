@@ -109,7 +109,25 @@
     "Singularity.map_pointChart_logJacobianTangent_le",
     "Singularity.span_mul_logJacobian_pointChart_le",
     "Singularity.map_pointChart_logJacobianTangent_le_span_mul",
-    "Singularity.span_mul_logJacobian_le_map_pointChart"
+    "Singularity.span_mul_logJacobian_le_map_pointChart",
+    "Singularity.Algebra.MvHasse.hasseDeriv_monomial",
+    "Singularity.Algebra.MvHasse.hasseDeriv_zero",
+    "Singularity.Algebra.MvHasse.hasseDeriv_C",
+    "Singularity.Algebra.MvHasse.hasseDeriv_X",
+    "Singularity.Algebra.MvHasse.uniqueAlgEquiv_hasseDeriv",
+    "Singularity.Algebra.MvHasse.hasseDeriv_single_one",
+    "Singularity.Algebra.MvHasse.hasseDeriv_mul",
+    "Singularity.Algebra.MvHasse.hasseDeriv_comp",
+    "Singularity.Algebra.MvHasse.coeff_hasseDeriv",
+    "Singularity.Algebra.MvHasse.constantCoeff_hasseDeriv",
+    "Singularity.Algebra.MvHasse.le_ord_iff_hasseDeriv",
+    "Singularity.Algebra.MvHasse.taylor_eq_sum",
+    "Singularity.Algebra.MvHasse.coeff_aeval_X_add_C",
+    "Singularity.Algebra.MvHasse.aeval_X_add_C_eq_sum",
+    "Singularity.Algebra.MvHasse.le_ord_aeval_X_add_C_iff",
+    "Singularity.Algebra.MvHasse.exists_expand_eq_iff",
+    "Singularity.Algebra.MvHasse.exists_expand_eq_iff_hasseDeriv",
+    "Singularity.Algebra.MvHasse.hasseDeriv_expand_mul"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

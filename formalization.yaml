@@ -536,6 +536,78 @@ status:
       kind: theorem
       status: proved
       note: The transformation law, second inclusion (Theorem 3.2.3 of Volume 7, Section 3.2 of the handbook). If pi(g) = x_j^p g', then (x_j^p u) times the log-Jacobian ideal of g' for the new divisor lies in the image of the log-Jacobian ideal tangent to the origin of g. The polynomial u is a unit in the power series ring.
+    - name: Singularity.Algebra.MvHasse.hasseDeriv_monomial
+      kind: theorem
+      status: proved
+      note: In several variables, D^α (r x^β) = binom(β, α) r x^(β - α), with binom(β, α) the product of the binomial coefficients of the coordinates.
+    - name: Singularity.Algebra.MvHasse.hasseDeriv_zero
+      kind: theorem
+      status: proved
+      note: The operator D^0 is the identity.
+    - name: Singularity.Algebra.MvHasse.hasseDeriv_C
+      kind: theorem
+      status: proved
+      note: The operator D^α kills the constants for α ≠ 0.
+    - name: Singularity.Algebra.MvHasse.hasseDeriv_X
+      kind: theorem
+      status: proved
+      note: The values of D^α on a variable x_i are x_i for α = 0, 1 for α = e_i, and 0 otherwise.
+    - name: Singularity.Algebra.MvHasse.uniqueAlgEquiv_hasseDeriv
+      kind: theorem
+      status: proved
+      note: In one variable, D^α is the Hasse derivative Polynomial.hasseDeriv of Mathlib (Proposition 6.3.2 of Volume 1 of the handbook).
+    - name: Singularity.Algebra.MvHasse.hasseDeriv_single_one
+      kind: theorem
+      status: proved
+      note: The operator D^(e_i) is the partial derivative with respect to x_i.
+    - name: Singularity.Algebra.MvHasse.hasseDeriv_mul
+      kind: theorem
+      status: proved
+      note: The Leibniz rule for the Hasse-Schmidt derivatives in several variables, with a sum over the antidiagonal of α.
+    - name: Singularity.Algebra.MvHasse.hasseDeriv_comp
+      kind: theorem
+      status: proved
+      note: The composition rule D^α D^β = binom(α + β, α) D^(α + β).
+    - name: Singularity.Algebra.MvHasse.coeff_hasseDeriv
+      kind: theorem
+      status: proved
+      note: The coefficient of x^γ in D^α f is binom(γ + α, α) times the coefficient of x^(γ + α) in f.
+    - name: Singularity.Algebra.MvHasse.constantCoeff_hasseDeriv
+      kind: theorem
+      status: proved
+      note: The value of D^α f at the origin is the coefficient of x^α in f.
+    - name: Singularity.Algebra.MvHasse.le_ord_iff_hasseDeriv
+      kind: theorem
+      status: proved
+      note: The order of f at the origin is at least d if and only if (D^α f)(0) = 0 for each α with |α| < d.
+    - name: Singularity.Algebra.MvHasse.taylor_eq_sum
+      kind: theorem
+      status: proved
+      note: The Taylor formula f(x + y) = sum of (D^α f)(x) y^α in several variables.
+    - name: Singularity.Algebra.MvHasse.coeff_aeval_X_add_C
+      kind: theorem
+      status: proved
+      note: The coefficient of y^α in f(a + y) is (D^α f)(a).
+    - name: Singularity.Algebra.MvHasse.aeval_X_add_C_eq_sum
+      kind: theorem
+      status: proved
+      note: The Taylor formula at a point a, f(a + y) = sum of (D^α f)(a) y^α.
+    - name: Singularity.Algebra.MvHasse.le_ord_aeval_X_add_C_iff
+      kind: theorem
+      status: proved
+      note: The order of f at a point a is at least d if and only if (D^α f)(a) = 0 for each α with |α| < d (Proposition 1.1.4 of Volume 7 of the handbook).
+    - name: Singularity.Algebra.MvHasse.exists_expand_eq_iff
+      kind: theorem
+      status: proved
+      note: A polynomial is a polynomial in the x_i^q if and only if q divides each exponent of each of its monomials.
+    - name: Singularity.Algebra.MvHasse.exists_expand_eq_iff_hasseDeriv
+      kind: theorem
+      status: proved
+      note: The test for q-th powers. Over a semiring of characteristic p, with q = p^e, f is a polynomial in the x_i^q if and only if D^α f = 0 for each α ≠ 0 with α_i < q for each i. The proof uses the theorem of Lucas.
+    - name: Singularity.Algebra.MvHasse.hasseDeriv_expand_mul
+      kind: theorem
+      status: proved
+      note: For α with α_i < q = p^e for each i, D^α (g(x^q) f) = g(x^q) D^α f in characteristic p (the first claim of Theorem 6.3.6 of Volume 1 of the handbook).
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
