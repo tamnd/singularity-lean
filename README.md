@@ -30,6 +30,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Algebra/RegularLocalization.lean` | the localization of a regular local ring at a prime ideal is a regular local ring |
 | `Singularity/Algebra/RegularLocus.lean` | the regular locus of a Noetherian ring is stable under generization, and the criterion of Nagata for the openness of the regular locus |
 | `Singularity/Algebra/Jacobian.lean` | the Jacobian criterion for a hypersurface: if $D F \notin \mathfrak{q}$ for a derivation $D$, then $A_\mathfrak{q}/(F)$ is regular |
+| `Singularity/Algebra/GenericRegular.lean` | generic regularity in characteristic $0$: a domain of finite type over a field of characteristic $0$ has a nonempty open regular locus, and the regular locus of an algebra of finite type over such a field is open |
 | `Singularity/Scheme/Components.lean` | the irreducible components of a reduced Noetherian scheme: each component is integral, and a point with a domain as local ring lies on one component only |
 | `Singularity/Scheme/Reduction.lean` | `reductionToIntegral`: the proof of `ReductionToIntegral`, and the lemma that a finite disjoint union of proper maps is proper |
 | `Singularity/Curves/Resolution.lean` | `integralResolutionInDim_one` and `resolutionInDim_one`: each curve over a field of each characteristic has a resolution |
