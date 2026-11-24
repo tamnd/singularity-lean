@@ -45,6 +45,7 @@ import Singularity.Invariant.Directrix
 import Singularity.Invariant.CharacteristicPolyhedron
 import Singularity.Invariant.MohBound
 import Singularity.Invariant.CharacteristicPolyhedronClean
+import Singularity.Invariant.RigidLayer
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
