@@ -21,7 +21,8 @@ This file states local uniformization of valuations of function fields, the know
 * `IsFunctionField`: a finitely generated field extension `K` of `k`.
 * `IsAffineModel`: a finitely generated `k`-subalgebra `A` of `K` with fraction field `K`.
 * `valuationCenter`: the center `m_V ∩ A` of a valuation subring `V` on such a model.
-* `HasLocalUniformization`: there is an affine model on which the center of `V` is a regular point.
+* `HasRegularCenter`: there is an affine model that contains a given set, on which the center of `V` is a regular point.
+* `HasLocalUniformization`: for each finite subset `s` of `V`, there is an affine model that contains `s`, on which the center of `V` is a regular point.
 * `IsAbhyankarValuation`: equality holds in the inequality of Abhyankar (node SG0000000Y).
 * `LocalUniformizationInDim`: local uniformization for function fields of a given transcendence degree over fields of a given characteristic.
 * `localUniformization_abhyankar`: the theorem of Knaf-Kuhlmann [KK05] (node SG0000001E).
@@ -36,11 +37,17 @@ A valuation of `K/k` is a valuation subring `V` of `K` together with a structure
 
 The field `K` is a function field over `k` if it is finitely generated over `k` as a field extension: `(⊤ : IntermediateField k K).FG`. Mathlib also has `Algebra.EssFiniteType k K`, and `IntermediateField.fg_top_iff` shows that the two notions agree.
 
-The usual form of local uniformization (Zariski [Zar40]) asks for a projective integral model `X` of `K/k` such that the center `x` of `V` on `X` is a regular point, that is, the local ring `𝒪_{X,x}` is a regular local ring. Here the model is affine. `HasLocalUniformization k V` asks for a finitely generated `k`-subalgebra `A` of `K` with fraction field `K` and `A ⊆ V` such that the localization of `A` at the prime `m_V ∩ A` is a regular local ring. The two forms are equivalent. If `X` is a projective model and `x` is the center of `V`, then take an affine open `Spec A` of `X` that contains `x`. Then `A` is finitely generated over `k`, its fraction field is `K`, `A ⊆ 𝒪_{X,x} ⊆ V`, the point `x` is the prime `m_V ∩ A`, and `𝒪_{X,x}` is the localization of `A` at this prime. Conversely, let `A` be such an algebra, with generators `a_1, ..., a_n`. Embed `Spec A` in `𝔸^n` and take the closure `X` of `Spec A` in `ℙ^n`. Then `Spec A` is an open subscheme of `X`, because `Spec A` is closed in `𝔸^n`. The valuation `V` has a unique center on `X`, because `X` is proper and separated. Since `A ⊆ V`, this center is the point `m_V ∩ A` of `Spec A`, and its local ring is the localization of `A` at this point. A regular local ring is the class `IsRegularLocalRing` of Mathlib, as in `Singularity/Statements/Basic.lean`.
+Definition 4.1.1 of Volume 3 of the handbook uses models that are varieties: a valuation `v` of `K/k` has local uniformization if for each model `X` of `K/k` on which `v` has a center, there are a model `X'` and a proper birational morphism `X' → X` such that the center of `v` on `X'` is a regular point. Here the models are affine. `HasRegularCenter k V S` asks for a finitely generated `k`-subalgebra `A` of `K` with fraction field `K`, `S ⊆ A` and `A ⊆ V`, such that the localization of `A` at the prime `m_V ∩ A` is a regular local ring. `HasLocalUniformization k V` asks for `HasRegularCenter k V s` for each finite subset `s` of `V`. This is the form of Zariski [Zar40]. Knaf-Kuhlmann [KK05] state it in the same form: for each finite set `Z ⊆ 𝒪_v` there is a model on which `v` is centered at a regular point `x` with `Z ⊆ 𝒪_{X,x}`. A regular local ring is the class `IsRegularLocalRing` of Mathlib, as in `Singularity/Statements/Basic.lean`.
+
+The affine form is equivalent to Definition 4.1.1. First assume Definition 4.1.1, and let `s` be a finite subset of `V`. Choose elements `t_1, ..., t_n` that generate `K` over `k` as a field. If `t_i` is not in `V`, then `t_i⁻¹` is in `V`, and we replace `t_i` by `t_i⁻¹`. Let `A₀ = k[s, t_1, ..., t_n]`. Then `A₀ ⊆ V`, so `V` has a center on the model `Spec A₀`. Definition 4.1.1 gives a proper birational morphism `X' → Spec A₀` such that the center `x'` of `V` on `X'` is a regular point. Take an affine open `Spec A` of `X'` that contains `x'`. Then `A` is finitely generated over `k`, its fraction field is `K`, and `A ⊆ 𝒪_{X',x'} ⊆ V`. Also `s ⊆ A₀ ⊆ A`, because `X'` maps to `Spec A₀`. The point `x'` is the prime `m_V ∩ A`, and its local ring is the localization of `A` at this prime. So `HasRegularCenter k V s` holds.
+
+Conversely, assume `HasLocalUniformization k V`, and let `X` be a model on which `V` has a center `x`. Take an affine open `Spec A₀` of `X` that contains `x`, and let `s` be a finite set of generators of `A₀` over `k`. Then `s ⊆ A₀ ⊆ 𝒪_{X,x} ⊆ V`. The hypothesis gives an affine model `A` with `A₀ ⊆ A ⊆ V` on which the center of `V` is regular. Let `Y` be a projective closure of `Spec A`: embed `Spec A` in `𝔸^m` by a set of generators, and take the closure in `ℙ^m`. Let `X'` be the closure of the image of `Spec K` in `X ×_k Y`. The projection `X' → X` is proper, because `Y` is proper over `k`, and it is birational. The center of `V` on `X'` maps to the center `x` on `X` and to the center of `V` on `Y`, and this center lies in `Spec A` because `A ⊆ V`. So the center of `V` on `X'` lies in the open set `Spec A₀ ×_k Spec A`. In this open set, `X'` is the spectrum of the image of `A₀ ⊗_k A` in `K`, and this image is `A` because `A₀ ⊆ A`. Thus the local ring of `X'` at the center of `V` is the localization of `A` at `m_V ∩ A`, a regular local ring.
+
+The condition `s ⊆ A` matters. Without it, the definition asks only that the center of `V` is regular on one affine model. `HasLocalUniformization k V` implies this weak form (`Singularity.Fidelity.exists_regularCenter_of_hasLocalUniformization`). The converse is not known in general: a regular center on one model does not give a regular center on a model that dominates a given model `X`.
 
 The theorem of Knaf-Kuhlmann [KK05] needs the hypothesis that the residue field of `V` is separable over `k`. The residue field of an Abhyankar valuation is finitely generated over `k`, so separable means separably generated (`Algebra.IsSeparablyGenerated`, Stacks tag 030O). The hypothesis holds when `k` is perfect, in particular in characteristic 0.
 
-In the theorem of Temkin [Tem13], a finite purely inseparable extension `L` of `K` is taken, and the valuation `V` has a unique extension `W` to `L`. The statement asks for an extension `W` of `V`, that is, a valuation subring `W` of `L` with `W ∩ K = V` (`W.comap (algebraMap K L) = V`). The model of `L` is a `k`-algebra, with the structure of `k`-algebra on `L` that comes from `K`.
+In the theorem of Temkin [Tem13, Theorem 1.3.2], a finite purely inseparable extension `L` of `K` is taken, and the valuation `V` has a unique extension `W` to `L`. The extension `L` depends on the model: for each affine model `Spec A₀` of `K` with `A₀ ⊆ V`, there are `L` and an affine model `X'` of `K` over `Spec A₀` such that `W` is centered on a smooth point of the normalization of `X'` in `L`. This normalization is an affine model of `L/k` that contains `A₀`. So the statement takes a finite subset `s` of `V` first. Then it asks for `L`, and for an extension `W` of `V`, that is, a valuation subring `W` of `L` with `W ∩ K = V` (`W.comap (algebraMap K L) = V`), such that `W` has a regular center on an affine model of `L/k` that contains the image of `s` (`HasRegularCenter`). The model of `L` is a `k`-algebra, with the structure of `k`-algebra on `L` that comes from `K`.
 
 The patching statement `resolution_of_localUniformization_four` takes local uniformization in each transcendence degree at most 4 as the hypothesis, because a variety of dimension at most 4 can have components of smaller dimension. Local uniformization in transcendence degree at most 3 is known in characteristic `p > 0` (Abhyankar in transcendence degree at most 2, Cossart-Piltant in transcendence degree 3). Thus, as a statement of mathematics, the hypothesis is the same as local uniformization in transcendence degree 4.
 
@@ -87,12 +94,16 @@ instance isPrime_valuationCenter (V : ValuationSubring K) (A : Subalgebra k K)
 
 variable (k)
 
-/-- The valuation subring `V` of `K` has local uniformization over `k`: there is an affine model `A` of `K/k` with `A ⊆ V` such that the localization of `A` at the center `m_V ∩ A` is a regular local ring.
-
-The docstring of the file explains why this affine form is equivalent to the form with a projective model. If `V` has local uniformization over `k`, then `V` contains `k`, because `k ⊆ A ⊆ V`. -/
-def HasLocalUniformization (V : ValuationSubring K) : Prop :=
-  ∃ (A : Subalgebra k K) (h : ∀ a : A, (a : K) ∈ V), IsAffineModel A ∧
+/-- The valuation subring `V` of `K` has a regular center on an affine model of `K/k` that contains the set `S`: there is an affine model `A` of `K/k` with `S ⊆ A` and `A ⊆ V` such that the localization of `A` at the center `m_V ∩ A` is a regular local ring. -/
+def HasRegularCenter (V : ValuationSubring K) (S : Set K) : Prop :=
+  ∃ (A : Subalgebra k K) (h : ∀ a : A, (a : K) ∈ V), IsAffineModel A ∧ S ⊆ (A : Set K) ∧
     IsRegularLocalRing (Localization.AtPrime (valuationCenter V A h))
+
+/-- The valuation subring `V` of `K` has local uniformization over `k`: for each finite subset `s` of `V`, there is an affine model `A` of `K/k` with `s ⊆ A ⊆ V` such that the localization of `A` at the center `m_V ∩ A` is a regular local ring.
+
+The docstring of the file explains why this affine form is equivalent to Definition 4.1.1 of Volume 3 of the handbook, the form with models that are varieties. If `V` has local uniformization over `k`, then `V` contains `k`, because `k ⊆ A ⊆ V` for the model `A` of the empty set. -/
+def HasLocalUniformization (V : ValuationSubring K) : Prop :=
+  ∀ s : Finset K, (∀ x ∈ s, x ∈ V) → HasRegularCenter k V s
 
 /-- The valuation subring `V` of `K` is an Abhyankar valuation of `K/k`: equality holds in the inequality of Abhyankar (node SG0000000Y). The rational rank of the value group of `V`, plus the transcendence degree of the residue field of `V` over `k`, is the transcendence degree of `K` over `k`.
 
@@ -114,15 +125,15 @@ def localUniformization_abhyankar : Prop :=
       IsAbhyankarValuation k V → Algebra.IsSeparablyGenerated k (ResidueField V) →
         HasLocalUniformization k V
 
-/-- Inseparable local uniformization (Temkin [Tem13], node SG0000001G): let `K` be a function field over a field `k`, and let `V` be a valuation of `K/k`. Then there is a finite purely inseparable extension `L` of `K` such that the extension `W` of `V` to `L` has local uniformization over `k`.
+/-- Inseparable local uniformization (Temkin [Tem13, Theorem 1.3.2], node SG0000001G): let `K` be a function field over a field `k`, let `V` be a valuation of `K/k`, and let `s` be a finite subset of `V`. Then there are a finite purely inseparable extension `L` of `K` and an extension `W` of `V` to `L` such that `W` has a regular center on an affine model of `L/k` that contains `s`.
 
-In characteristic 0 the extension `L` is `K`, and this is the theorem of Zariski [Zar40]. This file does not prove the statement. -/
+The extension `L` depends on `s`. In characteristic 0 the extension `L` is `K`, and this is the theorem of Zariski [Zar40]. This file does not prove the statement. -/
 def localUniformization_inseparable : Prop :=
   ∀ (k K : Type u) [Field k] [Field K] [Algebra k K], IsFunctionField k K →
-    ∀ (V : ValuationSubring K) [Algebra k V] [IsScalarTower k V K],
+    ∀ (V : ValuationSubring K) [Algebra k V] [IsScalarTower k V K] (s : Finset K), (∀ x ∈ s, x ∈ V) →
       ∃ (L : Type u) (_ : Field L) (_ : Algebra K L) (_ : Algebra k L) (_ : IsScalarTower k K L),
-        FiniteDimensional K L ∧ IsPurelyInseparable K L ∧
-          ∃ W : ValuationSubring L, W.comap (algebraMap K L) = V ∧ HasLocalUniformization k W
+        FiniteDimensional K L ∧ IsPurelyInseparable K L ∧ ∃ W : ValuationSubring L,
+          W.comap (algebraMap K L) = V ∧ HasRegularCenter k W (algebraMap K L '' s)
 
 /-- Local uniformization holds for function fields of transcendence degree `n` over fields of characteristic `p`: let `k` be a field with `CharP k p`, let `K` be a function field over `k` with `trdeg_k K = n`, and let `V` be a valuation of `K/k`. Then `V` has local uniformization.
 
@@ -134,7 +145,7 @@ def LocalUniformizationInDim (p n : ℕ) : Prop :=
 
 /-- Local uniformization in dimension 3 (Cossart-Piltant, node SG0000001F): each valuation of a function field of transcendence degree 3 over a field of characteristic `p > 0` has local uniformization.
 
-[CP08] and [CP09] prove this when `[k : k ^ p]` is finite, for example when `k` is perfect. The general case follows from the resolution of quasi-excellent schemes of dimension 3 of [CP19]: resolve a projective model, and take the center of the valuation on the resolution. This file does not prove the statement. -/
+[CP08] and [CP09] prove this when `[k : k ^ p]` is finite, for example when `k` is perfect. The general case follows from the resolution of quasi-excellent schemes of dimension 3 of [CP19]: resolve the given model, and take an affine open neighbourhood of the center of the valuation on the resolution. This file does not prove the statement. -/
 def localUniformization_three : Prop :=
   ∀ p : ℕ, p.Prime → LocalUniformizationInDim.{u} p 3
 

@@ -14,6 +14,7 @@
     "Singularity.Fidelity.hasLocalUniformization_top",
     "Singularity.Fidelity.algebraMap_mem_of_hasLocalUniformization",
     "Singularity.Fidelity.isFunctionField_of_hasLocalUniformization",
+    "Singularity.Fidelity.exists_regularCenter_of_hasLocalUniformization",
     "Singularity.algebraicIndependent_sumElim_of_valuationSubring",
     "Singularity.abhyankar_inequality",
     "Singularity.algebraicIndependent_sumElim_of_hasExtension",

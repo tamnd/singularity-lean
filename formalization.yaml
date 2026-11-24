@@ -87,7 +87,7 @@ status:
     - name: Singularity.localUniformization_inseparable
       kind: statement
       status: known
-      note: The theorem of Temkin, local uniformization after a finite purely inseparable extension of the function field (node SG0000001G). This is a definition of a proposition. The package does not prove it.
+      note: The theorem of Temkin, local uniformization after a finite purely inseparable extension of the function field that depends on the model (node SG0000001G). This is a definition of a proposition. The package does not prove it.
     - name: Singularity.localUniformization_three
       kind: statement
       status: known
@@ -107,6 +107,9 @@ status:
       kind: theorem
       status: proved
     - name: Singularity.Fidelity.isFunctionField_of_hasLocalUniformization
+      kind: theorem
+      status: proved
+    - name: Singularity.Fidelity.exists_regularCenter_of_hasLocalUniformization
       kind: theorem
       status: proved
     - name: Singularity.abhyankar_inequality
