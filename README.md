@@ -33,6 +33,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Algebra/GenericRegular.lean` | generic regularity in characteristic $0$: a domain of finite type over a field of characteristic $0$ has a nonempty open regular locus, and the regular locus of an algebra of finite type over such a field is open |
 | `Singularity/Scheme/Components.lean` | the irreducible components of a reduced Noetherian scheme: each component is integral, and a point with a domain as local ring lies on one component only |
 | `Singularity/Scheme/Reduction.lean` | `reductionToIntegral`: the proof of `ReductionToIntegral`, and the lemma that a finite disjoint union of proper maps is proper |
+| `Singularity/Scheme/RegularLocus.lean` | the regular locus of a scheme that is locally of finite type over a field of characteristic $0$ is open |
 | `Singularity/Curves/Resolution.lean` | `integralResolutionInDim_one` and `resolutionInDim_one`: each curve over a field of each characteristic has a resolution |
 | `Singularity/Known/DimZero.lean` | `resolutionInDim_dim_zero`, resolution in dimension 0 in each characteristic |
 | `Singularity/Hypotheses/Integral.lean` | `IntegralResolutionInDim` and the statement `ReductionToIntegral` |

@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Scheme/RegularLocus.lean`: the regular locus of a scheme that is locally of finite type over a field of characteristic $0$ is open (`regularLocus_isOpen_of_charZero`). The proof uses affine open sets, the stalk as a localization of the ring of sections, and `isOpen_regularLocus_of_charZero`.
+
 ## 0.2.9 - 2026-11-24
 
 ### Added

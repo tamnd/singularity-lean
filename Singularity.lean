@@ -18,6 +18,7 @@ import Singularity.Algebra.HilbertSamuel
 import Singularity.Curves.Affine
 import Singularity.Scheme.Components
 import Singularity.Scheme.Reduction
+import Singularity.Scheme.RegularLocus
 import Singularity.Curves.Resolution
 import Singularity.Fidelity.Positive
 import Singularity.Fidelity.Negative
