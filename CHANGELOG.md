@@ -11,6 +11,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 - `Singularity/Invariant/Residual.lean`: cleaning and the residual order of a purely inseparable equation $z^q + F$. `residualOrder q F` is the largest order of $F + h^q$, and in characteristic $p$ with $q = p^e$ it is the order of the clean part of $F$ over a perfect field (`residualOrder_eq_ord_cleanPart`). `residualOrderAlong` is the residual order along a normal crossings divisor [HP19a, §2]. The file defines the charts of a point blowup and the weak transform (`pointChartZ_purelyInseparable`). The bound of Moh on the increase of the residual order under one blowup is stated as the proposition `moh_bound`, and it is not proved.
 - `Singularity/Example/HauserPerlega.lean`: the example of Hauser and Perlega [HP19a, §3] in characteristic 2 (`kangaroo`). The residual order of $z^4 + x^2 y^2 w^3 (w (x+y)^4 + x^{13})$ is 5, and after a permissible point blowup it is 7. The increase is 2, so the bound of Moh holds with equality, and the bound 6 from the proof of the stability theorem of Moh fails (`kangaroo_increase`).
 
+### Fixed
+
+- The job `base` of the trust workflow failed, because the sandbox of the comparator binds only the directory `base` and the base package requires Singularity at the path `..`. The job now runs `lake comparator --paranoid --inadvisably-no-sandbox`. The kernel checks and the statement check do not change.
+
 ## 0.2.13 - 2026-11-24
 
 ### Added
