@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.3 - 2026-11-24
+
 ### Added
 
 - `Singularity/Valuation/KeyPolynomials.lean`: the key polynomials of MacLane (Section 3.3 of Volume 3 of the handbook, node SG0000000Z). Let `μ` be a valuation on `K[X]`. The file defines `μ`-equivalence (`MuEquiv`), `μ`-divisibility (`MuDvd`) and the key polynomials (`KeyPolynomial`, Definition 3.3.3). The conditions on initial forms in the graded algebra are stated with polynomials, and the docstring of the file explains why the two forms agree. A key polynomial has positive degree (`KeyPolynomial.natDegree_pos`) and is not a unit. The file proves Lemma 3.3.2: the monomial valuation `[v; X, γ]` is a valuation (`monomialValuation`, `monomialValuationFun_mul`), with support `0` if `γ ≠ 0`. The polynomial `X` is a key polynomial for it (`keyPolynomial_X_monomialValuation`). The file defines the coefficients of the `φ`-expansion (`expansionCoeff`, `eq_sum_expansionCoeff`) and the augmented valuation `[μ; φ, γ]` as a function (`augmentedValuationFun`, Definition 3.3.4). It agrees with `μ` in degree less than the degree of `φ`, it sends `φ` to `γ`, and it satisfies the ultrametric inequality. The file does not prove Theorem 3.3.5 of MacLane-Vaquié.
