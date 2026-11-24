@@ -35,6 +35,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Algebra/FiniteDifference.lean` | functions $\mathbb{N} \to \mathbb{Z}$ that are eventually polynomial, with the criterion by forward differences |
 | `Singularity/Algebra/HilbertSerre.lean` | the theorem of Hilbert and Serre for graded modules, and the Hilbert-Samuel function as an eventual polynomial of degree at most the number of generators of the ideal |
 | `Singularity/Algebra/Multiplicity.lean` | the Samuel multiplicity $e_d(I, M)$ with its laws: positivity, the comparison of two ideals, and the value $1$ for a field and a discrete valuation ring |
+| `Singularity/Algebra/MultiplicityRegular.lean` | the Hilbert-Samuel function $\ell(R/\mathfrak m^{n+1}) = \binom{n+d}{d}$ of a regular local ring of dimension $d$, the length $\binom{n+d-1}{d-1}$ of $\mathfrak m^n/\mathfrak m^{n+1}$, and the multiplicity $e_d(\mathfrak m, R) = 1$ |
 | `Singularity/Scheme/Components.lean` | the irreducible components of a reduced Noetherian scheme: each component is integral, and a point with a domain as local ring lies on one component only |
 | `Singularity/Scheme/Reduction.lean` | `reductionToIntegral`: the proof of `ReductionToIntegral`, and the lemma that a finite disjoint union of proper maps is proper |
 | `Singularity/Scheme/RegularLocus.lean` | the regular locus of a scheme that is locally of finite type over a field of characteristic $0$ is open |

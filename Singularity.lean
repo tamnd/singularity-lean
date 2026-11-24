@@ -19,6 +19,7 @@ import Singularity.Algebra.HilbertSamuel
 import Singularity.Algebra.FiniteDifference
 import Singularity.Algebra.HilbertSerre
 import Singularity.Algebra.Multiplicity
+import Singularity.Algebra.MultiplicityRegular
 import Singularity.Curves.Affine
 import Singularity.Scheme.Components
 import Singularity.Scheme.Reduction
