@@ -36,6 +36,7 @@ import Singularity.Bridge.FormalConjectures
 import Singularity.Invariant.Order
 import Singularity.Invariant.Newton
 import Singularity.Invariant.Residual
+import Singularity.Invariant.OrderBlowup
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
