@@ -1,0 +1,11 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Singularity",
+  "theorem_names": [
+    "Singularity.resolutionInDim_dim_zero",
+    "Singularity.Curves.resolutionInDim_one",
+    "Singularity.purelyInseparableHypersurfaceResolution_of_resolutionInDim",
+    "Singularity.purelyInseparableHypersurfaceResolution_four"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}

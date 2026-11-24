@@ -4,6 +4,13 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Algebra/MultiplicityRegular.lean`: a regular local ring of dimension $d$ has $\ell(R/\mathfrak{m}^{n+1}) = \binom{n+d}{d}$ (`hilbertSamuel_succ_eq_choose`) and Samuel multiplicity $1$ (`samuelMultiplicity_regular`). The proof uses that $(\mathfrak{m}^{n+1} : a) = \mathfrak{m}^n$ for the first element $a$ of a regular sequence that generates $\mathfrak{m}$ (`mem_maximalIdeal_pow_of_mul_mem`).
+- The trust workflow has a job `nanoda`. It exports the declarations of `Singularity` with all the declarations that they use, and it checks the export with nanoda at commit 0da9f98 of ammkrn/nanoda_lib. The permitted axioms are `propext`, `Classical.choice` and `Quot.sound`.
+- The trust workflow has a job `comparator`. It runs `lake comparator --paranoid` in the bubblewrap sandbox on the four theorems in `comparator.json`. `comparator/Challenge.lean` states these theorems again from `Singularity/Statements/` only. The job `base` runs the comparator on `Singularity.resolutionInDim_charZero` with `base/comparator.json`.
+- `scripts/Decls.lean` lists the declarations of the package.
+
 ## 0.2.12 - 2026-11-24
 
 ### Added

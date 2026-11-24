@@ -21,3 +21,8 @@ rev = "044d89c9455859446fc5e986667319f910e15f4b"
 
 [[lean_lib]]
 name = "SingularityBase"
+
+# The challenge of `lake comparator` (spec 14, row Q4), in comparator/ChallengeBase.lean. It states the proved theorem again with `sorry`. It is not a default target, and the library SingularityBase does not import it.
+[[lean_lib]]
+name = "ChallengeBase"
+srcDir = "comparator"
