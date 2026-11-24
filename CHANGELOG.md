@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.2.11 - 2026-11-24
+
 ### Added
 
 - `Singularity/Algebra/FiniteDifference.lean`: a function $f : \mathbb{N} \to \mathbb{Z}$ is eventually polynomial of degree less than $d$ (`IsEventuallyPolynomial f d`) if it agrees for large $n$ with a polynomial in $\mathbb{Q}[X]$ of degree less than $d$. The file proves that this holds if and only if $\Delta^d f$ is eventually $0$, and it proves the laws for sums, partial sums and shifts. It also defines the eventual value of a function that is eventually constant.
