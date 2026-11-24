@@ -22,6 +22,7 @@ import Singularity.Algebra.FiniteDifference
 import Singularity.Algebra.HilbertSerre
 import Singularity.Algebra.Multiplicity
 import Singularity.Algebra.MultiplicityRegular
+import Singularity.Algebra.BlowupChart
 import Singularity.Curves.Affine
 import Singularity.Scheme.Components
 import Singularity.Scheme.Reduction
