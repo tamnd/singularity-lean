@@ -29,8 +29,14 @@ The proof has these steps.
 * The Jacobian criterion for the hypersurface `A[X]/(F)` gives regularity away from `F'(z)`.
 * Thus `f = c F'(z)` is a solution.
 
+The characteristic `0` condition is used only to make `Frac D / Frac A` separable. The result over
+a regular base needs only this separability. The file
+`Singularity/Algebra/GenericRegularPerfect.lean` uses this to extend the results to perfect fields.
+
 ## Main results
 
+* `Singularity.Algebra.exists_ne_zero_basicOpen_subset_regularLocus_of_isSeparable`: the result
+  over a regular integrally closed base, when the extension of fraction fields is separable.
 * `Singularity.Algebra.exists_ne_zero_basicOpen_subset_regularLocus`: the result over a regular
   integrally closed base whose fraction field has characteristic `0`.
 * `Singularity.Algebra.exists_ne_zero_basicOpen_subset_regularLocus_of_field`: generic regularity
@@ -178,10 +184,12 @@ theorem exists_conductor [Module.Finite A B] (z : B) (hz : IsIntegral A z)
     exact Subalgebra.smul_mem _ hx a
 
 /-- Generic regularity over a regular base. Let `A ⊆ B` be a finite extension of domains, where
-`A` is a regular ring that is integrally closed and whose fraction field has characteristic `0`.
-Then there is `f ≠ 0` in `B` such that the open set `D(f)` is in the regular locus of `B`. -/
-theorem exists_ne_zero_basicOpen_subset_regularLocus [IsRegularRing A] [IsIntegrallyClosed A]
-    [Module.Finite A B] [CharZero (FractionRing A)] :
+`A` is a regular ring that is integrally closed. Suppose that the fraction field of `B` is
+separable over the fraction field of `A`. Then there is `f ≠ 0` in `B` such that the open set
+`D(f)` is in the regular locus of `B`. -/
+theorem exists_ne_zero_basicOpen_subset_regularLocus_of_isSeparable [IsRegularRing A]
+    [IsIntegrallyClosed A] [Module.Finite A B]
+    [Algebra.IsSeparable (FractionRing A) (FractionRing B)] :
     ∃ f : B, f ≠ 0 ∧ (PrimeSpectrum.basicOpen f : Set (PrimeSpectrum B)) ⊆ regularLocus B := by
   have := FractionRing.isScalarTower_liftAlgebra A (FractionRing B)
   have hinj := FaithfulSMul.algebraMap_injective A B
@@ -241,6 +249,15 @@ theorem exists_ne_zero_basicOpen_subset_regularLocus [IsRegularRing A] [IsIntegr
   rw [← AdjoinRoot.aeval_eq, ← aeval_algHom_apply, aeval_subalgebra_coe]
   exact congrArg (fun w => aeval w (derivative (minpoly A z)))
     (AdjoinRoot.Minpoly.coe_toAdjoin_mk_X (R := A) (x := z)).symm
+
+/-- Generic regularity over a regular base in characteristic `0`. Let `A ⊆ B` be a finite
+extension of domains, where `A` is a regular ring that is integrally closed and whose fraction
+field has characteristic `0`. Then there is `f ≠ 0` in `B` such that the open set `D(f)` is in the
+regular locus of `B`. -/
+theorem exists_ne_zero_basicOpen_subset_regularLocus [IsRegularRing A] [IsIntegrallyClosed A]
+    [Module.Finite A B] [CharZero (FractionRing A)] :
+    ∃ f : B, f ≠ 0 ∧ (PrimeSpectrum.basicOpen f : Set (PrimeSpectrum B)) ⊆ regularLocus B :=
+  exists_ne_zero_basicOpen_subset_regularLocus_of_isSeparable (A := A)
 
 end Generic
 
