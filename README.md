@@ -48,6 +48,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Invariant/Residual.lean` | `residualOrder` of $z^q + F$, cleaning, the residual order along a normal crossings divisor, the point blowup charts, and the bound of Moh stated as the proposition `moh_bound` |
 | `Singularity/Example/HauserPerlega.lean` | `kangaroo`: the example of Hauser and Perlega in characteristic 2, where the residual order goes from 5 to 7 under a permissible point blowup |
 | `Singularity/Example/HauserPerlegaCycle.lean` | `hauserPerlegaCycle`: one cycle of the first example of Hauser and Perlega [HP19a, Section 4] in characteristic 2 with $d = 2$. It has 20 point blowups, and the residual order goes from 2 through 6 and 5 to 4 |
+| `Singularity/Example/Narasimhan.lean` | `narasimhan`: the example of Narasimhan in characteristic 2, where no smooth formal hypersurface germ contains the points of order 2 of $x^2 + y z^3 + z w^3 + y^7 w$ |
 | `base/SingularityBase/Bridge.lean` | the bridge: the statement of the project implies the statement of formal-conjectures |
 | `base/SingularityBase/CharZero.lean` | `integralResolutionInDim_zero` and `resolutionInDim_charZero`, characteristic 0 from resolutionorg/hironaka |
 | `scripts/Export.lean` | writes the record of the build: each declaration, its type and its axioms |

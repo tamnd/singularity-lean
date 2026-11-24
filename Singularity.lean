@@ -38,3 +38,4 @@ import Singularity.Invariant.Newton
 import Singularity.Invariant.Residual
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
+import Singularity.Example.Narasimhan

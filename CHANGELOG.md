@@ -7,6 +7,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 ### Added
 
 - `Singularity/Example/HauserPerlegaCycle.lean`: one full cycle of the first example of Hauser and Perlega [HP19a, Section 4] (`hauserPerlegaCycle`). The instance has characteristic 2, $n = 5$, $q = 8$, $d = 2$, $a = b = r = 0$, $s = 1$, $\lambda = 1$, $A = 1$ and $Q = 0$. The file certifies the 7 steps of the cycle (20 point blowups). At each blowup the total transform is $x_j^8 F'$ with $\operatorname{ord} F' \ge 8$. The residual order along the divisor is 2 at the start, 6 after step (1), 5 after steps (2) to (5), and 4 after step (6) and during step (7). The final equation has the shape of the start with $d + 2$ and with $y$ and $u$ exchanged.
+- `Singularity/Example/Narasimhan.lean`: the example of Narasimhan [Nar83] in characteristic 2 (`narasimhan`, Example 2.2.1 of Volume 9 of the handbook). Let $f = x^2 + y z^3 + z w^3 + y^7 w$ and $\gamma(t) = (t^{32}, t^7, t^{19}, t^{15})$. Then $f$ and all its partial derivatives vanish on $\gamma$ (`aeval_narasimhanCurve_narasimhanF`, `aeval_narasimhanCurve_pderiv`). Each formal power series $h$ in $K[[x, y, z, w]]$ with $h(\gamma(t)) = 0$ has order at least 2 (`two_le_order_of_subst_eq_zero`). The substitution is `MvPowerSeries.subst`. So no smooth formal hypersurface germ at the origin contains the points of order 2 of $f$ (`subst_narasimhanCurve_ne_zero`), and a hypersurface of maximal contact does not exist in this case.
 
 ## 0.2.14 - 2026-11-24
 
