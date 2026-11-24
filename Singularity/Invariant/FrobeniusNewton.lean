@@ -40,8 +40,7 @@ A vertex `c x^a` with `a ∈ p ℕ^σ` is a degenerate face: each partial deriva
 so each point is critical (`pderiv_monomial_eq_zero_of_dvd`). This is why the cleaning of
 `Residual.lean` must come before a Newton test.
 
-The source is Volume 7, Chapter 3 of the handbook (to be written), sections 5.1 to 5.4 of the
-research note on Frobenius and Newton polyhedra.
+The source is Section 3.3 of Volume 7 of the handbook.
 
 ## Main definitions
 
@@ -57,18 +56,18 @@ research note on Frobenius and Newton polyhedra.
   makes `(z, v)` a singular point of `z^p + h` if and only if `h(v) ≠ 0` and `v` is a critical
   point of `h`.
 * `exists_torus_isCriticalPoint_iff`: `h` has a critical point in the torus if and only if
-  `{h = 0}` or `{z^p + h = 0}` has a singular point in the torus (Theorem 5.3, face by face).
+  `{h = 0}` or `{z^p + h = 0}` has a singular point in the torus (Theorem 3.3.3, face by face).
 * `not_isSingularPoint_X_pow`: the vertex `z^p` has no singular point in the torus.
-* `eq_sum_smul_X_mul_pderiv`: the mod `p` Euler identity `h = ∑ w_i x_i ∂_i h` (Proposition 5.6).
+* `eq_sum_smul_X_mul_pderiv`: the mod `p` Euler identity `h = ∑ w_i x_i ∂_i h` (Proposition 3.3.6).
 * `eq_inv_smul_sum_X_mul_pderiv`: `h = D⁻¹ ∑ w_i x_i ∂_i h` for `h` weighted homogeneous of degree
-  `D` with `D ≠ 0` in `k`, so a critical point of `h` lies on `{h = 0}` (Corollary 5.7).
+  `D` with `D ≠ 0` in `k`, so a critical point of `h` lies on `{h = 0}` (Corollary 3.3.7).
 * `pderiv_monomial_eq_zero_of_dvd`, `exists_torus_isSingularPoint_purelyInseparable_monomial`:
   a vertex `c x^a` with `a ∈ p ℕ^σ` makes each point critical, and `z^p + c x^a` has a singular
-  point in the torus (Corollary 5.5).
+  point in the torus (Corollary 3.3.5).
 * `exists_eq_sum_smul_X_mul_pderiv_of_not_isResonant`,
   `eval_eq_zero_of_isCriticalPoint_of_not_isResonant`: a polynomial with a support that is not
   resonant satisfies an Euler identity, and its critical points lie on its zero set
-  (Definition 5.8).
+  (Definition 3.3.8).
 * `not_isResonant_of_isWeightedHomogeneous`, `not_isResonant_initialForm`: a weighted
   homogeneous polynomial of degree `D` with `p ∤ D` is not resonant.
 
@@ -151,7 +150,7 @@ variable {σ k : Type*} [CommRing k] [IsReduced k] (p : ℕ) [Fact p.Prime] [Cha
 
 /-- Over a perfect reduced ring of characteristic `p`, some `z ≠ 0` makes `(z, v)` a singular
 point of `z^p + h` if and only if `h(v) ≠ 0` and `v` is a critical point of `h`. This is the
-content of a face of the third kind in Theorem 5.3 of Volume 7, Chapter 3 of the handbook. The
+content of a face of the third kind in Theorem 3.3.3 of Volume 7 of the handbook. The
 ring is perfect, so `z` with `z^p = -h(v)` exists. -/
 theorem exists_isSingularPoint_purelyInseparable_iff [PerfectRing k p] (h : MvPolynomial σ k)
     (v : σ → k) :
@@ -186,7 +185,7 @@ theorem isCriticalPoint_iff_isSingularPoint_or [PerfectRing k p] (h : MvPolynomi
     · exact Or.inr ⟨h0, hc⟩
   · rintro (⟨-, hc⟩ | ⟨-, hc⟩) <;> exact hc
 
-/-- The torus criterion for one face (Theorem 5.3 of Volume 7, Chapter 3 of the handbook, face by
+/-- The torus criterion for one face (Theorem 3.3.3 of Volume 7 of the handbook, face by
 face). Let `k` be a perfect reduced ring of characteristic `p`, for example a perfect field. Then
 `h` has a critical point in the torus if and only if `{h = 0}` has a singular point in the torus
 or `{z^p + h = 0}` has a singular point in the torus of the variables `(z, x)`. Apply it to
@@ -229,7 +228,7 @@ section Euler
 
 variable {σ k : Type*} [Fintype σ]
 
-/-- The mod `p` Euler identity (Proposition 5.6 of Volume 7, Chapter 3 of the handbook). Let
+/-- The mod `p` Euler identity (Proposition 3.3.6 of Volume 7 of the handbook). Let
 `w : σ → k` with `∑ w_i a_i = 1` in `k` for each exponent `a` of `h`. Then
 `h = ∑ w_i x_i ∂_i h`. The proof uses `x_i ∂_i (c x^a) = a_i c x^a`. No homogeneity is needed. -/
 theorem eq_sum_smul_X_mul_pderiv [CommSemiring k] (w : σ → k) {h : MvPolynomial σ k}
@@ -267,8 +266,8 @@ theorem eval_eq_zero_of_isCriticalPoint_of_eq_sum [CommSemiring k] (w : σ → k
     (hv : IsCriticalPoint h v) : eval v h = 0 :=
   eval_eq_zero_of_eq_sum w hw fun i => by rw [eval_mul, hv i, mul_zero]
 
-/-- The Euler identity for a weighted homogeneous polynomial (Corollary 5.7 of Volume 7,
-Chapter 3 of the handbook). If `h` is weighted homogeneous of degree `D` for the weight `w` and
+/-- The Euler identity for a weighted homogeneous polynomial (Corollary 3.3.7 of Volume 7
+of the handbook). If `h` is weighted homogeneous of degree `D` for the weight `w` and
 `D ≠ 0` in `k`, then `h = D⁻¹ ∑ w_i x_i ∂_i h`. -/
 theorem eq_inv_smul_sum_X_mul_pderiv [Field k] {w : σ → ℕ} {D : ℕ} {h : MvPolynomial σ k}
     (hh : IsWeightedHomogeneous w h D) (hD : (D : k) ≠ 0) :
@@ -296,7 +295,7 @@ section Vertex
 variable {σ k : Type*}
 
 /-- If each exponent of `x^a` is divisible by `p`, then each partial derivative of `c x^a` is `0`
-in characteristic `p` (Corollary 5.5 of Volume 7, Chapter 3 of the handbook). -/
+in characteristic `p` (Corollary 3.3.5 of Volume 7 of the handbook). -/
 theorem pderiv_monomial_eq_zero_of_dvd [CommSemiring k] (p : ℕ) [CharP k p] {a : σ →₀ ℕ}
     (ha : ∀ i, p ∣ a i) (c : k) (i : σ) : pderiv i (monomial a c) = 0 := by
   rw [pderiv_monomial, (CharP.cast_eq_zero_iff k p (a i)).mpr (ha i), mul_zero, monomial_zero]
@@ -316,7 +315,7 @@ theorem isCriticalPoint_initialForm_of_eq_monomial [CommSemiring k] (p : ℕ) [C
 
 variable [CommRing k] [IsReduced k] (p : ℕ) [Fact p.Prime] [CharP k p] [PerfectRing k p]
 
-/-- Cleaning is necessary (Corollary 5.5 of Volume 7, Chapter 3 of the handbook). Let `k` be a
+/-- Cleaning is necessary (Corollary 3.3.5 of Volume 7 of the handbook). Let `k` be a
 perfect reduced ring of characteristic `p`, let `c ≠ 0`, and let `a ∈ p ℕ^σ`. Then `z^p + c x^a`
 has a singular point in the torus. So a vertex `c x^a` of the Newton polyhedron of `g` with
 `a ∈ p ℕ^σ` makes `z^p + g` degenerate. -/
@@ -349,7 +348,7 @@ section Resonance
 variable {σ : Type*}
 
 /-- A finite set `S` of exponents is resonant in characteristic `p` if no `w : σ → ZMod p` has
-`∑ w_i a_i = 1` in `ZMod p` for each `a ∈ S` (Definition 5.8 of Volume 7, Chapter 3 of the
+`∑ w_i a_i = 1` in `ZMod p` for each `a ∈ S` (Definition 3.3.8 of Volume 7 of the
 handbook). The definition uses the exponents themselves and not their classes mod `p`, which
 gives the same condition. An exponent in `p ℕ^σ` makes `S` resonant, because `∑ w_i a_i = 0` for
 it. So the support of a polynomial that is not clean is resonant. -/
@@ -387,8 +386,8 @@ theorem not_isResonant_initialForm {R : Type*} [CommSemiring R] (p : ℕ) [Fact 
 variable {k : Type*} [CommRing k] (p : ℕ) [CharP k p]
 
 /-- A polynomial with a support that is not resonant satisfies a mod `p` Euler identity
-`h = ∑ w_i x_i ∂_i h`, with `w_i` in the image of `ZMod p` (Proposition 5.6 of Volume 7,
-Chapter 3 of the handbook). -/
+`h = ∑ w_i x_i ∂_i h`, with `w_i` in the image of `ZMod p` (Proposition 3.3.6 of Volume 7
+of the handbook). -/
 theorem exists_eq_sum_smul_X_mul_pderiv_of_not_isResonant [Fintype σ] {h : MvPolynomial σ k}
     (hh : ¬ IsResonant p h.support) :
     ∃ w : σ → k, h = ∑ i, w i • (X i * pderiv i h) := by
