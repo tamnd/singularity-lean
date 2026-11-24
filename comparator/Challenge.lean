@@ -31,11 +31,13 @@ import Mathlib.Algebra.CharP.Lemmas
 import Mathlib.FieldTheory.IsAlgClosed.Basic
 import Mathlib.RingTheory.EssentialFiniteness
 import Mathlib.Algebra.CharP.Defs
+import Mathlib.Algebra.Polynomial.Expand
+import Mathlib.RingTheory.Polynomial.Basic
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean` and `Singularity/Invariant/Residual.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean` and `Singularity/Invariant/RigidLayer.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -784,5 +786,67 @@ theorem not_isSolvableVertex_of_clean (e : ℕ) {F : MvPowerSeries σ k}
     ¬ IsSolvableVertex (X ^ p ^ e + C F) v c := sorry
 
 end CharacteristicPolyhedronClean
+
+section RigidLayer
+
+open Polynomial
+
+section Semiring
+
+variable {R : Type*} [CommSemiring R]
+
+/-- `Singularity/Invariant/RigidLayer.lean`: the Frobenius form of the translation. -/
+theorem X_add_C_pow_pow_mul (p : ℕ) [ExpChar R p] (c : R) (e m₀ : ℕ) :
+    (X + C c) ^ (p ^ e * m₀) = (X ^ p ^ e + C (c ^ p ^ e)) ^ m₀ := sorry
+
+/-- `Singularity/Invariant/RigidLayer.lean`: `binom(p^e m_0, n) = 0` if `p^e` does not divide `n`. -/
+theorem cast_choose_pow_mul_eq_zero (p : ℕ) [ExpChar R p] {e m₀ n : ℕ} (hn : ¬ p ^ e ∣ n) :
+    (((p ^ e * m₀).choose n : ℕ) : R) = 0 := sorry
+
+/-- `Singularity/Invariant/RigidLayer.lean`: the translation formula for the coefficients. -/
+theorem coeff_taylor_natDegree_sub (f : R[X]) (c : R) {i : ℕ} (hi : i ≤ f.natDegree) :
+    (taylor c f).coeff (f.natDegree - i) =
+      ∑ j ∈ Finset.range (i + 1),
+        ((f.natDegree - j).choose (i - j) : R) * f.coeff (f.natDegree - j) * c ^ (i - j) := sorry
+
+/-- `Singularity/Invariant/RigidLayer.lean`: the inseparable layer is rigid. -/
+theorem coeff_taylor_sub_of_lt_pow (p : ℕ) [ExpChar R p] {f : R[X]} {e m₀ m : ℕ}
+    (hm : m = p ^ e * m₀) (hf : f.natDegree = m) (c : R) {i : ℕ} (hi₀ : 0 < i) (hi : i < p ^ e) :
+    (taylor c f).coeff (m - i) = f.coeff (m - i) +
+      ∑ j ∈ Finset.Ioo 0 i, ((m - j).choose (i - j) : R) * f.coeff (m - j) * c ^ (i - j) := sorry
+
+/-- `Singularity/Invariant/RigidLayer.lean`: if `a_1 = ... = a_(i-1) = 0`, then `a'_i = a_i`. -/
+theorem coeff_taylor_sub_of_lt_pow_of_eq_zero (p : ℕ) [ExpChar R p] {f : R[X]} {e m₀ m : ℕ}
+    (hm : m = p ^ e * m₀) (hf : f.natDegree = m) (c : R) {i : ℕ} (hi₀ : 0 < i) (hi : i < p ^ e)
+    (h : ∀ j, 0 < j → j < i → f.coeff (m - j) = 0) :
+    (taylor c f).coeff (m - i) = f.coeff (m - i) := sorry
+
+/-- `Singularity/Invariant/RigidLayer.lean`: if `p` divides the degree, then `a'_1 = a_1`. -/
+theorem coeff_taylor_natDegree_sub_one (p : ℕ) [ExpChar R p] [Fact p.Prime] {f : R[X]}
+    (hdvd : p ∣ f.natDegree) (c : R) :
+    (taylor c f).coeff (f.natDegree - 1) = f.coeff (f.natDegree - 1) := sorry
+
+/-- `Singularity/Invariant/RigidLayer.lean`: the step of Lucas and Tschirnhausen. -/
+theorem coeff_taylor_sub_pow (p : ℕ) [ExpChar R p] {f : R[X]} (hmonic : f.Monic) {e m₀ m : ℕ}
+    (hm : m = p ^ e * m₀) (hf : f.natDegree = m) (c : R) :
+    (taylor c f).coeff (m - p ^ e) = f.coeff (m - p ^ e) + m₀ * c ^ p ^ e +
+      ∑ j ∈ Finset.Ioo 0 (p ^ e),
+        ((m - j).choose (p ^ e - j) : R) * f.coeff (m - j) * c ^ (p ^ e - j) := sorry
+
+/-- `Singularity/Invariant/RigidLayer.lean`: if `a_1 = ... = a_(p^e - 1) = 0`, then `a'_(p^e) = a_(p^e) + m_0 c^(p^e)`. -/
+theorem coeff_taylor_sub_pow_of_eq_zero (p : ℕ) [ExpChar R p] {f : R[X]} (hmonic : f.Monic)
+    {e m₀ m : ℕ} (hm : m = p ^ e * m₀) (hf : f.natDegree = m) (c : R)
+    (h : ∀ j, 0 < j → j < p ^ e → f.coeff (m - j) = 0) :
+    (taylor c f).coeff (m - p ^ e) = f.coeff (m - p ^ e) + m₀ * c ^ p ^ e := sorry
+
+end Semiring
+
+/-- `Singularity/Invariant/RigidLayer.lean`: the lifting test. -/
+theorem X_pow_add_C_mem_pow_iff {R : Type*} [CommRing R] (p : ℕ) [ExpChar R p] (I : Ideal R)
+    (g h : R) (e : ℕ) :
+    X ^ p ^ e + C g ∈ (Ideal.span {X - C h} ⊔ I.map (C : R →+* R[X])) ^ p ^ e ↔
+      g + h ^ p ^ e ∈ I ^ p ^ e := sorry
+
+end RigidLayer
 
 end Singularity

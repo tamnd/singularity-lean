@@ -388,6 +388,42 @@ status:
       kind: theorem
       status: proved
       note: The limit augmentation [μ_∞; φ, γ] is at most ν in additive notation if γ ≤ ν(φ).
+    - name: Singularity.X_add_C_pow_pow_mul
+      kind: theorem
+      status: proved
+      note: The Frobenius form of the translation, (X + c)^(p^e m_0) = (X^(p^e) + c^(p^e))^(m_0), over a commutative semiring of exponential characteristic p.
+    - name: Singularity.cast_choose_pow_mul_eq_zero
+      kind: theorem
+      status: proved
+      note: If p^e does not divide n, then binom(p^e m_0, n) = 0 in a semiring of exponential characteristic p. This replaces the theorem of Lucas.
+    - name: Singularity.coeff_taylor_natDegree_sub
+      kind: theorem
+      status: proved
+      note: The translation formula a'_i = sum over j <= i of binom(m - j, i - j) a_j c^(i-j), for i <= m, with a_i the coefficient of z^(m-i).
+    - name: Singularity.coeff_taylor_sub_of_lt_pow
+      kind: theorem
+      status: proved
+      note: The inseparable layer is rigid (Lemma 10.4 of Volume 7, Chapter 4 of the handbook). For deg f = p^e m_0 and 0 < i < p^e, a'_i = a_i + sum over 0 < j < i of binom(m - j, i - j) a_j c^(i-j).
+    - name: Singularity.coeff_taylor_sub_of_lt_pow_of_eq_zero
+      kind: theorem
+      status: proved
+      note: If a_1 = ... = a_(i-1) = 0 and 0 < i < p^e, then the translation z to z + c does not change a_i.
+    - name: Singularity.coeff_taylor_natDegree_sub_one
+      kind: theorem
+      status: proved
+      note: If the prime p divides the degree of f, then the translation z to z + c does not change a_1.
+    - name: Singularity.coeff_taylor_sub_pow
+      kind: theorem
+      status: proved
+      note: The step of Lucas and Tschirnhausen (Lemma 10.3 of Volume 7, Chapter 4 of the handbook). For monic f of degree p^e m_0, a'_(p^e) = a_(p^e) + m_0 c^(p^e) + sum over 0 < j < p^e of binom(m - j, p^e - j) a_j c^(p^e - j).
+    - name: Singularity.coeff_taylor_sub_pow_of_eq_zero
+      kind: theorem
+      status: proved
+      note: If a_1 = ... = a_(p^e - 1) = 0, then the translation z to z + c adds m_0 c^(p^e) to a_(p^e).
+    - name: Singularity.X_pow_add_C_mem_pow_iff
+      kind: theorem
+      status: proved
+      note: The lifting test (Lemma 10.5 of Volume 7, Chapter 4 of the handbook). For q = p^e, z^q + g lies in (z - h, I)^q if and only if g + h^q lies in I^q.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
