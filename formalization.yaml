@@ -201,6 +201,26 @@ status:
       kind: theorem
       status: proved
       note: The first step of the chain of MacLane. If ν extends v, then [v; X, ν(X)] ≤ ν in additive notation.
+    - name: Singularity.coeff_taylor_eq_sum
+      kind: theorem
+      status: proved
+      note: The translation formula. The coefficient of z^d in f(z + h) is the sum over e of (e choose d) b_e h^(e-d), where b_e is the coefficient of z^e in f.
+    - name: Singularity.projPolyhedron_taylor_monomial_subset
+      kind: theorem
+      status: proved
+      note: The projected Newton polyhedron of f(z + c x^β) over k[[x]] lies in the convex hull of the polyhedron of f and β plus the orthant [Hir67].
+    - name: Singularity.vertexPoly_taylor_monomial
+      kind: theorem
+      status: proved
+      note: The initial polynomial at v of f(z + c x^v) is the initial polynomial of f at v, shifted by c.
+    - name: Singularity.projPolyhedron_taylor_ssubset_of_isSolvable
+      kind: theorem
+      status: proved
+      note: If a vertex v of the projected Newton polyhedron is solvable with the constant c, then the translation z to z - c x^v gives a polyhedron that is a proper subset and does not contain v [Hir67].
+    - name: Singularity.not_isSolvableVertex_of_charPolyhedron_eq
+      kind: theorem
+      status: proved
+      note: One direction of the vertex criterion of Hironaka [Hir67]. If the projected Newton polyhedron is the characteristic polyhedron, then no vertex v other than 0 is solvable. The converse is not proved.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved

@@ -35,7 +35,12 @@
     "Singularity.keyPolynomial_of_map_lt",
     "Singularity.map_le_augmentedValuationFun_of_map_eq",
     "Singularity.exists_monic_map_lt",
-    "Singularity.map_le_monomialValuationFun"
+    "Singularity.map_le_monomialValuationFun",
+    "Singularity.coeff_taylor_eq_sum",
+    "Singularity.projPolyhedron_taylor_monomial_subset",
+    "Singularity.vertexPoly_taylor_monomial",
+    "Singularity.projPolyhedron_taylor_ssubset_of_isSolvable",
+    "Singularity.not_isSolvableVertex_of_charPolyhedron_eq"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }
