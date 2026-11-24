@@ -14,3 +14,8 @@ rev = "v4.35.0"
 
 [[lean_lib]]
 name = "Singularity"
+
+# The challenge of `lake comparator` (spec 14, row Q4), in comparator/Challenge.lean. It states the proved theorems again with `sorry`. It is not a default target, and the library Singularity does not import it.
+[[lean_lib]]
+name = "Challenge"
+srcDir = "comparator"

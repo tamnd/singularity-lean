@@ -3,6 +3,10 @@ name: trust
 # Replay each declaration of the two packages in the Lean kernel, in a fresh environment, with leanchecker of the toolchain. The replay covers the imports too: Mathlib, and for the base package the modules of resolutionorg/hironaka that it imports. leanchecker uses the kernel of Lean itself, so it finds an environment that a tactic or a metaprogram has changed, but it is not an independent kernel.
 #
 # The job lean4lean checks each declaration of the package Singularity again with lean4lean, a type checker for Lean written in Lean. It checks the declarations of each module and takes the imports of the module as correct, so it does not check Mathlib again. lean4lean follows the design of the C++ kernel, so it is a second implementation but not an independent design. This is check Q3 of spec 14.
+#
+# The job nanoda exports the declarations of the package Singularity with leanexport, together with all the declarations that they use, Mathlib included. nanoda, a type checker for Lean written in Rust, then checks the export. nanoda is built from a pinned commit of ammkrn/nanoda_lib. This is also check Q3.
+#
+# The job comparator runs `lake comparator --paranoid` with comparator.json. The challenge comparator/Challenge.lean states the proved theorems again from the files of Singularity/Statements/. The comparator checks that the theorems of the package have the same statements, use only propext, Quot.sound and Classical.choice, and are accepted by the kernel of Lean and by the checkers that the toolchain bundles: leanchecker-paranoid, lean4lean, nanoda, con-leche and con-ron. The comparator builds and exports the code in a bwrap sandbox. This is check Q4 of spec 14, and the second part of Q3.
 on:
   schedule:
     - cron: "17 3 * * 1"
@@ -119,3 +123,88 @@ jobs:
             lake env "$RUNNER_TEMP/lean4lean/.lake/build/bin/lean4lean" "$m"
           done
           echo "the check took $(( $(date +%s) - start )) s"
+
+  nanoda:
+    name: nanoda on the export of Singularity
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      # The head of the branch master of ammkrn/nanoda_lib on 2026-11-24, a merge of 2026-11-07. The toolchain v4.35.0 bundles the older commit 3a2407216ee84a75f9e1aead6803d0578be06ae7.
+      NANODA_REV: 0da9f98feadd3a0a2ef4b3dbcf52a298a6fef929
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o elan-init.sh
+          sh elan-init.sh -y --default-toolchain none
+          rm elan-init.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: get the Mathlib cache
+        run: lake exe cache get
+      - name: build
+        run: lake build
+      - name: build nanoda
+        run: |
+          git clone -q https://github.com/ammkrn/nanoda_lib "$RUNNER_TEMP/nanoda_lib"
+          git -C "$RUNNER_TEMP/nanoda_lib" checkout -q "$NANODA_REV"
+          cd "$RUNNER_TEMP/nanoda_lib"
+          cargo build --release --locked
+      - name: export
+        run: |
+          start=$(date +%s)
+          lake env lean --run scripts/Decls.lean Singularity > "$RUNNER_TEMP/decls.txt"
+          mapfile -t decls < "$RUNNER_TEMP/decls.txt"
+          lake env leanexport Singularity -- "${decls[@]}" > "$RUNNER_TEMP/export.ndjson"
+          echo "the export has $(wc -l < "$RUNNER_TEMP/export.ndjson") lines and $(du -h "$RUNNER_TEMP/export.ndjson" | cut -f1)"
+          echo "the export took $(( $(date +%s) - start )) s"
+      - name: check
+        run: |
+          cat > "$RUNNER_TEMP/nanoda.json" <<EOF
+          {
+            "export_file_path": "$RUNNER_TEMP/export.ndjson",
+            "use_stdin": false,
+            "num_threads": 4,
+            "permitted_axioms": ["propext", "Classical.choice", "Quot.sound"],
+            "unpermitted_axiom_hard_error": true,
+            "nat_extension": true,
+            "string_extension": true,
+            "print_axioms": true,
+            "pp_to_stdout": true,
+            "print_success_message": true
+          }
+          EOF
+          start=$(date +%s)
+          "$RUNNER_TEMP/nanoda_lib/target/release/nanoda_bin" "$RUNNER_TEMP/nanoda.json"
+          echo "the check took $(( $(date +%s) - start )) s"
+
+  comparator:
+    name: lake comparator --paranoid against Singularity/Statements
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o elan-init.sh
+          sh elan-init.sh -y --default-toolchain none
+          rm elan-init.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      # The comparator needs bwrap and user namespaces. Ubuntu 24.04 lets AppArmor block user namespaces for programs without a profile, so this step turns that restriction off on the runner.
+      - name: install bubblewrap
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q bubblewrap
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+          bwrap --ro-bind / / --dev /dev --proc /proc --unshare-all true
+      # The Mathlib cache writes lake-manifest.json, which the comparator needs. The comparator then builds Challenge and Singularity again in its sandbox.
+      - name: get the Mathlib cache
+        run: lake exe cache get
+      - name: compare
+        run: |
+          start=$(date +%s)
+          lake comparator --paranoid
+          echo "the comparator took $(( $(date +%s) - start )) s"
