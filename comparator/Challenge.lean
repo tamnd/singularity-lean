@@ -85,6 +85,12 @@ theorem Fidelity.algebraMap_mem_of_hasLocalUniformization {V : ValuationSubring 
 theorem Fidelity.isFunctionField_of_hasLocalUniformization {V : ValuationSubring K}
     (h : HasLocalUniformization k V) : IsFunctionField k K := sorry
 
+/-- `Singularity/Fidelity/LocalUniformization.lean`: local uniformization implies that the center is regular on one affine model. -/
+theorem Fidelity.exists_regularCenter_of_hasLocalUniformization {V : ValuationSubring K}
+    (h : HasLocalUniformization k V) :
+    ∃ (A : Subalgebra k K) (hA : ∀ a : A, (a : K) ∈ V), IsAffineModel A ∧
+      IsRegularLocalRing (Localization.AtPrime (valuationCenter V A hA)) := sorry
+
 end LocalUniformization
 
 section Abhyankar
