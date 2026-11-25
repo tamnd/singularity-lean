@@ -59,6 +59,7 @@ import Singularity.Invariant.CossartPiltantOmega
 import Singularity.Invariant.LogJacobianNearPoint
 import Singularity.Invariant.LogJacobianDirectrix
 import Singularity.Invariant.LogJacobianDirectrixCaseA
+import Singularity.Invariant.LogJacobianDirectrixDrop
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
