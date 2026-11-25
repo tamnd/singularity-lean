@@ -143,7 +143,7 @@ theorem valuation_eq_one_iff_mem_inv_mem {L : Type*} [Field L] (A : ValuationSub
   exact ⟨fun h => ⟨h.le, h.ge⟩, fun h => le_antisymm h.1 h.2⟩
 
 /-- An element `c` of a subfield has value 1 for the restriction of `V` if and only if it has value 1 for `V`. -/
-theorem valuation_comap_eq_one_iff {L : Type*} [Field L] (f : L →+* K) (c : L) :
+theorem comap_valuation_eq_one_iff {L : Type*} [Field L] (f : L →+* K) (c : L) :
     (V.comap f).valuation c = 1 ↔ V.valuation (f c) = 1 := by
   by_cases hc : c = 0
   · simp [hc]
@@ -166,7 +166,7 @@ theorem isMonomialValuation_comap {x : ι → K₀} {y : κ → K₀}
       Set.union_comm, htop]
   independent a ha := by
     apply hx a
-    rw [valuation_comap_eq_one_iff] at ha
+    rw [comap_valuation_eq_one_iff] at ha
     convert ha using 2
     simp [laurentMonomial]
 
