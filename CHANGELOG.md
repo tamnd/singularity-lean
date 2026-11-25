@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/LogJacobianCaseAStable.lean`: the first case is stable if `|r| + d ≠ 0` in `k` (Volume 7, Section 3.9 of the handbook, Proposition 3.9.7). Let `g ≠ 0` be clean with `ord g ≥ p`, let the chart send `g` to `x_j^p g'`, and let `ρ(g) = ρ(g'_c) = d` with `d = ord G`. If `|r| + d ≠ 0` in `k`, then the new point is of case A: the order of `Θ₀(g'_c)` is `|r'| + d` (`idealOrd_logJacobianTangent_cleanPart_of_caseA`). The proof uses the transport of the Euler element. So Theorem 3.9.1 holds with no hypothesis on the new point: `dim T_ρ(g'_c) ≤ dim T_ρ(g)` and `τ_ρ(g) ≤ τ_ρ(g'_c)` (`finrank_logJacobianDirectrix_cleanPart_le_of_ne_zero`, `logJacobianDirectrixCodim_le_cleanPart_of_ne_zero`, Corollary 3.9.8).
+
 ## 0.4.21 - 2026-11-26
 
 ### Added
