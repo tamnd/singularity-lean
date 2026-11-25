@@ -214,7 +214,15 @@
     "Singularity.exists_constantCoeff_pderiv_ne_zero",
     "Singularity.ord_residualFactor_le_one",
     "Singularity.logJacobianOrder_eq_zero_iff",
-    "Singularity.logJacobianOrder_eq_zero_iff_ord"
+    "Singularity.logJacobianOrder_eq_zero_iff_ord",
+    "Singularity.cpOmega_of_exists",
+    "Singularity.cpOmega_of_forall",
+    "Singularity.cpOmega_eq_logJacobianOrder",
+    "Singularity.cpOmega_cleanPart_le",
+    "Singularity.cpOmega_cleanPart_le_center",
+    "Singularity.centerExample_cpOmega",
+    "Singularity.centerExample_cpOmega_cleanPart",
+    "Singularity.centerExample_cpOmega_lt"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

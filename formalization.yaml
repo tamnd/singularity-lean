@@ -977,6 +977,38 @@ status:
       kind: theorem
       status: proved
       note: The end case with the order of G (Proposition 3.5.1 of Volume 7, Section 3.5 of the handbook). For a clean g, rho = 0 if and only if ord G = 0 and p does not divide r_i for some i in Delta, or ord G = 1 and the constant term of the derivative of G along x_j is not 0 for some j not in Delta.
+    - name: Singularity.cpOmega_of_exists
+      kind: theorem
+      status: proved
+      note: Definition 3.2.5 of Volume 6, Section 3.2 of the handbook. If the derivative of the initial form F of g along a free coordinate is not 0, then omega is the residual order minus 1.
+    - name: Singularity.cpOmega_of_forall
+      kind: theorem
+      status: proved
+      note: Definition 3.2.5 of Volume 6, Section 3.2 of the handbook. If the derivatives of the initial form F of g along all the free coordinates are 0, then omega is the residual order.
+    - name: Singularity.cpOmega_eq_logJacobianOrder
+      kind: theorem
+      status: proved
+      note: Proposition 3.6.1 of Volume 7, Section 3.6 of the handbook. For a clean g other than 0, the invariant omega of Cossart and Piltant (Volume 6, Definition 3.2.5, and [CP19, Definition 2.68]) is the order rho of the log-Jacobian ideal.
+    - name: Singularity.cpOmega_cleanPart_le
+      kind: theorem
+      status: proved
+      note: Corollary 3.6.2 of Volume 7, Section 3.6 of the handbook. For a clean g other than 0 with ord g at least p and pi(g) = x_j^p g' in a chart of the point blowup, omega of the clean part of g' is at most omega of g.
+    - name: Singularity.cpOmega_cleanPart_le_center
+      kind: theorem
+      status: proved
+      note: Corollary 3.6.3 of Volume 7, Section 3.6 of the handbook. For a clean g and the blowup of a regular center with (H1) and (H2), omega of the clean part of g' is at most omega of g.
+    - name: Singularity.centerExample_cpOmega
+      kind: theorem
+      status: proved
+      note: Example 3.6.4 of Volume 7, Section 3.6 of the handbook. Over F_2, omega of g = y^2 w + y^3 along the divisor V(w) is 2.
+    - name: Singularity.centerExample_cpOmega_cleanPart
+      kind: theorem
+      status: proved
+      note: Example 3.6.4 of Volume 7, Section 3.6 of the handbook. Over F_2, omega of the clean part of g' = y^2 w + x y^3 along the new divisor V(x w) is 3.
+    - name: Singularity.centerExample_cpOmega_lt
+      kind: theorem
+      status: proved
+      note: Example 3.6.4 of Volume 7, Section 3.6 of the handbook. Under the blowup of the center V(x, y) of Example 3.4.6, omega goes up from 2 to 3.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
