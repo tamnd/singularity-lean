@@ -2883,4 +2883,83 @@ theorem tauRhoExample_finrank :
 
 end LogJacobianDirectrix
 
+section LogJacobianDirectrixCaseA
+
+open MvPolynomial Finsupp Module
+
+section Lemma
+
+variable {σ k : Type*} [Field k]
+
+/-- `Singularity/Invariant/LogJacobianDirectrixCaseA.lean`: Lemma 3.9.2 of Volume 7, Section 3.9
+of the handbook. -/
+theorem pderiv_eq_zero_of_mem_directrix {F : MvPolynomial σ k} {v : σ → k} {i : σ} (c : k)
+    (hF : v ∈ directrix F) (hΦ : v ∈ directrix (c • F + X i * pderiv i F)) (hv : v i ≠ 0) :
+    pderiv i F = 0 := sorry
+
+end Lemma
+
+section Theorem
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] [Fintype σ] (p : ℕ) [CharP k p]
+  {Δ : Finset σ} {j : σ} {t : σ → k} {g g' : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/LogJacobianDirectrixCaseA.lean`: Theorem 3.9.1 of Volume 7,
+Section 3.9 of the handbook. -/
+theorem finrank_logJacobianDirectrix_cleanPart_le_of_caseA (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {d : ℕ}
+    (hG : ord (residualFactor Δ g) = d) (hρ : logJacobianOrder Δ g = d)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = d)
+    (hA' : idealOrd (logJacobianTangent (blowupDivisor Δ j t) (cleanPart p g')) =
+      ((degree (divisorExponent (blowupDivisor Δ j t) (cleanPart p g')) + d : ℕ) : ℕ∞))
+    (hpd : ((degree (divisorExponent Δ g) + d : ℕ) : k) ≠ 0) :
+    finrank k (logJacobianDirectrix (blowupDivisor Δ j t) (cleanPart p g')) ≤
+      finrank k (logJacobianDirectrix Δ g) := sorry
+
+/-- `Singularity/Invariant/LogJacobianDirectrixCaseA.lean`: Theorem 3.9.1 of Volume 7,
+Section 3.9 of the handbook, the form with the codimension. -/
+theorem logJacobianDirectrixCodim_le_cleanPart_of_caseA (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {d : ℕ}
+    (hG : ord (residualFactor Δ g) = d) (hρ : logJacobianOrder Δ g = d)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = d)
+    (hA' : idealOrd (logJacobianTangent (blowupDivisor Δ j t) (cleanPart p g')) =
+      ((degree (divisorExponent (blowupDivisor Δ j t) (cleanPart p g')) + d : ℕ) : ℕ∞))
+    (hpd : ((degree (divisorExponent Δ g) + d : ℕ) : k) ≠ 0) :
+    logJacobianDirectrixCodim Δ g ≤
+      logJacobianDirectrixCodim (blowupDivisor Δ j t) (cleanPart p g') := sorry
+
+end Theorem
+
+/-- `Singularity/Invariant/LogJacobianDirectrixCaseA.lean`: Example 3.9.4 of Volume 7,
+Section 3.9 of the handbook, the data. -/
+theorem tauRhoCaseAExample_hyp :
+    divisorExponent {0}
+        (X 0 * X 2 ^ 2 + X 0 ^ 2 * X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)) = single 0 1 ∧
+      residualFactor {0} (X 0 * X 2 ^ 2 + X 0 ^ 2 * X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)) =
+        X 2 ^ 2 + X 0 * X 1 ^ 3 ∧
+      ((divisorExponent {0}
+          (X 0 * X 2 ^ 2 + X 0 ^ 2 * X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)) 0 : ZMod 2) •
+          residualFactor {0} (X 0 * X 2 ^ 2 + X 0 ^ 2 * X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)) +
+        X 0 * pderiv 0 (residualFactor {0}
+          (X 0 * X 2 ^ 2 + X 0 ^ 2 * X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2))) = X 2 ^ 2) ∧
+      pointChart 1 (![1, 0, 0] : Fin 3 → ZMod 2)
+          (X 0 * X 2 ^ 2 + X 0 ^ 2 * X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)) =
+        X 1 ^ 2 * (X 1 * ((X 0 + 1) * X 2 ^ 2 + X 1 ^ 2 * (X 0 ^ 2 + 1))) ∧
+      blowupDivisor {0} 1 (![1, 0, 0] : Fin 3 → ZMod 2) = {1} := sorry
+
+/-- `Singularity/Invariant/LogJacobianDirectrixCaseA.lean`: Example 3.9.4 of Volume 7,
+Section 3.9 of the handbook. The plain transports of `e_x` are not in `Θ₀(g'_c)`. -/
+theorem tauRhoCaseAExample_not_mem :
+    IsClean 2 (X 1 * ((X 0 + 1) * X 2 ^ 2 + X 1 ^ 2 * (X 0 ^ 2 + 1)) :
+      MvPolynomial (Fin 3) (ZMod 2)) ∧
+      X 1 * X 2 ^ 2 ∉ logJacobianTangent (blowupDivisor {0} 1 (![1, 0, 0] : Fin 3 → ZMod 2))
+        (cleanPart 2 (X 1 * ((X 0 + 1) * X 2 ^ 2 + X 1 ^ 2 * (X 0 ^ 2 + 1)) :
+          MvPolynomial (Fin 3) (ZMod 2))) ∧
+      X 1 * ((X 0 + 1) * X 2 ^ 2) ∉
+        logJacobianTangent (blowupDivisor {0} 1 (![1, 0, 0] : Fin 3 → ZMod 2))
+          (cleanPart 2 (X 1 * ((X 0 + 1) * X 2 ^ 2 + X 1 ^ 2 * (X 0 ^ 2 + 1)) :
+            MvPolynomial (Fin 3) (ZMod 2))) := sorry
+
+end LogJacobianDirectrixCaseA
+
 end Singularity
