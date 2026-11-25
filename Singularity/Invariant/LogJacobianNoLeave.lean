@@ -16,37 +16,39 @@ of `Θ₀(g)` is `|r| + d`. Let `ρ(g'_c) = d`. Let `R` be the set of the `i ∈
 This file proves two results (Volume 7, Section 3.9 of the handbook). They have no hypothesis on
 `p`.
 
-* Theorem A. If `R` contains an index `i ≠ j` with `t_i = 0`, or if `R = {j}`, then the new point is
-  of case A: the order of `Θ₀(g'_c)` is `|r'| + d`, with `r' = divisorExponent Δ' g'_c`. This holds
-  if no component of `Δ` leaves.
-* Theorem B. If no component of `Δ` leaves, then `dim T_ρ(g'_c) ≤ dim T_ρ(g)`, so
+* Theorem 3.9.10. If `R` contains an index `i ≠ j` with `t_i = 0`, or if `R = {j}`, then the new
+  point is of case A: the order of `Θ₀(g'_c)` is `|r'| + d`, with `r' = divisorExponent Δ' g'_c`.
+  This holds if no component of `Δ` leaves.
+* Theorem 3.9.11. If no component of `Δ` leaves, then `dim T_ρ(g'_c) ≤ dim T_ρ(g)`, so
   `τ_ρ(g) ≤ τ_ρ(g'_c)`.
 
-The proof of Theorem A. In case A, each `x_m ∂_l G` with `l ∉ Δ` has order at least `d + 1`. So
-`R` is not empty. If `i ∈ R`, `i ≠ j` and `t_i = 0`, then the chart sends `x^r e_i = x_i ∂_i g` to
-`x_j^p (x_i ∂_i g')`, and `i ∈ Δ'`. If `R = {j}`, then the Euler element `e = ∑_i e_i` has order
-`d`, and the chart sends `x^r e` to `x_j^p (x_j ∂_j g')`. In both cases the bound of
+The proof of Theorem 3.9.10. In case A, each `x_m ∂_l G` with `l ∉ Δ` has order at least `d + 1`.
+So `R` is not empty. If `i ∈ R`, `i ≠ j` and `t_i = 0`, then the chart sends `x^r e_i = x_i ∂_i g`
+to `x_j^p (x_i ∂_i g')`, and `i ∈ Δ'`. If `R = {j}`, then the Euler element `e = ∑_i e_i` has
+order `d`, and the chart sends `x^r e` to `x_j^p (x_j ∂_j g')`. In both cases the bound of
 `idealOrd_logJacobianTangent_cleanPart_le_of_pointChart_eq` gives the claim.
 
-The proof of Theorem B. If `|r| + d ≠ 0` in `k`, this is Corollary 3.9.8. If `|r| + d = 0` in `k`,
-then the new point is of case A by Theorem A, and the proof of Theorem 3.9.1 applies with one
-change. Let `w ∈ T_ρ(g'_c)` with `w_j = 0`. For `i ∈ Δ` with `i ≠ j`, the transport of `e_i` is
-exact, so `w ∈ T(Φ_i)`. The Euler identity gives `∑_i Φ_i = (|r| + d) F = 0`, so
+The proof of Theorem 3.9.11. If `|r| + d ≠ 0` in `k`, this is Corollary 3.9.8. If `|r| + d = 0` in
+`k`, then the new point is of case A by Theorem 3.9.10, and the proof of Theorem 3.9.1 applies
+with one change. Let `w ∈ T_ρ(g'_c)` with `w_j = 0`. For `i ∈ Δ` with `i ≠ j`, the transport of
+`e_i` is exact, so `w ∈ T(Φ_i)`. The Euler identity gives `∑_i Φ_i = (|r| + d) F = 0`, so
 `Φ_j = -∑_{i ≠ j} Φ_i`, and `w ∈ T(Φ_j)`.
 
 ## Main results
 
 * `exists_mem_ord_smul_add_X_mul_pderiv_eq`: the set `R` is not empty.
-* `idealOrd_logJacobianTangent_cleanPart_of_ne_of_eq_zero`: Theorem A, the form with the index `i`.
-* `idealOrd_logJacobianTangent_cleanPart_of_lt_ord`: Theorem A, the form with `R = {j}`.
-* `idealOrd_logJacobianTangent_cleanPart_of_forall_eq_zero`: Theorem A, the form with no leaving
-  component.
+* `idealOrd_logJacobianTangent_cleanPart_of_ne_of_eq_zero`: Theorem 3.9.10, the form with the
+  index `i`.
+* `idealOrd_logJacobianTangent_cleanPart_of_lt_ord`: Theorem 3.9.10, the form with `R = {j}`.
+* `idealOrd_logJacobianTangent_cleanPart_of_forall_eq_zero`: Theorem 3.9.10, the form with no
+  leaving component.
 * `finrank_logJacobianDirectrix_cleanPart_le_of_forall_eq_zero`,
-  `logJacobianDirectrixCodim_le_cleanPart_of_forall_eq_zero`: Theorem B.
+  `logJacobianDirectrixCodim_le_cleanPart_of_forall_eq_zero`: Theorem 3.9.11.
 
 ## References
 
-* Volume 7, Section 3.9 of the handbook: Theorem 3.9.1, Lemma 3.9.3 and Corollary 3.9.8.
+* Volume 7, Section 3.9 of the handbook: Theorem 3.9.1, Lemma 3.9.3, Corollary 3.9.8, Theorem 3.9.10
+  and Theorem 3.9.11.
 -/
 
 open MvPolynomial Finsupp Module
@@ -134,7 +136,7 @@ theorem exists_mem_ord_smul_add_X_mul_pderiv_eq {d : ℕ} (hρ : logJacobianOrde
 
 end Generators
 
-/-! ### Theorem A -/
+/-! ### Theorem 3.9.10 -/
 
 section TheoremA
 
@@ -148,7 +150,7 @@ private theorem le_idealOrd_logJacobianTangent_cleanPart {d : ℕ}
   exact idealOrd_anti (logJacobianTangent_le _ _)
 
 /-- **The first case is stable, the form with the index `i`** (Volume 7, Section 3.9 of the
-handbook, Theorem A of S7.14). Let `g ≠ 0` be clean with `ord g ≥ p`, let `π(g) = x_j^p g'` in the
+handbook, Theorem 3.9.10). Let `g ≠ 0` be clean with `ord g ≥ p`, let `π(g) = x_j^p g'` in the
 chart `π = pointChart j t`, and let the order of `Θ₀(g)` be `|r| + d`. Let `ρ(g'_c) = d` for the
 new divisor `Δ' = blowupDivisor Δ j t`. Let `i ∈ Δ` with `i ≠ j` and `t_i = 0`, and let
 `ord e_i = d`, with `e_i = r_i G + x_i ∂_i G`. Then the new point is of case A: the order of
@@ -177,7 +179,7 @@ theorem idealOrd_logJacobianTangent_cleanPart_of_ne_of_eq_zero (hg : g ≠ 0) (h
     (le_idealOrd_logJacobianTangent_cleanPart p hρ')
 
 /-- **The first case is stable, the form with `R = {j}`** (Volume 7, Section 3.9 of the handbook,
-Theorem A of S7.14). Let `g ≠ 0` be clean with `ord g ≥ p`, let `π(g) = x_j^p g'` in the chart
+Theorem 3.9.10). Let `g ≠ 0` be clean with `ord g ≥ p`, let `π(g) = x_j^p g'` in the chart
 `π = pointChart j t`, let `ρ(g) = d`, and let the order of `Θ₀(g)` be `|r| + d`. Let `ρ(g'_c) = d`
 for the new divisor `Δ' = blowupDivisor Δ j t`. Let `ord e_j = d` and `d < ord e_i` for each other
 `i ∈ Δ`, with `e_i = r_i G + x_i ∂_i G`. Then `j ∈ Δ`, and the new point is of case A: the order
@@ -224,7 +226,7 @@ theorem idealOrd_logJacobianTangent_cleanPart_of_lt_ord (hg : g ≠ 0) (hc : IsC
     (le_idealOrd_logJacobianTangent_cleanPart p hρ')
 
 /-- **The first case is stable if no component leaves** (Volume 7, Section 3.9 of the handbook,
-Theorem A of S7.14). Let `g ≠ 0` be clean with `ord g ≥ p`, let `π(g) = x_j^p g'` in the chart
+Theorem 3.9.10). Let `g ≠ 0` be clean with `ord g ≥ p`, let `π(g) = x_j^p g'` in the chart
 `π = pointChart j t`, let `ρ(g) = d`, and let the order of `Θ₀(g)` be `|r| + d` (case A). Let
 `ρ(g'_c) = d` for the new divisor `Δ' = blowupDivisor Δ j t`. If `t_i = 0` for each `i ∈ Δ` with
 `i ≠ j`, then the new point is of case A: the order of `Θ₀(g'_c)` is `|r'| + d`, with
@@ -252,12 +254,12 @@ theorem idealOrd_logJacobianTangent_cleanPart_of_forall_eq_zero (hg : g ≠ 0) (
 
 end TheoremA
 
-/-! ### Theorem B -/
+/-! ### Theorem 3.9.11 -/
 
 section TheoremB
 
 /-- **`τ_ρ` does not go down if no component leaves** (Volume 7, Section 3.9 of the handbook,
-Theorem B of S7.14). Let `g ≠ 0` be clean with `ord g ≥ p`, let `π(g) = x_j^p g'` in the chart
+Theorem 3.9.11). Let `g ≠ 0` be clean with `ord g ≥ p`, let `π(g) = x_j^p g'` in the chart
 `π = pointChart j t`, let `d = ord G` with `G = residualFactor Δ g`, let `ρ(g) = d`, and let the
 order of `Θ₀(g)` be `|r| + d` (case A). Let `ρ(g'_c) = d` for the new divisor
 `Δ' = blowupDivisor Δ j t`. If `t_i = 0` for each `i ∈ Δ` with `i ≠ j`, then
@@ -274,7 +276,7 @@ theorem finrank_logJacobianDirectrix_cleanPart_le_of_forall_eq_zero (hg : g ≠ 
   by_cases hpd : ((degree (divisorExponent Δ g) + d : ℕ) : k) ≠ 0
   · exact finrank_logJacobianDirectrix_cleanPart_le_of_ne_zero p hg hc hord h hG hρ hρ' hpd
   rw [not_not] at hpd
-  -- The new point is of case A (Theorem A).
+  -- The new point is of case A (Theorem 3.9.10).
   have hA' := idealOrd_logJacobianTangent_cleanPart_of_forall_eq_zero p hg hc hord h hρ hA hρ' ht
   have hset : ∀ ψ ∈ logJacobianDirectrixSet Δ g,
       ord ψ = d ∧ monomial (divisorExponent Δ g) 1 * ψ ∈ logJacobianTangent Δ g := by
@@ -350,7 +352,7 @@ theorem finrank_logJacobianDirectrix_cleanPart_le_of_forall_eq_zero (hg : g ≠ 
     exact le_top
 
 /-- **`τ_ρ` does not go down if no component leaves**, the form with the codimension (Volume 7,
-Section 3.9 of the handbook, Theorem B of S7.14). There is no hypothesis on `p`. -/
+Section 3.9 of the handbook, Theorem 3.9.11). There is no hypothesis on `p`. -/
 theorem logJacobianDirectrixCodim_le_cleanPart_of_forall_eq_zero (hg : g ≠ 0)
     (hc : IsClean p g) (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {d : ℕ}
     (hG : ord (residualFactor Δ g) = d) (hρ : logJacobianOrder Δ g = d)

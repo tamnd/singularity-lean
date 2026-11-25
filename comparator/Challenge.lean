@@ -3218,7 +3218,7 @@ open MvPolynomial Finsupp Module
 variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] [Fintype σ] (p : ℕ) [CharP k p]
   {Δ : Finset σ} {j : σ} {t : σ → k} {g g' : MvPolynomial σ k}
 
-/-- `Singularity/Invariant/LogJacobianNoLeave.lean`: Theorem A of Volume 7, Section 3.9 of the
+/-- `Singularity/Invariant/LogJacobianNoLeave.lean`: Theorem 3.9.10 of Volume 7, Section 3.9 of the
 handbook, the form with the index `i`. -/
 theorem idealOrd_logJacobianTangent_cleanPart_of_ne_of_eq_zero (hg : g ≠ 0) (hc : IsClean p g)
     (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {d : ℕ}
@@ -3230,7 +3230,7 @@ theorem idealOrd_logJacobianTangent_cleanPart_of_ne_of_eq_zero (hg : g ≠ 0) (h
     idealOrd (logJacobianTangent (blowupDivisor Δ j t) (cleanPart p g')) =
       ((degree (divisorExponent (blowupDivisor Δ j t) (cleanPart p g')) + d : ℕ) : ℕ∞) := sorry
 
-/-- `Singularity/Invariant/LogJacobianNoLeave.lean`: Theorem A of Volume 7, Section 3.9 of the
+/-- `Singularity/Invariant/LogJacobianNoLeave.lean`: Theorem 3.9.10 of Volume 7, Section 3.9 of the
 handbook, the form with `R = {j}`. -/
 theorem idealOrd_logJacobianTangent_cleanPart_of_lt_ord (hg : g ≠ 0) (hc : IsClean p g)
     (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {d : ℕ}
@@ -3244,7 +3244,7 @@ theorem idealOrd_logJacobianTangent_cleanPart_of_lt_ord (hg : g ≠ 0) (hc : IsC
     idealOrd (logJacobianTangent (blowupDivisor Δ j t) (cleanPart p g')) =
       ((degree (divisorExponent (blowupDivisor Δ j t) (cleanPart p g')) + d : ℕ) : ℕ∞) := sorry
 
-/-- `Singularity/Invariant/LogJacobianNoLeave.lean`: Theorem A of Volume 7, Section 3.9 of the
+/-- `Singularity/Invariant/LogJacobianNoLeave.lean`: Theorem 3.9.10 of Volume 7, Section 3.9 of the
 handbook, the form with no leaving component. -/
 theorem idealOrd_logJacobianTangent_cleanPart_of_forall_eq_zero (hg : g ≠ 0) (hc : IsClean p g)
     (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {d : ℕ}
@@ -3255,7 +3255,7 @@ theorem idealOrd_logJacobianTangent_cleanPart_of_forall_eq_zero (hg : g ≠ 0) (
     idealOrd (logJacobianTangent (blowupDivisor Δ j t) (cleanPart p g')) =
       ((degree (divisorExponent (blowupDivisor Δ j t) (cleanPart p g')) + d : ℕ) : ℕ∞) := sorry
 
-/-- `Singularity/Invariant/LogJacobianNoLeave.lean`: Theorem B of Volume 7, Section 3.9 of the
+/-- `Singularity/Invariant/LogJacobianNoLeave.lean`: Theorem 3.9.11 of Volume 7, Section 3.9 of the
 handbook. -/
 theorem finrank_logJacobianDirectrix_cleanPart_le_of_forall_eq_zero (hg : g ≠ 0)
     (hc : IsClean p g) (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {d : ℕ}
@@ -3266,7 +3266,7 @@ theorem finrank_logJacobianDirectrix_cleanPart_le_of_forall_eq_zero (hg : g ≠ 
     finrank k (logJacobianDirectrix (blowupDivisor Δ j t) (cleanPart p g')) ≤
       finrank k (logJacobianDirectrix Δ g) := sorry
 
-/-- `Singularity/Invariant/LogJacobianNoLeave.lean`: Theorem B of Volume 7, Section 3.9 of the
+/-- `Singularity/Invariant/LogJacobianNoLeave.lean`: Theorem 3.9.11 of Volume 7, Section 3.9 of the
 handbook, the form with the codimension. -/
 theorem logJacobianDirectrixCodim_le_cleanPart_of_forall_eq_zero (hg : g ≠ 0)
     (hc : IsClean p g) (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {d : ℕ}

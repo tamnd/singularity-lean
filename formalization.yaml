@@ -1288,23 +1288,23 @@ status:
     - name: Singularity.idealOrd_logJacobianTangent_cleanPart_of_ne_of_eq_zero
       kind: theorem
       status: proved
-      note: Theorem A of Volume 7, Section 3.9 of the handbook, the form with the index i. Let g /= 0 be clean with ord g >= p, let the chart send g to x_j^p g', let the order of Theta_0(g) be |r| + d, and let rho(g'_c) = d. Let i in Delta with i /= j and t_i = 0, and let ord e_i = d with e_i = r_i G + x_i d_i G. Then the new point is of case A, that is the order of Theta_0(g'_c) is |r'| + d. There is no hypothesis on p.
+      note: Theorem 3.9.10 of Volume 7, Section 3.9 of the handbook, the form with the index i. Let g /= 0 be clean with ord g >= p, let the chart send g to x_j^p g', let the order of Theta_0(g) be |r| + d, and let rho(g'_c) = d. Let i in Delta with i /= j and t_i = 0, and let ord e_i = d with e_i = r_i G + x_i d_i G. Then the new point is of case A, that is the order of Theta_0(g'_c) is |r'| + d. There is no hypothesis on p.
     - name: Singularity.idealOrd_logJacobianTangent_cleanPart_of_lt_ord
       kind: theorem
       status: proved
-      note: Theorem A of Volume 7, Section 3.9 of the handbook, the form with R = {j}. Let g /= 0 be clean with ord g >= p, let the chart send g to x_j^p g', let rho(g) = d, let the order of Theta_0(g) be |r| + d, and let rho(g'_c) = d. If ord e_j = d and d < ord e_i for each other i in Delta, then the new point is of case A. The proof uses the transport of the Euler element. There is no hypothesis on p.
+      note: Theorem 3.9.10 of Volume 7, Section 3.9 of the handbook, the form with R = {j}. Let g /= 0 be clean with ord g >= p, let the chart send g to x_j^p g', let rho(g) = d, let the order of Theta_0(g) be |r| + d, and let rho(g'_c) = d. If ord e_j = d and d < ord e_i for each other i in Delta, then the new point is of case A. The proof uses the transport of the Euler element. There is no hypothesis on p.
     - name: Singularity.idealOrd_logJacobianTangent_cleanPart_of_forall_eq_zero
       kind: theorem
       status: proved
-      note: Theorem A of Volume 7, Section 3.9 of the handbook, the form with no leaving component. Let g /= 0 be clean with ord g >= p, let the chart send g to x_j^p g', let rho(g) = d, let the order of Theta_0(g) be |r| + d, and let rho(g'_c) = d. If t_i = 0 for each i in Delta with i /= j, then the new point is of case A. There is no hypothesis on p.
+      note: Theorem 3.9.10 of Volume 7, Section 3.9 of the handbook, the form with no leaving component. Let g /= 0 be clean with ord g >= p, let the chart send g to x_j^p g', let rho(g) = d, let the order of Theta_0(g) be |r| + d, and let rho(g'_c) = d. If t_i = 0 for each i in Delta with i /= j, then the new point is of case A. There is no hypothesis on p.
     - name: Singularity.finrank_logJacobianDirectrix_cleanPart_le_of_forall_eq_zero
       kind: theorem
       status: proved
-      note: Theorem B of Volume 7, Section 3.9 of the handbook. Let g /= 0 be clean with ord g >= p, let g = x^r G with d = ord G, let the chart send g to x_j^p g', let rho(g) = d, let the order of Theta_0(g) be |r| + d, and let rho(g'_c) = d. If t_i = 0 for each i in Delta with i /= j, then dim T_rho(g'_c) <= dim T_rho(g). There is no hypothesis on p.
+      note: Theorem 3.9.11 of Volume 7, Section 3.9 of the handbook. Let g /= 0 be clean with ord g >= p, let g = x^r G with d = ord G, let the chart send g to x_j^p g', let rho(g) = d, let the order of Theta_0(g) be |r| + d, and let rho(g'_c) = d. If t_i = 0 for each i in Delta with i /= j, then dim T_rho(g'_c) <= dim T_rho(g). There is no hypothesis on p.
     - name: Singularity.logJacobianDirectrixCodim_le_cleanPart_of_forall_eq_zero
       kind: theorem
       status: proved
-      note: Theorem B of Volume 7, Section 3.9 of the handbook, the form with the codimension. Under the same hypotheses, tau_rho(g) <= tau_rho(g'_c).
+      note: Theorem 3.9.11 of Volume 7, Section 3.9 of the handbook, the form with the codimension. Under the same hypotheses, tau_rho(g) <= tau_rho(g'_c).
     - name: Singularity.exists_macLaneVaquieStep_or_forall_isStable
       kind: theorem
       status: proved
