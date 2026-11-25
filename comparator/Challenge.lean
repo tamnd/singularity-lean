@@ -1978,5 +1978,92 @@ theorem X_pow_add_C_tfae_threefold (k : Type*) [Field k] [CharP k p] (g : MvPoly
 end Reduced
 
 end DegreePSteps
+section CossartPiltantOmega
+
+open MvPolynomial Finsupp
+
+section Def
+
+variable {σ k : Type*} [CommSemiring k]
+
+open Classical in
+/-- `Singularity/Invariant/CossartPiltantOmega.lean`: the invariant `ω` of Cossart and Piltant,
+Volume 6, Definition 3.2.5 of the handbook. -/
+noncomputable def cpOmega (Δ : Finset σ) (g : MvPolynomial σ k) : ℕ∞ :=
+  if ∃ j ∉ Δ, pderiv j (homogeneousComponent (ord g).toNat g) ≠ 0 then
+    ord (residualFactor Δ g) - 1
+  else ord (residualFactor Δ g)
+
+/-- `Singularity/Invariant/CossartPiltantOmega.lean`: the first case of Definition 3.2.5. -/
+theorem cpOmega_of_exists {Δ : Finset σ} {g : MvPolynomial σ k}
+    (h : ∃ j ∉ Δ, pderiv j (homogeneousComponent (ord g).toNat g) ≠ 0) :
+    cpOmega Δ g = ord (residualFactor Δ g) - 1 := sorry
+
+/-- `Singularity/Invariant/CossartPiltantOmega.lean`: the second case of Definition 3.2.5. -/
+theorem cpOmega_of_forall {Δ : Finset σ} {g : MvPolynomial σ k}
+    (h : ∀ j ∉ Δ, pderiv j (homogeneousComponent (ord g).toNat g) = 0) :
+    cpOmega Δ g = ord (residualFactor Δ g) := sorry
+
+end Def
+
+section Main
+
+variable {σ k : Type*} [Field k] (p : ℕ) [CharP k p] {Δ : Finset σ} {g : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/CossartPiltantOmega.lean`: Proposition 3.6.1 of Volume 7, Section 3.6
+of the handbook, `ω = ρ` for a clean `g ≠ 0`. -/
+theorem cpOmega_eq_logJacobianOrder (hg : g ≠ 0) (hc : IsClean p g) :
+    cpOmega Δ g = logJacobianOrder Δ g := sorry
+
+end Main
+
+section PointBlowup
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] [Fintype σ] (p : ℕ) [CharP k p]
+  {Δ : Finset σ} {j : σ} {t : σ → k} {g g' : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/CossartPiltantOmega.lean`: Corollary 3.6.2 of Volume 7, Section 3.6 of
+the handbook, `ω` does not go up under a point blowup. -/
+theorem cpOmega_cleanPart_le (hg : g ≠ 0) (hc : IsClean p g) (hord : (p : ℕ∞) ≤ ord g)
+    (h : pointChart j t g = X j ^ p * g') :
+    cpOmega (blowupDivisor Δ j t) (cleanPart p g') ≤ cpOmega Δ g := sorry
+
+end PointBlowup
+
+section CenterBlowup
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] (p : ℕ) [CharP k p]
+  {Δ S : Finset σ} {j : σ} {t : σ → k} {g g' : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/CossartPiltantOmega.lean`: Corollary 3.6.3 of Volume 7, Section 3.6 of
+the handbook, `ω` does not go up under the blowup of a regular center with (H1) and (H2). -/
+theorem cpOmega_cleanPart_le_center (hc : IsClean p g) (hj : j ∈ S)
+    (hgS : g ∈ Ideal.span (X '' (S : Set σ)) ^ p) (h : centerChart S j t g = X j ^ p * g')
+    {ρ : ℕ} (hρ : logJacobianOrder Δ g = ρ)
+    (H1 : ∀ f ∈ logJacobian Δ g, ∃ q ∈ Ideal.span (X '' (S : Set σ)) ^ ρ,
+      f = monomial (divisorExponent Δ g) 1 * q)
+    (H2 : (∀ f ∈ logJacobianCenter Δ S g, ∃ q ∈ Ideal.span (X '' (S : Set σ)) ^ (ρ + 1),
+        f = monomial (divisorExponent Δ g) 1 * q) ∨
+      ∃ q, monomial (divisorExponent Δ g) 1 * q ∈ logJacobianCenter Δ S g ∧ ord q = ρ) :
+    cpOmega (centerDivisor Δ S j t) (cleanPart p g') ≤ cpOmega Δ g := sorry
+
+end CenterBlowup
+
+/-- `Singularity/Invariant/CossartPiltantOmega.lean`: Example 3.6.4, `ω(g) = 2`. -/
+theorem centerExample_cpOmega :
+    cpOmega {2} (X 1 ^ 2 * X 2 + X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)) = 2 := sorry
+
+/-- `Singularity/Invariant/CossartPiltantOmega.lean`: Example 3.6.4, `ω(g'_c) = 3`. -/
+theorem centerExample_cpOmega_cleanPart :
+    cpOmega (centerDivisor ({2} : Finset (Fin 3)) {0, 1} 0 (0 : Fin 3 → ZMod 2))
+      (cleanPart 2 (X 1 ^ 2 * X 2 + X 0 * X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2))) = 3 := sorry
+
+/-- `Singularity/Invariant/CossartPiltantOmega.lean`: Example 3.6.4, `ω` goes up from `2` to `3`. -/
+theorem centerExample_cpOmega_lt :
+    cpOmega {2} (X 1 ^ 2 * X 2 + X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)) <
+      cpOmega (centerDivisor ({2} : Finset (Fin 3)) {0, 1} 0 (0 : Fin 3 → ZMod 2))
+        (cleanPart 2 (X 1 ^ 2 * X 2 + X 0 * X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2))) := sorry
+
+end CossartPiltantOmega
 
 end Singularity
