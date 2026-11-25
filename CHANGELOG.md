@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.16 - 2026-11-25
+
 ### Added
 
 - `Singularity/Valuation/MonomialGroundField.lean`: monomial valuations over a larger ground field. Part 1 of Lemma 2.1.2 of Volume 5 of the handbook: each element of the value group of a monomial valuation is `v(x^a)` for exactly one `a ∈ ℤⁿ` (`IsMonomialValuation.existsUnique_valuation_eq`, `IsMonomialValuation.valueGroupBasis`). Part 2: the residue field is `k` (`IsMonomialValuation.algebraMap_residueField_bijective`). The part of Lemma 1.4.2 on the ground field: if `F ⊆ V` is a subfield that is finitely generated over `k`, then local uniformization over `F` gives local uniformization over `k` (`HasLocalUniformization.of_intermediateField`). Corollary 2.1.6 (node SG0000004D): let `V` be trivial on `k(y_1, ..., y_t)` and a monomial valuation of `K` over `k(y)`. Then `V` has local uniformization over `k` (`hasLocalUniformization_of_isMonomialValuation_adjoin`), `V` is an Abhyankar valuation of `K/k` if the `y_i` are algebraically independent (`IsMonomialValuation.isAbhyankarValuation_adjoin`), and the residues of the `y_i` generate the residue field (`IsMonomialValuation.adjoin_residue_eq_top`, `algebraicIndependent_residue`). The theorem `localUniformization_abhyankar` is not proved.
