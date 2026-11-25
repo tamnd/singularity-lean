@@ -965,6 +965,26 @@ status:
       kind: theorem
       status: proved
       note: The last part of Step 4 of the reduction of Cossart-Piltant, the induction on the degree of a Galois extension of degree p ^ r. The passage through one Galois step of degree p is an explicit hypothesis (LocalUniformizationGaloisStep) that the library does not prove.
+    - name: Singularity.finiteDimensional_residueField_and_finrank_le
+      kind: theorem
+      status: proved
+      note: For a finite extension E'/E and a valuation of E' that extends a valuation of E, the residue extension is finite of degree at most [E' to E].
+    - name: Singularity.hasLocalUniformization_of_finrank_residueField_eq_of_algebra
+      kind: theorem
+      status: proved
+      note: Local uniformization lifts along a finite extension E'/E, given as an algebra, if the residue extension is separable of degree [E' to E].
+    - name: Singularity.isSeparable_and_finrank_residueField_inertiaField
+      kind: theorem
+      status: proved
+      note: Let L/K be finite Galois and let W be a valuation subring of L that each K-automorphism maps into W. Then the residue extension of W ∩ K^T over W ∩ K is separable of degree [K^T to K], where K^T is the inertia field.
+    - name: Singularity.hasLocalUniformization_inertiaField
+      kind: theorem
+      status: proved
+      note: The unramified part of Step 4 of the reduction of Cossart-Piltant, over a field K that contains the decomposition field. Local uniformization of W ∩ K gives local uniformization of W ∩ K^T. This is unconditional.
+    - name: Singularity.hasLocalUniformization_inertiaField_decompositionField
+      kind: theorem
+      status: proved
+      note: The unramified part of Step 4 of the reduction of Cossart-Piltant (Volume 6, Proposition 2.2.1 of the handbook). Local uniformization of W ∩ K^Z gives local uniformization of W ∩ K^T. This is unconditional. The passage from K to K^Z, the tame part and Steps 1 and 2 are not proved.
     - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.muDvd_iff_of_forall_eq
       kind: theorem
       status: proved

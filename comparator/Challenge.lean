@@ -78,11 +78,12 @@ import Mathlib.RingTheory.DedekindDomain.Different
 import Mathlib.RingTheory.Localization.Integral
 import Mathlib.FieldTheory.PrimitiveElement
 import Mathlib.FieldTheory.SeparableClosure
+import Mathlib.RingTheory.Valuation.RamificationGroup
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean`, `Singularity/Valuation/LocalUniformizationMonomial.lean`, `Singularity/Valuation/MonomialGroundField.lean`, `Singularity/Valuation/EtaleRegular.lean`, `Singularity/Valuation/EtaleGenerator.lean`, `Singularity/Valuation/EtaleGeneratorExistence.lean`, `Singularity/Valuation/MonomialFiniteExtension.lean` and `Singularity/Valuation/DegreePTowers.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean`, `Singularity/Valuation/LocalUniformizationMonomial.lean`, `Singularity/Valuation/MonomialGroundField.lean`, `Singularity/Valuation/EtaleRegular.lean`, `Singularity/Valuation/EtaleGenerator.lean`, `Singularity/Valuation/EtaleGeneratorExistence.lean`, `Singularity/Valuation/MonomialFiniteExtension.lean`, `Singularity/Valuation/DegreePTowers.lean` and `Singularity/Valuation/InertiaField.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -2413,6 +2414,100 @@ theorem hasLocalUniformization_of_isGalois (p n : ℕ) [hp : Fact p.Prime] {k : 
     HasLocalUniformization k W := sorry
 
 end DegreePTowers
+
+section InertiaField
+
+open IntermediateField IsLocalRing Module
+
+/-- `Singularity/Valuation/InertiaField.lean`: the residue degree is at most the degree. -/
+theorem finiteDimensional_residueField_and_finrank_le {E E' : Type*} [Field E] [Field E']
+    [Algebra E E'] {Γ₀ Γ : Type*} [LinearOrderedCommGroupWithZero Γ₀]
+    [LinearOrderedCommGroupWithZero Γ] (v₀ : Valuation E Γ₀) (v : Valuation E' Γ)
+    [v₀.HasExtension v] [FiniteDimensional E E'] :
+    FiniteDimensional (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring) ∧
+      finrank (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring) ≤
+        finrank E E' := sorry
+
+/-- For fields `K ⊆ M ⊆ L` and a valuation `w` of `L`, the restriction of `w` to `M` extends the restriction of `w` to `K`. -/
+instance hasExtension_comap_comap {K M L : Type*} [Field K] [Field M] [Field L] [Algebra K M]
+    [Algebra M L] [Algebra K L] [IsScalarTower K M L] {Γ : Type*}
+    [LinearOrderedCommGroupWithZero Γ] (w : Valuation L Γ) :
+    (w.comap (algebraMap K L)).HasExtension (w.comap (algebraMap M L)) :=
+  ⟨fun r s => by simp only [Valuation.comap_apply, ← IsScalarTower.algebraMap_apply]⟩
+
+/-- `Singularity/Valuation/InertiaField.lean`: the lifting theorem for an extension `E'/E` that is given as an algebra. -/
+theorem hasLocalUniformization_of_finrank_residueField_eq_of_algebra {k E E' : Type*} [Field k]
+    [Field E] [Field E'] [Algebra k E] [Algebra k E'] [Algebra E E'] [IsScalarTower k E E']
+    {Γ₀ Γ : Type*} [LinearOrderedCommGroupWithZero Γ₀] [LinearOrderedCommGroupWithZero Γ]
+    (v₀ : Valuation E Γ₀) (v : Valuation E' Γ) [v₀.HasExtension v] [FiniteDimensional E E']
+    [Algebra.IsSeparable (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring)]
+    (hf : finrank (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring) =
+      finrank E E')
+    (h : HasLocalUniformization k v₀.valuationSubring) :
+    HasLocalUniformization k v.valuationSubring := sorry
+
+/-- The inertia group of a valuation subring `W` of `L` in the group of `K`-automorphisms of `L`. -/
+def inertiaGroup (K : Type*) {L : Type*} [Field K] [Field L] [Algebra K L]
+    (W : ValuationSubring L) : Subgroup (L ≃ₐ[K] L) where
+  carrier := {σ | (∀ x, σ x ∈ W ↔ x ∈ W) ∧ ∀ x ∈ W, W.valuation (σ x - x) < 1}
+  mul_mem' {σ τ} hσ hτ := by
+    refine ⟨fun x => (hσ.1 _).trans (hτ.1 x), fun x hx => ?_⟩
+    have : (σ * τ) x - x = (σ (τ x) - τ x) + (τ x - x) := by
+      rw [AlgEquiv.mul_apply]
+      ring
+    rw [this]
+    exact (Valuation.map_add _ _ _).trans_lt (max_lt (hσ.2 _ ((hτ.1 x).2 hx)) (hτ.2 x hx))
+  one_mem' := ⟨fun x => Iff.rfl, fun x _ => by simp⟩
+  inv_mem' {σ} hσ := by
+    have hss : ∀ x, σ (σ⁻¹ x) = x := fun x => by
+      rw [AlgEquiv.aut_inv, AlgEquiv.apply_symm_apply]
+    have h1 : ∀ x, σ⁻¹ x ∈ W ↔ x ∈ W := fun x => by
+      rw [← hσ.1 (σ⁻¹ x), hss]
+    refine ⟨h1, fun x hx => ?_⟩
+    have := hσ.2 (σ⁻¹ x) ((h1 x).2 hx)
+    rwa [hss, ← Valuation.map_neg, neg_sub] at this
+
+/-- The inertia field of a valuation subring `W` of `L` over `K`. -/
+def inertiaField (K : Type*) {L : Type*} [Field K] [Field L] [Algebra K L]
+    (W : ValuationSubring L) : IntermediateField K L :=
+  fixedField (inertiaGroup K W)
+
+/-- `Singularity/Valuation/InertiaField.lean`: the residue extension of the inertia field over a field that contains the decomposition field is separable of degree `[K^T : K]`. -/
+theorem isSeparable_and_finrank_residueField_inertiaField {K L : Type*} [Field K] [Field L]
+    [Algebra K L] [FiniteDimensional K L] [IsGalois K L] (W : ValuationSubring L)
+    (hW : ∀ σ : L ≃ₐ[K] L, ∀ x ∈ W, σ x ∈ W) :
+    Algebra.IsSeparable (ResidueField (W.valuation.comap (algebraMap K L)).valuationSubring)
+        (ResidueField (W.valuation.comap (algebraMap (inertiaField K W) L)).valuationSubring) ∧
+      finrank (ResidueField (W.valuation.comap (algebraMap K L)).valuationSubring)
+        (ResidueField (W.valuation.comap (algebraMap (inertiaField K W) L)).valuationSubring) =
+        finrank K (inertiaField K W) := sorry
+
+/-- `Singularity/Valuation/InertiaField.lean`: local uniformization goes up to the inertia field over a field that contains the decomposition field (part of Step 4 of the reduction of Cossart-Piltant). -/
+theorem hasLocalUniformization_inertiaField {k K L : Type*} [Field k] [Field K] [Field L]
+    [Algebra k K] [Algebra k L] [Algebra K L] [IsScalarTower k K L] [FiniteDimensional K L]
+    [IsGalois K L] (W : ValuationSubring L) (hW : ∀ σ : L ≃ₐ[K] L, ∀ x ∈ W, σ x ∈ W)
+    (h : HasLocalUniformization k (W.comap (algebraMap K L))) :
+    HasLocalUniformization k (W.comap (algebraMap (inertiaField K W) L)) := sorry
+
+/-- The `k`-algebra structure of an intermediate field `M` of `L/K` is compatible with `L`. -/
+theorem isScalarTower_intermediateField {k : Type*} [Field k] {K L : Type*} [Field K] [Field L]
+    [Algebra k K] [Algebra k L] [Algebra K L] [IsScalarTower k K L] (M : IntermediateField K L) :
+    IsScalarTower k M L :=
+  IsScalarTower.of_algebraMap_eq fun _ => rfl
+
+attribute [local instance] isScalarTower_intermediateField
+
+/-- `Singularity/Valuation/InertiaField.lean`: local uniformization goes up from the decomposition field to the inertia field (part of Step 4 of the reduction of Cossart-Piltant). -/
+theorem hasLocalUniformization_inertiaField_decompositionField {k K L : Type*} [Field k]
+    [Field K] [Field L] [Algebra k K] [Algebra k L] [Algebra K L] [IsScalarTower k K L]
+    [FiniteDimensional K L] [IsGalois K L] (W : ValuationSubring L)
+    (h : HasLocalUniformization k
+      (W.comap (algebraMap (fixedField (W.decompositionSubgroup K)) L))) :
+    HasLocalUniformization k
+      (W.comap (algebraMap (inertiaField (fixedField (W.decompositionSubgroup K)) W) L)) :=
+  sorry
+
+end InertiaField
 
 section CossartPiltantOmega
 

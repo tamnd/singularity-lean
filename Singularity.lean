@@ -86,5 +86,6 @@ import Singularity.Valuation.EtaleGenerator
 import Singularity.Valuation.EtaleGeneratorExistence
 import Singularity.Valuation.MonomialFiniteExtension
 import Singularity.Valuation.DegreePTowers
+import Singularity.Valuation.InertiaField
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement
