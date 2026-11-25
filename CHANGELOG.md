@@ -4,6 +4,11 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Alteration/Basic.lean`: alterations (Volume 8, Section 1.1 of the handbook). `IsAlteration f` says that `f : X' ⟶ X` is a proper dominant morphism of integral schemes that is finite over a nonempty open set of `X`, as in [dJ96, 2.20]. The file proves that the identity is an alteration (`IsAlteration.id`), that a composite of two alterations is an alteration (`IsAlteration.comp`), that the generic fibre of an alteration is the generic point alone (`IsAlteration.eq_genericPoint`), that a proper morphism that is an isomorphism over a nonempty open set is an alteration (`IsAlteration.of_isIso_restrict`), and that a resolution of an integral scheme is an alteration (`IsResolution.isAlteration`).
+- `Singularity/Alteration/Statement.lean`: the theorem of de Jong as a proposition, `deJongAlteration` (Volume 8, Theorem 1.2.1, node SG0000001K). It is not proved. The compactification is asked to be proper over `k`, because Mathlib has no projective morphisms. The file also defines `RegularAlterationInDim p n` and proves that `deJongAlteration` implies it for each `p` and `n`, and that `ResolutionInDim p n` implies it. There is no named hypothesis for the moduli of stable curves (Q-08), because Mathlib has no stable curves.
+
 ## 0.4.12 - 2026-11-25
 
 ### Added

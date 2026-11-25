@@ -43,11 +43,12 @@ import Mathlib.FieldTheory.Perfect
 import Mathlib.Algebra.MvPolynomial.Expand
 import Mathlib.Algebra.Polynomial.HasseDeriv
 import Mathlib.Data.Finsupp.Interval
+import Mathlib.AlgebraicGeometry.Morphisms.Finite
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean` and `Singularity/Algebra/MvHasse.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -1736,5 +1737,68 @@ theorem not_tschirnhausen_charTwo (K : Type*) [Field K] [CharP K 2] :
       (m : ℕ∞) ≤ ord (aeval (fun o => X o + C (b o)) (zMonic m a)) → b none = 0 := sorry
 
 end Tschirnhausen
+
+section Alteration
+
+open AlgebraicGeometry CategoryTheory
+
+/-- `Singularity/Alteration/Basic.lean`: an alteration of an integral scheme. -/
+structure IsAlteration {X X' : Scheme.{u}} (f : X' ⟶ X) : Prop where
+  integral_source : IsIntegral X'
+  integral_target : IsIntegral X
+  proper : IsProper f
+  dominant : IsDominant f
+  finite_over : ∃ U : X.Opens, (U : Set X).Nonempty ∧ IsFinite (f ∣_ U)
+
+/-- `Singularity/Alteration/Basic.lean`: the fibre over the generic point. -/
+theorem IsAlteration.eq_genericPoint {X X' : Scheme.{u}} [IsIntegral X] [IsIntegral X']
+    {f : X' ⟶ X} (hf : IsAlteration f) {x : X'} (hx : f x = genericPoint X) :
+    x = genericPoint X' := sorry
+
+/-- `Singularity/Alteration/Basic.lean`: the identity is an alteration. -/
+protected theorem IsAlteration.id (X : Scheme.{u}) [IsIntegral X] : IsAlteration (𝟙 X) := sorry
+
+/-- `Singularity/Alteration/Basic.lean`: a composite of two alterations is an alteration. -/
+protected theorem IsAlteration.comp {X X' X'' : Scheme.{u}} {g : X'' ⟶ X'} {f : X' ⟶ X}
+    (hg : IsAlteration g) (hf : IsAlteration f) : IsAlteration (g ≫ f) := sorry
+
+/-- `Singularity/Alteration/Basic.lean`: an isomorphism over a nonempty open set is an alteration. -/
+theorem IsAlteration.of_isIso_restrict {X X' : Scheme.{u}} [IsIntegral X] [IsIntegral X']
+    (f : X' ⟶ X) [IsProper f] (U : X.Opens) (hU : (U : Set X).Nonempty) [IsIso (f ∣_ U)] :
+    IsAlteration f := sorry
+
+/-- `Singularity/Alteration/Basic.lean`: a resolution of an integral scheme has an integral source. -/
+theorem IsResolution.isIntegral {X Y : Scheme.{u}} [IsIntegral X] {π : Y ⟶ X} (h : IsResolution π) :
+    IsIntegral Y := sorry
+
+/-- `Singularity/Alteration/Basic.lean`: a resolution of an integral scheme is an alteration. -/
+theorem IsResolution.isAlteration {X Y : Scheme.{u}} [IsIntegral X] {π : Y ⟶ X}
+    (h : IsResolution π) : IsAlteration π := sorry
+
+/-- `Singularity/Alteration/Statement.lean`: regular alterations in dimension at most `n`. -/
+def RegularAlterationInDim (p n : ℕ) : Prop :=
+  ∀ (k : Type u) [Field k] [CharP k p] (X : Scheme.{u}) (f : X ⟶ Spec (.of k)) [IsVariety X f]
+    [IsIntegral X], topologicalKrullDim X ≤ n →
+      ∃ (X' : Scheme.{u}) (φ : X' ⟶ X), IsAlteration φ ∧ IsRegularScheme X'
+
+/-- `Singularity/Alteration/Statement.lean`: the theorem of de Jong, as a proposition. -/
+def deJongAlteration : Prop :=
+  ∀ (k : Type u) [Field k] (X : Scheme.{u}) (f : X ⟶ Spec (.of k)) [IsVariety X f] [IsIntegral X]
+    (Z : Set X), IsClosed Z → Z ≠ Set.univ →
+      ∃ (X₁ Xbar : Scheme.{u}) (φ : X₁ ⟶ X) (j : X₁ ⟶ Xbar) (g : Xbar ⟶ Spec (.of k))
+        (D : Xbar.IdealSheafData),
+        IsAlteration φ ∧ IsOpenImmersion j ∧ j ≫ g = φ ≫ f ∧ IsIntegral Xbar ∧ IsProper g ∧
+          IsRegularScheme Xbar ∧
+          (D.support : Set Xbar) = j '' (φ ⁻¹' Z) ∪ (Set.range j)ᶜ ∧ IsSncDivisor D
+
+/-- `Singularity/Alteration/Statement.lean`: de Jong implies regular alterations in each dimension. -/
+theorem regularAlterationInDim_of_deJongAlteration (h : deJongAlteration.{u}) (p n : ℕ) :
+    RegularAlterationInDim.{u} p n := sorry
+
+/-- `Singularity/Alteration/Statement.lean`: resolution implies regular alterations. -/
+theorem regularAlterationInDim_of_resolutionInDim {p n : ℕ} (h : ResolutionInDim.{u} p n) :
+    RegularAlterationInDim.{u} p n := sorry
+
+end Alteration
 
 end Singularity

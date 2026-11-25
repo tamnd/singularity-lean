@@ -186,7 +186,15 @@
     "Singularity.eq_zero_of_le_ord_translate",
     "Singularity.le_ord_translate_zMonic_iff",
     "Singularity.tschirnhausen_pointChart",
-    "Singularity.not_tschirnhausen_charTwo"
+    "Singularity.not_tschirnhausen_charTwo",
+    "Singularity.IsAlteration.eq_genericPoint",
+    "Singularity.IsAlteration.id",
+    "Singularity.IsAlteration.comp",
+    "Singularity.IsAlteration.of_isIso_restrict",
+    "Singularity.IsResolution.isIntegral",
+    "Singularity.IsResolution.isAlteration",
+    "Singularity.regularAlterationInDim_of_deJongAlteration",
+    "Singularity.regularAlterationInDim_of_resolutionInDim"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

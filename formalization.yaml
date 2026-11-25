@@ -761,6 +761,42 @@ status:
       status: proved
       note: In characteristic 2 the example of Narasimhan is in Tschirnhausen form with m = 2 and has order 2 at the point (1, 1, 1, 1). So the hypothesis that m is a unit is necessary.
       note: The lifting test (Lemma 10.5 of Volume 7, Chapter 4 of the handbook). For q = p^e, z^q + g lies in (z - h, I)^q if and only if g + h^q lies in I^q.
+    - name: Singularity.IsAlteration.eq_genericPoint
+      kind: theorem
+      status: proved
+      note: The fibre of an alteration over the generic point is the generic point alone (Lemma 1.1.2 of Volume 8 of the handbook, the part on the generic fibre).
+    - name: Singularity.IsAlteration.id
+      kind: theorem
+      status: proved
+      note: The identity of an integral scheme is an alteration in the sense of [dJ96, 2.20].
+    - name: Singularity.IsAlteration.comp
+      kind: theorem
+      status: proved
+      note: A composite of two alterations is an alteration (Lemma 1.1.6 of Volume 8 of the handbook, without the degree).
+    - name: Singularity.IsAlteration.of_isIso_restrict
+      kind: theorem
+      status: proved
+      note: A proper morphism of integral schemes that is an isomorphism over a nonempty open set is an alteration. This covers the modifications of [dJ96, 2.17].
+    - name: Singularity.IsResolution.isIntegral
+      kind: theorem
+      status: proved
+      note: A resolution of an integral scheme has an integral source (Lemma 1.1.15 of Volume 8 of the handbook).
+    - name: Singularity.IsResolution.isAlteration
+      kind: theorem
+      status: proved
+      note: A resolution of an integral scheme is an alteration (Lemma 1.1.15 of Volume 8 of the handbook).
+    - name: Singularity.deJongAlteration
+      kind: statement
+      status: known
+      note: The theorem of de Jong [dJ96, Theorem 4.1] (node SG0000001K), with a compactification that is proper over k where de Jong has projective, and without the generically étale part over a perfect field. This is a definition of a proposition. The package does not prove it, and it has no named hypothesis for the moduli of stable curves (Q-08).
+    - name: Singularity.regularAlterationInDim_of_deJongAlteration
+      kind: theorem
+      status: proved
+      note: The theorem of de Jong implies RegularAlterationInDim p n for each p and n.
+    - name: Singularity.regularAlterationInDim_of_resolutionInDim
+      kind: theorem
+      status: proved
+      note: Resolution in dimension n implies regular alterations in dimension n.
     - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.muDvd_iff_of_forall_eq
       kind: theorem
       status: proved
