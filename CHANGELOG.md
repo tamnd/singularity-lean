@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/MonomialFiniteExtension.lean`: local uniformization over a monomial subfield in the case of one extension (Volume 5, Theorem 2.2.1 of the handbook, in the case without ramification, defect and splitting). Let `K₀ ⊆ K` be fields that contain `k`, with `[K : K₀]` finite, and let the valuation `v` of `K` extend the valuation `v₀` of `K₀`. If the residue extension is separable of degree `[K : K₀]` and `v₀` has local uniformization over `k`, then `v` has local uniformization over `k` (`hasLocalUniformization_of_finrank_residueField_eq`). The proof composes the existence of an étale generator with the lifting theorem. If moreover `v₀` is trivial on `k(y_1, ..., y_t)` and is a monomial valuation of `K₀` over `k(y)`, then `v` has local uniformization over `k` (`hasLocalUniformization_of_monomial_of_finrank_residueField_eq`), and the same holds if `v₀` is a monomial valuation of `K₀` over `k` (`hasLocalUniformization_of_isMonomialValuation_of_finrank_residueField_eq`). For `K₀ = K` the hypotheses on the residue extension hold for each valuation (`finrank_residueField_eq_of_eq_top`). By the fundamental inequality the hypothesis on the residue extension means `e = d = 1` and that `v` is the only extension of `v₀`. The general case, with several extensions of `v₀`, needs the henselization and the generalized stability theorem of Kuhlmann, and it is not proved. The theorem `localUniformization_abhyankar` is not proved.
+
 ## 0.4.18 - 2026-11-25
 
 ### Added
