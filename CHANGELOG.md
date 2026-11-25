@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.11 - 2026-11-25
+
 ### Added
 
 - `Singularity/Invariant/LogJacobianCenter.lean`: the log-Jacobian ideal under the blowup of a regular center `C = V(x_i : i ∈ S)` of positive dimension (Volume 7, Section 3.4 of the handbook). The chart `centerChart S j t` sends `x_j` to `x_j`, `x_i` to `x_j (x_i + t_i)` for `i ∈ S` with `i ≠ j`, and fixes `x_i` for `i ∉ S`. For `S` equal to all of `σ` it is the chart of the point blowup (`centerChart_univ`). The ideal `logJacobianCenter Δ S g` is the ideal `Θ_C(g)` of `x_i ∂_i g` for `i ∈ Δ`, `∂_l g` for `l ∉ Δ` with `l ∉ S`, and `x_k ∂_l g` for `l ∉ Δ` with `l ∈ S` and `k ∈ S`. It satisfies `I_C Θ(g) ⊆ Θ_C(g) ⊆ Θ(g)` (`span_X_mul_logJacobian_le`, `logJacobianCenter_le`), and it is `Θ₀(g)` for the origin (`logJacobianCenter_univ`). The chain rules are `∂_i π(h) = π(∂_i h)` for `i ∉ S`, `∂_i π(h) = x_j π(∂_i h)` for `i ∈ S` with `i ≠ j`, and `x_j ∂_j π(h) = π(∑_{i ∈ S} x_i ∂_i h)` (`pderiv_centerChart_of_notMem`, `pderiv_centerChart_of_mem`, `X_mul_pderiv_centerChart`). For `j ∈ S` and `π(g) = x_j^p g'` in characteristic `p`, the transformation law is `π(Θ_C(g)) ⊆ (x_j^p) Θ'(g')` and `(x_j^p u) Θ'(g') ⊆ π(Θ_C(g))`, where `Θ'` is the log-Jacobian ideal of the divisor `centerDivisor Δ S j t` and `u = centerUnit Δ S j t` is the product of `x_i + t_i` over the translated directions `i ∈ Δ ∩ S` (`map_centerChart_logJacobianCenter_le_span_mul`, `span_mul_logJacobian_le_map_centerChart`). For the equimultiple weak transform, if `f ∈ I_C^s` then `π(f) = x_j^s f'` (`exists_centerChart_eq_X_pow_mul`), and if also `ord f = s` then `ord f' ≤ s` (`ord_le_of_centerChart`).
