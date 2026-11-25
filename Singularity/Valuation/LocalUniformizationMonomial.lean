@@ -3,18 +3,22 @@ Copyright (c) 2026 The singularity authors. All rights reserved.
 Released under the Apache 2.0 licence as described in the file LICENSE.
 -/
 import Singularity.Statements.LocalUniformization
+import Singularity.Valuation.Abhyankar
 import Singularity.Valuation.LatticeLemma
+import Singularity.Valuation.LatticeLemmaOrdered
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.Basic.NNReal.Basic
+import Mathlib.RingTheory.AlgebraicIndependent.AlgebraicClosure
+import Mathlib.RingTheory.AlgebraicIndependent.TranscendenceBasis
 import Mathlib.RingTheory.MvPolynomial.Basic
 import Mathlib.RingTheory.RegularLocalRing.Polynomial
 
 /-!
 # Local uniformization of monomial valuations
 
-Let `k` be a field of any characteristic, let `K = k(x_1, ..., x_n)`, and let `V` be a valuation of `K/k` such that the values `v(x_1), ..., v(x_n)` are linearly independent over `ℤ`. Then `V` is the monomial valuation of `K` with these weights (Volume 5, Definition 2.1.1 of the handbook), and `V` is an Abhyankar valuation with residue field `k`. This file proves that `V` has local uniformization, if the value group has rank 1 (node SG0000004D, Volume 5, Theorem 2.1.5 of the handbook, in rank 1).
+Let `k` be a field of any characteristic, let `K = k(x_1, ..., x_n)`, and let `V` be a valuation of `K/k` such that the values `v(x_1), ..., v(x_n)` are linearly independent over `ℤ`. Then `V` is the monomial valuation of `K` with these weights (Volume 5, Definition 2.1.1 of the handbook), and `V` is an Abhyankar valuation with residue field `k`. This file proves that `V` is an Abhyankar valuation (Volume 5, Lemma 2.1.2) and that `V` has local uniformization (node SG0000004D, Volume 5, Theorem 2.1.5 of the handbook). There is no condition on the rank of the value group and no condition on the characteristic of `k`.
 
-The proof has two parts. The algebraic part works for each monomial valuation. It takes the lattice lemma (Volume 5, Lemma 2.1.4) as a hypothesis. The combinatorial part is the lattice lemma. This file uses the case of rank 1, `Singularity.latticeLemma_real`.
+The proof has two parts. The algebraic part works for each monomial valuation. It takes the lattice lemma (Volume 5, Lemma 2.1.4) as a hypothesis. The combinatorial part is the lattice lemma. It is `Singularity.latticeLemma_of_injective` in `Singularity/Valuation/LatticeLemmaOrdered.lean`, for each rank. The case of rank 1, `Singularity.latticeLemma_real`, gives a separate proof in rank 1.
 
 ## The proof
 
@@ -33,9 +37,9 @@ For `a ∈ ℤ^n` let `x^a = ∏ x_i ^ a_i` be the Laurent monomial (`Singularit
 ## Main results
 
 * `Singularity.hasLocalUniformization_of_isMonomialValuation_of_lattice`: a monomial valuation has local uniformization, if the lattice lemma holds for its values. This works for each value group.
-* `Singularity.hasLocalUniformization_of_isMonomialValuation_of_rankOne`: a monomial valuation of rank 1 has local uniformization.
-
-The lattice lemma for value groups of higher rank (Volume 5, Lemma 2.1.4, with the cone lemma 2.1.3) is not in this file.
+* `Singularity.hasLocalUniformization_of_isMonomialValuation_of_rankOne`: a monomial valuation of rank 1 has local uniformization, with the lattice lemma for real weights.
+* `Singularity.hasLocalUniformization_of_isMonomialValuation`: a monomial valuation has local uniformization.
+* `Singularity.IsMonomialValuation.isAbhyankarValuation`: a monomial valuation is an Abhyankar valuation.
 -/
 
 open MvPolynomial IsLocalRing Matrix
@@ -524,5 +528,81 @@ theorem hasLocalUniformization_of_isMonomialValuation_of_rankOne {x : ι → K}
   obtain ⟨B, C, hBC, hCB, hBpos, hEC⟩ :=
     latticeLemma_real γ hind E fun a ha => (hle a).mp (hE a ha)
   exact ⟨B, C, hBC, hCB, fun l => (hlt _).mpr (hBpos l), hEC⟩
+
+/-- The map `a ↦ v(x^a)` from `ℤ^n` to the group of units of the value group, in additive notation. -/
+noncomputable def MonomialValuation.valueHom {x : ι → K} (hx : ∀ i, x i ≠ 0) :
+    (ι → ℤ) →+ Additive V.ValueGroupˣ :=
+  AddMonoidHom.mk' (fun a => Additive.ofMul (Units.mk0 (V.valuation (laurentMonomial x a))
+    ((Valuation.ne_zero_iff _).mpr (laurentMonomial_ne_zero hx a)))) fun a b => by
+    rw [← ofMul_mul]
+    congr 1
+    ext
+    simp [laurentMonomial_add hx]
+
+/-- A Laurent monomial has value at most 1 if and only if its image in the ordered group of values, with the sign changed, is `≥ 0`. -/
+theorem MonomialValuation.valueHom_nonneg_iff {x : ι → K} (hx : ∀ i, x i ≠ 0) (a : ι → ℤ) :
+    0 ≤ -valueHom (V := V) hx a ↔ V.valuation (laurentMonomial x a) ≤ 1 := by
+  rw [neg_nonneg, ← ofMul_one]
+  change Additive.ofMul _ ≤ Additive.ofMul _ ↔ _
+  rw [Additive.ofMul_le, ← Units.val_le_val, Units.val_mk0, Units.val_one]
+
+/-- A Laurent monomial has value less than 1 if and only if its image in the ordered group of values, with the sign changed, is `> 0`. -/
+theorem MonomialValuation.valueHom_pos_iff {x : ι → K} (hx : ∀ i, x i ≠ 0) (a : ι → ℤ) :
+    0 < -valueHom (V := V) hx a ↔ V.valuation (laurentMonomial x a) < 1 := by
+  rw [neg_pos, ← ofMul_one]
+  change Additive.ofMul _ < Additive.ofMul _ ↔ _
+  rw [Additive.ofMul_lt, ← Units.val_lt_val, Units.val_mk0, Units.val_one]
+
+/-- **Local uniformization of monomial valuations** (node SG0000004D, Volume 5, Theorem 2.1.5 of the handbook). Let `V` be a monomial valuation of `K = k(x_1, ..., x_n)` in the elements `x_i`. Then `V` has local uniformization. There is no condition on the rank of the value group, and no condition on the characteristic of `k`.
+
+The proof applies `Singularity.hasLocalUniformization_of_isMonomialValuation_of_lattice` with the lattice lemma `Singularity.latticeLemma_of_injective`, for the map `a ↦ v(x^a)` to the value group, with the sign changed. -/
+theorem hasLocalUniformization_of_isMonomialValuation {x : ι → K}
+    (hV : IsMonomialValuation k V x) : HasLocalUniformization k V := by
+  classical
+  let w := -valueHom (V := V) hV.ne_zero
+  have hw : Function.Injective w := by
+    rw [injective_iff_map_eq_zero]
+    intro a ha
+    apply hV.independent a
+    have h1 : valueHom (V := V) hV.ne_zero a = 0 := neg_eq_zero.mp ha
+    have h2 := congrArg (fun g => ((Additive.toMul g : V.ValueGroupˣ) : V.ValueGroup)) h1
+    simpa [valueHom] using h2
+  refine hasLocalUniformization_of_isMonomialValuation_of_lattice hV fun E hE => ?_
+  obtain ⟨B, C, hBC, hCB, hBpos, hEC⟩ := latticeLemma_of_injective w hw E fun a ha =>
+    (valueHom_nonneg_iff hV.ne_zero a).mpr (hE a ha)
+  exact ⟨B, C, hBC, hCB, fun l => (valueHom_pos_iff hV.ne_zero _).mp (hBpos l), hEC⟩
+
+/-- **A monomial valuation is an Abhyankar valuation** (Volume 5, Lemma 2.1.2 of the handbook). Let `V` be a monomial valuation of `K = k(x_1, ..., x_n)` in the elements `x_i`. Then the rational rank of the value group plus the transcendence degree of the residue field is the transcendence degree of `K` over `k`.
+
+The values of the `x_i` are linearly independent over `ℤ`, so the rank of the value group is at least `n`. The `x_i` generate `K` as a field, so `trdeg_k K ≤ n`. The inequality of Abhyankar (`Singularity.abhyankar_inequality`) gives the other inequality. -/
+theorem IsMonomialValuation.isAbhyankarValuation {x : ι → K}
+    (hV : IsMonomialValuation k V x) : IsAbhyankarValuation k V := by
+  classical
+  let u : ι → Kˣ := fun i => Units.mk0 (x i) (hV.ne_zero i)
+  have hli : LinearIndependent ℤ
+      (fun i => Additive.ofMul (Units.map (V.valuation : K →* V.ValueGroup) (u i))) := by
+    rw [Fintype.linearIndependent_iff]
+    intro c hc
+    have h1 : V.valuation (laurentMonomial x c) = 1 := by
+      have h2 := congrArg (fun g => ((Additive.toMul g : V.ValueGroupˣ) : V.ValueGroup)) hc
+      simp only [toMul_sum, toMul_zsmul, toMul_ofMul, toMul_zero, Units.coe_prod,
+        Units.val_zpow_eq_zpow_val, Units.coe_map, MonoidHom.coe_ofClass, Units.val_one] at h2
+      rw [laurentMonomial_eq_units hV.ne_zero, Units.coe_prod, map_prod]
+      simpa [u, Units.val_zpow_eq_zpow_val, map_zpow₀] using h2
+    exact fun i => congrFun (hV.independent c h1) i
+  have hcard : (Fintype.card ι : Cardinal) ≤ Module.rank ℤ (Additive V.ValueGroupˣ) := by
+    simpa using hli.cardinal_lift_le_rank
+  have halg : Algebra.IsAlgebraic (IntermediateField.adjoin k (Set.range x)) K := ⟨fun z => by
+    have hz : z ∈ IntermediateField.adjoin k (Set.range x) := by
+      rw [hV.adjoin_eq_top]
+      trivial
+    exact isAlgebraic_algebraMap (⟨z, hz⟩ : IntermediateField.adjoin k (Set.range x))⟩
+  have halg' := IntermediateField.isAlgebraic_adjoin_iff_top.mp halg
+  have htr : Algebra.trdeg k K ≤ Fintype.card ι := by
+    refine (Algebra.IsAlgebraic.trdeg_le_cardinalMk k (Set.range x)).trans ?_
+    simpa using Cardinal.mk_range_le_lift (f := x)
+  refine le_antisymm (abhyankar_inequality V) ?_
+  rw [(TensorProduct.isBaseChange ℤ (Additive V.ValueGroupˣ) ℚ).rank_eq]
+  exact htr.trans (hcard.trans (self_le_add_right _ _))
 
 end Singularity

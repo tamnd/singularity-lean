@@ -153,6 +153,22 @@ status:
       kind: theorem
       status: proved
       note: A monomial valuation of rank 1 with residue field k has local uniformization, in each characteristic (Volume 5, Theorem 2.1.5 of the handbook, in rank 1, node SG0000004D).
+    - name: Singularity.latticeLemma
+      kind: theorem
+      status: proved
+      note: The lattice lemma for a free abelian group of finite rank with a total order compatible with addition, for each rank (Volume 5, Lemma 2.1.4 of the handbook, node SG0000004D).
+    - name: Singularity.latticeLemma_of_injective
+      kind: theorem
+      status: proved
+      note: The lattice lemma for the integer vectors with the order of an injective map to an ordered group, in the form of two inverse integer matrices (Volume 5, Lemma 2.1.4 of the handbook).
+    - name: Singularity.hasLocalUniformization_of_isMonomialValuation
+      kind: theorem
+      status: proved
+      note: A monomial valuation has local uniformization, for each rank and in each characteristic (Volume 5, Theorem 2.1.5 of the handbook, node SG0000004D).
+    - name: Singularity.IsMonomialValuation.isAbhyankarValuation
+      kind: theorem
+      status: proved
+      note: A monomial valuation is an Abhyankar valuation (Volume 5, Lemma 2.1.2 of the handbook).
     - name: Singularity.abhyankar_inequality
       kind: theorem
       status: proved
