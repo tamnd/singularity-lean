@@ -84,5 +84,6 @@ import Singularity.Valuation.DegreePSteps
 import Singularity.Valuation.EtaleRegular
 import Singularity.Valuation.EtaleGenerator
 import Singularity.Valuation.EtaleGeneratorExistence
+import Singularity.Valuation.MonomialFiniteExtension
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement

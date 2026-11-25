@@ -81,7 +81,7 @@ import Mathlib.FieldTheory.PrimitiveElement
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean`, `Singularity/Valuation/LocalUniformizationMonomial.lean`, `Singularity/Valuation/MonomialGroundField.lean`, `Singularity/Valuation/EtaleRegular.lean`, `Singularity/Valuation/EtaleGenerator.lean` and `Singularity/Valuation/EtaleGeneratorExistence.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean`, `Singularity/Valuation/LocalUniformizationMonomial.lean`, `Singularity/Valuation/MonomialGroundField.lean`, `Singularity/Valuation/EtaleRegular.lean`, `Singularity/Valuation/EtaleGenerator.lean`, `Singularity/Valuation/EtaleGeneratorExistence.lean` and `Singularity/Valuation/MonomialFiniteExtension.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -423,6 +423,41 @@ theorem exists_isEtaleGenerator_of_finrank_residueField_eq {K₀ : IntermediateF
     (hf : Module.finrank (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring) =
       Module.finrank K₀ K) :
     Algebra.IsSeparable K₀ K ∧ ∃ z, IsEtaleGenerator K₀ v.valuationSubring z := sorry
+
+/-- `Singularity/Valuation/MonomialFiniteExtension.lean`: if the residue extension is separable of degree `[K : K₀]`, then local uniformization lifts from `v₀` to `v` (Lemma 1.3.3 and Theorem 1.3.4, the case of one extension). -/
+theorem hasLocalUniformization_of_finrank_residueField_eq {K₀ : IntermediateField k K}
+    {Γ₀ Γ : Type*} [LinearOrderedCommGroupWithZero Γ₀] [LinearOrderedCommGroupWithZero Γ]
+    (v₀ : Valuation K₀ Γ₀) (v : Valuation K Γ) [v₀.HasExtension v] [FiniteDimensional K₀ K]
+    [Algebra.IsSeparable (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring)]
+    (hf : Module.finrank (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring) =
+      Module.finrank K₀ K)
+    (h : HasLocalUniformization k v₀.valuationSubring) :
+    HasLocalUniformization k v.valuationSubring := sorry
+
+/-- `Singularity/Valuation/MonomialFiniteExtension.lean`: local uniformization over a subfield `K₀` with a monomial valuation over `k(y)`, in the case without ramification, defect and splitting (Theorem 2.2.1 in this case). -/
+theorem hasLocalUniformization_of_monomial_of_finrank_residueField_eq
+    {K₀ : IntermediateField k K}
+    {Γ₀ Γ : Type*} [LinearOrderedCommGroupWithZero Γ₀] [LinearOrderedCommGroupWithZero Γ]
+    (v₀ : Valuation K₀ Γ₀) (v : Valuation K Γ) [v₀.HasExtension v] [FiniteDimensional K₀ K]
+    [Algebra.IsSeparable (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring)]
+    (hf : Module.finrank (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring) =
+      Module.finrank K₀ K)
+    {κ ι : Type*} [Fintype κ] [Fintype ι] {y : κ → K₀} {x : ι → K₀}
+    (hyV : ∀ c ∈ IntermediateField.adjoin k (Set.range y), c ∈ v₀.valuationSubring)
+    (hV : IsMonomialValuation (IntermediateField.adjoin k (Set.range y)) v₀.valuationSubring x) :
+    HasLocalUniformization k v.valuationSubring := sorry
+
+/-- `Singularity/Valuation/MonomialFiniteExtension.lean`: the same for a monomial valuation of `K₀` over `k`. -/
+theorem hasLocalUniformization_of_isMonomialValuation_of_finrank_residueField_eq
+    {K₀ : IntermediateField k K}
+    {Γ₀ Γ : Type*} [LinearOrderedCommGroupWithZero Γ₀] [LinearOrderedCommGroupWithZero Γ]
+    (v₀ : Valuation K₀ Γ₀) (v : Valuation K Γ) [v₀.HasExtension v] [FiniteDimensional K₀ K]
+    [Algebra.IsSeparable (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring)]
+    (hf : Module.finrank (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring) =
+      Module.finrank K₀ K)
+    [Algebra k v₀.valuationSubring] [IsScalarTower k v₀.valuationSubring K₀]
+    {ι : Type*} [Fintype ι] {x : ι → K₀} (hV : IsMonomialValuation k v₀.valuationSubring x) :
+    HasLocalUniformization k v.valuationSubring := sorry
 
 end EtaleGenerator
 

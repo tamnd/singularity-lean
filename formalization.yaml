@@ -217,6 +217,18 @@ status:
       kind: theorem
       status: proved
       note: If the valuation v of K extends v_0 of K_0, [K : K_0] is finite and the residue extension is separable of degree [K : K_0], then K/K_0 is separable and there is an étale generator of K/K_0 for v. This is the case of one extension (e = d = g = 1) of Volume 5, Lemma 1.3.3, part 2 of the handbook (node SG0000004Y). The general case with g extensions is not proved.
+    - name: Singularity.hasLocalUniformization_of_finrank_residueField_eq
+      kind: theorem
+      status: proved
+      note: If the valuation v of K extends v_0 of K_0, [K : K_0] is finite, the residue extension is separable of degree [K : K_0] and v_0 has local uniformization over k, then v has local uniformization over k (Volume 5, Lemma 1.3.3 and Theorem 1.3.4 of the handbook, the case of one extension).
+    - name: Singularity.hasLocalUniformization_of_monomial_of_finrank_residueField_eq
+      kind: theorem
+      status: proved
+      note: If v extends v_0, [K : K_0] is finite, v_0 is trivial on k(y) and a monomial valuation of K_0 over k(y), and the residue extension is separable of degree [K : K_0], then v has local uniformization over k. This is Volume 5, Theorem 2.2.1 of the handbook (Knaf-Kuhlmann) in the case without ramification, defect and splitting. The general case (localUniformization_abhyankar) is not proved.
+    - name: Singularity.hasLocalUniformization_of_isMonomialValuation_of_finrank_residueField_eq
+      kind: theorem
+      status: proved
+      note: The same as hasLocalUniformization_of_monomial_of_finrank_residueField_eq for v_0 a monomial valuation of K_0 over k.
     - name: Singularity.IsEtaleGenerator.centerSubring_closure_eq
       kind: theorem
       status: proved
