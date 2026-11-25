@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: the full form of `τ` does not go down from the second case (Volume 7, Section 3.8 of the handbook). The full directrix `T̃(g)` is the intersection of the directrices `T(ψ_ρ)` of the `ψ` with `ord ψ = ρ` and `x^r ψ ∈ Θ(g)`, and `τ̃(g)` is its codimension (`logJacobianFullDirectrix`, `logJacobianFullDirectrixCodim`). It uses `Θ(g)` in the two cases. So `T̃(g) ⊆ T_ρ(g)` and `τ_ρ(g) ≤ τ̃(g)` (`logJacobianFullDirectrix_le_logJacobianDirectrix`, `logJacobianDirectrixCodim_le_fullDirectrixCodim`). In case B, `T̃(g) = T_ρ(g)` (`logJacobianFullDirectrix_eq_of_ne`). Let `g ≠ 0` be clean with `ord g ≥ p`, let the chart send `g` to `x_j^p g'`, and let `ρ(g'_c) = ρ(g) = m`. Then `dim T̃(g'_c) ≤ dim T_ρ(g)` with no hypothesis on the cases (`finrank_logJacobianFullDirectrix_cleanPart_le_logJacobianDirectrix`). Theorem 3.8.4: if the old point is of case B, that is the order of `Θ₀(g)` is `|r| + m + 1`, then `dim T̃(g'_c) ≤ dim T̃(g)` and `τ̃(g) ≤ τ̃(g'_c)` (`finrank_logJacobianFullDirectrix_cleanPart_le`, `logJacobianFullDirectrixCodim_le_cleanPart`). There is no hypothesis on the case of the new point. Example 3.8.5: the case condition is necessary. Over `𝔽₂`, let `g = y z^2 + x z` and `E = V(x z)`. In the `y`-chart at the origin, `g' = g`, the new divisor is `V(x y z)` and `g'_c = g` (`fullDirectrixExample_hyp`). Also `ρ(g) = ρ(g'_c) = 1`, and the two points are of case A (`fullDirectrixExample_rho`, `fullDirectrixExample_cases`). Then `T̃(g) = {x = z = 0}` and `T_ρ(g) = T_ρ(g'_c) = T̃(g'_c) = {x = 0}` (`fullDirectrixExample_finrank`). So `τ̃(g) = 2` and `τ̃(g'_c) = 1`, and `τ_ρ` stays `1` (`fullDirectrixExample_codim`).
+
 ## 0.4.24 - 2026-11-26
 
 ### Added
