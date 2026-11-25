@@ -296,7 +296,12 @@
     "Singularity.caseAToCaseBExample_rho",
     "Singularity.caseAToCaseBExample_not_caseA",
     "Singularity.caseAToCaseBExample_finrank",
-    "Singularity.caseAToCaseBExample_codim"
+    "Singularity.caseAToCaseBExample_codim",
+    "Singularity.idealOrd_logJacobianTangent_cleanPart_of_ne_of_eq_zero",
+    "Singularity.idealOrd_logJacobianTangent_cleanPart_of_lt_ord",
+    "Singularity.idealOrd_logJacobianTangent_cleanPart_of_forall_eq_zero",
+    "Singularity.finrank_logJacobianDirectrix_cleanPart_le_of_forall_eq_zero",
+    "Singularity.logJacobianDirectrixCodim_le_cleanPart_of_forall_eq_zero"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

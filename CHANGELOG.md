@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/LogJacobianNoLeave.lean`: the first case is stable if no component of the divisor leaves (Volume 7, Section 3.9 of the handbook). Let `g ≠ 0` be clean with `ord g ≥ p`, let the chart send `g` to `x_j^p g'`, let the old point be of case A with `ρ(g) = d`, and let `ρ(g'_c) = d`. Let `e_i = r_i G + x_i ∂_i G` and let `R` be the set of the `i ∈ Δ` with `ord e_i = d`. The set `R` is not empty (`exists_mem_ord_smul_add_X_mul_pderiv_eq`). Theorem 3.9.10: if `R` contains an index `i ≠ j` with `t_i = 0`, or if `R = {j}`, then the new point is of case A (`idealOrd_logJacobianTangent_cleanPart_of_ne_of_eq_zero`, `idealOrd_logJacobianTangent_cleanPart_of_lt_ord`). This holds if `t_i = 0` for each `i ∈ Δ` with `i ≠ j` (`idealOrd_logJacobianTangent_cleanPart_of_forall_eq_zero`). Theorem 3.9.11: if no component leaves, then `dim T_ρ(g'_c) ≤ dim T_ρ(g)` and `τ_ρ(g) ≤ τ_ρ(g'_c)` (`finrank_logJacobianDirectrix_cleanPart_le_of_forall_eq_zero`, `logJacobianDirectrixCodim_le_cleanPart_of_forall_eq_zero`). The two theorems have no hypothesis on `p`. If `|r| + d = 0` in `k`, the proof of Theorem 3.9.11 uses `Φ_j = -∑_{i ≠ j} Φ_i`.
+
 ## 0.4.23 - 2026-11-26
 
 ### Added
