@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.10 - 2026-11-25
+
 ### Added
 
 - `Singularity/Invariant/LogJacobianNonincrease.lean`: the order `ρ` of the log-Jacobian ideal does not go up under a point blowup (Volume 7, Section 3.2 of the handbook, Theorem 3.2.4). Let `g ≠ 0` be clean with `ord g ≥ p` and let `π(g) = x_j^p g'` in the chart `π = pointChart j t`. Then the clean part `g'_c` of `g'` is not `0`, and `ρ(g'_c) ≤ ρ(g)` for the new divisor `Δ' = blowupDivisor Δ j t` (`logJacobianOrder_cleanPart_le`). So the residual orders satisfy `d' ≤ ρ(g'_c) + 1 ≤ ρ + 1 ≤ d + 1` (Corollary 3.2.5, `residualOrderAlong_pointChart_le_logJacobianOrder`, `residualOrderAlong_pointChart_le_add_one`). The proof stays in `k[x]` and does not use unique factorization in the power series ring. If each generator of an ideal `I` is divisible by `x^r` and has order at least `|r| + c`, then `π(I)` is contained in `(x_j^(|r| + c) x^e)` with `e = chartExponent j t r` (`map_pointChart_span_le`). If `x^b` divides `u f` and the constant term of `u` is not `0`, then `x^b` divides `f` (`monomial_one_dvd_of_dvd_mul`), and this removes the factor `u = blowupUnit Δ j t` of the transformation law. For a clean `g ≠ 0` and a monomial `x^b` that divides `Θ(g)`, an element `φ ∈ Θ(g)` with `ord φ ≤ |b| + n` gives `ρ(g) ≤ n` (`logJacobianOrder_le_of_mem`).
