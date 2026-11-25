@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.13 - 2026-11-25
+
 ### Added
 
 - `Singularity/Valuation/DegreePSteps.lean`: the steps of degree `p` in the reduction of Cossart-Piltant [CP19, Proposition 4.10] (Volume 6, Chapter 2 of the handbook). The file proves Lemma 2.1.1 (`irreducible_X_pow_sub_C_iff`). It proves that a valuation subring has exactly one extension to a purely inseparable extension (`existsUnique_valuationSubring_comap_eq`), and that a finite purely inseparable extension is a tower of steps of degree `p` given by `p`-th roots in this extension (`exists_purelyInseparable_tower`, Lemma 2.1.2). It proves the purely inseparable step for function fields (`exists_inseparableStep_model`, `mem_valuationSubring_of_pow_eq`, Lemma 2.2.2), the Artin-Schreier theorem for a Galois extension of degree `p` (`exists_artinSchreier_generator`, Theorem 2.1.3) with its integral form (`artinSchreier_integral`), and Lemma 2.3.1 (`X_pow_add_C_tfae`, `X_pow_add_C_tfae_threefold`). The file does not prove the reduction itself. Theorem 1.5 of Cossart-Piltant, the patching of local models, the ramification theory of Step 4 and Proposition 2.1.4 are not formalized.
