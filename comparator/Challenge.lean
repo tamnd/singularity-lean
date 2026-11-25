@@ -2750,4 +2750,137 @@ theorem nearPointExample_not_mem_directrix :
 
 end LogJacobianNearPoint
 
+section LogJacobianDirectrix
+
+open MvPolynomial Finsupp Module
+
+section Linear
+
+variable {σ k : Type*} [Field k]
+
+/-- `Singularity/Invariant/LogJacobianDirectrix.lean`: the part of degree `n` of an element of an
+ideal of order at least `n` is a `k`-linear combination of the parts of degree `n` of the
+generators. -/
+theorem homogeneousComponent_mem_span_of_mem_span {S : Set (MvPolynomial σ k)} {n : ℕ}
+    (hS : ∀ s ∈ S, (n : ℕ∞) ≤ ord s) {f : MvPolynomial σ k} (hf : f ∈ Ideal.span S) :
+    homogeneousComponent n f ∈ Submodule.span k (homogeneousComponent n '' S) := sorry
+
+/-- `Singularity/Invariant/LogJacobianDirectrix.lean`: the directrix of the part of degree `n` of
+an element of an ideal of order at least `n`. -/
+theorem le_directrix_homogeneousComponent_of_mem_span {S : Set (MvPolynomial σ k)} {n : ℕ}
+    (hS : ∀ s ∈ S, (n : ℕ∞) ≤ ord s) {W : Submodule k (σ → k)}
+    (hW : ∀ s ∈ S, W ≤ directrix (homogeneousComponent n s)) {f : MvPolynomial σ k}
+    (hf : f ∈ Ideal.span S) : W ≤ directrix (homogeneousComponent n f) := sorry
+
+end Linear
+
+section Restriction
+
+variable {σ k : Type*} [Field k] [DecidableEq σ]
+
+/-- `Singularity/Invariant/LogJacobianDirectrix.lean`: the dimension inequality for the weak
+transforms (Volume 7, Section 3.8 of the handbook). -/
+theorem finrank_iInf_directrix_pointChart_le [Fintype σ] {ι : Type*} {j : σ} {t : σ → k} {m : ℕ}
+    {ψ ψ' : ι → MvPolynomial σ k} (hψ : ∀ i, (m : ℕ∞) ≤ ord (ψ i))
+    (h : ∀ i, pointChart j t (ψ i) = X j ^ m * ψ' i) (hψ' : ∀ i, (m : ℕ∞) ≤ ord (ψ' i)) :
+    finrank k (⨅ i, directrix (homogeneousComponent m (ψ' i)) : Submodule k (σ → k)) ≤
+      finrank k (⨅ i, directrix (homogeneousComponent m (ψ i)) : Submodule k (σ → k)) := sorry
+
+end Restriction
+
+section Def
+
+variable {σ k : Type*} [Field k]
+
+/-- `Singularity/Invariant/LogJacobianDirectrix.lean`: `Θ₀(g)` in case A and `Θ(g)` in case B. -/
+noncomputable def logJacobianCaseIdeal (Δ : Finset σ) (g : MvPolynomial σ k) :
+    Ideal (MvPolynomial σ k) :=
+  if idealOrd (logJacobianTangent Δ g) = degree (divisorExponent Δ g) + logJacobianOrder Δ g then
+    logJacobianTangent Δ g
+  else logJacobian Δ g
+
+/-- `Singularity/Invariant/LogJacobianDirectrix.lean`: the polynomials `ψ` of the definition of
+`T_ρ(g)`. -/
+def logJacobianDirectrixSet (Δ : Finset σ) (g : MvPolynomial σ k) : Set (MvPolynomial σ k) :=
+  {ψ | ord ψ = logJacobianOrder Δ g ∧
+    monomial (divisorExponent Δ g) 1 * ψ ∈ logJacobianCaseIdeal Δ g}
+
+/-- `Singularity/Invariant/LogJacobianDirectrix.lean`: the directrix `T_ρ(g)` of the
+log-Jacobian order (Volume 7, Section 3.8 of the handbook). -/
+noncomputable def logJacobianDirectrix (Δ : Finset σ) (g : MvPolynomial σ k) :
+    Submodule k (σ → k) :=
+  ⨅ ψ ∈ logJacobianDirectrixSet Δ g,
+    directrix (homogeneousComponent (logJacobianOrder Δ g).toNat ψ)
+
+/-- `Singularity/Invariant/LogJacobianDirectrix.lean`: the codimension `τ_ρ(g)` of `T_ρ(g)`. -/
+noncomputable def logJacobianDirectrixCodim [Fintype σ] (Δ : Finset σ) (g : MvPolynomial σ k) :
+    ℕ :=
+  Fintype.card σ - finrank k (logJacobianDirectrix Δ g)
+
+end Def
+
+section Proposition
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] [Fintype σ] (p : ℕ) [CharP k p]
+  {Δ : Finset σ} {j : σ} {t : σ → k} {g g' : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/LogJacobianDirectrix.lean`: Proposition 3.8.2 of Volume 7,
+Section 3.8 of the handbook. -/
+theorem finrank_logJacobianDirectrix_cleanPart_le (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {m : ℕ}
+    (hρ : logJacobianOrder Δ g = m)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = m)
+    (hB : idealOrd (logJacobianTangent (blowupDivisor Δ j t) (cleanPart p g')) =
+      ((degree (divisorExponent (blowupDivisor Δ j t) (cleanPart p g')) + m + 1 : ℕ) : ℕ∞)) :
+    finrank k (logJacobianDirectrix (blowupDivisor Δ j t) (cleanPart p g')) ≤
+      finrank k (logJacobianDirectrix Δ g) := sorry
+
+/-- `Singularity/Invariant/LogJacobianDirectrix.lean`: Proposition 3.8.2 of Volume 7,
+Section 3.8 of the handbook, the form with the codimension. -/
+theorem logJacobianDirectrixCodim_le_cleanPart (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {m : ℕ}
+    (hρ : logJacobianOrder Δ g = m)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = m)
+    (hB : idealOrd (logJacobianTangent (blowupDivisor Δ j t) (cleanPart p g')) =
+      ((degree (divisorExponent (blowupDivisor Δ j t) (cleanPart p g')) + m + 1 : ℕ) : ℕ∞)) :
+    logJacobianDirectrixCodim Δ g ≤
+      logJacobianDirectrixCodim (blowupDivisor Δ j t) (cleanPart p g') := sorry
+
+end Proposition
+
+/-- `Singularity/Invariant/LogJacobianDirectrix.lean`: Example 3.8.3 of Volume 7, Section 3.8 of
+the handbook, the cases. -/
+theorem tauRhoExample_cases :
+    idealOrd (logJacobianTangent ∅
+        (X 0 * X 1 * X 2 ^ 2 + X 1 ^ 2 * X 2 + X 0 * X 2 ^ 2 : MvPolynomial (Fin 3) (ZMod 2))) ≠
+        degree (divisorExponent ∅
+          (X 0 * X 1 * X 2 ^ 2 + X 1 ^ 2 * X 2 + X 0 * X 2 ^ 2 : MvPolynomial (Fin 3) (ZMod 2))) +
+          logJacobianOrder ∅
+            (X 0 * X 1 * X 2 ^ 2 + X 1 ^ 2 * X 2 + X 0 * X 2 ^ 2 : MvPolynomial (Fin 3) (ZMod 2)) ∧
+      idealOrd (logJacobianTangent (blowupDivisor ∅ 0 (0 : Fin 3 → ZMod 2))
+          (cleanPart 2 (X 0 ^ 2 * X 1 * X 2 ^ 2 + X 0 * X 1 ^ 2 * X 2 + X 0 * X 2 ^ 2 :
+            MvPolynomial (Fin 3) (ZMod 2)))) =
+        degree (divisorExponent (blowupDivisor ∅ 0 (0 : Fin 3 → ZMod 2))
+          (cleanPart 2 (X 0 ^ 2 * X 1 * X 2 ^ 2 + X 0 * X 1 ^ 2 * X 2 + X 0 * X 2 ^ 2 :
+            MvPolynomial (Fin 3) (ZMod 2)))) +
+          logJacobianOrder (blowupDivisor ∅ 0 (0 : Fin 3 → ZMod 2))
+            (cleanPart 2 (X 0 ^ 2 * X 1 * X 2 ^ 2 + X 0 * X 1 ^ 2 * X 2 + X 0 * X 2 ^ 2 :
+              MvPolynomial (Fin 3) (ZMod 2))) := sorry
+
+/-- `Singularity/Invariant/LogJacobianDirectrix.lean`: Example 3.8.3 of Volume 7, Section 3.8 of
+the handbook. The case condition of Proposition 3.8.2 is necessary. -/
+theorem tauRhoExample_finrank :
+    logJacobianOrder ∅
+        (X 0 * X 1 * X 2 ^ 2 + X 1 ^ 2 * X 2 + X 0 * X 2 ^ 2 : MvPolynomial (Fin 3) (ZMod 2)) = 2 ∧
+      logJacobianOrder (blowupDivisor ∅ 0 (0 : Fin 3 → ZMod 2))
+        (cleanPart 2 (X 0 ^ 2 * X 1 * X 2 ^ 2 + X 0 * X 1 ^ 2 * X 2 + X 0 * X 2 ^ 2 :
+          MvPolynomial (Fin 3) (ZMod 2))) = 2 ∧
+      finrank (ZMod 2) (logJacobianDirectrix ∅
+        (X 0 * X 1 * X 2 ^ 2 + X 1 ^ 2 * X 2 + X 0 * X 2 ^ 2 : MvPolynomial (Fin 3) (ZMod 2))) = 1 ∧
+      finrank (ZMod 2) (logJacobianDirectrix (blowupDivisor ∅ 0 (0 : Fin 3 → ZMod 2))
+        (cleanPart 2 (X 0 ^ 2 * X 1 * X 2 ^ 2 + X 0 * X 1 ^ 2 * X 2 + X 0 * X 2 ^ 2 :
+          MvPolynomial (Fin 3) (ZMod 2)))) = 2 := sorry
+
+end LogJacobianDirectrix
+
 end Singularity
