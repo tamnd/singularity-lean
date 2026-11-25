@@ -40,6 +40,7 @@ this chart is injective. So `λ(f_m) = h`. The polynomial `h` does not contain `
   vector of the chart lies in `T(g)`.
 * `mem_directrix_of_ord_pointChart_eq`: if `ord f = m`, the chart sends `f` to `x_j^m f'` and
   `ord f' = m`, then the vector of the chart lies in `T(f_m)`.
+* `mem_directrix_of_le_ord_pointChart`: the same with `m ≤ ord f` and `m ≤ ord f'`.
 
 ## References
 
@@ -239,22 +240,23 @@ theorem mem_directrix_of_isHomogeneous {j : σ} {t : σ → k} {m : ℕ} {g : Mv
   rw [mem_directrix_iff, hs, h0, he, ← AlgHom.comp_apply, chartUnshift_comp_chartRest,
     AlgHom.comp_apply]
 
-/-- **The points where the order stays the same lie in the directrix** [Hir67]. Let `ord f = m`,
-and let the `x_j`-chart with translations `t` send `f` to `x_j^m f'`. If `ord f' = m`, then the
-vector of the chart lies in the directrix of the part `f_m` of `f` of degree `m`. -/
-theorem mem_directrix_of_ord_pointChart_eq {j : σ} {t : σ → k} {f f' : MvPolynomial σ k} {m : ℕ}
-    (hf : ord f = m) (h : pointChart j t f = X j ^ m * f') (hf' : ord f' = m) :
+/-- **The points where the order stays the same lie in the directrix**, the form with
+inequalities. Let `m ≤ ord f`, and let the `x_j`-chart with translations `t` send `f` to
+`x_j^m f'`. If `m ≤ ord f'`, then the vector of the chart lies in the directrix of the part `f_m`
+of `f` of degree `m`. -/
+theorem mem_directrix_of_le_ord_pointChart {j : σ} {t : σ → k} {f f' : MvPolynomial σ k} {m : ℕ}
+    (hf : (m : ℕ∞) ≤ ord f) (h : pointChart j t f = X j ^ m * f') (hf' : (m : ℕ∞) ≤ ord f') :
     chartVector j t ∈ directrix (homogeneousComponent m f) := by
-  have h' := pointChart_eq_X_pow_mul_chartTransform j t hf.ge
+  have h' := pointChart_eq_X_pow_mul_chartTransform j t hf
   rw [h] at h'
   have hf'_eq := mul_left_cancel₀ (pow_ne_zero m (X_ne_zero j)) h'
   have hg := homogeneousComponent_isHomogeneous m f
   refine mem_directrix_of_isHomogeneous hg ?_
   have hk : killVar j f' = chartRest j t (homogeneousComponent m f) := by
-    rw [hf'_eq, killVar_chartTransform j t hf.ge, homogeneousComponent_apply]
+    rw [hf'_eq, killVar_chartTransform j t hf, homogeneousComponent_apply]
   have hord : (m : ℕ∞) ≤ ord (chartRest j t (homogeneousComponent m f)) := by
-    rw [← hk, ← hf']
-    exact ord_le_ord_killVar j f'
+    rw [← hk]
+    exact hf'.trans (ord_le_ord_killVar j f')
   have hdeg : (chartRest j t (homogeneousComponent m f)).totalDegree ≤ m :=
     (totalDegree_chartRest_le j t _).trans hg.totalDegree_le
   intro d hd
@@ -265,5 +267,13 @@ theorem mem_directrix_of_ord_pointChart_eq {j : σ} {t : σ → k} {f f' : MvPol
     (le_totalDegree (MvPolynomial.mem_support_iff.mpr hd)).trans hdeg
   rw [show (1 : σ → ℕ) = fun _ => 1 from rfl, ← Finsupp.degree_eq_weight_one]
   omega
+
+/-- **The points where the order stays the same lie in the directrix** [Hir67]. Let `ord f = m`,
+and let the `x_j`-chart with translations `t` send `f` to `x_j^m f'`. If `ord f' = m`, then the
+vector of the chart lies in the directrix of the part `f_m` of `f` of degree `m`. -/
+theorem mem_directrix_of_ord_pointChart_eq {j : σ} {t : σ → k} {f f' : MvPolynomial σ k} {m : ℕ}
+    (hf : ord f = m) (h : pointChart j t f = X j ^ m * f') (hf' : ord f' = m) :
+    chartVector j t ∈ directrix (homogeneousComponent m f) :=
+  mem_directrix_of_le_ord_pointChart hf.ge h hf'.ge
 
 end Singularity

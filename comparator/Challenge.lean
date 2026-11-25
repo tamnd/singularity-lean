@@ -2396,4 +2396,157 @@ theorem centerExample_cpOmega_lt :
 
 end CossartPiltantOmega
 
+section LogJacobianNearPoint
+
+open MvPolynomial Finsupp
+
+section Directrix
+
+variable {σ k : Type*} [Field k]
+
+/-- `Singularity/Invariant/Directrix.lean`: the substitution `x_i ↦ x_i + v_i s`. -/
+noncomputable def translate (v : σ → k) : MvPolynomial σ k →ₐ[k] MvPolynomial (Option σ) k :=
+  aeval fun i => X (some i) + C (v i) * X none
+
+/-- `Singularity/Invariant/Directrix.lean`: the translation by `0`. -/
+theorem translate_zero : translate (0 : σ → k) = rename some := by
+  refine algHom_ext fun i => ?_
+  simp [translate]
+
+/-- `Singularity/Invariant/Directrix.lean`: the substitution `s ↦ c s` after a translation. -/
+theorem scaleVar_comp_translate (c : k) (v : σ → k) :
+    (aeval fun o : Option σ => Option.elim o (C c * X none) fun i => X (some i)).comp
+      (translate v) = translate (c • v) := by
+  refine algHom_ext fun i => ?_
+  simp [translate]
+  ring
+
+/-- `Singularity/Invariant/Directrix.lean`: the substitution `s ↦ c s` after `rename some`. -/
+theorem scaleVar_comp_rename (c : k) :
+    (aeval fun o : Option σ => Option.elim o (C c * X none) fun i => X (some i)).comp
+      (rename some : MvPolynomial σ k →ₐ[k] MvPolynomial (Option σ) k) = rename some := by
+  refine algHom_ext fun i => ?_
+  simp
+
+/-- `Singularity/Invariant/Directrix.lean`: the substitution `x ↦ x + s w` after a translation. -/
+theorem shiftVar_comp_translate (v w : σ → k) :
+    (aeval fun o : Option σ => Option.elim o (X none) fun i => X (some i) + C (w i) * X none).comp
+      (translate v) = translate (v + w) := by
+  refine algHom_ext fun i => ?_
+  simp [translate]
+  ring
+
+/-- `Singularity/Invariant/Directrix.lean`: the substitution `x ↦ x + s w` after `rename some`. -/
+theorem shiftVar_comp_rename (w : σ → k) :
+    (aeval fun o : Option σ => Option.elim o (X none) fun i => X (some i) + C (w i) * X none).comp
+      (rename some : MvPolynomial σ k →ₐ[k] MvPolynomial (Option σ) k) = translate w := by
+  refine algHom_ext fun i => ?_
+  simp [translate]
+
+/-- `Singularity/Invariant/Directrix.lean`: the directrix `T(g)` [Hir67], the vectors `v` with
+`g(x + s v) = g(x)`. -/
+noncomputable def directrix (g : MvPolynomial σ k) : Submodule k (σ → k) where
+  carrier := {v | translate v g = rename some g}
+  zero_mem' := by
+    show translate 0 g = rename some g
+    rw [translate_zero]
+  add_mem' := by
+    intro v w hv hw
+    show translate (v + w) g = rename some g
+    have hv' : translate v g = rename some g := hv
+    have hw' : translate w g = rename some g := hw
+    rw [← shiftVar_comp_translate, AlgHom.comp_apply, hv', ← AlgHom.comp_apply,
+      shiftVar_comp_rename, hw']
+  smul_mem' := by
+    intro c v hv
+    show translate (c • v) g = rename some g
+    have hv' : translate v g = rename some g := hv
+    rw [← scaleVar_comp_translate, AlgHom.comp_apply, hv', ← AlgHom.comp_apply,
+      scaleVar_comp_rename]
+
+variable [DecidableEq σ]
+
+/-- `Singularity/Invariant/Directrix.lean`: the vector of the `x_j`-chart with translations `t`. -/
+def chartVector (j : σ) (t : σ → k) : σ → k :=
+  fun i => if i = j then 1 else t i
+
+end Directrix
+
+section NearPoint
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] [Fintype σ] (p : ℕ) [CharP k p]
+  {Δ : Finset σ} {j : σ} {t : σ → k} {g g' : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/LogJacobianNearPoint.lean`: Theorem 3.7.1, part 1, of Volume 7,
+Section 3.7 of the handbook. -/
+theorem chartVector_mem_directrix_of_logJacobianOrder_eq (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {m : ℕ}
+    (hρ : logJacobianOrder Δ g = m)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = m) {ψ : MvPolynomial σ k}
+    (hψ : monomial (divisorExponent Δ g) 1 * ψ ∈ logJacobianTangent Δ g) (hψo : ord ψ = m) :
+    chartVector j t ∈ directrix (homogeneousComponent m ψ) := sorry
+
+/-- `Singularity/Invariant/LogJacobianNearPoint.lean`: Theorem 3.7.1, part 2, of Volume 7,
+Section 3.7 of the handbook. -/
+theorem chartVector_mem_directrix_of_logJacobianOrder_eq_of_idealOrd (hg : g ≠ 0)
+    (hc : IsClean p g) (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {m : ℕ}
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = m)
+    (hτ : idealOrd (logJacobianTangent Δ g) = ((degree (divisorExponent Δ g) + m + 1 : ℕ) : ℕ∞))
+    {ψ : MvPolynomial σ k} (hψ : monomial (divisorExponent Δ g) 1 * ψ ∈ logJacobian Δ g)
+    (hψo : ord ψ = m) :
+    chartVector j t ∈ directrix (homogeneousComponent m ψ) := sorry
+
+/-- `Singularity/Invariant/LogJacobianNearPoint.lean`: Corollary 3.7.2, case A, of Volume 7,
+Section 3.7 of the handbook. -/
+theorem logJacobianOrder_cleanPart_lt_of_directrix_eq_bot (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {m : ℕ}
+    (hρ : logJacobianOrder Δ g = m) {ψ : MvPolynomial σ k}
+    (hψ : monomial (divisorExponent Δ g) 1 * ψ ∈ logJacobianTangent Δ g) (hψo : ord ψ = m)
+    (hT : directrix (homogeneousComponent m ψ) = ⊥) :
+    logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') < m := sorry
+
+/-- `Singularity/Invariant/LogJacobianNearPoint.lean`: Corollary 3.7.2, case B, of Volume 7,
+Section 3.7 of the handbook. -/
+theorem logJacobianOrder_cleanPart_lt_of_directrix_eq_bot_of_idealOrd (hg : g ≠ 0)
+    (hc : IsClean p g) (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {m : ℕ}
+    (hτ : idealOrd (logJacobianTangent Δ g) = ((degree (divisorExponent Δ g) + m + 1 : ℕ) : ℕ∞))
+    {ψ : MvPolynomial σ k} (hψ : monomial (divisorExponent Δ g) 1 * ψ ∈ logJacobian Δ g)
+    (hψo : ord ψ = m) (hT : directrix (homogeneousComponent m ψ) = ⊥) :
+    logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') < m := sorry
+
+/-- `Singularity/Invariant/LogJacobianNearPoint.lean`: Corollary 3.7.3, the case `ρ = ord G`, of
+Volume 7, Section 3.7 of the handbook. -/
+theorem chartVector_mem_directrix_initialForm_of_logJacobianOrder_eq (hg : g ≠ 0)
+    (hc : IsClean p g) (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {d : ℕ}
+    (hG : ord (residualFactor Δ g) = d) (hρ : logJacobianOrder Δ g = d)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = d)
+    (hpd : ((degree (divisorExponent Δ g) + d : ℕ) : k) ≠ 0) :
+    chartVector j t ∈ directrix (homogeneousComponent d (residualFactor Δ g)) := sorry
+
+/-- `Singularity/Invariant/LogJacobianNearPoint.lean`: Corollary 3.7.3, the case `ρ = ord G - 1`,
+of Volume 7, Section 3.7 of the handbook. -/
+theorem chartVector_mem_directrix_pderiv_initialForm_of_logJacobianOrder_eq (hg : g ≠ 0)
+    (hc : IsClean p g) (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {d : ℕ}
+    (hG : ord (residualFactor Δ g) = d) {l : σ} (hl : l ∉ Δ)
+    (hne : pderiv l (homogeneousComponent d (residualFactor Δ g)) ≠ 0)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = (d - 1 : ℕ)) :
+    chartVector j t ∈ directrix (pderiv l (homogeneousComponent d (residualFactor Δ g))) := sorry
+
+end NearPoint
+
+/-- `Singularity/Invariant/LogJacobianNearPoint.lean`: Example 3.7.4 of Volume 7, Section 3.7 of
+the handbook. Part 1 of Theorem 3.7.1 fails with `Θ(g)` in the place of `Θ₀(g)`. -/
+theorem nearPointExample_not_mem_directrix :
+    logJacobianOrder {0} (X 0 ^ 3 * X 1 ^ 2 + X 0 ^ 4 : MvPolynomial (Fin 2) (ZMod 3)) = 1 ∧
+      logJacobianOrder (blowupDivisor {0} 1 (0 : Fin 2 → ZMod 3))
+        (cleanPart 3 (X 0 ^ 3 * X 1 ^ 2 + X 0 ^ 4 * X 1 : MvPolynomial (Fin 2) (ZMod 3))) = 1 ∧
+      monomial (divisorExponent {0} (X 0 ^ 3 * X 1 ^ 2 + X 0 ^ 4 :
+          MvPolynomial (Fin 2) (ZMod 3))) 1 * (2 * X 1) ∈
+        logJacobian {0} (X 0 ^ 3 * X 1 ^ 2 + X 0 ^ 4 : MvPolynomial (Fin 2) (ZMod 3)) ∧
+      ord (2 * X 1 : MvPolynomial (Fin 2) (ZMod 3)) = 1 ∧
+      chartVector 1 (0 : Fin 2 → ZMod 3) ∉
+        directrix (homogeneousComponent 1 (2 * X 1 : MvPolynomial (Fin 2) (ZMod 3))) := sorry
+
+end LogJacobianNearPoint
+
 end Singularity

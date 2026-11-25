@@ -56,6 +56,7 @@ import Singularity.Invariant.LogJacobianCenterNonincrease
 import Singularity.Invariant.Tschirnhausen
 import Singularity.Invariant.LogJacobianEndCase
 import Singularity.Invariant.CossartPiltantOmega
+import Singularity.Invariant.LogJacobianNearPoint
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
