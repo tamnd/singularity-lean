@@ -12,8 +12,8 @@ with `ord g ≥ p`, and let `Δ` give the divisor `E = V(∏_{i ∈ Δ} x_i)`. W
 `r = divisorExponent Δ g` and `G = residualFactor Δ g`, and let `ρ = logJacobianOrder Δ g`. Let
 `d = ord G`, let `F` be the part of degree `d` of `G`, and let `e_i = r_i G + x_i ∂_i G` and
 `Φ_i = r_i F + x_i ∂_i F`. This file proves that `τ_ρ` does not go down at the points of a point
-blowup where `ρ = d` stays and the old and the new points are of case A, if `|r| + ρ ≠ 0` in `k`
-(Volume 7, Section 3.9 of the handbook, Theorem 3.9.1). The case `|r| + ρ = 0` in `k` is open.
+blowup where `ρ = d` stays and the old and the new points are of case A, if `|r| + d ≠ 0` in `k`
+(Volume 7, Section 3.9 of the handbook, Theorem 3.9.1). The case `|r| + d = 0` in `k` is open.
 
 The proof has three steps.
 
