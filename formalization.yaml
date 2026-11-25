@@ -1009,6 +1009,22 @@ status:
       kind: theorem
       status: proved
       note: Example 3.6.4 of Volume 7, Section 3.6 of the handbook. Under the blowup of the center V(x, y) of Example 3.4.6, omega goes up from 2 to 3.
+    - name: Singularity.exists_macLaneVaquieStep_or_forall_isStable
+      kind: theorem
+      status: proved
+      note: One round of the chain of MacLane-Vaquié in degree d. One ordinary or limit step gives agreement with ν in degree at most d, or ν is the limit of the complete family in degree d.
+    - name: Singularity.exists_macLaneVaquie_seq_or_forall_isStable
+      kind: theorem
+      status: proved
+      note: The chain of MacLane-Vaquié with limit steps. Either ν is the limit of a chain w_n with w_n = ν in degree at most n, or ν is the limit of a continuous family over a valuation of the chain.
+    - name: Singularity.reflTransGen_macLaneVaquieStep_of_map_eq_zero
+      kind: theorem
+      status: proved
+      note: Part 4 of MacLane-Vaquié for a valuation with nonzero support and any value group. Finitely many ordinary or limit steps reach ν.
+    - name: Singularity.reflTransGen_monomialValuation_of_map_eq_zero
+      kind: theorem
+      status: proved
+      note: Part 4 of MacLane-Vaquié for a valuation with nonzero support, from the first valuation [v; X, ν(X)] of the chain.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved

@@ -72,6 +72,7 @@ import Singularity.Valuation.MacLaneUnique
 import Singularity.Valuation.LimitAugmentation
 import Singularity.Valuation.LimitKeyPolynomial
 import Singularity.Valuation.MacLaneDiscrete
+import Singularity.Valuation.MacLaneVaquie
 import Singularity.Valuation.LocalUniformizationCurves
 import Singularity.Valuation.LocalUniformizationDivisorial
 import Singularity.Valuation.DegreePSteps
