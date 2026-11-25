@@ -1475,6 +1475,78 @@ theorem centerExample_logJacobianOrder_cleanPart :
 
 end LogJacobianCenterNonincrease
 
+section LogJacobianEndCase
+
+open MvPolynomial Finsupp
+
+/-- `Singularity/Invariant/LogJacobianEndCase.lean`: `ρ = 0` if and only if `r_i G(0) ≠ 0` for some
+`i ∈ Δ` or `∂_j G(0) ≠ 0` for some `j ∉ Δ`. -/
+theorem logJacobianOrder_eq_zero_iff_exists {σ k : Type*} [CommSemiring k] (Δ : Finset σ)
+    (g : MvPolynomial σ k) :
+    logJacobianOrder Δ g = 0 ↔
+      (∃ i ∈ Δ, (divisorExponent Δ g i : k) * constantCoeff (residualFactor Δ g) ≠ 0) ∨
+        ∃ j ∉ Δ, constantCoeff (pderiv j (residualFactor Δ g)) ≠ 0 := sorry
+
+variable {σ k : Type*} [Field k] (p : ℕ) [CharP k p] {Δ : Finset σ} {g : MvPolynomial σ k}
+
+omit [CharP k p] in
+/-- `Singularity/Invariant/LogJacobianEndCase.lean`: for a clean `g` with `G(0) ≠ 0`, `p ∤ r_i`
+for some `i ∈ Δ`. -/
+theorem exists_not_dvd_divisorExponent_of_constantCoeff_ne_zero (hc : IsClean p g)
+    (h0 : constantCoeff (residualFactor Δ g) ≠ 0) : ∃ i ∈ Δ, ¬ p ∣ divisorExponent Δ g i := sorry
+
+/-- `Singularity/Invariant/LogJacobianEndCase.lean`: the converse for type 0. -/
+theorem logJacobianOrder_eq_zero_of_type_zero (h0 : constantCoeff (residualFactor Δ g) ≠ 0)
+    {i : σ} (hi : i ∈ Δ) (hp : ¬ p ∣ divisorExponent Δ g i) : logJacobianOrder Δ g = 0 := sorry
+
+omit [CharP k p] in
+/-- `Singularity/Invariant/LogJacobianEndCase.lean`: the converse for type 1. -/
+theorem logJacobianOrder_eq_zero_of_type_one {j : σ} (hj : j ∉ Δ)
+    (h : constantCoeff (pderiv j (residualFactor Δ g)) ≠ 0) : logJacobianOrder Δ g = 0 := sorry
+
+/-- `Singularity/Invariant/LogJacobianEndCase.lean`: type 0 of Proposition 3.5.1 of Volume 7,
+Section 3.5 of the handbook. -/
+theorem logJacobianOrder_eq_zero_type_zero (hc : IsClean p g) (hd : ord (residualFactor Δ g) = 0) :
+    logJacobianOrder Δ g = 0 ∧ constantCoeff (residualFactor Δ g) ≠ 0 ∧
+      ∃ i ∈ Δ, ¬ p ∣ divisorExponent Δ g i := sorry
+
+omit [CharP k p] in
+/-- `Singularity/Invariant/LogJacobianEndCase.lean`: if `ρ = 0` and `G(0) = 0`, then
+`∂_j G(0) ≠ 0` for some `j ∉ Δ`. -/
+theorem exists_constantCoeff_pderiv_ne_zero_of_constantCoeff_eq_zero
+    (hρ : logJacobianOrder Δ g = 0) (h0 : constantCoeff (residualFactor Δ g) = 0) :
+    ∃ j ∉ Δ, constantCoeff (pderiv j (residualFactor Δ g)) ≠ 0 := sorry
+
+omit [CharP k p] in
+/-- `Singularity/Invariant/LogJacobianEndCase.lean`: type 1 of Proposition 3.5.1 of Volume 7,
+Section 3.5 of the handbook. -/
+theorem exists_constantCoeff_pderiv_ne_zero (hρ : logJacobianOrder Δ g = 0)
+    (hd : ord (residualFactor Δ g) = 1) :
+    ∃ j ∉ Δ, constantCoeff (pderiv j (residualFactor Δ g)) ≠ 0 := sorry
+
+omit [CharP k p] in
+/-- `Singularity/Invariant/LogJacobianEndCase.lean`: if `ρ = 0`, then `ord G ≤ 1`. -/
+theorem ord_residualFactor_le_one (hρ : logJacobianOrder Δ g = 0) :
+    ord (residualFactor Δ g) ≤ 1 := sorry
+
+/-- `Singularity/Invariant/LogJacobianEndCase.lean`: Proposition 3.5.1 of Volume 7, Section 3.5 of
+the handbook. For a clean `g`, `ρ = 0` if and only if type 0 or type 1 holds. -/
+theorem logJacobianOrder_eq_zero_iff (hc : IsClean p g) :
+    logJacobianOrder Δ g = 0 ↔
+      (constantCoeff (residualFactor Δ g) ≠ 0 ∧ ∃ i ∈ Δ, ¬ p ∣ divisorExponent Δ g i) ∨
+        (constantCoeff (residualFactor Δ g) = 0 ∧
+          ∃ j ∉ Δ, constantCoeff (pderiv j (residualFactor Δ g)) ≠ 0) := sorry
+
+/-- `Singularity/Invariant/LogJacobianEndCase.lean`: Proposition 3.5.1 of Volume 7, Section 3.5 of
+the handbook, with the order of `G`. -/
+theorem logJacobianOrder_eq_zero_iff_ord (hc : IsClean p g) :
+    logJacobianOrder Δ g = 0 ↔
+      (ord (residualFactor Δ g) = 0 ∧ ∃ i ∈ Δ, ¬ p ∣ divisorExponent Δ g i) ∨
+        (ord (residualFactor Δ g) = 1 ∧
+          ∃ j ∉ Δ, constantCoeff (pderiv j (residualFactor Δ g)) ≠ 0) := sorry
+
+end LogJacobianEndCase
+
 section MvHasse
 
 namespace Algebra.MvHasse
