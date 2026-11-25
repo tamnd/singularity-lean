@@ -250,7 +250,14 @@
     "Singularity.cpOmega_cleanPart_le_center",
     "Singularity.centerExample_cpOmega",
     "Singularity.centerExample_cpOmega_cleanPart",
-    "Singularity.centerExample_cpOmega_lt"
+    "Singularity.centerExample_cpOmega_lt",
+    "Singularity.chartVector_mem_directrix_of_logJacobianOrder_eq",
+    "Singularity.chartVector_mem_directrix_of_logJacobianOrder_eq_of_idealOrd",
+    "Singularity.logJacobianOrder_cleanPart_lt_of_directrix_eq_bot",
+    "Singularity.logJacobianOrder_cleanPart_lt_of_directrix_eq_bot_of_idealOrd",
+    "Singularity.chartVector_mem_directrix_initialForm_of_logJacobianOrder_eq",
+    "Singularity.chartVector_mem_directrix_pderiv_initialForm_of_logJacobianOrder_eq",
+    "Singularity.nearPointExample_not_mem_directrix"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

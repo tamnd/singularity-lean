@@ -1101,6 +1101,34 @@ status:
       kind: theorem
       status: proved
       note: Example 3.6.4 of Volume 7, Section 3.6 of the handbook. Under the blowup of the center V(x, y) of Example 3.4.6, omega goes up from 2 to 3.
+    - name: Singularity.chartVector_mem_directrix_of_logJacobianOrder_eq
+      kind: theorem
+      status: proved
+      note: Theorem 3.7.1, part 1, of Volume 7, Section 3.7 of the handbook. Let g be clean and not 0 with ord g at least p, let pi(g) = x_j^p g' in a chart of the point blowup, and let rho(g'_c) = rho(g) = m. For each psi with x^r psi in Theta_0(g) and ord psi = m, the vector of the chart lies in the directrix of the part of psi of degree m.
+    - name: Singularity.chartVector_mem_directrix_of_logJacobianOrder_eq_of_idealOrd
+      kind: theorem
+      status: proved
+      note: Theorem 3.7.1, part 2, of Volume 7, Section 3.7 of the handbook. If rho(g'_c) = m and the order of Theta_0(g) is |r| + m + 1, then for each psi with x^r psi in Theta(g) and ord psi = m, the vector of the chart lies in the directrix of the part of psi of degree m.
+    - name: Singularity.logJacobianOrder_cleanPart_lt_of_directrix_eq_bot
+      kind: theorem
+      status: proved
+      note: Corollary 3.7.2 of Volume 7, Section 3.7 of the handbook, in the case of part 1 of Theorem 3.7.1. If rho(g) = m and the directrix of the part of degree m of psi is 0, then rho(g'_c) < m in each chart.
+    - name: Singularity.logJacobianOrder_cleanPart_lt_of_directrix_eq_bot_of_idealOrd
+      kind: theorem
+      status: proved
+      note: Corollary 3.7.2 of Volume 7, Section 3.7 of the handbook, in the case of part 2 of Theorem 3.7.1. If the order of Theta_0(g) is |r| + m + 1 and the directrix of the part of degree m of psi is 0, then rho(g'_c) < m in each chart.
+    - name: Singularity.chartVector_mem_directrix_initialForm_of_logJacobianOrder_eq
+      kind: theorem
+      status: proved
+      note: Corollary 3.7.3 of Volume 7, Section 3.7 of the handbook. If rho(g'_c) = rho(g) = ord G = d and |r| + d is not 0 in k, then the vector of the chart lies in the directrix of the initial form of G.
+    - name: Singularity.chartVector_mem_directrix_pderiv_initialForm_of_logJacobianOrder_eq
+      kind: theorem
+      status: proved
+      note: Corollary 3.7.3 of Volume 7, Section 3.7 of the handbook. Let d = ord G and let l be a free coordinate with a derivative of the initial form of G along x_l other than 0. If rho(g'_c) = d - 1, then the vector of the chart lies in the directrix of this derivative.
+    - name: Singularity.nearPointExample_not_mem_directrix
+      kind: theorem
+      status: proved
+      note: Example 3.7.4 of Volume 7, Section 3.7 of the handbook. Over F_3, for g = x^3 y^2 + x^4 and E = V(x), rho(g) = 1 and rho(g'_c) = 1 in the y-chart. The element psi = 2y has x^r psi in Theta(g) and order 1, but the vector of the chart is not in the directrix of psi. So part 1 of Theorem 3.7.1 is false with Theta(g) in the place of Theta_0(g).
     - name: Singularity.exists_macLaneVaquieStep_or_forall_isStable
       kind: theorem
       status: proved
