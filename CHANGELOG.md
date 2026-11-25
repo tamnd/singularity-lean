@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.20 - 2026-11-26
+
 ### Added
 
 - `Singularity/Invariant/LogJacobianDirectrixCaseA.lean`: `τ_ρ` does not go down from case A to case A (Volume 7, Section 3.9 of the handbook, Theorem 3.9.1). Let `g ≠ 0` be clean with `ord g ≥ p`, let `g = x^r G`, and let `d = ord G`. Let the chart send `g` to `x_j^p g'`, let `ρ(g) = ρ(g'_c) = d`, and let the new point be of case A. If `|r| + d ≠ 0` in `k`, then `dim T_ρ(g'_c) ≤ dim T_ρ(g)` (`finrank_logJacobianDirectrix_cleanPart_le_of_caseA`), and so `τ_ρ(g) ≤ τ_ρ(g'_c)` (`logJacobianDirectrixCodim_le_cleanPart_of_caseA`). The theorem does not assume that the old point is of case A, since this follows from `|r| + d ≠ 0` in `k` through the Euler element. The file also proves `Θ₀(x^r G) = x^r Θ̃₀(G)` (`logJacobianTangent_monomial_mul`), Lemma 3.9.2 (`pderiv_eq_zero_of_mem_directrix`: if `v ∈ T(F)`, `v ∈ T(Φ_i)` and `v_i ≠ 0`, then `∂_i F = 0`), and the exact transports of Lemma 3.9.3 (`pointChart_X_mul_pderiv_of_ne_of_eq_zero`, `pointChart_sum_X_mul_pderiv`, `mem_directrix_of_mem_logJacobianDirectrix_cleanPart`). Example 3.9.4 shows that the plain transports are not enough: for `g = x z^2 + x^2 y^3` over `𝔽₂` with `E = V(x)`, the transforms `y z^2` and `y (x + 1) z^2` of `x e_x` are not in `Θ₀(g'_c)` (`tauRhoCaseAExample_hyp`, `tauRhoCaseAExample_not_mem`). The case `|r| + d = 0` in `k` is open and is not proved here.
