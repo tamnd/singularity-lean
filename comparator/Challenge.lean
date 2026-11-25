@@ -44,6 +44,16 @@ import Mathlib.Algebra.MvPolynomial.Expand
 import Mathlib.Algebra.Polynomial.HasseDeriv
 import Mathlib.Data.Finsupp.Interval
 import Mathlib.AlgebraicGeometry.Morphisms.Finite
+import Mathlib.FieldTheory.KummerPolynomial
+import Mathlib.FieldTheory.PurelyInseparable.Basic
+import Mathlib.FieldTheory.Relrank
+import Mathlib.FieldTheory.Galois.Basic
+import Mathlib.RingTheory.Polynomial.GaussLemma
+import Mathlib.RingTheory.Valuation.LocalSubring
+import Mathlib.FieldTheory.PurelyInseparable.PerfectClosure
+import Mathlib.GroupTheory.SpecificGroups.Cyclic.Subgroup
+import Mathlib.RingTheory.Polynomial.RationalRoot
+import Mathlib.RingTheory.Polynomial.UniqueFactorization
 
 /-!
 # The challenge of the comparator
@@ -1800,5 +1810,101 @@ theorem regularAlterationInDim_of_resolutionInDim {p n : ℕ} (h : ResolutionInD
     RegularAlterationInDim.{u} p n := sorry
 
 end Alteration
+
+section DegreePSteps
+
+open Polynomial IntermediateField Module
+
+section PowMem
+
+variable {K : Type*} [Field K]
+
+theorem valuationSubring_pow_mem_iff (V : ValuationSubring K) {b : K} {n : ℕ} (hn : n ≠ 0) :
+    b ^ n ∈ V ↔ b ∈ V := sorry
+
+end PowMem
+
+section Kummer
+
+variable {K : Type*} [Field K] (p : ℕ) [hp : Fact p.Prime] [CharP K p]
+
+theorem irreducible_X_pow_sub_C_iff (a : K) :
+    Irreducible (X ^ p - C a : K[X]) ↔ ∀ b : K, b ^ p ≠ a := sorry
+
+end Kummer
+
+section Extension
+
+variable {K L : Type*} [Field K] [Field L] [Algebra K L] (p : ℕ) [ExpChar K p]
+
+include p in
+theorem existsUnique_valuationSubring_comap_eq [IsPurelyInseparable K L] (V : ValuationSubring K) :
+    ∃! W : ValuationSubring L, W.comap (algebraMap K L) = V := sorry
+
+end Extension
+
+section ArtinSchreier
+
+variable {K L : Type*} [Field K] [Field L] [Algebra K L] (p : ℕ) [hp : Fact p.Prime] [CharP K p]
+
+theorem exists_artinSchreier_generator [FiniteDimensional K L] [IsGalois K L]
+    (hd : finrank K L = p) :
+    ∃ θ : L, θ ^ p - θ ∈ (⊥ : IntermediateField K L) ∧ K⟮θ⟯ = ⊤ ∧
+      ∃ σ : L ≃ₐ[K] L, σ θ = θ + 1 := sorry
+
+theorem artinSchreier_integral {R : Type*} [CommRing R] (θ a g : R) (h : θ ^ p - θ = a) :
+    (g * θ) ^ p - g ^ (p - 1) * (g * θ) - g ^ p * a = 0 := sorry
+
+end ArtinSchreier
+
+section TowerMain
+
+variable {K L : Type*} [Field K] [Field L] [Algebra K L] (p : ℕ) [hp : Fact p.Prime] [CharP K p]
+
+theorem exists_purelyInseparable_tower [FiniteDimensional K L] [IsPurelyInseparable K L]
+    (V : ValuationSubring K) :
+    ∃ W : ValuationSubring L, W.comap (algebraMap K L) = V ∧
+      (∀ W' : ValuationSubring L, W'.comap (algebraMap K L) = V → W' = W) ∧
+      ∃ (r : ℕ) (E : ℕ → IntermediateField K L) (θ : ℕ → L), E 0 = ⊥ ∧ E r = ⊤ ∧
+        finrank K L = p ^ r ∧ ∀ i < r, E (i + 1) = E i ⊔ K⟮θ i⟯ ∧ θ i ∉ E i ∧ θ i ^ p ∈ E i ∧
+          (E i).relfinrank (E (i + 1)) = p ∧ θ i ∈ W := sorry
+
+end TowerMain
+
+section Model
+
+variable (p : ℕ) [hp : Fact p.Prime] {k K : Type*} [Field k] [Field K] [Algebra k K]
+
+theorem exists_inseparableStep_model (V : ValuationSubring K) [Algebra k V] [IsScalarTower k V K]
+    (hV : HasLocalUniformization k V) {c : K} (hc : ∀ b : K, b ^ p ≠ c) :
+    ∃ x : K, (x = c ∨ x = c⁻¹) ∧ x ∈ V ∧ (∀ b : K, b ^ p ≠ x) ∧
+      Irreducible (X ^ p - C x : K[X]) ∧ HasRegularCenter k V {x} := sorry
+
+theorem mem_valuationSubring_of_pow_eq {L : Type*} [Field L] [Algebra K L] (V : ValuationSubring K)
+    (W : ValuationSubring L) (hW : W.comap (algebraMap K L) = V) {x : K} (hx : x ∈ V) {θ : L}
+    (hθ : θ ^ p = algebraMap K L x) : θ ∈ W := sorry
+
+end Model
+
+section Reduced
+
+variable (p : ℕ) [hp : Fact p.Prime] {R : Type*} [CommRing R] [IsDomain R] [CharP R p]
+
+variable [IsIntegrallyClosed R]
+
+theorem X_pow_add_C_tfae (g : R) :
+    List.TFAE [IsReduced (R[X] ⧸ Ideal.span {X ^ p + C g}),
+      IsDomain (R[X] ⧸ Ideal.span {X ^ p + C g}),
+      Irreducible (X ^ p + C g : R[X]), ∀ a : R, a ^ p ≠ g] := sorry
+
+theorem X_pow_add_C_tfae_threefold (k : Type*) [Field k] [CharP k p] (g : MvPolynomial (Fin 3) k) :
+    List.TFAE [IsReduced ((MvPolynomial (Fin 3) k)[X] ⧸ Ideal.span {X ^ p + C g}),
+      IsDomain ((MvPolynomial (Fin 3) k)[X] ⧸ Ideal.span {X ^ p + C g}),
+      Irreducible (X ^ p + C g : (MvPolynomial (Fin 3) k)[X]),
+      ∀ a : MvPolynomial (Fin 3) k, a ^ p ≠ g] := sorry
+
+end Reduced
+
+end DegreePSteps
 
 end Singularity
