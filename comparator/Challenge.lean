@@ -71,11 +71,16 @@ import Mathlib.Algebra.Module.Projective
 import Mathlib.LinearAlgebra.Dimension.Free
 import Mathlib.RingTheory.AlgebraicIndependent.AlgebraicClosure
 import Mathlib.RingTheory.AlgebraicIndependent.TranscendenceBasis
+import Mathlib.RingTheory.Etale.StandardEtale
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.AdjoinRoot
+import Mathlib.RingTheory.DedekindDomain.Different
+import Mathlib.RingTheory.Localization.Integral
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean`, `Singularity/Valuation/LocalUniformizationMonomial.lean` and `Singularity/Valuation/MonomialGroundField.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean`, `Singularity/Valuation/LocalUniformizationMonomial.lean`, `Singularity/Valuation/MonomialGroundField.lean`, `Singularity/Valuation/EtaleRegular.lean` and `Singularity/Valuation/EtaleGenerator.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -345,6 +350,71 @@ theorem IsMonomialValuation.adjoin_residue_eq_top {y : κ → K} {x : ι → K}
   sorry
 
 end MonomialGroundField
+
+section EtaleGenerator
+
+open Polynomial IsLocalRing
+
+/-- `Singularity/Valuation/EtaleRegular.lean`: let `P ∈ A[X]` be monic and let `Q` be a prime of `A[X]/(P)` with `P' ∉ Q`. If the localization of `A` at `p = Q ∩ A` is regular, then the localization of `A[X]/(P)` at `Q` is regular. -/
+theorem isRegularLocalRing_localization_adjoinRoot {A : Type*} [CommRing A] [IsNoetherianRing A]
+    {P : A[X]} (hP : P.Monic)
+    (Q : Ideal (AdjoinRoot P)) [Q.IsPrime]
+    (hQ : AdjoinRoot.mk P (derivative P) ∉ Q) (p : Ideal A) [p.IsPrime]
+    (hp : Q.comap (algebraMap A (AdjoinRoot P)) = p)
+    (hreg : IsRegularLocalRing (Localization.AtPrime p)) :
+    IsRegularLocalRing (Localization.AtPrime Q) := sorry
+
+/-- `Singularity/Valuation/EtaleGenerator.lean`: the Euler lemma. If `x` is integral over `A` with `L = F[x]` and `u ∈ L` is integral over `A`, then `P'(x) u ∈ A[x]`. -/
+theorem aeval_derivative_minpoly_mul_mem_adjoin {A F L : Type*} [CommRing A] [IsDomain A]
+    [IsIntegrallyClosed A] [Field F] [Field L] [Algebra A F] [IsFractionRing A F] [Algebra F L]
+    [Algebra A L] [IsScalarTower A F L] [FiniteDimensional F L] [Algebra.IsSeparable F L]
+    {x : L} (hx : Algebra.adjoin F {x} = ⊤) (hxA : IsIntegral A x) {u : L}
+    (hu : IsIntegral A u) :
+    aeval x (derivative (minpoly F x)) * u ∈ Algebra.adjoin A {x} := sorry
+
+variable {k K : Type*} [Field k] [Field K] [Algebra k K]
+
+/-- The subring `T_R` of `K` of the elements `z` with `z c ∈ R` for some `c ∈ R` with `v(c) = 1`. -/
+def centerSubring (V : ValuationSubring K) (R : Subring K) : Subring K where
+  carrier := {z | ∃ a ∈ R, ∃ c ∈ R, V.valuation c = 1 ∧ z * c = a}
+  mul_mem' := by
+    rintro z w ⟨a, ha, c, hc, hc1, hz⟩ ⟨b, hb, d, hd, hd1, hw⟩
+    refine ⟨a * b, R.mul_mem ha hb, c * d, R.mul_mem hc hd, by rw [map_mul, hc1, hd1, one_mul], ?_⟩
+    rw [← hz, ← hw]
+    ring
+  one_mem' := ⟨1, R.one_mem, 1, R.one_mem, map_one _, one_mul 1⟩
+  add_mem' := by
+    rintro z w ⟨a, ha, c, hc, hc1, hz⟩ ⟨b, hb, d, hd, hd1, hw⟩
+    refine ⟨a * d + b * c, R.add_mem (R.mul_mem ha hd) (R.mul_mem hb hc), c * d, R.mul_mem hc hd,
+      by rw [map_mul, hc1, hd1, one_mul], ?_⟩
+    rw [← hz, ← hw]
+    ring
+  zero_mem' := ⟨0, R.zero_mem, 1, R.one_mem, map_one _, zero_mul 1⟩
+  neg_mem' := by
+    rintro z ⟨a, ha, c, hc, hc1, hz⟩
+    refine ⟨-a, R.neg_mem ha, c, hc, hc1, ?_⟩
+    rw [← hz]
+    ring
+
+/-- An étale generator `z` of `K` over `K₀` for `V` (Volume 5, Definition 1.3.2 of the handbook). -/
+structure IsEtaleGenerator (K₀ : IntermediateField k K) (V : ValuationSubring K) (z : K) :
+    Prop where
+  mem : z ∈ V
+  adjoin_eq_top : IntermediateField.adjoin K₀ {z} = ⊤
+  coeff_mem : ∀ i, ((minpoly K₀ z).coeff i : K) ∈ V
+  valuation_derivative : V.valuation (aeval z (derivative (minpoly K₀ z))) = 1
+
+/-- `Singularity/Valuation/EtaleGenerator.lean`: `V` is the localization of `V₀[z]` at the center of `V` (Lemma 1.3.3, part 1). -/
+theorem IsEtaleGenerator.centerSubring_closure_eq {K₀ : IntermediateField k K}
+    {V : ValuationSubring K} {z : K} (hz : IsEtaleGenerator K₀ V z) :
+    centerSubring V (Subring.closure (insert z ((K₀ : Set K) ∩ V))) = V.toSubring := sorry
+
+/-- `Singularity/Valuation/EtaleGenerator.lean`: local uniformization lifts along an étale generator (Theorem 1.3.4). -/
+theorem hasLocalUniformization_of_etaleGenerator {K₀ : IntermediateField k K}
+    {V : ValuationSubring K} {z : K} (hz : IsEtaleGenerator K₀ V z)
+    (h : HasLocalUniformization k (V.comap (algebraMap K₀ K))) : HasLocalUniformization k V := sorry
+
+end EtaleGenerator
 
 section Abhyankar
 

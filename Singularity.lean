@@ -80,5 +80,7 @@ import Singularity.Valuation.LatticeLemmaOrdered
 import Singularity.Valuation.LocalUniformizationMonomial
 import Singularity.Valuation.MonomialGroundField
 import Singularity.Valuation.DegreePSteps
+import Singularity.Valuation.EtaleRegular
+import Singularity.Valuation.EtaleGenerator
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement
