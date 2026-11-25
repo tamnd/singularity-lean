@@ -83,7 +83,7 @@ import Mathlib.RingTheory.Valuation.RamificationGroup
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean`, `Singularity/Valuation/LocalUniformizationMonomial.lean`, `Singularity/Valuation/MonomialGroundField.lean`, `Singularity/Valuation/EtaleRegular.lean`, `Singularity/Valuation/EtaleGenerator.lean`, `Singularity/Valuation/EtaleGeneratorExistence.lean`, `Singularity/Valuation/MonomialFiniteExtension.lean`, `Singularity/Valuation/DegreePTowers.lean` and `Singularity/Valuation/InertiaField.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean`, `Singularity/Valuation/LocalUniformizationMonomial.lean`, `Singularity/Valuation/MonomialGroundField.lean`, `Singularity/Valuation/EtaleRegular.lean`, `Singularity/Valuation/EtaleGenerator.lean`, `Singularity/Valuation/EtaleGeneratorExistence.lean`, `Singularity/Valuation/MonomialFiniteExtension.lean`, `Singularity/Valuation/DegreePTowers.lean`, `Singularity/Valuation/InertiaField.lean` and `Singularity/Valuation/AbhyankarSubfield.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -3457,5 +3457,108 @@ theorem fullDirectrixExample_codim :
         (cleanPart 2 (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2))) = 1 := sorry
 
 end LogJacobianFullDirectrix
+
+section AbhyankarSubfield
+
+open IsLocalRing TensorProduct
+
+variable {k K : Type*} [Field k] [Field K] [Algebra k K]
+
+variable (k) in
+/-- The element `z_i` of `K` as an element of the subfield `k(z)` of `K` that the family `z` generates over `k`. -/
+def adjoinRangeElem {ι : Type*} (z : ι → K) (i : ι) : IntermediateField.adjoin k (Set.range z) :=
+  ⟨z i, IntermediateField.subset_adjoin k _ (Set.mem_range_self i)⟩
+
+section SumElim
+
+variable {ι κ : Type*} [Fintype ι] {V : ValuationSubring K}
+
+/-- `Singularity/Valuation/AbhyankarSubfield.lean`: the restriction of `V` to `k(x, y)` is a monomial valuation over `k(y)` in the `x_i`, if the values of the `x_i` are independent over `ℤ`. -/
+theorem isMonomialValuation_comap_adjoin_sumElim {x : ι → K} {y : κ → K}
+    (hx0 : ∀ i, x i ≠ 0)
+    (hx : ∀ a : ι → ℤ, V.valuation (laurentMonomial x a) = 1 → a = 0) :
+    IsMonomialValuation
+      (IntermediateField.adjoin k (Set.range fun j => adjoinRangeElem k (Sum.elim x y) (.inr j)))
+      (V.comap (algebraMap (IntermediateField.adjoin k (Set.range (Sum.elim x y))) K))
+      (fun i => adjoinRangeElem k (Sum.elim x y) (.inl i)) := sorry
+
+omit [Fintype ι] in
+/-- `Singularity/Valuation/AbhyankarSubfield.lean`: the restriction of `V` to `k(x, y)` is trivial on `k(y)`, if the residues of the `y_j` are algebraically independent over `k`. -/
+theorem mem_comap_adjoin_sumElim_of_residue [Algebra k V] [IsScalarTower k V K] {x : ι → K}
+    {y : κ → V} (hy : AlgebraicIndependent k fun j => residue V (y j)) :
+    ∀ c ∈ IntermediateField.adjoin k
+        (Set.range fun j => adjoinRangeElem k (Sum.elim x fun j => (y j : K)) (.inr j)),
+      c ∈ V.comap (algebraMap
+        (IntermediateField.adjoin k (Set.range (Sum.elim x fun j => (y j : K)))) K) := sorry
+
+/-- `Singularity/Valuation/AbhyankarSubfield.lean`: the elements `x, y` are algebraically independent over `k`. -/
+theorem algebraicIndependent_sumElim_of_laurentMonomial [Algebra k V] [IsScalarTower k V K]
+    {x : ι → K} {y : κ → V} (hx0 : ∀ i, x i ≠ 0)
+    (hx : ∀ a : ι → ℤ, V.valuation (laurentMonomial x a) = 1 → a = 0)
+    (hy : AlgebraicIndependent k fun j => residue V (y j)) :
+    AlgebraicIndependent k (Sum.elim x fun j => (y j : K)) := sorry
+
+end SumElim
+
+section Abhyankar
+
+variable {V : ValuationSubring K} [Algebra k V] [IsScalarTower k V K]
+
+/-- `Singularity/Valuation/AbhyankarSubfield.lean`: for an Abhyankar valuation, `K` is a finite extension of `k(x, y)` (Volume 3, proof of Theorem 2.2.2). -/
+theorem finiteDimensional_adjoin_sumElim_of_isAbhyankarValuation (hK : IsFunctionField k K)
+    (hV : IsAbhyankarValuation k V) {ι κ : Type*} [Fintype ι] [Fintype κ] {x : ι → K}
+    {y : κ → V} (hx0 : ∀ i, x i ≠ 0)
+    (hx : ∀ a : ι → ℤ, V.valuation (laurentMonomial x a) = 1 → a = 0)
+    (hy : AlgebraicIndependent k fun j => residue V (y j))
+    (hr : Module.rank ℚ (ℚ ⊗[ℤ] Additive V.ValueGroupˣ) = Fintype.card ι)
+    (ht : Algebra.trdeg k (ResidueField V) = Fintype.card κ) :
+    FiniteDimensional
+      (IntermediateField.adjoin k (Set.range (Sum.elim x fun j => (y j : K)))) K := sorry
+
+/-- `Singularity/Valuation/AbhyankarSubfield.lean`: the choice of the monomial subfield `k(x, y)` of an Abhyankar valuation (Volume 5, proof of Theorem 2.2.1, with values that are independent over `ℤ`). -/
+theorem IsAbhyankarValuation.exists_isMonomialValuation_comap (hK : IsFunctionField k K)
+    (hV : IsAbhyankarValuation k V) :
+    ∃ (r t : ℕ) (x : Fin r → K) (y : Fin t → V),
+      Module.rank ℚ (ℚ ⊗[ℤ] Additive V.ValueGroupˣ) = r ∧
+      Algebra.trdeg k (ResidueField V) = t ∧
+      (∀ i, x i ≠ 0) ∧
+      (∀ a : Fin r → ℤ, V.valuation (laurentMonomial x a) = 1 → a = 0) ∧
+      AlgebraicIndependent k (fun j => residue V (y j)) ∧
+      AlgebraicIndependent k (Sum.elim x fun j => (y j : K)) ∧
+      FiniteDimensional
+        (IntermediateField.adjoin k (Set.range (Sum.elim x fun j => (y j : K)))) K ∧
+      (∀ c ∈ IntermediateField.adjoin k
+          (Set.range fun j => adjoinRangeElem k (Sum.elim x fun j => (y j : K)) (.inr j)),
+        c ∈ V.comap (algebraMap
+          (IntermediateField.adjoin k (Set.range (Sum.elim x fun j => (y j : K)))) K)) ∧
+      IsMonomialValuation
+        (IntermediateField.adjoin k
+          (Set.range fun j => adjoinRangeElem k (Sum.elim x fun j => (y j : K)) (.inr j)))
+        (V.comap (algebraMap
+          (IntermediateField.adjoin k (Set.range (Sum.elim x fun j => (y j : K)))) K))
+        (fun i => adjoinRangeElem k (Sum.elim x fun j => (y j : K)) (.inl i)) := sorry
+
+end Abhyankar
+
+/-- `Singularity/Valuation/AbhyankarSubfield.lean`: an Abhyankar valuation has local uniformization if the residue extension over its monomial subfield `k(x, y)` is separable of degree `[K : k(x, y)]` (Volume 5, Theorem 2.2.1 in the case of one extension with `e = d = 1`). -/
+theorem hasLocalUniformization_of_isAbhyankarValuation_of_finrank_residueField_eq
+    (hK : IsFunctionField k K) {Γ₀ Γ : Type*} [LinearOrderedCommGroupWithZero Γ₀]
+    [LinearOrderedCommGroupWithZero Γ] (v : Valuation K Γ) [Algebra k v.valuationSubring]
+    [IsScalarTower k v.valuationSubring K] (hv : IsAbhyankarValuation k v.valuationSubring)
+    {ι κ : Type*} [Fintype ι] [Fintype κ] {x : ι → K} {y : κ → v.valuationSubring}
+    (hx0 : ∀ i, x i ≠ 0) (hx : ∀ a : ι → ℤ, v (laurentMonomial x a) = 1 → a = 0)
+    (hy : AlgebraicIndependent k fun j => residue v.valuationSubring (y j))
+    (hr : Module.rank ℚ (ℚ ⊗[ℤ] Additive v.valuationSubring.ValueGroupˣ) = Fintype.card ι)
+    (ht : Algebra.trdeg k (ResidueField v.valuationSubring) = Fintype.card κ)
+    (v₀ : Valuation
+      (IntermediateField.adjoin k (Set.range (Sum.elim x fun j => (y j : K)))) Γ₀)
+    [v₀.HasExtension v]
+    [Algebra.IsSeparable (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring)]
+    (hf : Module.finrank (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring) =
+      Module.finrank
+        (IntermediateField.adjoin k (Set.range (Sum.elim x fun j => (y j : K)))) K) :
+    HasLocalUniformization k v.valuationSubring := sorry
+
+end AbhyankarSubfield
 
 end Singularity
