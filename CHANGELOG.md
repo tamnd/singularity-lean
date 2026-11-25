@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.12 - 2026-11-25
+
 ### Added
 
 - `Singularity/Valuation/LimitKeyPolynomial.lean`: a limit key polynomial `φ` of a continuous family is a key polynomial for each valuation `w` with the values of the limit augmentation `[μ_∞; φ, γ]` (`ContinuousFamily.IsLimitKeyPolynomial.keyPolynomial_of_forall_eq`, `IsLimitKeyPolynomial.keyPolynomial_limitAugmentedValuation`). The criterion is that `φ` `w`-divides `f` if and only if `μ_∞ (f %ₘ φ) < w f` in multiplicative notation (`IsLimitKeyPolynomial.muDvd_iff_of_forall_eq`). Let `μᵢ ≤ ν` for each `i` in additive notation, and let `ν` agree with `μ` in degree less than `d`. Then `[μ_∞; φ, ν(φ)]` agrees with `ν` in degree at most `deg φ` if and only if `φ` has the largest `ν`-value among the monic polynomials of its degree (`IsLimitKeyPolynomial.forall_limitAugmentedValuationFun_eq_iff`). Each monic polynomial of degree `deg φ` with a value at least `ν(φ)` is again a limit key polynomial (`IsLimitKeyPolynomial.of_map_le`). The limit step `IsLimitKeyPolynomial.limitStep` collects these facts. The file does not prove that the largest value is attained, and it does not build the full chain with limit steps.
