@@ -3091,4 +3091,124 @@ theorem logJacobianDirectrixCodim_le_cleanPart_of_ne_zero (hg : g ≠ 0) (hc : I
 
 end LogJacobianCaseAStable
 
+section LogJacobianCaseAUnstable
+
+open MvPolynomial Finsupp Module
+
+/-- `Singularity/Invariant/LogJacobianCaseAUnstable.lean`: Example 3.9.9 of Volume 7,
+Section 3.9 of the handbook, the data. The hypothesis `hpd` of
+`idealOrd_logJacobianTangent_cleanPart_of_caseA` fails. -/
+theorem caseAToCaseBExample_hyp :
+    (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+        MvPolynomial (Fin 3) (ZMod 3)) ≠ 0 ∧
+      IsClean 3 (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+        MvPolynomial (Fin 3) (ZMod 3)) ∧
+      ((3 : ℕ) : ℕ∞) ≤ ord (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+        MvPolynomial (Fin 3) (ZMod 3)) ∧
+      pointChart 0 (Pi.single 2 1 : Fin 3 → ZMod 3)
+          (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+            MvPolynomial (Fin 3) (ZMod 3)) =
+        X 0 ^ 3 * (X 0 ^ 5 * X 1 ^ 2 * (X 2 + 1) ^ 3 + 2 * X 0 ^ 3 * X 1 ^ 3 * (X 2 + 1)) ∧
+      blowupDivisor ({0, 2} : Finset (Fin 3)) 0 (Pi.single 2 1 : Fin 3 → ZMod 3) = {0} ∧
+      cleanPart 3 (X 0 ^ 5 * X 1 ^ 2 * (X 2 + 1) ^ 3 + 2 * X 0 ^ 3 * X 1 ^ 3 * (X 2 + 1) :
+          MvPolynomial (Fin 3) (ZMod 3)) =
+        X 0 ^ 5 * X 1 ^ 2 * X 2 ^ 3 + X 0 ^ 5 * X 1 ^ 2 + 2 * X 0 ^ 3 * X 1 ^ 3 * X 2 ∧
+      divisorExponent ({0, 2} : Finset (Fin 3))
+          (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+            MvPolynomial (Fin 3) (ZMod 3)) =
+        single 0 2 + single 2 1 ∧
+      residualFactor ({0, 2} : Finset (Fin 3))
+          (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+            MvPolynomial (Fin 3) (ZMod 3)) =
+        X 0 * X 1 ^ 2 * X 2 ^ 2 + 2 * X 1 ^ 3 ∧
+      ord (X 0 * X 1 ^ 2 * X 2 ^ 2 + 2 * X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 3)) = 3 ∧
+      ((degree (divisorExponent ({0, 2} : Finset (Fin 3))
+          (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+            MvPolynomial (Fin 3) (ZMod 3))) + 3 : ℕ) : ZMod 3) = 0 ∧
+      divisorExponent ({0} : Finset (Fin 3))
+          (X 0 ^ 5 * X 1 ^ 2 * X 2 ^ 3 + X 0 ^ 5 * X 1 ^ 2 + 2 * X 0 ^ 3 * X 1 ^ 3 * X 2 :
+            MvPolynomial (Fin 3) (ZMod 3)) =
+        single 0 3 ∧
+      residualFactor ({0} : Finset (Fin 3))
+          (X 0 ^ 5 * X 1 ^ 2 * X 2 ^ 3 + X 0 ^ 5 * X 1 ^ 2 + 2 * X 0 ^ 3 * X 1 ^ 3 * X 2 :
+            MvPolynomial (Fin 3) (ZMod 3)) =
+        X 0 ^ 2 * X 1 ^ 2 * (X 2 ^ 3 + 1) + 2 * X 1 ^ 3 * X 2 := sorry
+
+/-- `Singularity/Invariant/LogJacobianCaseAUnstable.lean`: Example 3.9.9 of Volume 7,
+Section 3.9 of the handbook. The old point is of case A, and the new point is of case B. -/
+theorem caseAToCaseBExample_cases :
+    idealOrd (logJacobianTangent ({0, 2} : Finset (Fin 3))
+        (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+          MvPolynomial (Fin 3) (ZMod 3))) =
+        degree (divisorExponent ({0, 2} : Finset (Fin 3))
+          (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+            MvPolynomial (Fin 3) (ZMod 3))) +
+          logJacobianOrder ({0, 2} : Finset (Fin 3))
+            (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+              MvPolynomial (Fin 3) (ZMod 3)) ∧
+      idealOrd (logJacobianTangent
+          (blowupDivisor ({0, 2} : Finset (Fin 3)) 0 (Pi.single 2 1 : Fin 3 → ZMod 3))
+          (cleanPart 3 (X 0 ^ 5 * X 1 ^ 2 * (X 2 + 1) ^ 3 + 2 * X 0 ^ 3 * X 1 ^ 3 * (X 2 + 1) :
+            MvPolynomial (Fin 3) (ZMod 3)))) =
+        degree (divisorExponent
+          (blowupDivisor ({0, 2} : Finset (Fin 3)) 0 (Pi.single 2 1 : Fin 3 → ZMod 3))
+          (cleanPart 3 (X 0 ^ 5 * X 1 ^ 2 * (X 2 + 1) ^ 3 + 2 * X 0 ^ 3 * X 1 ^ 3 * (X 2 + 1) :
+            MvPolynomial (Fin 3) (ZMod 3)))) +
+          logJacobianOrder
+            (blowupDivisor ({0, 2} : Finset (Fin 3)) 0 (Pi.single 2 1 : Fin 3 → ZMod 3))
+            (cleanPart 3 (X 0 ^ 5 * X 1 ^ 2 * (X 2 + 1) ^ 3 + 2 * X 0 ^ 3 * X 1 ^ 3 * (X 2 + 1) :
+              MvPolynomial (Fin 3) (ZMod 3))) + 1 := sorry
+
+/-- `Singularity/Invariant/LogJacobianCaseAUnstable.lean`: Example 3.9.9 of Volume 7,
+Section 3.9 of the handbook. `ρ` stays `3`. -/
+theorem caseAToCaseBExample_rho :
+    logJacobianOrder ({0, 2} : Finset (Fin 3))
+        (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+          MvPolynomial (Fin 3) (ZMod 3)) = 3 ∧
+      logJacobianOrder
+          (blowupDivisor ({0, 2} : Finset (Fin 3)) 0 (Pi.single 2 1 : Fin 3 → ZMod 3))
+          (cleanPart 3 (X 0 ^ 5 * X 1 ^ 2 * (X 2 + 1) ^ 3 + 2 * X 0 ^ 3 * X 1 ^ 3 * (X 2 + 1) :
+            MvPolynomial (Fin 3) (ZMod 3))) = 3 := sorry
+
+/-- `Singularity/Invariant/LogJacobianCaseAUnstable.lean`: Example 3.9.9 of Volume 7,
+Section 3.9 of the handbook. The hypothesis `hpd` of
+`idealOrd_logJacobianTangent_cleanPart_of_caseA` fails, and its conclusion fails. So `hpd` is
+necessary. -/
+theorem caseAToCaseBExample_not_caseA :
+    ((degree (divisorExponent ({0, 2} : Finset (Fin 3))
+        (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+          MvPolynomial (Fin 3) (ZMod 3))) + 3 : ℕ) : ZMod 3) = 0 ∧
+      idealOrd (logJacobianTangent
+          (blowupDivisor ({0, 2} : Finset (Fin 3)) 0 (Pi.single 2 1 : Fin 3 → ZMod 3))
+          (cleanPart 3 (X 0 ^ 5 * X 1 ^ 2 * (X 2 + 1) ^ 3 + 2 * X 0 ^ 3 * X 1 ^ 3 * (X 2 + 1) :
+            MvPolynomial (Fin 3) (ZMod 3)))) ≠
+        ((degree (divisorExponent
+          (blowupDivisor ({0, 2} : Finset (Fin 3)) 0 (Pi.single 2 1 : Fin 3 → ZMod 3))
+          (cleanPart 3 (X 0 ^ 5 * X 1 ^ 2 * (X 2 + 1) ^ 3 + 2 * X 0 ^ 3 * X 1 ^ 3 * (X 2 + 1) :
+            MvPolynomial (Fin 3) (ZMod 3)))) + 3 : ℕ) : ℕ∞) := sorry
+
+/-- `Singularity/Invariant/LogJacobianCaseAUnstable.lean`: Example 3.9.9 of Volume 7,
+Section 3.9 of the handbook. The dimension of `T_ρ` goes down from `2` to `1`. -/
+theorem caseAToCaseBExample_finrank :
+    finrank (ZMod 3) (logJacobianDirectrix ({0, 2} : Finset (Fin 3))
+        (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+          MvPolynomial (Fin 3) (ZMod 3))) = 2 ∧
+      finrank (ZMod 3) (logJacobianDirectrix
+          (blowupDivisor ({0, 2} : Finset (Fin 3)) 0 (Pi.single 2 1 : Fin 3 → ZMod 3))
+          (cleanPart 3 (X 0 ^ 5 * X 1 ^ 2 * (X 2 + 1) ^ 3 + 2 * X 0 ^ 3 * X 1 ^ 3 * (X 2 + 1) :
+            MvPolynomial (Fin 3) (ZMod 3)))) = 1 := sorry
+
+/-- `Singularity/Invariant/LogJacobianCaseAUnstable.lean`: Example 3.9.9 of Volume 7,
+Section 3.9 of the handbook, the form with the codimension. `τ_ρ` goes up from `1` to `2`. -/
+theorem caseAToCaseBExample_codim :
+    logJacobianDirectrixCodim ({0, 2} : Finset (Fin 3))
+        (X 0 ^ 3 * X 1 ^ 2 * X 2 ^ 3 + 2 * X 0 ^ 2 * X 1 ^ 3 * X 2 :
+          MvPolynomial (Fin 3) (ZMod 3)) = 1 ∧
+      logJacobianDirectrixCodim
+          (blowupDivisor ({0, 2} : Finset (Fin 3)) 0 (Pi.single 2 1 : Fin 3 → ZMod 3))
+          (cleanPart 3 (X 0 ^ 5 * X 1 ^ 2 * (X 2 + 1) ^ 3 + 2 * X 0 ^ 3 * X 1 ^ 3 * (X 2 + 1) :
+            MvPolynomial (Fin 3) (ZMod 3))) = 2 := sorry
+
+end LogJacobianCaseAUnstable
+
 end Singularity

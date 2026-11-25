@@ -1252,7 +1252,7 @@ status:
     - name: Singularity.idealOrd_logJacobianTangent_cleanPart_of_caseA
       kind: theorem
       status: proved
-      note: Proposition 3.9.7 of Volume 7, Section 3.9 of the handbook. Let g /= 0 be clean with ord g >= p, let g = x^r G with d = ord G, let the chart send g to x_j^p g', and let rho(g) = rho(g'_c) = d. If |r| + d /= 0 in k, then the new point is of case A, that is the order of Theta_0(g'_c) is |r'| + d. The proof uses the transport of the Euler element.
+      note: Proposition 3.9.7 of Volume 7, Section 3.9 of the handbook. Let g /= 0 be clean with ord g >= p, let g = x^r G with d = ord G, let the chart send g to x_j^p g', and let rho(g) = rho(g'_c) = d. If |r| + d /= 0 in k, then the new point is of case A, that is the order of Theta_0(g'_c) is |r'| + d. The proof uses the transport of the Euler element. Example 3.9.9 shows that the hypothesis |r| + d /= 0 in k is necessary.
     - name: Singularity.finrank_logJacobianDirectrix_cleanPart_le_of_ne_zero
       kind: theorem
       status: proved
@@ -1261,6 +1261,30 @@ status:
       kind: theorem
       status: proved
       note: Corollary 3.9.8 of Volume 7, Section 3.9 of the handbook, the form with the codimension. Under the same hypotheses, tau_rho(g) <= tau_rho(g'_c).
+    - name: Singularity.caseAToCaseBExample_hyp
+      kind: theorem
+      status: proved
+      note: Example 3.9.9 of Volume 7, Section 3.9 of the handbook, the data. Over F_3, for g = x^3 y^2 z^3 + 2 x^2 y^3 z and E = V(x z), g /= 0 is clean with ord g >= 3, r = (2, 0, 1) and G = x y^2 z^2 + 2 y^3 with d = ord G = 3. So |r| + d = 6 = 0 in F_3. In the x-chart with t_z = 1 and t_x = t_y = 0, g goes to x^3 g' with g' = x^5 y^2 (z + 1)^3 + 2 x^3 y^3 (z + 1), E' = V(x), and g'_c = x^5 y^2 z^3 + x^5 y^2 + 2 x^3 y^3 z. Also r' = (3, 0, 0) and G' = x^2 y^2 (z^3 + 1) + 2 y^3 z.
+    - name: Singularity.caseAToCaseBExample_cases
+      kind: theorem
+      status: proved
+      note: Example 3.9.9 of Volume 7, Section 3.9 of the handbook. The old point is of case A, and the new point is of case B.
+    - name: Singularity.caseAToCaseBExample_rho
+      kind: theorem
+      status: proved
+      note: Example 3.9.9 of Volume 7, Section 3.9 of the handbook. rho(g) = rho(g'_c) = 3.
+    - name: Singularity.caseAToCaseBExample_not_caseA
+      kind: theorem
+      status: proved
+      note: Example 3.9.9 of Volume 7, Section 3.9 of the handbook. |r| + d = 0 in F_3, and the order of Theta_0(g'_c) is not |r'| + d. The other hypotheses of Proposition 3.9.7 hold. So the hypothesis |r| + d /= 0 in k of Proposition 3.9.7 is necessary.
+    - name: Singularity.caseAToCaseBExample_finrank
+      kind: theorem
+      status: proved
+      note: Example 3.9.9 of Volume 7, Section 3.9 of the handbook. dim T_rho(g) = 2 and dim T_rho(g'_c) = 1.
+    - name: Singularity.caseAToCaseBExample_codim
+      kind: theorem
+      status: proved
+      note: Example 3.9.9 of Volume 7, Section 3.9 of the handbook, the form with the codimension. tau_rho(g) = 1 and tau_rho(g'_c) = 2. So tau_rho goes up from case A to case B.
     - name: Singularity.exists_macLaneVaquieStep_or_forall_isStable
       kind: theorem
       status: proved

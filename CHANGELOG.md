@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/LogJacobianCaseAUnstable.lean`: the first case is not stable if `|r| + d = 0` in `k` (Volume 7, Section 3.9 of the handbook, Example 3.9.9). So the hypothesis `|r| + d ≠ 0` of Proposition 3.9.7 (`idealOrd_logJacobianTangent_cleanPart_of_caseA`) is necessary. Over `𝔽₃`, let `g = x^3 y^2 z^3 + 2 x^2 y^3 z` and `E = V(x z)`. Then `g` is clean, `r = (2, 0, 1)`, `G = x y^2 z^2 + 2 y^3`, `d = ord G = 3` and `|r| + d = 6 = 0` in `𝔽₃`. In the `x`-chart with `t_z = 1` and `t_x = t_y = 0`, `g` goes to `x^3 g'` with `g' = x^5 y^2 (z + 1)^3 + 2 x^3 y^3 (z + 1)`, the new divisor is `V(x)`, and `g'_c = x^5 y^2 z^3 + x^5 y^2 + 2 x^3 y^3 z`. Also `r' = (3, 0, 0)` and `G' = x^2 y^2 (z^3 + 1) + 2 y^3 z` (`caseAToCaseBExample_hyp`). Then `ρ(g) = ρ(g'_c) = 3` (`caseAToCaseBExample_rho`). The old point is of case A, and the new point is of case B, since the order of `Θ₀(g'_c)` is `7 = |r'| + ρ + 1` (`caseAToCaseBExample_cases`, `caseAToCaseBExample_not_caseA`). Also `dim T_ρ(g) = 2` and `dim T_ρ(g'_c) = 1` (`caseAToCaseBExample_finrank`). So `τ_ρ(g) = 1` and `τ_ρ(g'_c) = 2` (`caseAToCaseBExample_codim`).
+
 ## 0.4.22 - 2026-11-26
 
 ### Added
