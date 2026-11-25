@@ -2962,4 +2962,94 @@ theorem tauRhoCaseAExample_not_mem :
 
 end LogJacobianDirectrixCaseA
 
+section LogJacobianDirectrixDrop
+
+open MvPolynomial Finsupp Module
+
+/-- `Singularity/Invariant/LogJacobianDirectrixDrop.lean`: Example 3.9.5 of Volume 7,
+Section 3.9 of the handbook, the data. -/
+theorem tauRhoDropExample_hyp :
+    (X 0 * X 2 ^ 2 * X 3 * X 4 ^ 2 + X 0 * X 1 * X 2 * X 3 * X 4 ^ 2 :
+        MvPolynomial (Fin 5) (ZMod 2)) ≠ 0 ∧
+      IsClean 2 (X 0 * X 2 ^ 2 * X 3 * X 4 ^ 2 + X 0 * X 1 * X 2 * X 3 * X 4 ^ 2 :
+        MvPolynomial (Fin 5) (ZMod 2)) ∧
+      ((2 : ℕ) : ℕ∞) ≤ ord (X 0 * X 2 ^ 2 * X 3 * X 4 ^ 2 + X 0 * X 1 * X 2 * X 3 * X 4 ^ 2 :
+        MvPolynomial (Fin 5) (ZMod 2)) ∧
+      pointChart 3 (Pi.single 0 1 : Fin 5 → ZMod 2)
+          (X 0 * X 2 ^ 2 * X 3 * X 4 ^ 2 + X 0 * X 1 * X 2 * X 3 * X 4 ^ 2 :
+            MvPolynomial (Fin 5) (ZMod 2)) =
+        X 3 ^ 2 * (X 3 ^ 4 * (X 0 + 1) * (X 2 ^ 2 + X 1 * X 2) * X 4 ^ 2) ∧
+      blowupDivisor ({0, 1, 2, 3} : Finset (Fin 5)) 3 (Pi.single 0 1 : Fin 5 → ZMod 2) =
+        {1, 2, 3} ∧
+      cleanPart 2 (X 3 ^ 4 * (X 0 + 1) * (X 2 ^ 2 + X 1 * X 2) * X 4 ^ 2 :
+          MvPolynomial (Fin 5) (ZMod 2)) =
+        X 3 ^ 4 * (X 0 * X 2 ^ 2 * X 4 ^ 2 + (X 0 + 1) * X 1 * X 2 * X 4 ^ 2) ∧
+      divisorExponent ({0, 1, 2, 3} : Finset (Fin 5))
+          (X 0 * X 2 ^ 2 * X 3 * X 4 ^ 2 + X 0 * X 1 * X 2 * X 3 * X 4 ^ 2 :
+            MvPolynomial (Fin 5) (ZMod 2)) =
+        single 0 1 + single 2 1 + single 3 1 ∧
+      residualFactor ({0, 1, 2, 3} : Finset (Fin 5))
+          (X 0 * X 2 ^ 2 * X 3 * X 4 ^ 2 + X 0 * X 1 * X 2 * X 3 * X 4 ^ 2 :
+            MvPolynomial (Fin 5) (ZMod 2)) =
+        (X 1 + X 2) * X 4 ^ 2 ∧
+      ((degree (divisorExponent ({0, 1, 2, 3} : Finset (Fin 5))
+          (X 0 * X 2 ^ 2 * X 3 * X 4 ^ 2 + X 0 * X 1 * X 2 * X 3 * X 4 ^ 2 :
+            MvPolynomial (Fin 5) (ZMod 2))) + 3 : ℕ) : ZMod 2) = 0 := sorry
+
+/-- `Singularity/Invariant/LogJacobianDirectrixDrop.lean`: Example 3.9.5 of Volume 7,
+Section 3.9 of the handbook. The old and the new points are of case A. -/
+theorem tauRhoDropExample_cases :
+    idealOrd (logJacobianTangent ({0, 1, 2, 3} : Finset (Fin 5))
+        (X 0 * X 2 ^ 2 * X 3 * X 4 ^ 2 + X 0 * X 1 * X 2 * X 3 * X 4 ^ 2 :
+          MvPolynomial (Fin 5) (ZMod 2))) =
+        degree (divisorExponent ({0, 1, 2, 3} : Finset (Fin 5))
+          (X 0 * X 2 ^ 2 * X 3 * X 4 ^ 2 + X 0 * X 1 * X 2 * X 3 * X 4 ^ 2 :
+            MvPolynomial (Fin 5) (ZMod 2))) +
+          logJacobianOrder ({0, 1, 2, 3} : Finset (Fin 5))
+            (X 0 * X 2 ^ 2 * X 3 * X 4 ^ 2 + X 0 * X 1 * X 2 * X 3 * X 4 ^ 2 :
+              MvPolynomial (Fin 5) (ZMod 2)) ∧
+      idealOrd (logJacobianTangent
+          (blowupDivisor ({0, 1, 2, 3} : Finset (Fin 5)) 3 (Pi.single 0 1 : Fin 5 → ZMod 2))
+          (cleanPart 2 (X 3 ^ 4 * (X 0 + 1) * (X 2 ^ 2 + X 1 * X 2) * X 4 ^ 2 :
+            MvPolynomial (Fin 5) (ZMod 2)))) =
+        degree (divisorExponent
+          (blowupDivisor ({0, 1, 2, 3} : Finset (Fin 5)) 3 (Pi.single 0 1 : Fin 5 → ZMod 2))
+          (cleanPart 2 (X 3 ^ 4 * (X 0 + 1) * (X 2 ^ 2 + X 1 * X 2) * X 4 ^ 2 :
+            MvPolynomial (Fin 5) (ZMod 2)))) +
+          logJacobianOrder
+            (blowupDivisor ({0, 1, 2, 3} : Finset (Fin 5)) 3 (Pi.single 0 1 : Fin 5 → ZMod 2))
+            (cleanPart 2 (X 3 ^ 4 * (X 0 + 1) * (X 2 ^ 2 + X 1 * X 2) * X 4 ^ 2 :
+              MvPolynomial (Fin 5) (ZMod 2))) := sorry
+
+/-- `Singularity/Invariant/LogJacobianDirectrixDrop.lean`: Example 3.9.5 of Volume 7,
+Section 3.9 of the handbook. `ρ` stays `3`, and the dimension of `T_ρ` goes up from `2` to `3`. -/
+theorem tauRhoDropExample_finrank :
+    logJacobianOrder ({0, 1, 2, 3} : Finset (Fin 5))
+        (X 0 * X 2 ^ 2 * X 3 * X 4 ^ 2 + X 0 * X 1 * X 2 * X 3 * X 4 ^ 2 :
+          MvPolynomial (Fin 5) (ZMod 2)) = 3 ∧
+      logJacobianOrder
+          (blowupDivisor ({0, 1, 2, 3} : Finset (Fin 5)) 3 (Pi.single 0 1 : Fin 5 → ZMod 2))
+          (cleanPart 2 (X 3 ^ 4 * (X 0 + 1) * (X 2 ^ 2 + X 1 * X 2) * X 4 ^ 2 :
+            MvPolynomial (Fin 5) (ZMod 2))) = 3 ∧
+      finrank (ZMod 2) (logJacobianDirectrix ({0, 1, 2, 3} : Finset (Fin 5))
+        (X 0 * X 2 ^ 2 * X 3 * X 4 ^ 2 + X 0 * X 1 * X 2 * X 3 * X 4 ^ 2 :
+          MvPolynomial (Fin 5) (ZMod 2))) = 2 ∧
+      finrank (ZMod 2) (logJacobianDirectrix
+          (blowupDivisor ({0, 1, 2, 3} : Finset (Fin 5)) 3 (Pi.single 0 1 : Fin 5 → ZMod 2))
+          (cleanPart 2 (X 3 ^ 4 * (X 0 + 1) * (X 2 ^ 2 + X 1 * X 2) * X 4 ^ 2 :
+            MvPolynomial (Fin 5) (ZMod 2)))) = 3 := sorry
+
+/-- `Singularity/Invariant/LogJacobianDirectrixDrop.lean`: Example 3.9.5 of Volume 7,
+Section 3.9 of the handbook, the form with the codimension. `τ_ρ` goes down from `3` to `2`. -/
+theorem tauRhoDropExample_codim :
+    logJacobianDirectrixCodim ({0, 1, 2, 3} : Finset (Fin 5))
+        (X 0 * X 2 ^ 2 * X 3 * X 4 ^ 2 + X 0 * X 1 * X 2 * X 3 * X 4 ^ 2 :
+          MvPolynomial (Fin 5) (ZMod 2)) = 3 ∧
+      logJacobianDirectrixCodim
+          (blowupDivisor ({0, 1, 2, 3} : Finset (Fin 5)) 3 (Pi.single 0 1 : Fin 5 → ZMod 2))
+          (cleanPart 2 (X 3 ^ 4 * (X 0 + 1) * (X 2 ^ 2 + X 1 * X 2) * X 4 ^ 2 :
+            MvPolynomial (Fin 5) (ZMod 2))) = 2 := sorry
+
+end LogJacobianDirectrixDrop
+
 end Singularity
