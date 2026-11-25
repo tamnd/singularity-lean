@@ -789,6 +789,78 @@ status:
       kind: theorem
       status: proved
       note: The limit step of MacLane-Vaquié. For a limit key polynomial φ of largest ν-value in its degree, φ is a key polynomial for w = [μ_∞; φ, ν(φ)], μᵢ ≤ w ≤ ν for each i, and w agrees with ν in degree at most deg φ.
+    - name: Singularity.false_of_strictAnti_of_noMaxOrder
+      kind: theorem
+      status: proved
+      note: If the values of ν are discrete of rank 1, then a strictly increasing family of values of ν in additive notation, indexed by a nonempty totally ordered set without a largest element, is not bounded. This is the use of the discreteness in the theorem of MacLane.
+    - name: Singularity.finite_Icc_inter_range_int
+      kind: theorem
+      status: proved
+      note: A valuation with values in ℤᵐ⁰, that is with additive values in ℤ ∪ {∞}, satisfies the hypothesis of discreteness of the theorem of MacLane.
+    - name: Singularity.macLaneChain_eventually_eq_int
+      kind: theorem
+      status: proved
+      note: The theorem of MacLane for a valuation ν on K[X] with values in ℤᵐ⁰. For each f with ν(f) finite, μᵢ(f) = ν(f) for all large i.
+    - name: Singularity.macLaneChainKey_eventually_lt
+      kind: theorem
+      status: proved
+      note: If the values of ν are discrete of rank 1, the chain of MacLane is infinite and the degrees of its key polynomials φᵢ are bounded, then ν(φᵢ) tends to ∞ in additive notation.
+    - name: Singularity.macLaneChainKey_eventually_lt_of_map_eq_zero
+      kind: theorem
+      status: proved
+      note: If the values of ν are discrete of rank 1, ν has a nonzero support and the chain of MacLane is infinite, then ν(φᵢ) tends to ∞ in additive notation.
+    - name: Singularity.ContinuousFamily.val_mem_range
+      kind: theorem
+      status: proved
+      note: If ν agrees with μ in degree less than the degree of a continuous family and the values γᵢ are values of ν, then each value μᵢ(f) is a value of ν.
+    - name: Singularity.ContinuousFamily.eventually_value_lt
+      kind: theorem
+      status: proved
+      note: If the values of ν are discrete of rank 1 and the values γᵢ of a continuous family are values of ν, then γᵢ tends to ∞ in additive notation.
+    - name: Singularity.ContinuousFamily.eq_zero_of_not_isStable
+      kind: theorem
+      status: proved
+      note: In the discrete case of rank 1, if φ is unstable for a continuous family and γ ≥ μᵢ(φ) for each i in additive notation, then γ = ∞.
+    - name: Singularity.ContinuousFamily.isStable_of_map_ne_zero
+      kind: theorem
+      status: proved
+      note: In the discrete case of rank 1, for a continuous family below ν, each polynomial f with ν(f) finite is stable.
+    - name: Singularity.ContinuousFamily.eventually_val_eq_of_map_ne_zero
+      kind: theorem
+      status: proved
+      note: In the discrete case of rank 1, ν is the limit of a continuous family below ν on each f with ν(f) finite.
+    - name: Singularity.ContinuousFamily.isStable_of_supp_eq_bot
+      kind: theorem
+      status: proved
+      note: In the discrete case of rank 1, if ν has support 0, then each polynomial is stable for a continuous family below ν.
+    - name: Singularity.ContinuousFamily.stableValue_eq_of_supp_eq_bot
+      kind: theorem
+      status: proved
+      note: In the discrete case of rank 1, if ν has support 0, then the limit of a continuous family below ν is ν.
+    - name: Singularity.ContinuousFamily.not_isLimitKeyPolynomial
+      kind: theorem
+      status: proved
+      note: In the discrete case of rank 1, if ν has support 0, then a continuous family below ν has no limit key polynomial.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.map_eq_zero
+      kind: theorem
+      status: proved
+      note: In the discrete case of rank 1, a limit key polynomial φ of a continuous family below ν has ν(φ) = ∞.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.eq_zero_of_le
+      kind: theorem
+      status: proved
+      note: In the discrete case of rank 1, the limit augmentation [μ_∞; φ, γ] is defined only for γ = ∞.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.limitAugmentedValuationFun_eq
+      kind: theorem
+      status: proved
+      note: In the discrete case of rank 1, the limit augmentation [μ_∞; φ, ν(φ)] takes the values of ν.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.limitAugmentedValuationFun_eq_of_le
+      kind: theorem
+      status: proved
+      note: In the discrete case of rank 1, each limit augmentation [μ_∞; φ, γ] of a continuous family below ν takes the values of ν.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.limitAugmentedValuation_eq
+      kind: theorem
+      status: proved
+      note: In the discrete case of rank 1, each limit augmentation of a continuous family below ν is ν. So a limit step is the last step of the chain.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved

@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/MacLaneDiscrete.lean`: part 4 of Theorem 3.3.5 of MacLane-Vaquié for a discrete valuation of rank 1, in the form of MacLane [Mac36]. Let the values of `ν` be discrete of rank 1 (`hdisc`). This holds for values in `ℤᵐ⁰` (`finite_Icc_inter_range_int`), and then the theorem of MacLane holds with no other hypothesis (`macLaneChain_eventually_eq_int`). The discreteness is used through one lemma: a strictly increasing family of values of `ν` in additive notation, indexed by a nonempty totally ordered set without a largest element, is not bounded (`false_of_strictAnti_of_noMaxOrder`). For an infinite chain of MacLane with bounded degrees, for example if `ν` has a nonzero support, `ν(φᵢ) → ∞` in additive notation (`macLaneChainKey_eventually_lt`, `macLaneChainKey_eventually_lt_of_map_eq_zero`). For a continuous family `μᵢ = [μ; φᵢ, γᵢ]` below `ν` that agrees with `ν` in degree less than its degree and has values `γᵢ` in the value group of `ν`, the values `γᵢ` tend to `∞` (`ContinuousFamily.eventually_value_lt`), each `f` with `ν(f) < ∞` is stable and `μᵢ(f) = ν(f)` for `i` large (`ContinuousFamily.isStable_of_map_ne_zero`, `ContinuousFamily.eventually_val_eq_of_map_ne_zero`). If `ν` has support `0`, then `μ_∞ = ν` and the family has no limit key polynomial (`ContinuousFamily.stableValue_eq_of_supp_eq_bot`, `ContinuousFamily.not_isLimitKeyPolynomial`). A limit key polynomial `φ` has `ν(φ) = ∞` (`IsLimitKeyPolynomial.map_eq_zero`), the limit augmentation `[μ_∞; φ, γ]` is defined only for `γ = ∞` (`IsLimitKeyPolynomial.eq_zero_of_le`), and it is `ν` (`IsLimitKeyPolynomial.limitAugmentedValuationFun_eq_of_le`, `IsLimitKeyPolynomial.limitAugmentedValuation_eq`). So in this case a limit step can only be the last step of the chain.
+
 ## 0.4.11 - 2026-11-25
 
 ### Added
