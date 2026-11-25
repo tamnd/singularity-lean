@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.21 - 2026-11-26
+
 ### Added
 
 - `Singularity/Invariant/LogJacobianDirectrixDrop.lean`: `τ_ρ` can go down from case A to case A if `|r| + d = 0` in `k` (Volume 7, Section 3.9 of the handbook, Example 3.9.5). So the hypothesis `|r| + d ≠ 0` of Theorem 3.9.1 is necessary. Over `𝔽₂`, let `g = x z^2 w u^2 + x y z w u^2` and `E = V(x y z w)`. Then `g` is clean, `r = (1, 0, 1, 1, 0)`, `G = (y + z) u^2` and `|r| + d = 6 = 0` in `𝔽₂`. In the `w`-chart with `t_x = 1` and `t_i = 0` for `i ≠ x`, `g` goes to `w^2 g'` with `g' = w^4 (x + 1) (z^2 + y z) u^2`, the new divisor is `V(y z w)`, and `g'_c = w^4 (x z^2 u^2 + (x + 1) y z u^2)` (`tauRhoDropExample_hyp`). The old and the new points are of case A (`tauRhoDropExample_cases`). Also `ρ(g) = ρ(g'_c) = 3`, `dim T_ρ(g) = 2` and `dim T_ρ(g'_c) = 3` (`tauRhoDropExample_finrank`). So `τ_ρ(g) = 3` and `τ_ρ(g'_c) = 2` (`tauRhoDropExample_codim`).
