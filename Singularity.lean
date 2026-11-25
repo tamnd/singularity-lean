@@ -76,6 +76,7 @@ import Singularity.Valuation.MacLaneVaquie
 import Singularity.Valuation.LocalUniformizationCurves
 import Singularity.Valuation.LocalUniformizationDivisorial
 import Singularity.Valuation.LatticeLemma
+import Singularity.Valuation.LatticeLemmaOrdered
 import Singularity.Valuation.LocalUniformizationMonomial
 import Singularity.Valuation.DegreePSteps
 import Singularity.Alteration.Basic
