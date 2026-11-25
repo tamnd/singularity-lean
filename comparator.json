@@ -287,7 +287,10 @@
     "Singularity.tauRhoDropExample_hyp",
     "Singularity.tauRhoDropExample_cases",
     "Singularity.tauRhoDropExample_finrank",
-    "Singularity.tauRhoDropExample_codim"
+    "Singularity.tauRhoDropExample_codim",
+    "Singularity.idealOrd_logJacobianTangent_cleanPart_of_caseA",
+    "Singularity.finrank_logJacobianDirectrix_cleanPart_le_of_ne_zero",
+    "Singularity.logJacobianDirectrixCodim_le_cleanPart_of_ne_zero"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

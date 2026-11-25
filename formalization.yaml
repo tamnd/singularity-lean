@@ -1249,6 +1249,18 @@ status:
       kind: theorem
       status: proved
       note: Example 3.9.5 of Volume 7, Section 3.9 of the handbook, the form with the codimension. tau_rho(g) = 3 and tau_rho(g'_c) = 2. So tau_rho goes down from case A to case A.
+    - name: Singularity.idealOrd_logJacobianTangent_cleanPart_of_caseA
+      kind: theorem
+      status: proved
+      note: Proposition 3.9.7 of Volume 7, Section 3.9 of the handbook. Let g /= 0 be clean with ord g >= p, let g = x^r G with d = ord G, let the chart send g to x_j^p g', and let rho(g) = rho(g'_c) = d. If |r| + d /= 0 in k, then the new point is of case A, that is the order of Theta_0(g'_c) is |r'| + d. The proof uses the transport of the Euler element.
+    - name: Singularity.finrank_logJacobianDirectrix_cleanPart_le_of_ne_zero
+      kind: theorem
+      status: proved
+      note: Corollary 3.9.8 of Volume 7, Section 3.9 of the handbook. This is Theorem 3.9.1 with no hypothesis on the new point. Let g /= 0 be clean with ord g >= p, let g = x^r G with d = ord G, let the chart send g to x_j^p g', and let rho(g) = rho(g'_c) = d. If |r| + d /= 0 in k, then dim T_rho(g'_c) <= dim T_rho(g).
+    - name: Singularity.logJacobianDirectrixCodim_le_cleanPart_of_ne_zero
+      kind: theorem
+      status: proved
+      note: Corollary 3.9.8 of Volume 7, Section 3.9 of the handbook, the form with the codimension. Under the same hypotheses, tau_rho(g) <= tau_rho(g'_c).
     - name: Singularity.exists_macLaneVaquieStep_or_forall_isStable
       kind: theorem
       status: proved

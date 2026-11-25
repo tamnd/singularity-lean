@@ -3052,4 +3052,43 @@ theorem tauRhoDropExample_codim :
 
 end LogJacobianDirectrixDrop
 
+section LogJacobianCaseAStable
+
+open MvPolynomial Finsupp Module
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] [Fintype σ] (p : ℕ) [CharP k p]
+  {Δ : Finset σ} {j : σ} {t : σ → k} {g g' : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/LogJacobianCaseAStable.lean`: Proposition 3.9.7 of Volume 7,
+Section 3.9 of the handbook. -/
+theorem idealOrd_logJacobianTangent_cleanPart_of_caseA (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {d : ℕ}
+    (hG : ord (residualFactor Δ g) = d) (hρ : logJacobianOrder Δ g = d)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = d)
+    (hpd : ((degree (divisorExponent Δ g) + d : ℕ) : k) ≠ 0) :
+    idealOrd (logJacobianTangent (blowupDivisor Δ j t) (cleanPart p g')) =
+      ((degree (divisorExponent (blowupDivisor Δ j t) (cleanPart p g')) + d : ℕ) : ℕ∞) := sorry
+
+/-- `Singularity/Invariant/LogJacobianCaseAStable.lean`: Corollary 3.9.8 of Volume 7,
+Section 3.9 of the handbook. -/
+theorem finrank_logJacobianDirectrix_cleanPart_le_of_ne_zero (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {d : ℕ}
+    (hG : ord (residualFactor Δ g) = d) (hρ : logJacobianOrder Δ g = d)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = d)
+    (hpd : ((degree (divisorExponent Δ g) + d : ℕ) : k) ≠ 0) :
+    finrank k (logJacobianDirectrix (blowupDivisor Δ j t) (cleanPart p g')) ≤
+      finrank k (logJacobianDirectrix Δ g) := sorry
+
+/-- `Singularity/Invariant/LogJacobianCaseAStable.lean`: Corollary 3.9.8 of Volume 7,
+Section 3.9 of the handbook, the form with the codimension. -/
+theorem logJacobianDirectrixCodim_le_cleanPart_of_ne_zero (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {d : ℕ}
+    (hG : ord (residualFactor Δ g) = d) (hρ : logJacobianOrder Δ g = d)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = d)
+    (hpd : ((degree (divisorExponent Δ g) + d : ℕ) : k) ≠ 0) :
+    logJacobianDirectrixCodim Δ g ≤
+      logJacobianDirectrixCodim (blowupDivisor Δ j t) (cleanPart p g') := sorry
+
+end LogJacobianCaseAStable
+
 end Singularity
