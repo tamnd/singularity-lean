@@ -150,7 +150,16 @@
     "Singularity.map_centerChart_logJacobianCenter_le_span_mul",
     "Singularity.span_mul_logJacobian_le_map_centerChart",
     "Singularity.exists_centerChart_eq_X_pow_mul",
-    "Singularity.ord_le_of_centerChart"
+    "Singularity.ord_le_of_centerChart",
+    "Singularity.logJacobianOrder_cleanPart_le_of_mem_center",
+    "Singularity.exists_logJacobianOrder_eq",
+    "Singularity.logJacobianOrder_cleanPart_le_center",
+    "Singularity.centerExample_hyp",
+    "Singularity.centerExample_centerChart",
+    "Singularity.centerExample_H1",
+    "Singularity.centerExample_not_H2",
+    "Singularity.centerExample_logJacobianOrder",
+    "Singularity.centerExample_logJacobianOrder_cleanPart"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }
