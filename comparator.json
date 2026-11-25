@@ -41,6 +41,7 @@
     "Singularity.IsMonomialValuation.adjoin_residue_eq_top",
     "Singularity.hasLocalUniformization_of_etaleGenerator",
     "Singularity.IsEtaleGenerator.centerSubring_closure_eq",
+    "Singularity.exists_isEtaleGenerator_of_finrank_residueField_eq",
     "Singularity.aeval_derivative_minpoly_mul_mem_adjoin",
     "Singularity.isRegularLocalRing_localization_adjoinRoot",
     "Singularity.algebraicIndependent_sumElim_of_valuationSubring",

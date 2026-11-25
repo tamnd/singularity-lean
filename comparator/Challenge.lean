@@ -76,11 +76,12 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.AdjoinRoot
 import Mathlib.RingTheory.DedekindDomain.Different
 import Mathlib.RingTheory.Localization.Integral
+import Mathlib.FieldTheory.PrimitiveElement
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean`, `Singularity/Valuation/LocalUniformizationMonomial.lean`, `Singularity/Valuation/MonomialGroundField.lean`, `Singularity/Valuation/EtaleRegular.lean` and `Singularity/Valuation/EtaleGenerator.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean`, `Singularity/Valuation/LocalUniformizationMonomial.lean`, `Singularity/Valuation/MonomialGroundField.lean`, `Singularity/Valuation/EtaleRegular.lean`, `Singularity/Valuation/EtaleGenerator.lean` and `Singularity/Valuation/EtaleGeneratorExistence.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -413,6 +414,15 @@ theorem IsEtaleGenerator.centerSubring_closure_eq {K₀ : IntermediateField k K}
 theorem hasLocalUniformization_of_etaleGenerator {K₀ : IntermediateField k K}
     {V : ValuationSubring K} {z : K} (hz : IsEtaleGenerator K₀ V z)
     (h : HasLocalUniformization k (V.comap (algebraMap K₀ K))) : HasLocalUniformization k V := sorry
+
+/-- `Singularity/Valuation/EtaleGeneratorExistence.lean`: if the residue extension is separable of degree `[K : K₀]`, then there is an étale generator (Lemma 1.3.3, part 2, in the case of one extension). -/
+theorem exists_isEtaleGenerator_of_finrank_residueField_eq {K₀ : IntermediateField k K}
+    {Γ₀ Γ : Type*} [LinearOrderedCommGroupWithZero Γ₀] [LinearOrderedCommGroupWithZero Γ]
+    (v₀ : Valuation K₀ Γ₀) (v : Valuation K Γ) [v₀.HasExtension v] [FiniteDimensional K₀ K]
+    [Algebra.IsSeparable (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring)]
+    (hf : Module.finrank (ResidueField v₀.valuationSubring) (ResidueField v.valuationSubring) =
+      Module.finrank K₀ K) :
+    Algebra.IsSeparable K₀ K ∧ ∃ z, IsEtaleGenerator K₀ v.valuationSubring z := sorry
 
 end EtaleGenerator
 
