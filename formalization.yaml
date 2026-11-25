@@ -941,6 +941,30 @@ status:
       kind: theorem
       status: proved
       note: Lemma 2.3.1 of Volume 6 of the handbook for R = k[x, y, w].
+    - name: Singularity.HasLocalUniformization.of_algEquiv
+      kind: theorem
+      status: proved
+      note: Local uniformization is invariant under an isomorphism of k-algebras.
+    - name: Singularity.exists_isGalois_finrank_eq_prime
+      kind: theorem
+      status: proved
+      note: A Galois extension of degree p ^ (r + 1) has a Galois subextension of degree p, by the theorem of Sylow and a normal subgroup of index p.
+    - name: Singularity.exists_artinSchreier_tower
+      kind: theorem
+      status: proved
+      note: A Galois extension of degree p ^ r in characteristic p is a tower of Artin-Schreier steps of degree p (Proposition 2.1.4 of Volume 6 of the handbook).
+    - name: Singularity.hasLocalUniformization_of_isPurelyInseparable
+      kind: theorem
+      status: proved
+      note: Step 3 of the reduction of Cossart-Piltant, the induction on the degree of a purely inseparable extension. The passage through one step of degree p is an explicit hypothesis (LocalUniformizationInseparableStep) that the library does not prove.
+    - name: Singularity.hasLocalUniformization_of_separableClosure
+      kind: theorem
+      status: proved
+      note: Step 3 of the reduction of Cossart-Piltant, from the separable closure, with the explicit hypothesis LocalUniformizationInseparableStep that the library does not prove.
+    - name: Singularity.hasLocalUniformization_of_isGalois
+      kind: theorem
+      status: proved
+      note: The last part of Step 4 of the reduction of Cossart-Piltant, the induction on the degree of a Galois extension of degree p ^ r. The passage through one Galois step of degree p is an explicit hypothesis (LocalUniformizationGaloisStep) that the library does not prove.
     - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.muDvd_iff_of_forall_eq
       kind: theorem
       status: proved
