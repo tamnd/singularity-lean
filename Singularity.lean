@@ -82,5 +82,6 @@ import Singularity.Valuation.MonomialGroundField
 import Singularity.Valuation.DegreePSteps
 import Singularity.Valuation.EtaleRegular
 import Singularity.Valuation.EtaleGenerator
+import Singularity.Valuation.EtaleGeneratorExistence
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement

@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/EtaleGeneratorExistence.lean`: the existence of an étale generator in the case of one extension (Volume 5, Lemma 1.3.3 of the handbook, second part, node SG0000004Y). Let `K₀ ⊆ K` be fields with `[K : K₀]` finite, and let the valuation `v` of `K` extend the valuation `v₀` of `K₀`. If the residue extension is separable of degree `[K : K₀]`, then `K/K₀` is separable and there is an étale generator of `K/K₀` for the valuation ring of `v` (`exists_isEtaleGenerator_of_finrank_residueField_eq`). By the fundamental inequality this is the case `e = 1`, `d = 1`, `g = 1` of the lemma. The proof lifts a primitive element of the residue extension and does not use the henselization. The key step: if a nonzero `p ∈ K₀[X]` has degree less than the degree of the residue of `z`, then `v(p(z))` is the largest value of a coefficient of `p` (`exists_valuation_aeval_eq_of_natDegree_lt`). The general case, with `g` extensions of `v₀` to `K`, is not proved.
+
 ## 0.4.17 - 2026-11-25
 
 ### Added
