@@ -137,7 +137,20 @@
     "Singularity.logJacobianOrder_le_of_mem",
     "Singularity.logJacobianOrder_cleanPart_le",
     "Singularity.residualOrderAlong_pointChart_le_logJacobianOrder",
-    "Singularity.residualOrderAlong_pointChart_le_add_one"
+    "Singularity.residualOrderAlong_pointChart_le_add_one",
+    "Singularity.logJacobianCenter_le",
+    "Singularity.span_X_mul_logJacobian_le",
+    "Singularity.logJacobianCenter_univ",
+    "Singularity.centerChart_univ",
+    "Singularity.pderiv_centerChart_of_notMem",
+    "Singularity.pderiv_centerChart_of_mem",
+    "Singularity.X_mul_pderiv_centerChart",
+    "Singularity.map_centerChart_logJacobianCenter_le",
+    "Singularity.span_mul_logJacobian_centerChart_le",
+    "Singularity.map_centerChart_logJacobianCenter_le_span_mul",
+    "Singularity.span_mul_logJacobian_le_map_centerChart",
+    "Singularity.exists_centerChart_eq_X_pow_mul",
+    "Singularity.ord_le_of_centerChart"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

@@ -648,6 +648,58 @@ status:
       kind: theorem
       status: proved
       note: The residual order goes up by at most one under a point blowup (Corollary 3.2.5 of Volume 7, Section 3.2 of the handbook).
+    - name: Singularity.logJacobianCenter_le
+      kind: theorem
+      status: proved
+      note: The ideal Theta_C(g) of a center C = V(x_i for i in S) is contained in the log-Jacobian ideal Theta(g) (Volume 7, Section 3.4 of the handbook).
+    - name: Singularity.span_X_mul_logJacobian_le
+      kind: theorem
+      status: proved
+      note: The ideal I_C Theta(g) is contained in Theta_C(g), where I_C = (x_i for i in S) is the ideal of the center (Volume 7, Section 3.4 of the handbook).
+    - name: Singularity.logJacobianCenter_univ
+      kind: theorem
+      status: proved
+      note: For the center at the origin (S is all of sigma), Theta_C(g) is the ideal Theta_0(g) of the point blowup.
+    - name: Singularity.centerChart_univ
+      kind: theorem
+      status: proved
+      note: For the center at the origin (S is all of sigma), the x_j-chart of the blowup of the center is the chart of the point blowup.
+    - name: Singularity.pderiv_centerChart_of_notMem
+      kind: theorem
+      status: proved
+      note: The chain rule for the x_j-chart pi of the blowup of the center. For i not in S, the derivative of pi(h) along x_i is pi(d_i h) (Volume 7, Section 3.4 of the handbook).
+    - name: Singularity.pderiv_centerChart_of_mem
+      kind: theorem
+      status: proved
+      note: The chain rule for the x_j-chart pi of the blowup of the center. For i in S other than j, the derivative of pi(h) along x_i is x_j pi(d_i h) (Volume 7, Section 3.4 of the handbook).
+    - name: Singularity.X_mul_pderiv_centerChart
+      kind: theorem
+      status: proved
+      note: The chain rule for the x_j-chart pi of the blowup of the center. The equation is x_j d_j pi(h) = pi(sum over i in S of x_i d_i h) (Volume 7, Section 3.4 of the handbook).
+    - name: Singularity.map_centerChart_logJacobianCenter_le
+      kind: theorem
+      status: proved
+      note: The image of Theta_C(g) under the chart pi is contained in the log-Jacobian ideal Theta'(pi(g)) for the transformed divisor (Volume 7, Section 3.4 of the handbook).
+    - name: Singularity.span_mul_logJacobian_centerChart_le
+      kind: theorem
+      status: proved
+      note: The unit u of the translated directions in S times Theta'(pi(g)) is contained in the image of Theta_C(g) under the chart pi (Volume 7, Section 3.4 of the handbook).
+    - name: Singularity.map_centerChart_logJacobianCenter_le_span_mul
+      kind: theorem
+      status: proved
+      note: The transformation law for the center, first inclusion. In characteristic p, if pi(g) = x_j^p g', then pi(Theta_C(g)) is contained in (x_j^p) Theta'(g') (Volume 7, Section 3.4 of the handbook).
+    - name: Singularity.span_mul_logJacobian_le_map_centerChart
+      kind: theorem
+      status: proved
+      note: The transformation law for the center, second inclusion. In characteristic p, if pi(g) = x_j^p g', then (x_j^p u) Theta'(g') is contained in pi(Theta_C(g)) (Volume 7, Section 3.4 of the handbook).
+    - name: Singularity.exists_centerChart_eq_X_pow_mul
+      kind: theorem
+      status: proved
+      note: If f is in I_C^s, then pi(f) = x_j^s f' for some f'.
+    - name: Singularity.ord_le_of_centerChart
+      kind: theorem
+      status: proved
+      note: The equimultiple weak transform. If f is in I_C^s, ord f = s and pi(f) = x_j^s f', then ord f' is at most s (Volume 7, Section 3.4 of the handbook).
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
