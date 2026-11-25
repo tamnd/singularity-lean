@@ -1537,5 +1537,59 @@ theorem residualOrderAlong_pointChart_le_add_one (hg : g ≠ 0) (hc : IsClean p 
 end Nonincrease
 
 end LogJacobianNonincrease
+section Tschirnhausen
+
+open MvPolynomial
+
+/-- `Singularity/Invariant/Residual.lean`: the coordinate change `z ↦ z + h(x)`. -/
+noncomputable def zShift {σ k : Type*} [CommSemiring k] (h : MvPolynomial σ k) :
+    MvPolynomial (Option σ) k →ₐ[k] MvPolynomial (Option σ) k :=
+  aeval fun o => Option.elim o (X none + rename Option.some h) fun i => X (Option.some i)
+
+/-- `Singularity/Invariant/Tschirnhausen.lean`: the polynomial `z^m + ∑_{i < m} a_i(x) z^i`. -/
+noncomputable def zMonic {σ R : Type*} [CommRing R] (m : ℕ) (a : ℕ → MvPolynomial σ R) :
+    MvPolynomial (Option σ) R :=
+  X none ^ m + ∑ i ∈ Finset.range m, rename Option.some (a i) * X none ^ i
+
+/-- `Singularity/Invariant/Tschirnhausen.lean`: the order of `zMonic` at the origin. -/
+theorem le_ord_zMonic_iff {σ R : Type*} [CommRing R] {m : ℕ} {a : ℕ → MvPolynomial σ R} :
+    (m : ℕ∞) ≤ ord (zMonic m a) ↔ ∀ i < m, ((m - i : ℕ) : ℕ∞) ≤ ord (a i) := sorry
+
+/-- `Singularity/Invariant/Tschirnhausen.lean`: the Tschirnhausen transformation. -/
+theorem tschirnhausen_transformation {σ R : Type*} [CommRing R] {m : ℕ} (hm : IsUnit (m : R))
+    (a : ℕ → MvPolynomial σ R) :
+    ∃ a' : ℕ → MvPolynomial σ R,
+      zShift (-(C (↑hm.unit⁻¹ : R) * a (m - 1))) (zMonic m a) = zMonic m a' ∧ a' (m - 1) = 0 :=
+  sorry
+
+/-- `Singularity/Invariant/Tschirnhausen.lean`: the points of order `m` lie in `z = 0`. -/
+theorem eq_zero_of_le_ord_translate {σ R : Type*} [CommRing R] {m : ℕ} (hm : IsUnit (m : R))
+    {a : ℕ → MvPolynomial σ R} (ha : a (m - 1) = 0) (b : Option σ → R)
+    (h : (m : ℕ∞) ≤ ord (aeval (fun o => X o + C (b o)) (zMonic m a))) : b none = 0 := sorry
+
+/-- `Singularity/Invariant/Tschirnhausen.lean`: the locus of order `m`. -/
+theorem le_ord_translate_zMonic_iff {σ R : Type*} [CommRing R] {m : ℕ} (hm : IsUnit (m : R))
+    {a : ℕ → MvPolynomial σ R} (ha : a (m - 1) = 0) (b : Option σ → R) :
+    (m : ℕ∞) ≤ ord (aeval (fun o => X o + C (b o)) (zMonic m a)) ↔
+      b none = 0 ∧ ∀ i < m, ((m - i : ℕ) : ℕ∞) ≤
+        ord (aeval (fun l => X l + C (b (some l))) (a i)) := sorry
+
+/-- `Singularity/Invariant/Tschirnhausen.lean`: the lemma of Tschirnhausen for a point blowup. -/
+theorem tschirnhausen_pointChart {σ k : Type*} [Field k] [DecidableEq σ] {m : ℕ}
+    (hm : (m : k) ≠ 0) {a : ℕ → MvPolynomial σ k}
+    (ha : a (m - 1) = 0) (hord : ∀ i < m, ((m - i : ℕ) : ℕ∞) ≤ ord (a i)) {c : Option σ}
+    {t : Option σ → k} {f' : MvPolynomial (Option σ) k}
+    (h : pointChart c t (zMonic m a) = X c ^ m * f') (hf' : (m : ℕ∞) ≤ ord f') :
+    ∃ j : σ, c = some j ∧ t none = 0 ∧ ∃ a' : ℕ → MvPolynomial σ k, f' = zMonic m a' ∧
+      a' (m - 1) = 0 ∧ (∀ i < m, ((m - i : ℕ) : ℕ∞) ≤ ord (a' i)) ∧
+      ∀ i < m, pointChart j (fun l => t (some l)) (a i) = X j ^ (m - i) * a' i := sorry
+
+/-- `Singularity/Invariant/Tschirnhausen.lean`: in characteristic `2` the points of order `m` need not lie in `z = 0`. -/
+theorem not_tschirnhausen_charTwo (K : Type*) [Field K] [CharP K 2] :
+    ¬ ∀ (m : ℕ) (a : ℕ → MvPolynomial (Fin 3) K) (b : Option (Fin 3) → K), a (m - 1) = 0 →
+      (∀ i < m, ((m - i : ℕ) : ℕ∞) ≤ ord (a i)) →
+      (m : ℕ∞) ≤ ord (aeval (fun o => X o + C (b o)) (zMonic m a)) → b none = 0 := sorry
+
+end Tschirnhausen
 
 end Singularity

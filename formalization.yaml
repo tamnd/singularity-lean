@@ -736,6 +736,30 @@ status:
       kind: theorem
       status: proved
       note: Example 3.4.6 of Volume 7, Section 3.4 of the handbook. The order rho of the clean part of g' = y^2 w + x y^3 along the new divisor V(x w) is 3, so rho goes up when (H2) fails.
+    - name: Singularity.le_ord_zMonic_iff
+      kind: theorem
+      status: proved
+      note: The polynomial z^m + sum of a_i z^i for i < m has order at least m at the origin if and only if a_i has order at least m - i for each i < m.
+    - name: Singularity.tschirnhausen_transformation
+      kind: theorem
+      status: proved
+      note: The Tschirnhausen transformation. If m is a unit, then the change z to z - a_(m-1)/m sends z^m + sum of a_i z^i to a polynomial of the same kind with a_(m-1) = 0.
+    - name: Singularity.eq_zero_of_le_ord_translate
+      kind: theorem
+      status: proved
+      note: Let m be a unit and let f = z^m + sum of a_i z^i have a_(m-1) = 0. If f has order at least m at a point b, then b_z = 0.
+    - name: Singularity.le_ord_translate_zMonic_iff
+      kind: theorem
+      status: proved
+      note: Let m be a unit and let a_(m-1) = 0. Then f has order at least m at b if and only if b_z = 0 and each a_i has order at least m - i at b_x.
+    - name: Singularity.tschirnhausen_pointChart
+      kind: theorem
+      status: proved
+      note: The lemma of Tschirnhausen for a point blowup over a field with m not 0. If a chart keeps the order m, then it is an x_j-chart with translation 0 for z, and the weak transform is again in Tschirnhausen form with a_i = x_j^(m-i) a_i' and ord a_i' at least m - i.
+    - name: Singularity.not_tschirnhausen_charTwo
+      kind: theorem
+      status: proved
+      note: In characteristic 2 the example of Narasimhan is in Tschirnhausen form with m = 2 and has order 2 at the point (1, 1, 1, 1). So the hypothesis that m is a unit is necessary.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
