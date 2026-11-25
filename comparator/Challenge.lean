@@ -75,7 +75,7 @@ import Mathlib.RingTheory.AlgebraicIndependent.TranscendenceBasis
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean` and `Singularity/Valuation/LocalUniformizationMonomial.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean`, `Singularity/Valuation/LocalUniformizationMonomial.lean` and `Singularity/Valuation/MonomialGroundField.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -277,6 +277,74 @@ theorem IsMonomialValuation.isAbhyankarValuation {x : ι → K}
     (hV : IsMonomialValuation k V x) : IsAbhyankarValuation k V := sorry
 
 end LocalUniformizationMonomial
+
+section MonomialGroundField
+
+open IsLocalRing
+
+variable {k K : Type*} [Field k] [Field K] [Algebra k K]
+
+/-- `Singularity/Valuation/MonomialGroundField.lean`: local uniformization over a finitely generated subfield `F ⊆ V` gives local uniformization over `k`. -/
+theorem HasLocalUniformization.of_intermediateField {V : ValuationSubring K}
+    {F : IntermediateField k K} (hF : F.FG) (hFV : ∀ c ∈ F, c ∈ V)
+    (h : HasLocalUniformization F V) : HasLocalUniformization k V := sorry
+
+/-- `Singularity/Valuation/MonomialGroundField.lean`: elements of `V` with algebraically independent residues are algebraically independent. -/
+theorem algebraicIndependent_of_residue {V : ValuationSubring K} [Algebra k V]
+    [IsScalarTower k V K] {κ : Type*} {y : κ → V}
+    (hy : AlgebraicIndependent k fun i => residue V (y i)) :
+    AlgebraicIndependent k fun i => (y i : K) := sorry
+
+/-- `Singularity/Valuation/MonomialGroundField.lean`: if `y_1, ..., y_m ∈ V` have algebraically independent residues, then `k(y_1, ..., y_m) ⊆ V`. -/
+theorem mem_of_mem_adjoin_residue {V : ValuationSubring K} [Algebra k V]
+    [IsScalarTower k V K] {κ : Type*} {y : κ → V}
+    (hy : AlgebraicIndependent k fun i => residue V (y i)) {c : K}
+    (hc : c ∈ IntermediateField.adjoin k (Set.range fun i => (y i : K))) : c ∈ V := sorry
+
+/-- `Singularity/Valuation/MonomialGroundField.lean`: if `y_1, ..., y_m` are algebraically independent and `k(y_1, ..., y_m) ⊆ V`, then their residues are algebraically independent. -/
+theorem algebraicIndependent_residue {V : ValuationSubring K} [Algebra k V]
+    [IsScalarTower k V K] {κ : Type*} {y : κ → K} (hy : AlgebraicIndependent k y)
+    (hyV : ∀ c ∈ IntermediateField.adjoin k (Set.range y), c ∈ V) :
+    AlgebraicIndependent k fun i =>
+      residue V ⟨y i, hyV _ (IntermediateField.subset_adjoin k _ (Set.mem_range_self i))⟩ := sorry
+
+variable {ι : Type*} [Fintype ι]
+
+/-- `Singularity/Valuation/MonomialGroundField.lean`: each element of the value group of a monomial valuation is the value of exactly one Laurent monomial. -/
+theorem IsMonomialValuation.existsUnique_valuation_eq {V : ValuationSubring K} [Algebra k V]
+    [IsScalarTower k V K] {x : ι → K} (hV : IsMonomialValuation k V x) (γ : V.ValueGroupˣ) :
+    ∃! a : ι → ℤ, V.valuation (laurentMonomial x a) = γ := sorry
+
+/-- `Singularity/Valuation/MonomialGroundField.lean`: the residue field of a monomial valuation is `k`. -/
+theorem IsMonomialValuation.algebraMap_residueField_bijective {V : ValuationSubring K}
+    [Algebra k V] [IsScalarTower k V K] {x : ι → K} (hV : IsMonomialValuation k V x) :
+    Function.Bijective (algebraMap k (ResidueField V)) := sorry
+
+variable {V : ValuationSubring K} [Algebra k V] [IsScalarTower k V K] {κ : Type*} [Fintype κ]
+
+/-- `Singularity/Valuation/MonomialGroundField.lean`: a monomial valuation over `k(y)` that is trivial on `k(y)` has local uniformization over `k`. -/
+theorem hasLocalUniformization_of_isMonomialValuation_adjoin {V : ValuationSubring K}
+    {y : κ → K} {x : ι → K} (hyV : ∀ c ∈ IntermediateField.adjoin k (Set.range y), c ∈ V)
+    (hV : IsMonomialValuation (IntermediateField.adjoin k (Set.range y)) V x) :
+    HasLocalUniformization k V := sorry
+
+/-- `Singularity/Valuation/MonomialGroundField.lean`: a monomial valuation over `k(y)` that is trivial on `k(y)` is an Abhyankar valuation of `K/k`. -/
+theorem IsMonomialValuation.isAbhyankarValuation_adjoin {y : κ → K} {x : ι → K}
+    (hy : AlgebraicIndependent k y)
+    (hyV : ∀ c ∈ IntermediateField.adjoin k (Set.range y), c ∈ V)
+    (hV : IsMonomialValuation (IntermediateField.adjoin k (Set.range y)) V x) :
+    IsAbhyankarValuation k V := sorry
+
+omit [Fintype κ] in
+/-- `Singularity/Valuation/MonomialGroundField.lean`: the residue field of a monomial valuation over `k(y)` that is trivial on `k(y)` is generated over `k` by the residues of the `y_i`. -/
+theorem IsMonomialValuation.adjoin_residue_eq_top {y : κ → K} {x : ι → K}
+    (hyV : ∀ c ∈ IntermediateField.adjoin k (Set.range y), c ∈ V)
+    (hV : IsMonomialValuation (IntermediateField.adjoin k (Set.range y)) V x) :
+    IntermediateField.adjoin k (Set.range fun i =>
+      residue V ⟨y i, hyV _ (IntermediateField.subset_adjoin k _ (Set.mem_range_self i))⟩) = ⊤ :=
+  sorry
+
+end MonomialGroundField
 
 section Abhyankar
 

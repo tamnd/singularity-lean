@@ -78,6 +78,7 @@ import Singularity.Valuation.LocalUniformizationDivisorial
 import Singularity.Valuation.LatticeLemma
 import Singularity.Valuation.LatticeLemmaOrdered
 import Singularity.Valuation.LocalUniformizationMonomial
+import Singularity.Valuation.MonomialGroundField
 import Singularity.Valuation.DegreePSteps
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement

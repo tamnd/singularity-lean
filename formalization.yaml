@@ -169,6 +169,46 @@ status:
       kind: theorem
       status: proved
       note: A monomial valuation is an Abhyankar valuation (Volume 5, Lemma 2.1.2 of the handbook).
+    - name: Singularity.IsMonomialValuation.existsUnique_valuation_eq
+      kind: theorem
+      status: proved
+      note: Each element of the value group of a monomial valuation is the value of exactly one Laurent monomial in the x_i, so the value group is free with basis the values of the x_i (Volume 5, Lemma 2.1.2 of the handbook, part 1).
+    - name: Singularity.IsMonomialValuation.valueHom_bijective
+      kind: theorem
+      status: proved
+      note: The map from the integer vectors to the value group of a monomial valuation, a to v(x^a), is bijective (Volume 5, Lemma 2.1.2 of the handbook, part 1).
+    - name: Singularity.IsMonomialValuation.algebraMap_residueField_bijective
+      kind: theorem
+      status: proved
+      note: The residue field of a monomial valuation of K/k is k (Volume 5, Lemma 2.1.2 of the handbook, part 2).
+    - name: Singularity.HasLocalUniformization.of_intermediateField
+      kind: theorem
+      status: proved
+      note: Let F be a subfield of K that contains k, is finitely generated over k and lies in V. Local uniformization of V over F gives local uniformization of V over k (Volume 5, Lemma 1.4.2 of the handbook, the part on the ground field, node SG0000004F).
+    - name: Singularity.algebraicIndependent_of_residue
+      kind: theorem
+      status: proved
+      note: Elements of V with residues that are algebraically independent over k are algebraically independent over k (Volume 5, Lemma 1.4.2 of the handbook).
+    - name: Singularity.mem_of_mem_adjoin_residue
+      kind: theorem
+      status: proved
+      note: If y_1, ..., y_m in V have residues that are algebraically independent over k, then k(y_1, ..., y_m) lies in V (Volume 5, Lemma 1.4.2 of the handbook).
+    - name: Singularity.algebraicIndependent_residue
+      kind: theorem
+      status: proved
+      note: If y_1, ..., y_m are algebraically independent over k and k(y_1, ..., y_m) lies in V, then their residues are algebraically independent over k.
+    - name: Singularity.hasLocalUniformization_of_isMonomialValuation_adjoin
+      kind: theorem
+      status: proved
+      note: A valuation that is trivial on k(y_1, ..., y_t) and is a monomial valuation of K over k(y) has local uniformization over k, with affine models of finite type over k (Volume 5, Corollary 2.1.6 of the handbook, node SG0000004D).
+    - name: Singularity.IsMonomialValuation.isAbhyankarValuation_adjoin
+      kind: theorem
+      status: proved
+      note: A valuation that is trivial on k(y_1, ..., y_t), with the y_i algebraically independent over k, and is a monomial valuation of K over k(y) is an Abhyankar valuation of K/k (Volume 5, Corollary 2.1.6 of the handbook).
+    - name: Singularity.IsMonomialValuation.adjoin_residue_eq_top
+      kind: theorem
+      status: proved
+      note: The residue field of a valuation that is trivial on k(y_1, ..., y_t) and is a monomial valuation of K over k(y) is generated over k by the residues of the y_i (Volume 5, Corollary 2.1.6 of the handbook).
     - name: Singularity.abhyankar_inequality
       kind: theorem
       status: proved
