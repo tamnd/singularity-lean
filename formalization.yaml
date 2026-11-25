@@ -700,6 +700,42 @@ status:
       kind: theorem
       status: proved
       note: The equimultiple weak transform. If f is in I_C^s, ord f = s and pi(f) = x_j^s f', then ord f' is at most s (Volume 7, Section 3.4 of the handbook).
+    - name: Singularity.logJacobianOrder_cleanPart_le_of_mem_center
+      kind: theorem
+      status: proved
+      note: The core of Theorem 3.4.5 of Volume 7, Section 3.4 of the handbook. If each element of Theta_C(g) is x^r times an element of I_C^s, and Theta_C(g) has an element x^r q with ord q = s and ord pi(q) at most s + rho, then the clean part of g' is not 0 and its order rho is at most rho.
+    - name: Singularity.exists_logJacobianOrder_eq
+      kind: theorem
+      status: proved
+      note: For a clean g other than 0, the order rho of the log-Jacobian ideal is finite.
+    - name: Singularity.logJacobianOrder_cleanPart_le_center
+      kind: theorem
+      status: proved
+      note: The order rho does not go up under the blowup of a regular center (Theorem 3.4.5 of Volume 7, Section 3.4 of the handbook). Under (H1) and (H2) in elementary form, the clean part of g' is not 0 and rho(g'_c) is at most rho(g).
+    - name: Singularity.centerExample_hyp
+      kind: theorem
+      status: proved
+      note: Example 3.4.6 of Volume 7, Section 3.4 of the handbook. Over F_2 the polynomial g = y^2 w + y^3 is not 0, is clean, and is in I_C^2 for C = V(x, y).
+    - name: Singularity.centerExample_centerChart
+      kind: theorem
+      status: proved
+      note: Example 3.4.6 of Volume 7, Section 3.4 of the handbook. The x-chart of the blowup of C = V(x, y) sends g = y^2 w + y^3 to x^2 (y^2 w + x y^3).
+    - name: Singularity.centerExample_H1
+      kind: theorem
+      status: proved
+      note: Example 3.4.6 of Volume 7, Section 3.4 of the handbook. The condition (H1) holds for g = y^2 w + y^3 with the divisor V(w) and the center V(x, y).
+    - name: Singularity.centerExample_not_H2
+      kind: theorem
+      status: proved
+      note: Example 3.4.6 of Volume 7, Section 3.4 of the handbook. The condition (H2) fails for g = y^2 w + y^3 with the divisor V(w) and the center V(x, y).
+    - name: Singularity.centerExample_logJacobianOrder
+      kind: theorem
+      status: proved
+      note: Example 3.4.6 of Volume 7, Section 3.4 of the handbook. The order rho of g = y^2 w + y^3 along the divisor V(w) is 2.
+    - name: Singularity.centerExample_logJacobianOrder_cleanPart
+      kind: theorem
+      status: proved
+      note: Example 3.4.6 of Volume 7, Section 3.4 of the handbook. The order rho of the clean part of g' = y^2 w + x y^3 along the new divisor V(x w) is 3, so rho goes up when (H2) fails.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved

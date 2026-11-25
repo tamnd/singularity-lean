@@ -1239,6 +1239,86 @@ end Weak
 
 end LogJacobianCenter
 
+section LogJacobianCenterNonincrease
+
+open MvPolynomial
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] [Fintype σ] (p : ℕ) [CharP k p]
+  {Δ S : Finset σ} {j : σ} {t : σ → k} {g g' : MvPolynomial σ k}
+
+omit [Fintype σ] in
+/-- `Singularity/Invariant/LogJacobianCenterNonincrease.lean`: the core of Theorem 3.4.5 of
+Volume 7, Section 3.4 of the handbook, for a general exponent `s`. -/
+theorem logJacobianOrder_cleanPart_le_of_mem_center (hj : j ∈ S)
+    (hgS : g ∈ Ideal.span (X '' (S : Set σ)) ^ p) (h : centerChart S j t g = X j ^ p * g')
+    {r : σ →₀ ℕ} (hr : ∀ i, i ∉ Δ → r i = 0) {s ρ : ℕ}
+    (hs : ∀ f ∈ logJacobianCenter Δ S g, ∃ q ∈ Ideal.span (X '' (S : Set σ)) ^ s,
+      f = monomial r 1 * q)
+    {q : MvPolynomial σ k} (hq : monomial r 1 * q ∈ logJacobianCenter Δ S g) (hqo : ord q = s)
+    (hqc : ord (centerChart S j t q) ≤ ((s + ρ : ℕ) : ℕ∞)) :
+    cleanPart p g' ≠ 0 ∧ logJacobianOrder (centerDivisor Δ S j t) (cleanPart p g') ≤ ρ := sorry
+
+omit [DecidableEq σ] [DecidableEq k] [Fintype σ] in
+/-- `Singularity/Invariant/LogJacobianCenterNonincrease.lean`: for a clean `g ≠ 0`, the order `ρ`
+is finite. -/
+theorem exists_logJacobianOrder_eq (hg : g ≠ 0) (hc : IsClean p g) :
+    ∃ ρ : ℕ, logJacobianOrder Δ g = ρ := sorry
+
+omit [Fintype σ] in
+/-- `Singularity/Invariant/LogJacobianCenterNonincrease.lean`: Theorem 3.4.5 of Volume 7,
+Section 3.4 of the handbook. Under (H1) and (H2), `g'_c ≠ 0` and `ρ(g'_c) ≤ ρ(g)`. -/
+theorem logJacobianOrder_cleanPart_le_center (hj : j ∈ S)
+    (hgS : g ∈ Ideal.span (X '' (S : Set σ)) ^ p) (h : centerChart S j t g = X j ^ p * g')
+    {ρ : ℕ} (hρ : logJacobianOrder Δ g = ρ)
+    (H1 : ∀ f ∈ logJacobian Δ g, ∃ q ∈ Ideal.span (X '' (S : Set σ)) ^ ρ,
+      f = monomial (divisorExponent Δ g) 1 * q)
+    (H2 : (∀ f ∈ logJacobianCenter Δ S g, ∃ q ∈ Ideal.span (X '' (S : Set σ)) ^ (ρ + 1),
+        f = monomial (divisorExponent Δ g) 1 * q) ∨
+      ∃ q, monomial (divisorExponent Δ g) 1 * q ∈ logJacobianCenter Δ S g ∧ ord q = ρ) :
+    cleanPart p g' ≠ 0 ∧
+      logJacobianOrder (centerDivisor Δ S j t) (cleanPart p g') ≤ logJacobianOrder Δ g := sorry
+
+/-- `Singularity/Invariant/LogJacobianCenterNonincrease.lean`: Example 3.4.6, the data. -/
+theorem centerExample_hyp :
+    (X 1 ^ 2 * X 2 + X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)) ≠ 0 ∧
+      IsClean 2 (X 1 ^ 2 * X 2 + X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)) ∧
+      (X 1 ^ 2 * X 2 + X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)) ∈
+        Ideal.span (X '' (({0, 1} : Finset (Fin 3)) : Set (Fin 3))) ^ 2 := sorry
+
+/-- `Singularity/Invariant/LogJacobianCenterNonincrease.lean`: Example 3.4.6, the chart. -/
+theorem centerExample_centerChart :
+    centerChart {0, 1} 0 (0 : Fin 3 → ZMod 2) (X 1 ^ 2 * X 2 + X 1 ^ 3) =
+      X 0 ^ 2 * (X 1 ^ 2 * X 2 + X 0 * X 1 ^ 3) := sorry
+
+/-- `Singularity/Invariant/LogJacobianCenterNonincrease.lean`: Example 3.4.6, `ρ(g) = 2`. -/
+theorem centerExample_logJacobianOrder :
+    logJacobianOrder {2} (X 1 ^ 2 * X 2 + X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)) = 2 := sorry
+
+/-- `Singularity/Invariant/LogJacobianCenterNonincrease.lean`: Example 3.4.6, (H1) holds. -/
+theorem centerExample_H1 :
+    ∀ f ∈ logJacobian {2} (X 1 ^ 2 * X 2 + X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)),
+      ∃ q ∈ Ideal.span (X '' (({0, 1} : Finset (Fin 3)) : Set (Fin 3))) ^ 2,
+        f = monomial (divisorExponent {2} (X 1 ^ 2 * X 2 + X 1 ^ 3 :
+          MvPolynomial (Fin 3) (ZMod 2))) 1 * q := sorry
+
+/-- `Singularity/Invariant/LogJacobianCenterNonincrease.lean`: Example 3.4.6, (H2) fails. -/
+theorem centerExample_not_H2 :
+    ¬ ((∀ f ∈ logJacobianCenter {2} {0, 1}
+          (X 1 ^ 2 * X 2 + X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)),
+        ∃ q ∈ Ideal.span (X '' (({0, 1} : Finset (Fin 3)) : Set (Fin 3))) ^ (2 + 1),
+          f = monomial (divisorExponent {2} (X 1 ^ 2 * X 2 + X 1 ^ 3 :
+            MvPolynomial (Fin 3) (ZMod 2))) 1 * q) ∨
+      ∃ q, monomial (divisorExponent {2} (X 1 ^ 2 * X 2 + X 1 ^ 3 :
+          MvPolynomial (Fin 3) (ZMod 2))) 1 * q ∈ logJacobianCenter {2} {0, 1}
+            (X 1 ^ 2 * X 2 + X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2)) ∧ ord q = (2 : ℕ)) := sorry
+
+/-- `Singularity/Invariant/LogJacobianCenterNonincrease.lean`: Example 3.4.6, `ρ(g'_c) = 3`. -/
+theorem centerExample_logJacobianOrder_cleanPart :
+    logJacobianOrder (centerDivisor ({2} : Finset (Fin 3)) {0, 1} 0 (0 : Fin 3 → ZMod 2))
+      (cleanPart 2 (X 1 ^ 2 * X 2 + X 0 * X 1 ^ 3 : MvPolynomial (Fin 3) (ZMod 2))) = 3 := sorry
+
+end LogJacobianCenterNonincrease
+
 section MvHasse
 
 namespace Algebra.MvHasse
