@@ -194,7 +194,17 @@
     "Singularity.IsResolution.isIntegral",
     "Singularity.IsResolution.isAlteration",
     "Singularity.regularAlterationInDim_of_deJongAlteration",
-    "Singularity.regularAlterationInDim_of_resolutionInDim"
+    "Singularity.regularAlterationInDim_of_resolutionInDim",
+    "Singularity.valuationSubring_pow_mem_iff",
+    "Singularity.irreducible_X_pow_sub_C_iff",
+    "Singularity.existsUnique_valuationSubring_comap_eq",
+    "Singularity.exists_artinSchreier_generator",
+    "Singularity.artinSchreier_integral",
+    "Singularity.exists_purelyInseparable_tower",
+    "Singularity.exists_inseparableStep_model",
+    "Singularity.mem_valuationSubring_of_pow_eq",
+    "Singularity.X_pow_add_C_tfae",
+    "Singularity.X_pow_add_C_tfae_threefold"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }
