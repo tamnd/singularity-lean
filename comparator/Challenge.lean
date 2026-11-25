@@ -1113,6 +1113,132 @@ end Law
 
 end LogJacobianBlowup
 
+section LogJacobianCenter
+
+open MvPolynomial
+
+section Defs
+
+variable {σ k : Type*} [CommSemiring k]
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: the `x_j`-chart of the blowup of the center
+`V(x_i : i ∈ S)` with translations `t`. -/
+noncomputable def centerChart [DecidableEq σ] (S : Finset σ) (j : σ) (t : σ → k) :
+    MvPolynomial σ k →ₐ[k] MvPolynomial σ k :=
+  aeval fun i => if i = j then X j else if i ∈ S then X j * (X i + C (t i)) else X i
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: the log-Jacobian ideal `Θ_C(g)` tangent to the
+center. -/
+noncomputable def logJacobianCenter (Δ S : Finset σ) (g : MvPolynomial σ k) :
+    Ideal (MvPolynomial σ k) :=
+  Ideal.span ((fun i => X i * pderiv i g) '' (Δ : Set σ) ∪
+    (fun l => pderiv l g) '' {l | l ∉ Δ ∧ l ∉ S} ∪
+    (fun a : σ × σ => X a.1 * pderiv a.2 g) '' {a | a.2 ∉ Δ ∧ a.2 ∈ S ∧ a.1 ∈ S})
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: the transform of the divisor under the chart. -/
+noncomputable def centerDivisor [DecidableEq σ] [DecidableEq k] (Δ S : Finset σ) (j : σ)
+    (t : σ → k) : Finset σ :=
+  insert j (Δ.filter fun i => i ≠ j ∧ (i ∉ S ∨ t i = 0))
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: the unit `u` of the transformation law for the
+center. -/
+noncomputable def centerUnit [DecidableEq σ] [DecidableEq k] (Δ S : Finset σ) (j : σ)
+    (t : σ → k) : MvPolynomial σ k :=
+  ∏ i ∈ Δ.filter (fun i => i ≠ j ∧ i ∈ S ∧ t i ≠ 0), (X i + C (t i))
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: `Θ_C(g) ⊆ Θ(g)`. -/
+theorem logJacobianCenter_le (Δ S : Finset σ) (g : MvPolynomial σ k) :
+    logJacobianCenter Δ S g ≤ logJacobian Δ g := sorry
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: `I_C Θ(g) ⊆ Θ_C(g)`. -/
+theorem span_X_mul_logJacobian_le (Δ S : Finset σ) (g : MvPolynomial σ k) :
+    Ideal.span (X '' (S : Set σ)) * logJacobian Δ g ≤ logJacobianCenter Δ S g := sorry
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: for the origin, `Θ_C(g) = Θ₀(g)`. -/
+theorem logJacobianCenter_univ [Fintype σ] (Δ : Finset σ) (g : MvPolynomial σ k) :
+    logJacobianCenter Δ Finset.univ g = logJacobianTangent Δ g := sorry
+
+variable [DecidableEq σ]
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: for the origin, the chart of the point blowup. -/
+theorem centerChart_univ [Fintype σ] (j : σ) (t : σ → k) :
+    centerChart Finset.univ j t = pointChart j t := sorry
+
+end Defs
+
+section Chain
+
+variable {σ k : Type*} [CommSemiring k] [DecidableEq σ]
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: `∂_i π(h) = π(∂_i h)` for `i ∉ S`. -/
+theorem pderiv_centerChart_of_notMem {S : Finset σ} {i j : σ} (hj : j ∈ S) (hi : i ∉ S)
+    (t : σ → k) (h : MvPolynomial σ k) :
+    pderiv i (centerChart S j t h) = centerChart S j t (pderiv i h) := sorry
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: `∂_i π(h) = x_j π(∂_i h)` for `i ∈ S`,
+`i ≠ j`. -/
+theorem pderiv_centerChart_of_mem {S : Finset σ} {i j : σ} (hi : i ∈ S) (hij : i ≠ j)
+    (t : σ → k) (h : MvPolynomial σ k) :
+    pderiv i (centerChart S j t h) = X j * centerChart S j t (pderiv i h) := sorry
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: `x_j ∂_j π(h) = π(∑_{i ∈ S} x_i ∂_i h)`. -/
+theorem X_mul_pderiv_centerChart {S : Finset σ} {j : σ} (hj : j ∈ S) (t : σ → k)
+    (h : MvPolynomial σ k) :
+    X j * pderiv j (centerChart S j t h) = centerChart S j t (∑ i ∈ S, X i * pderiv i h) := sorry
+
+end Chain
+
+section Law
+
+variable {σ k : Type*} [CommRing k] [DecidableEq σ] [DecidableEq k]
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: `π(Θ_C(g)) ⊆ Θ'(π(g))`. -/
+theorem map_centerChart_logJacobianCenter_le (Δ S : Finset σ) {j : σ} (hj : j ∈ S) (t : σ → k)
+    (g : MvPolynomial σ k) :
+    Ideal.map (centerChart S j t) (logJacobianCenter Δ S g) ≤
+      logJacobian (centerDivisor Δ S j t) (centerChart S j t g) := sorry
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: `u Θ'(π(g)) ⊆ π(Θ_C(g))`. -/
+theorem span_mul_logJacobian_centerChart_le (Δ S : Finset σ) {j : σ} (hj : j ∈ S) (t : σ → k)
+    (g : MvPolynomial σ k) :
+    Ideal.span {centerUnit Δ S j t} * logJacobian (centerDivisor Δ S j t) (centerChart S j t g) ≤
+      Ideal.map (centerChart S j t) (logJacobianCenter Δ S g) := sorry
+
+variable (p : ℕ) [CharP k p] {Δ S : Finset σ} {j : σ} {t : σ → k} {g g' : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: `π(Θ_C(g)) ⊆ (x_j^p) Θ'(g')`. -/
+theorem map_centerChart_logJacobianCenter_le_span_mul (hj : j ∈ S)
+    (hg : centerChart S j t g = X j ^ p * g') :
+    Ideal.map (centerChart S j t) (logJacobianCenter Δ S g) ≤
+      Ideal.span {X j ^ p} * logJacobian (centerDivisor Δ S j t) g' := sorry
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: `(x_j^p u) Θ'(g') ⊆ π(Θ_C(g))`. -/
+theorem span_mul_logJacobian_le_map_centerChart (hj : j ∈ S)
+    (hg : centerChart S j t g = X j ^ p * g') :
+    Ideal.span {X j ^ p * centerUnit Δ S j t} * logJacobian (centerDivisor Δ S j t) g' ≤
+      Ideal.map (centerChart S j t) (logJacobianCenter Δ S g) := sorry
+
+end Law
+
+section Weak
+
+variable {σ k : Type*} [Field k] [DecidableEq σ]
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: if `f ∈ I_C^s`, then `π(f) = x_j^s f'`. -/
+theorem exists_centerChart_eq_X_pow_mul {S : Finset σ} {j : σ} (t : σ → k) {s : ℕ}
+    {f : MvPolynomial σ k} (hS : f ∈ Ideal.span (X '' (S : Set σ)) ^ s) :
+    ∃ f', centerChart S j t f = X j ^ s * f' := sorry
+
+/-- `Singularity/Invariant/LogJacobianCenter.lean`: the equimultiple weak transform. If
+`f ∈ I_C^s`, `ord f = s` and `π(f) = x_j^s f'`, then `ord f' ≤ s`. -/
+theorem ord_le_of_centerChart {S : Finset σ} {j : σ} (hj : j ∈ S) {t : σ → k} {s : ℕ}
+    {f f' : MvPolynomial σ k} (hS : f ∈ Ideal.span (X '' (S : Set σ)) ^ s) (hf : ord f = s)
+    (h : centerChart S j t f = X j ^ s * f') : ord f' ≤ s := sorry
+
+end Weak
+
+end LogJacobianCenter
+
 section MvHasse
 
 namespace Algebra.MvHasse
