@@ -937,6 +937,46 @@ status:
       kind: theorem
       status: proved
       note: In the discrete case of rank 1, each limit augmentation of a continuous family below ν is ν. So a limit step is the last step of the chain.
+    - name: Singularity.logJacobianOrder_eq_zero_iff_exists
+      kind: theorem
+      status: proved
+      note: The order rho of the residual log-Jacobian ideal is 0 if and only if r_i G(0) is not 0 for some i in Delta, or the constant term of the derivative of G along x_j is not 0 for some j not in Delta. The polynomial g need not be clean (Volume 7, Section 3.5 of the handbook).
+    - name: Singularity.exists_not_dvd_divisorExponent_of_constantCoeff_ne_zero
+      kind: theorem
+      status: proved
+      note: For a clean g with G(0) not 0, p does not divide r_i for some i in Delta. The coefficient of x^r in g is G(0), and r is supported in Delta (Volume 7, Section 3.5 of the handbook).
+    - name: Singularity.logJacobianOrder_eq_zero_of_type_zero
+      kind: theorem
+      status: proved
+      note: If G(0) is not 0 and p does not divide r_i for some i in Delta, then rho = 0 (Proposition 3.5.1 of Volume 7, Section 3.5 of the handbook).
+    - name: Singularity.logJacobianOrder_eq_zero_of_type_one
+      kind: theorem
+      status: proved
+      note: If the constant term of the derivative of G along x_j is not 0 for some j not in Delta, then rho = 0 (Proposition 3.5.1 of Volume 7, Section 3.5 of the handbook).
+    - name: Singularity.logJacobianOrder_eq_zero_type_zero
+      kind: theorem
+      status: proved
+      note: Type 0 of the end case. For a clean g with ord G = 0, rho = 0, G(0) is not 0, and p does not divide r_i for some i in Delta (Proposition 3.5.1 of Volume 7, Section 3.5 of the handbook).
+    - name: Singularity.exists_constantCoeff_pderiv_ne_zero_of_constantCoeff_eq_zero
+      kind: theorem
+      status: proved
+      note: If rho = 0 and G(0) = 0, then the constant term of the derivative of G along x_j is not 0 for some j not in Delta (Volume 7, Section 3.5 of the handbook).
+    - name: Singularity.exists_constantCoeff_pderiv_ne_zero
+      kind: theorem
+      status: proved
+      note: Type 1 of the end case. If rho = 0 and ord G = 1, then the constant term of the derivative of G along x_j is not 0 for some j not in Delta (Proposition 3.5.1 of Volume 7, Section 3.5 of the handbook).
+    - name: Singularity.ord_residualFactor_le_one
+      kind: theorem
+      status: proved
+      note: If rho = 0, then ord G is at most 1 (Volume 7, Section 3.5 of the handbook).
+    - name: Singularity.logJacobianOrder_eq_zero_iff
+      kind: theorem
+      status: proved
+      note: The end case of the log-Jacobian route (Proposition 3.5.1 of Volume 7, Section 3.5 of the handbook). For a clean g, rho = 0 if and only if G(0) is not 0 and p does not divide r_i for some i in Delta, or G(0) = 0 and the constant term of the derivative of G along x_j is not 0 for some j not in Delta.
+    - name: Singularity.logJacobianOrder_eq_zero_iff_ord
+      kind: theorem
+      status: proved
+      note: The end case with the order of G (Proposition 3.5.1 of Volume 7, Section 3.5 of the handbook). For a clean g, rho = 0 if and only if ord G = 0 and p does not divide r_i for some i in Delta, or ord G = 1 and the constant term of the derivative of G along x_j is not 0 for some j not in Delta.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved

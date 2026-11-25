@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/LogJacobianEndCase.lean`: the end case `ρ = 0` of the log-Jacobian route (Volume 7, Section 3.5 of the handbook, Proposition 3.5.1). Write `g = x^r G` with `r = divisorExponent Δ g` and `G = residualFactor Δ g`. For each `g`, `ρ = 0` if and only if `r_i G(0) ≠ 0` for some `i ∈ Δ` or `∂_j G(0) ≠ 0` for some `j ∉ Δ` (`logJacobianOrder_eq_zero_iff_exists`). For a clean `g`, `ρ = 0` if and only if type 0 holds, `G(0) ≠ 0` and `p ∤ r_i` for some `i ∈ Δ`, or type 1 holds, `G(0) = 0` and `∂_j G(0) ≠ 0` for some `j ∉ Δ` (`logJacobianOrder_eq_zero_iff`). The same result with `ord G = 0` and `ord G = 1` is `logJacobianOrder_eq_zero_iff_ord`. The two directions are also separate theorems: type 0 (`logJacobianOrder_eq_zero_type_zero`, `exists_not_dvd_divisorExponent_of_constantCoeff_ne_zero`), type 1 (`exists_constantCoeff_pderiv_ne_zero`, `exists_constantCoeff_pderiv_ne_zero_of_constantCoeff_eq_zero`), and the converses (`logJacobianOrder_eq_zero_of_type_zero`, `logJacobianOrder_eq_zero_of_type_one`). Only the type 0 direction uses that `g` is clean.
+
 ## 0.4.13 - 2026-11-25
 
 ### Added
