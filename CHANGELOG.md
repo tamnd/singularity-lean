@@ -4,6 +4,11 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/LatticeLemma.lean`: the lattice lemma in rank 1 (Volume 5, Lemma 2.1.4 of the handbook, node SG0000004D). Let `γ ∈ ℝⁿ` have coordinates that are linearly independent over `ℤ`, and let `E` be a finite set of `a ∈ ℤⁿ` with `a · γ ≥ 0`. Then there are inverse integer matrices `B` and `C` such that the rows `b_l` of `B` have `b_l · γ > 0` and each `a ∈ E` has `a C ≥ 0`, so `a` is a combination of the `b_l` with coefficients in `ℕ` (`latticeLemma_real`). The proof is first for `γ > 0` (`latticeLemma_real_of_pos`). It starts with a simplicial cone of integer vectors that contains `γ` in its interior and has each `a ∈ E` in its dual, and it makes the index of the cone smaller until the determinant is `±1`. A change of the signs of the coordinates gives the general case. The lattice lemma for value groups of higher rank is not proved.
+- `Singularity/Valuation/LocalUniformizationMonomial.lean`: local uniformization of monomial valuations of rank 1 (Volume 5, Theorem 2.1.5 of the handbook, in rank 1). `IsMonomialValuation k V x` says that `K = k(x_1, ..., x_n)` and that a Laurent monomial `x^a` (`laurentMonomial`) has value 1 only if `a = 0`. If the lattice lemma holds for the values of `V`, then `V` has local uniformization, in each characteristic (`hasLocalUniformization_of_isMonomialValuation_of_lattice`). The model is `k[u_1, ..., u_n, s]` with `u_l = x^{b_l}`, and its local ring at the center of `V` is the localization of the polynomial ring `k[u_1, ..., u_n]` at a prime ideal. With `latticeLemma_real`, a monomial valuation with an injective map of ordered groups from its value group to `ℝ≥0` has local uniformization (`hasLocalUniformization_of_isMonomialValuation_of_rankOne`). The file does not prove that a monomial valuation is an Abhyankar valuation, and it does not prove `localUniformization_abhyankar`.
+
 ## 0.4.14 - 2026-11-25
 
 ### Added

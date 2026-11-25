@@ -137,6 +137,22 @@ status:
       kind: theorem
       status: proved
       note: Each divisorial valuation of a function field has local uniformization, in each characteristic (part 3 of Proposition 4.1.8 of Volume 3 of the handbook).
+    - name: Singularity.latticeLemma_real_of_pos
+      kind: theorem
+      status: proved
+      note: The lattice lemma for positive real weights that are linearly independent over the integers (Volume 5, Lemma 2.1.4 of the handbook, in rank 1).
+    - name: Singularity.latticeLemma_real
+      kind: theorem
+      status: proved
+      note: The lattice lemma for real weights that are linearly independent over the integers, of any sign (Volume 5, Lemma 2.1.4 of the handbook, in rank 1, node SG0000004D).
+    - name: Singularity.hasLocalUniformization_of_isMonomialValuation_of_lattice
+      kind: theorem
+      status: proved
+      note: A monomial valuation has local uniformization if the lattice lemma holds for its values (Volume 5, Theorem 2.1.5 of the handbook, with Lemma 2.1.4 as a hypothesis).
+    - name: Singularity.hasLocalUniformization_of_isMonomialValuation_of_rankOne
+      kind: theorem
+      status: proved
+      note: A monomial valuation of rank 1 with residue field k has local uniformization, in each characteristic (Volume 5, Theorem 2.1.5 of the handbook, in rank 1, node SG0000004D).
     - name: Singularity.abhyankar_inequality
       kind: theorem
       status: proved

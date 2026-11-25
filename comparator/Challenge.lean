@@ -54,11 +54,19 @@ import Mathlib.FieldTheory.PurelyInseparable.PerfectClosure
 import Mathlib.GroupTheory.SpecificGroups.Cyclic.Subgroup
 import Mathlib.RingTheory.Polynomial.RationalRoot
 import Mathlib.RingTheory.Polynomial.UniqueFactorization
+import Mathlib.Algebra.BigOperators.Field
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+import Mathlib.Algebra.Order.Floor.Ring
+import Mathlib.LinearAlgebra.Matrix.Adjugate
+import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+import Mathlib.Analysis.SpecialFunctions.Log.Basic
+import Mathlib.Basic.NNReal.Basic
+import Mathlib.RingTheory.RegularLocalRing.Polynomial
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean` and `Singularity/Valuation/LocalUniformizationMonomial.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -173,6 +181,65 @@ theorem hasLocalUniformization_of_divisorial (hK : IsFunctionField k K)
     HasLocalUniformization k V := sorry
 
 end LocalUniformizationDivisorial
+
+section LatticeLemma
+
+open Matrix
+
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+
+/-- `Singularity/Valuation/LatticeLemma.lean`: the lattice lemma for positive real weights that are linearly independent over `ℤ`. -/
+theorem latticeLemma_real_of_pos (γ : ι → ℝ) (hγ : ∀ i, 0 < γ i)
+    (hind : ∀ a : ι → ℤ, ∑ i, (a i : ℝ) * γ i = 0 → a = 0) (E : Finset (ι → ℤ))
+    (hE : ∀ a ∈ E, 0 ≤ ∑ i, (a i : ℝ) * γ i) :
+    ∃ B C : Matrix ι ι ℤ, B * C = 1 ∧ C * B = 1 ∧ (∀ l, 0 < ∑ i, (B l i : ℝ) * γ i) ∧
+      ∀ a ∈ E, ∀ l, 0 ≤ (a ᵥ* C) l := sorry
+
+/-- `Singularity/Valuation/LatticeLemma.lean`: the lattice lemma for real weights that are linearly independent over `ℤ`. -/
+theorem latticeLemma_real (γ : ι → ℝ)
+    (hind : ∀ a : ι → ℤ, ∑ i, (a i : ℝ) * γ i = 0 → a = 0) (E : Finset (ι → ℤ))
+    (hE : ∀ a ∈ E, 0 ≤ ∑ i, (a i : ℝ) * γ i) :
+    ∃ B C : Matrix ι ι ℤ, B * C = 1 ∧ C * B = 1 ∧ (∀ l, 0 < ∑ i, (B l i : ℝ) * γ i) ∧
+      ∀ a ∈ E, ∀ l, 0 ≤ (a ᵥ* C) l := sorry
+
+end LatticeLemma
+
+section LocalUniformizationMonomial
+
+open Matrix
+open scoped NNReal
+
+variable {K : Type*} [Field K] {ι : Type*} [Fintype ι]
+
+/-- The Laurent monomial `x^a = ∏ x_i ^ a_i` in elements `x_i` of a field. -/
+def laurentMonomial (x : ι → K) (a : ι → ℤ) : K :=
+  ∏ i, x i ^ a i
+
+variable {k : Type*} [Field k] [Algebra k K]
+
+variable (k) in
+/-- The valuation `V` of `K/k` is a monomial valuation in the elements `x_1, ..., x_n` of `K`. -/
+structure IsMonomialValuation (V : ValuationSubring K) (x : ι → K) : Prop where
+  ne_zero : ∀ i, x i ≠ 0
+  adjoin_eq_top : IntermediateField.adjoin k (Set.range x) = ⊤
+  independent : ∀ a : ι → ℤ, V.valuation (laurentMonomial x a) = 1 → a = 0
+
+variable {V : ValuationSubring K} [Algebra k V] [IsScalarTower k V K]
+
+/-- `Singularity/Valuation/LocalUniformizationMonomial.lean`: a monomial valuation has local uniformization, if the lattice lemma holds for its values. -/
+theorem hasLocalUniformization_of_isMonomialValuation_of_lattice [DecidableEq ι] {x : ι → K}
+    (hV : IsMonomialValuation k V x)
+    (hlat : ∀ E : Finset (ι → ℤ), (∀ a ∈ E, V.valuation (laurentMonomial x a) ≤ 1) →
+      ∃ B C : Matrix ι ι ℤ, B * C = 1 ∧ C * B = 1 ∧
+        (∀ l, V.valuation (laurentMonomial x (B l)) < 1) ∧ ∀ a ∈ E, ∀ l, 0 ≤ (a ᵥ* C) l) :
+    HasLocalUniformization k V := sorry
+
+/-- `Singularity/Valuation/LocalUniformizationMonomial.lean`: a monomial valuation of rank 1 has local uniformization. -/
+theorem hasLocalUniformization_of_isMonomialValuation_of_rankOne {x : ι → K}
+    (hV : IsMonomialValuation k V x) (φ : V.ValueGroup →*₀ ℝ≥0) (hφ : StrictMono φ) :
+    HasLocalUniformization k V := sorry
+
+end LocalUniformizationMonomial
 
 section Abhyankar
 
