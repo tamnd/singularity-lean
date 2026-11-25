@@ -753,6 +753,58 @@ end LimitAugmentation
 
 end KeyPolynomials
 
+section MacLaneVaquie
+
+universe uV
+
+open Polynomial
+
+variable {K : Type*} [Field K] {Γ₀ : Type uV} [LinearOrderedCommGroupWithZero Γ₀]
+
+/-- `Singularity/Valuation/MacLaneVaquie.lean`: a step of MacLane-Vaquié towards `ν`, an ordinary augmentation or a limit augmentation of a continuous family below `ν` with a limit key polynomial of larger degree. -/
+inductive MacLaneVaquieStep (ν μ μ' : Valuation K[X] Γ₀) : Prop
+  | augment (φ : K[X]) (hle : ∀ f, ν f ≤ μ f) (hφ : φ.Monic) (hlt : ν φ < μ φ)
+      (hlow : ∀ f : K[X], f.degree < φ.degree → ν f = μ f)
+      (h : ∀ f, μ' f = augmentedValuationFun μ φ (ν φ) f)
+  | limit (ι : Type uV) [LinearOrder ι] [Nonempty ι] [NoMaxOrder ι] (F : ContinuousFamily μ ι)
+      (hν : ∀ i f, ν f ≤ augmentedValuationFun μ (F.key i) (F.value i) f)
+      (hlow : ∀ i (a : K[X]), a.degree < (F.key i).degree → ν a = μ a) (φ : K[X])
+      (hφ : F.IsLimitKeyPolynomial φ) (hdeg : ∀ i, (F.key i).natDegree < φ.natDegree)
+      (h : ∀ f, μ' f = F.limitAugmentedValuationFun φ (ν φ) f)
+
+/-- `Singularity/Valuation/MacLaneVaquie.lean`: one round of the chain of MacLane-Vaquié in degree `d`. One step makes `w` agree with `ν` in degree at most `d`, or `ν` is the limit of a continuous family over `w`. -/
+theorem exists_macLaneVaquieStep_or_forall_isStable {ν w : Valuation K[X] Γ₀}
+    (hC : ∀ c, ν (C c) = w (C c)) (hle : ∀ f, ν f ≤ w f) (hne : w ≠ ν) :
+    ∃ d : ℕ, (∀ f : K[X], f.natDegree < d → w f = ν f) ∧
+      (∃ φ : K[X], φ.Monic ∧ φ.natDegree = d ∧ ν φ < w φ) ∧
+      ((∃ w' : Valuation K[X] Γ₀, MacLaneVaquieStep ν w w' ∧
+          ∀ f : K[X], f.natDegree ≤ d → w' f = ν f) ∨
+        ∃ (ι : Type uV) (_ : LinearOrder ι) (_ : Nonempty ι) (_ : NoMaxOrder ι)
+          (F : ContinuousFamily w ι),
+          (∀ i f, ν f ≤ augmentedValuationFun w (F.key i) (F.value i) f) ∧
+          (∀ i (a : K[X]), a.degree < (F.key i).degree → ν a = w a) ∧
+          ∀ f, F.IsStable f ∧ F.stableValue f = ν f) := sorry
+
+/-- `Singularity/Valuation/MacLaneVaquie.lean`: the chain of MacLane-Vaquié. Either `ν` is the limit of a chain `wₙ` of steps with `wₙ = ν` in degree at most `n`, or `ν` is the limit of a continuous family over a valuation of the chain. -/
+theorem exists_macLaneVaquie_seq_or_forall_isStable {ν w₀ : Valuation K[X] Γ₀}
+    (hC : ∀ c, ν (C c) = w₀ (C c)) (hle : ∀ f, ν f ≤ w₀ f) :
+    (∃ w : ℕ → Valuation K[X] Γ₀, w 0 = w₀ ∧
+        (∀ n, Relation.ReflTransGen (MacLaneVaquieStep ν) (w n) (w (n + 1))) ∧
+        ∀ n (f : K[X]), f.natDegree ≤ n → w n f = ν f) ∨
+      ∃ μ : Valuation K[X] Γ₀, Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ μ ∧ μ ≠ ν ∧
+        ∃ (ι : Type uV) (_ : LinearOrder ι) (_ : Nonempty ι) (_ : NoMaxOrder ι)
+          (F : ContinuousFamily μ ι),
+          (∀ i f, ν f ≤ augmentedValuationFun μ (F.key i) (F.value i) f) ∧
+          (∀ i (a : K[X]), a.degree < (F.key i).degree → ν a = μ a) ∧
+          ∀ f, F.IsStable f ∧ F.stableValue f = ν f := sorry
+
+/-- `Singularity/Valuation/MacLaneVaquie.lean`: part 4 of the theorem of MacLane-Vaquié for a valuation with nonzero support. Finitely many steps lead from `w₀` to `ν`. -/
+theorem reflTransGen_macLaneVaquieStep_of_map_eq_zero {ν w₀ : Valuation K[X] Γ₀}
+    (hC : ∀ c, ν (C c) = w₀ (C c)) (hle : ∀ f, ν f ≤ w₀ f) {F : K[X]} (hF : F ≠ 0)
+    (hF0 : ν F = 0) : Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ ν := sorry
+
+end MacLaneVaquie
+
 section CharacteristicPolyhedron
 
 open Polynomial Pointwise
