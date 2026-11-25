@@ -418,6 +418,17 @@ theorem eventually_eq_of_succ_lt {ν : Valuation K[X] Γ₀}
     (f : K[X]) (hf : ν f ≠ 0) :
     ∃ N, ∀ n, N ≤ n → μ n f = ν f := sorry
 
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: a strictly decreasing family of values of `ν`, indexed by a nonempty totally ordered set without a largest element and bounded below by `c ≠ 0`, does not exist if the values of `ν` are discrete of rank 1. -/
+theorem false_of_strictAnti_of_noMaxOrder {ν : Valuation K[X] Γ₀}
+    (hdisc : ∀ c d : Γ₀, c ≠ 0 → (Set.Icc c d ∩ Set.range ν).Finite)
+    {ι : Type*} [LinearOrder ι] [Nonempty ι] [NoMaxOrder ι] {s : ι → Γ₀} (hs : StrictAnti s)
+    {c : Γ₀} (hc : c ≠ 0) (hcs : ∀ i, c ≤ s i) (hr : ∀ i, s i ∈ Set.range ν) : False := sorry
+
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: the hypothesis of discreteness holds for a valuation with values in `ℤᵐ⁰`. -/
+theorem finite_Icc_inter_range_int (ν : Valuation K[X] (WithZero (Multiplicative ℤ)))
+    (c d : WithZero (Multiplicative ℤ)) (hc : c ≠ 0) : (Set.Icc c d ∩ Set.range ν).Finite :=
+  sorry
+
 end MacLaneChain
 
 section MacLaneUnique
@@ -648,6 +659,82 @@ theorem limitStep
 end IsLimitKeyPolynomial
 
 end LimitKeyPolynomial
+
+section MacLaneDiscrete
+
+variable {F} {ν : Valuation K[X] Γ₀}
+
+variable (hlow : ∀ i (a : K[X]), a.degree < (F.key i).degree → ν a = μ a)
+  (hval : ∀ i, F.value i ∈ Set.range ν)
+include hlow hval
+
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: each value `μᵢ f` of a continuous family is a value of `ν`. -/
+theorem val_mem_range (i : ι) (f : K[X]) :
+    augmentedValuationFun μ (F.key i) (F.value i) f ∈ Set.range ν := sorry
+
+variable [Nonempty ι] [NoMaxOrder ι]
+  (hdisc : ∀ c d : Γ₀, c ≠ 0 → (Set.Icc c d ∩ Set.range ν).Finite)
+include hdisc
+
+omit hlow in
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: in the discrete case of rank 1, the values `γᵢ` tend to `∞` in additive notation. -/
+theorem eventually_value_lt {c : Γ₀} (hc : c ≠ 0) : ∃ i, ∀ j, i ≤ j → F.value j < c := sorry
+
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: in the discrete case of rank 1, if `φ` is unstable and `γ ≤ μᵢ φ` for each `i`, then `γ = 0`. -/
+theorem eq_zero_of_not_isStable {φ : K[X]} (hφ : ¬ F.IsStable φ) {γ : Γ₀}
+    (hγ : ∀ i, γ ≤ augmentedValuationFun μ (F.key i) (F.value i) φ) : γ = 0 := sorry
+
+variable (hν : ∀ i f, ν f ≤ augmentedValuationFun μ (F.key i) (F.value i) f)
+include hν
+
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: in the discrete case of rank 1, each `f` with `ν f ≠ 0` is stable. -/
+theorem isStable_of_map_ne_zero {f : K[X]} (hf : ν f ≠ 0) : F.IsStable f := sorry
+
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: in the discrete case of rank 1, `μᵢ f = ν f` for all large `i` if `ν f ≠ 0`. -/
+theorem eventually_val_eq_of_map_ne_zero {f : K[X]} (hf : ν f ≠ 0) :
+    ∃ i, ∀ j, i ≤ j → augmentedValuationFun μ (F.key j) (F.value j) f = ν f := sorry
+
+section Support
+
+variable (hsupp : ∀ f, ν f = 0 → f = 0)
+include hsupp
+
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: in the discrete case of rank 1 with support `0`, each polynomial is stable. -/
+theorem isStable_of_supp_eq_bot (f : K[X]) : F.IsStable f := sorry
+
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: in the discrete case of rank 1 with support `0`, the limit `μ_∞` is `ν`. -/
+theorem stableValue_eq_of_supp_eq_bot (f : K[X]) : F.stableValue f = ν f := sorry
+
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: in the discrete case of rank 1 with support `0`, there is no limit key polynomial. -/
+theorem not_isLimitKeyPolynomial (φ : K[X]) : ¬ F.IsLimitKeyPolynomial φ := sorry
+
+end Support
+
+namespace IsLimitKeyPolynomial
+
+variable {φ : K[X]} (hφ : F.IsLimitKeyPolynomial φ)
+include hφ
+
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: in the discrete case of rank 1, a limit key polynomial `φ` has `ν φ = 0`. -/
+theorem map_eq_zero : ν φ = 0 := sorry
+
+omit hν in
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: in the discrete case of rank 1, the only admissible value of the limit augmentation is `γ = 0`. -/
+theorem eq_zero_of_le {γ : Γ₀} (hγ : ∀ i, γ ≤ augmentedValuationFun μ (F.key i) (F.value i) φ) :
+    γ = 0 := sorry
+
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: in the discrete case of rank 1, `[μ_∞; φ, ν(φ)]` takes the values of `ν`. -/
+theorem limitAugmentedValuationFun_eq (f : K[X]) : F.limitAugmentedValuationFun φ (ν φ) f = ν f :=
+  sorry
+
+/-- `Singularity/Valuation/MacLaneDiscrete.lean`: in the discrete case of rank 1, each limit augmentation `[μ_∞; φ, γ]` takes the values of `ν`. -/
+theorem limitAugmentedValuationFun_eq_of_le {γ : Γ₀}
+    (hγ : ∀ i, γ ≤ augmentedValuationFun μ (F.key i) (F.value i) φ) (f : K[X]) :
+    F.limitAugmentedValuationFun φ γ f = ν f := sorry
+
+end IsLimitKeyPolynomial
+
+end MacLaneDiscrete
 
 end ContinuousFamily
 
