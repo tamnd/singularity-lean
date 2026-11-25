@@ -3279,4 +3279,183 @@ theorem logJacobianDirectrixCodim_le_cleanPart_of_forall_eq_zero (hg : g ≠ 0)
 
 end LogJacobianNoLeave
 
+section LogJacobianFullDirectrix
+
+open MvPolynomial Finsupp Module
+
+section Def
+
+variable {σ k : Type*} [Field k]
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: the polynomials `ψ` of the definition
+of `T̃(g)`. -/
+def logJacobianFullDirectrixSet (Δ : Finset σ) (g : MvPolynomial σ k) : Set (MvPolynomial σ k) :=
+  {ψ | ord ψ = logJacobianOrder Δ g ∧ monomial (divisorExponent Δ g) 1 * ψ ∈ logJacobian Δ g}
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: the full directrix `T̃(g)` of the
+log-Jacobian order (Volume 7, Section 3.8 of the handbook). -/
+noncomputable def logJacobianFullDirectrix (Δ : Finset σ) (g : MvPolynomial σ k) :
+    Submodule k (σ → k) :=
+  ⨅ ψ ∈ logJacobianFullDirectrixSet Δ g,
+    directrix (homogeneousComponent (logJacobianOrder Δ g).toNat ψ)
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: the codimension `τ̃(g)` of `T̃(g)`. -/
+noncomputable def logJacobianFullDirectrixCodim [Fintype σ] (Δ : Finset σ)
+    (g : MvPolynomial σ k) : ℕ :=
+  Fintype.card σ - finrank k (logJacobianFullDirectrix Δ g)
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: `T̃(g) ⊆ T_ρ(g)`. -/
+theorem logJacobianFullDirectrix_le_logJacobianDirectrix (Δ : Finset σ) (g : MvPolynomial σ k) :
+    logJacobianFullDirectrix Δ g ≤ logJacobianDirectrix Δ g := sorry
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: `T̃(g) = T_ρ(g)` in case B. -/
+theorem logJacobianFullDirectrix_eq_of_ne {Δ : Finset σ} {g : MvPolynomial σ k}
+    (h : idealOrd (logJacobianTangent Δ g) ≠ degree (divisorExponent Δ g) + logJacobianOrder Δ g) :
+    logJacobianFullDirectrix Δ g = logJacobianDirectrix Δ g := sorry
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: `τ_ρ(g) ≤ τ̃(g)`. -/
+theorem logJacobianDirectrixCodim_le_fullDirectrixCodim [Fintype σ] (Δ : Finset σ)
+    (g : MvPolynomial σ k) :
+    logJacobianDirectrixCodim Δ g ≤ logJacobianFullDirectrixCodim Δ g := sorry
+
+end Def
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [Fintype σ] [DecidableEq k] (p : ℕ) [CharP k p]
+  {Δ : Finset σ} {j : σ} {t : σ → k} {g g' : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: `dim T̃(g'_c) ≤ dim T_ρ(g)` if `ρ`
+stays (Volume 7, Section 3.8 of the handbook). -/
+theorem finrank_logJacobianFullDirectrix_cleanPart_le_logJacobianDirectrix (hg : g ≠ 0)
+    (hc : IsClean p g) (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {m : ℕ}
+    (hρ : logJacobianOrder Δ g = m)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = m) :
+    finrank k (logJacobianFullDirectrix (blowupDivisor Δ j t) (cleanPart p g')) ≤
+      finrank k (logJacobianDirectrix Δ g) := sorry
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: Theorem 3.8.4 of Volume 7, Section 3.8
+of the handbook. -/
+theorem finrank_logJacobianFullDirectrix_cleanPart_le (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {m : ℕ}
+    (hρ : logJacobianOrder Δ g = m)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = m)
+    (hB : idealOrd (logJacobianTangent Δ g) =
+      ((degree (divisorExponent Δ g) + m + 1 : ℕ) : ℕ∞)) :
+    finrank k (logJacobianFullDirectrix (blowupDivisor Δ j t) (cleanPart p g')) ≤
+      finrank k (logJacobianFullDirectrix Δ g) := sorry
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: Theorem 3.8.4 of Volume 7, Section 3.8
+of the handbook, the form with the codimension. -/
+theorem logJacobianFullDirectrixCodim_le_cleanPart (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {m : ℕ}
+    (hρ : logJacobianOrder Δ g = m)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = m)
+    (hB : idealOrd (logJacobianTangent Δ g) =
+      ((degree (divisorExponent Δ g) + m + 1 : ℕ) : ℕ∞)) :
+    logJacobianFullDirectrixCodim Δ g ≤
+      logJacobianFullDirectrixCodim (blowupDivisor Δ j t) (cleanPart p g') := sorry
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: Theorem 3.8.4 of Volume 7, Section 3.8
+of the handbook, the form with the hypothesis that the order of `Θ₀(g)` is not `|r| + ρ`. -/
+theorem finrank_logJacobianFullDirectrix_cleanPart_le_of_ne (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {m : ℕ}
+    (hρ : logJacobianOrder Δ g = m)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = m)
+    (hB : idealOrd (logJacobianTangent Δ g) ≠ degree (divisorExponent Δ g) + logJacobianOrder Δ g) :
+    finrank k (logJacobianFullDirectrix (blowupDivisor Δ j t) (cleanPart p g')) ≤
+      finrank k (logJacobianFullDirectrix Δ g) := sorry
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: Theorem 3.8.4 of Volume 7, Section 3.8
+of the handbook, the form with the codimension and with the hypothesis that the order of `Θ₀(g)`
+is not `|r| + ρ`. -/
+theorem logJacobianFullDirectrixCodim_le_cleanPart_of_ne (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {m : ℕ}
+    (hρ : logJacobianOrder Δ g = m)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = m)
+    (hB : idealOrd (logJacobianTangent Δ g) ≠ degree (divisorExponent Δ g) + logJacobianOrder Δ g) :
+    logJacobianFullDirectrixCodim Δ g ≤
+      logJacobianFullDirectrixCodim (blowupDivisor Δ j t) (cleanPart p g') := sorry
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: Example 3.8.5 of Volume 7, Section 3.8
+of the handbook, the data. -/
+theorem fullDirectrixExample_hyp :
+    (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) ≠ 0 ∧
+      IsClean 2 (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) ∧
+      ((2 : ℕ) : ℕ∞) ≤ ord (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) ∧
+      pointChart 1 (0 : Fin 3 → ZMod 2)
+          (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) =
+        X 1 ^ 2 * (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) ∧
+      blowupDivisor ({0, 2} : Finset (Fin 3)) 1 (0 : Fin 3 → ZMod 2) =
+        ({0, 1, 2} : Finset (Fin 3)) ∧
+      cleanPart 2 (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) =
+        (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) ∧
+      divisorExponent ({0, 2} : Finset (Fin 3))
+          (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) =
+        (single 2 1 : Fin 3 →₀ ℕ) ∧
+      residualFactor ({0, 2} : Finset (Fin 3))
+          (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) =
+        (X 1 * X 2 + X 0 : MvPolynomial (Fin 3) (ZMod 2)) ∧
+      divisorExponent ({0, 1, 2} : Finset (Fin 3))
+          (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) =
+        (single 2 1 : Fin 3 →₀ ℕ) ∧
+      residualFactor ({0, 1, 2} : Finset (Fin 3))
+          (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) =
+        (X 1 * X 2 + X 0 : MvPolynomial (Fin 3) (ZMod 2)) := sorry
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: Example 3.8.5 of Volume 7, Section 3.8
+of the handbook, the order `ρ`. -/
+theorem fullDirectrixExample_rho :
+    logJacobianOrder ({0, 2} : Finset (Fin 3))
+        (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) = 1 ∧
+      logJacobianOrder (blowupDivisor ({0, 2} : Finset (Fin 3)) 1 (0 : Fin 3 → ZMod 2))
+          (cleanPart 2 (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2))) = 1 := sorry
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: Example 3.8.5 of Volume 7, Section 3.8
+of the handbook, the cases. The old and the new points are of case A. -/
+theorem fullDirectrixExample_cases :
+    idealOrd (logJacobianTangent ({0, 2} : Finset (Fin 3))
+        (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2))) =
+        degree (divisorExponent ({0, 2} : Finset (Fin 3))
+          (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2))) +
+        logJacobianOrder ({0, 2} : Finset (Fin 3))
+          (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) ∧
+      idealOrd (logJacobianTangent
+          (blowupDivisor ({0, 2} : Finset (Fin 3)) 1 (0 : Fin 3 → ZMod 2))
+          (cleanPart 2 (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)))) =
+        degree (divisorExponent
+          (blowupDivisor ({0, 2} : Finset (Fin 3)) 1 (0 : Fin 3 → ZMod 2))
+          (cleanPart 2 (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)))) +
+        logJacobianOrder (blowupDivisor ({0, 2} : Finset (Fin 3)) 1 (0 : Fin 3 → ZMod 2))
+          (cleanPart 2 (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2))) := sorry
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: Example 3.8.5 of Volume 7, Section 3.8
+of the handbook, the dimensions. -/
+theorem fullDirectrixExample_finrank :
+    finrank (ZMod 2) (logJacobianDirectrix ({0, 2} : Finset (Fin 3))
+        (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2))) = 2 ∧
+      finrank (ZMod 2) (logJacobianFullDirectrix ({0, 2} : Finset (Fin 3))
+        (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2))) = 1 ∧
+      finrank (ZMod 2) (logJacobianDirectrix
+        (blowupDivisor ({0, 2} : Finset (Fin 3)) 1 (0 : Fin 3 → ZMod 2))
+        (cleanPart 2 (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)))) = 2 ∧
+      finrank (ZMod 2) (logJacobianFullDirectrix
+        (blowupDivisor ({0, 2} : Finset (Fin 3)) 1 (0 : Fin 3 → ZMod 2))
+        (cleanPart 2 (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)))) = 2 := sorry
+
+/-- `Singularity/Invariant/LogJacobianFullDirectrix.lean`: Example 3.8.5 of Volume 7, Section 3.8
+of the handbook, the form with the codimension. `τ̃` goes down from `2` to `1` at a step from
+case A. -/
+theorem fullDirectrixExample_codim :
+    logJacobianDirectrixCodim ({0, 2} : Finset (Fin 3))
+        (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) = 1 ∧
+      logJacobianFullDirectrixCodim ({0, 2} : Finset (Fin 3))
+        (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2)) = 2 ∧
+      logJacobianDirectrixCodim
+        (blowupDivisor ({0, 2} : Finset (Fin 3)) 1 (0 : Fin 3 → ZMod 2))
+        (cleanPart 2 (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2))) = 1 ∧
+      logJacobianFullDirectrixCodim
+        (blowupDivisor ({0, 2} : Finset (Fin 3)) 1 (0 : Fin 3 → ZMod 2))
+        (cleanPart 2 (X 1 * X 2 ^ 2 + X 0 * X 2 : MvPolynomial (Fin 3) (ZMod 2))) = 1 := sorry
+
+end LogJacobianFullDirectrix
+
 end Singularity

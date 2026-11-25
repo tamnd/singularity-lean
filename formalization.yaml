@@ -1305,6 +1305,58 @@ status:
       kind: theorem
       status: proved
       note: Theorem 3.9.11 of Volume 7, Section 3.9 of the handbook, the form with the codimension. Under the same hypotheses, tau_rho(g) <= tau_rho(g'_c).
+    - name: Singularity.logJacobianFullDirectrix_le_logJacobianDirectrix
+      kind: theorem
+      status: proved
+      note: Volume 7, Section 3.8 of the handbook. The full directrix T~(g) uses Theta(g) in the two cases. Since Theta_0(g) is in Theta(g), T~(g) is in T_rho(g).
+    - name: Singularity.logJacobianFullDirectrix_eq_of_ne
+      kind: theorem
+      status: proved
+      note: Volume 7, Section 3.8 of the handbook. If the order of Theta_0(g) is not |r| + rho (case B), then T~(g) = T_rho(g).
+    - name: Singularity.logJacobianDirectrixCodim_le_fullDirectrixCodim
+      kind: theorem
+      status: proved
+      note: Volume 7, Section 3.8 of the handbook, the form with the codimension. tau_rho(g) <= tau~(g).
+    - name: Singularity.finrank_logJacobianFullDirectrix_cleanPart_le_logJacobianDirectrix
+      kind: theorem
+      status: proved
+      note: Volume 7, Section 3.8 of the handbook. Let g /= 0 be clean with ord g >= p, let the chart send g to x_j^p g', and let rho(g'_c) = rho(g). Then dim T~(g'_c) <= dim T_rho(g). There is no hypothesis on the cases.
+    - name: Singularity.finrank_logJacobianFullDirectrix_cleanPart_le
+      kind: theorem
+      status: proved
+      note: Theorem 3.8.4 of Volume 7, Section 3.8 of the handbook. Let g /= 0 be clean with ord g >= p, let the chart send g to x_j^p g', let rho(g) = rho(g'_c) = m, and let the order of Theta_0(g) be |r| + m + 1 (case B). Then dim T~(g'_c) <= dim T~(g). There is no hypothesis on the case of the new point.
+    - name: Singularity.logJacobianFullDirectrixCodim_le_cleanPart
+      kind: theorem
+      status: proved
+      note: Theorem 3.8.4 of Volume 7, Section 3.8 of the handbook, the form with the codimension. Under the same hypotheses, tau~(g) <= tau~(g'_c).
+    - name: Singularity.finrank_logJacobianFullDirectrix_cleanPart_le_of_ne
+      kind: theorem
+      status: proved
+      note: Theorem 3.8.4 of Volume 7, Section 3.8 of the handbook, the form with the hypothesis that the order of Theta_0(g) is not |r| + rho.
+    - name: Singularity.logJacobianFullDirectrixCodim_le_cleanPart_of_ne
+      kind: theorem
+      status: proved
+      note: Theorem 3.8.4 of Volume 7, Section 3.8 of the handbook, the form with the codimension and with the hypothesis that the order of Theta_0(g) is not |r| + rho.
+    - name: Singularity.fullDirectrixExample_hyp
+      kind: theorem
+      status: proved
+      note: Example 3.8.5 of Volume 7, Section 3.8 of the handbook. Over F_2, g = y z^2 + x z and E = V(x z). g is clean, ord g = 2, the y-chart at the origin sends g to y^2 g, the new divisor is V(x y z), g'_c = g, r = r' = (0, 0, 1) and G = G' = y z + x.
+    - name: Singularity.fullDirectrixExample_rho
+      kind: theorem
+      status: proved
+      note: Example 3.8.5 of Volume 7, Section 3.8 of the handbook. rho(g) = rho(g'_c) = 1.
+    - name: Singularity.fullDirectrixExample_cases
+      kind: theorem
+      status: proved
+      note: Example 3.8.5 of Volume 7, Section 3.8 of the handbook. The old and the new points are of case A.
+    - name: Singularity.fullDirectrixExample_finrank
+      kind: theorem
+      status: proved
+      note: Example 3.8.5 of Volume 7, Section 3.8 of the handbook. dim T_rho(g) = 2, dim T~(g) = 1, dim T_rho(g'_c) = 2 and dim T~(g'_c) = 2.
+    - name: Singularity.fullDirectrixExample_codim
+      kind: theorem
+      status: proved
+      note: Example 3.8.5 of Volume 7, Section 3.8 of the handbook, the form with the codimension. tau_rho(g) = tau_rho(g'_c) = 1, tau~(g) = 2 and tau~(g'_c) = 1. So tau~ goes down at a step from case A, and the case condition of Theorem 3.8.4 is necessary.
     - name: Singularity.exists_macLaneVaquieStep_or_forall_isStable
       kind: theorem
       status: proved
