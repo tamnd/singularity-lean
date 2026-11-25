@@ -1213,6 +1213,26 @@ status:
       kind: theorem
       status: proved
       note: Example 3.8.3 of Volume 7, Section 3.8 of the handbook. Over F_2, rho(g) = 2 and dim T_rho(g) = 1. At the origin of the x-chart, rho(g'_c) = 2 and dim T_rho(g'_c) = 2. So tau_rho goes down from 2 to 1 at this new point of case A, and the case condition of Proposition 3.8.2 is necessary.
+    - name: Singularity.pderiv_eq_zero_of_mem_directrix
+      kind: theorem
+      status: proved
+      note: Lemma 3.9.2 of Volume 7, Section 3.9 of the handbook. If v is in the directrix of F and in the directrix of c F + x_i d_i F, and v_i /= 0, then d_i F = 0. So Phi_i = r_i F.
+    - name: Singularity.finrank_logJacobianDirectrix_cleanPart_le_of_caseA
+      kind: theorem
+      status: proved
+      note: Theorem 3.9.1 of Volume 7, Section 3.9 of the handbook, in the case where |r| + d is not 0 in k. Let g /= 0 be clean with ord g >= p, let g = x^r G with d = ord G, let the chart send g to x_j^p g', and let rho(g) = rho(g'_c) = d. If the new point is of case A, that is the order of Theta_0(g'_c) is |r'| + d, and |r| + d /= 0 in k, then dim T_rho(g'_c) <= dim T_rho(g). The old point is then of case A. The case |r| + d = 0 in k is open.
+    - name: Singularity.logJacobianDirectrixCodim_le_cleanPart_of_caseA
+      kind: theorem
+      status: proved
+      note: Theorem 3.9.1 of Volume 7, Section 3.9 of the handbook, the form with the codimension. Under the same hypotheses, tau_rho(g) <= tau_rho(g'_c).
+    - name: Singularity.tauRhoCaseAExample_hyp
+      kind: theorem
+      status: proved
+      note: Example 3.9.4 of Volume 7, Section 3.9 of the handbook, the data. Over F_2, for g = x z^2 + x^2 y^3 and E = V(x), r = (1, 0, 0), G = z^2 + x y^3 and e_x = z^2. In the y-chart with t_x = 1 and t_z = 0, g goes to y^2 g' with g' = y ((x + 1) z^2 + y^2 (x^2 + 1)), and E' = V(y).
+    - name: Singularity.tauRhoCaseAExample_not_mem
+      kind: theorem
+      status: proved
+      note: Example 3.9.4 of Volume 7, Section 3.9 of the handbook. The polynomial g' is clean, and neither y z^2 nor y (x + 1) z^2 is in Theta_0(g'_c). So the plain transports of e_x are not enough, and the proof of Theorem 3.9.1 needs the exact transports of Lemma 3.9.3.
     - name: Singularity.exists_macLaneVaquieStep_or_forall_isStable
       kind: theorem
       status: proved
