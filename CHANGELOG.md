@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/MacLaneVaquie.lean`: the criterion for a finite chain in part 4 of Theorem 3.3.5 of MacLane-Vaquié (Volume 3 of the handbook, node SG0000000Z), for a valuation `ν` on `K[X]` with any value group and any support. Let `w₀ ≤ ν` agree with `ν` on the constants, and let `w₀ ≠ ν`. Then finitely many steps of MacLane-Vaquié lead from `w₀` to `ν` if and only if `ν` has a key polynomial (`reflTransGen_macLaneVaquieStep_iff_exists_keyPolynomial`). A monic `ν`-minimal polynomial of positive degree is sufficient (`reflTransGen_macLaneVaquieStep_of_isMuMinimal`). The proof uses that a valuation `w ≤ ν` that agrees with `ν` in degree less than `deg φ` and at `φ` is `ν` (`eq_of_isMuMinimal`), and that `ν` with a `ν`-minimal polynomial is not the limit of a continuous family (`ContinuousFamily.not_forall_isStable_of_isMuMinimal`). The last step of a chain gives a key polynomial (`MacLaneVaquieStep.exists_keyPolynomial`, `exists_keyPolynomial_of_reflTransGen`). Part 4 with the three cases is `reflTransGen_macLaneVaquieStep_or_forall_not_keyPolynomial`: a finite chain reaches `ν`, or `ν` has no key polynomial and `ν` is the limit of an infinite chain `wₙ ≠ ν`, or `ν` is the limit of a continuous family over a valuation of the chain. For `ν` without a key polynomial, the library does not decide which of the last two cases holds. The index sets of the families are not well ordered, and the uniqueness of the chain is not proved.
+
 ## 0.4.16 - 2026-11-25
 
 ### Added

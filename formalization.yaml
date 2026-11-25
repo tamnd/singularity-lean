@@ -1097,6 +1097,18 @@ status:
       kind: theorem
       status: proved
       note: Part 4 of MacLane-Vaquié for a valuation with nonzero support, from the first valuation [v; X, ν(X)] of the chain.
+    - name: Singularity.reflTransGen_macLaneVaquieStep_of_isMuMinimal
+      kind: theorem
+      status: proved
+      note: Part 4 of MacLane-Vaquié for a valuation with a monic ν-minimal polynomial of positive degree, with any value group and any support. Finitely many ordinary or limit steps reach ν.
+    - name: Singularity.reflTransGen_macLaneVaquieStep_iff_exists_keyPolynomial
+      kind: theorem
+      status: proved
+      note: The criterion for a finite chain of MacLane-Vaquié. For w₀ ≠ ν, finitely many steps reach ν if and only if ν has a key polynomial.
+    - name: Singularity.reflTransGen_macLaneVaquieStep_or_forall_not_keyPolynomial
+      kind: theorem
+      status: proved
+      note: Part 4 of MacLane-Vaquié with three cases. A finite chain reaches ν, or ν has no key polynomial and is the limit of an infinite chain or of a continuous family over a valuation of the chain.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved

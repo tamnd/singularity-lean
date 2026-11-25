@@ -975,6 +975,32 @@ theorem reflTransGen_macLaneVaquieStep_of_map_eq_zero {ν w₀ : Valuation K[X] 
     (hC : ∀ c, ν (C c) = w₀ (C c)) (hle : ∀ f, ν f ≤ w₀ f) {F : K[X]} (hF : F ≠ 0)
     (hF0 : ν F = 0) : Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ ν := sorry
 
+/-- `Singularity/Valuation/MacLaneVaquie.lean`: part 4 of the theorem of MacLane-Vaquié for a valuation with a monic `ν`-minimal polynomial of positive degree. Finitely many steps lead from `w₀` to `ν`. -/
+theorem reflTransGen_macLaneVaquieStep_of_isMuMinimal {ν w₀ : Valuation K[X] Γ₀}
+    (hC : ∀ c, ν (C c) = w₀ (C c)) (hle : ∀ f, ν f ≤ w₀ f) {φ : K[X]} (hm : φ.Monic)
+    (hd : 0 < φ.natDegree) (hmin : IsMuMinimal ν φ) :
+    Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ ν := sorry
+
+/-- `Singularity/Valuation/MacLaneVaquie.lean`: the criterion for a finite chain of MacLane-Vaquié. For `w₀ ≠ ν`, finitely many steps lead from `w₀` to `ν` if and only if `ν` has a key polynomial. -/
+theorem reflTransGen_macLaneVaquieStep_iff_exists_keyPolynomial {ν w₀ : Valuation K[X] Γ₀}
+    (hC : ∀ c, ν (C c) = w₀ (C c)) (hle : ∀ f, ν f ≤ w₀ f) (hne : w₀ ≠ ν) :
+    Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ ν ↔ ∃ φ, KeyPolynomial ν φ := sorry
+
+/-- `Singularity/Valuation/MacLaneVaquie.lean`: part 4 of the theorem of MacLane-Vaquié with three cases. A finite chain reaches `ν`, or `ν` has no key polynomial and `ν` is the limit of an infinite chain or of a continuous family over a valuation of the chain. -/
+theorem reflTransGen_macLaneVaquieStep_or_forall_not_keyPolynomial {ν w₀ : Valuation K[X] Γ₀}
+    (hC : ∀ c, ν (C c) = w₀ (C c)) (hle : ∀ f, ν f ≤ w₀ f) :
+    Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ ν ∨
+      ((∀ φ, ¬ KeyPolynomial ν φ) ∧
+        ((∃ w : ℕ → Valuation K[X] Γ₀, w 0 = w₀ ∧
+            (∀ n, Relation.ReflTransGen (MacLaneVaquieStep ν) (w n) (w (n + 1))) ∧
+            (∀ n (f : K[X]), f.natDegree ≤ n → w n f = ν f) ∧ ∀ n, w n ≠ ν) ∨
+          ∃ μ : Valuation K[X] Γ₀, Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ μ ∧ μ ≠ ν ∧
+            ∃ (ι : Type uV) (_ : LinearOrder ι) (_ : Nonempty ι) (_ : NoMaxOrder ι)
+              (F : ContinuousFamily μ ι),
+              (∀ i f, ν f ≤ augmentedValuationFun μ (F.key i) (F.value i) f) ∧
+              (∀ i (a : K[X]), a.degree < (F.key i).degree → ν a = μ a) ∧
+              ∀ f, F.IsStable f ∧ F.stableValue f = ν f)) := sorry
+
 end MacLaneVaquie
 
 section CharacteristicPolyhedron

@@ -26,16 +26,20 @@ Rounds repeat. Either a round ends with a family of which `ν` is the limit, or 
 
 Let `ν(F) = ∞` for some `F ≠ 0`. If a valuation `w` agrees with `ν` in degree at most `deg F`, then `w = ν`, since each `f` is congruent modulo `F` to a polynomial of degree less than `deg F` (`eq_of_map_eq_zero_of_degree_lt`). The same argument shows that `ν` is not the limit of a continuous family over `w ≠ ν`: the stable polynomial `F` would have an expansion coefficient `a ≠ 0` of degree less than `d` with `ν(a) = ∞` (`ContinuousFamily.not_isStable_of_map_eq_zero`). So `ν` is reached by finitely many steps (`reflTransGen_macLaneVaquieStep_of_map_eq_zero`).
 
+Let `φ` be a monic `ν`-minimal polynomial of positive degree. By the expansion criterion, `ν(f)` is the minimum of `ν(aⱼ) + jν(φ)` for the `φ`-expansion of `f`. So a valuation `w ≤ ν` that agrees with `ν` in degree less than `deg φ` and at `φ` is `ν` (`eq_of_isMuMinimal`). Thus `w_{deg φ} = ν` in the first case. The second case does not hold. If `deg φ` is less than the degree `d` of the family, then `μ = ν`. Otherwise let `φ` be stable, so `μⱼ(φ) = ν(φ)` for `j` large, and let `r` be the remainder of `φ` modulo `φⱼ`. Then `μⱼ(φ - r) > μⱼ(φ)`, but `ν(φ - r) = min(ν(r), ν(φ)) ≤ ν(φ)` since `φ` is `ν`-minimal and `deg r < deg φ` (`ContinuousFamily.not_forall_isStable_of_isMuMinimal`). So `ν` is reached by finitely many steps (`reflTransGen_macLaneVaquieStep_of_isMuMinimal`). Conversely, the key polynomial of the last step of a chain is a key polynomial for its end (`MacLaneVaquieStep.exists_keyPolynomial`). Thus finitely many steps lead from `w₀ ≠ ν` to `ν` if and only if `ν` has a key polynomial.
+
 ## Main results
 
 * `Singularity.MacLaneVaquieStep`: a step of MacLane-Vaquié towards `ν`, ordinary or limit.
 * `Singularity.exists_macLaneVaquieStep_or_forall_isStable`: one round in degree `d`. One step makes `w` agree with `ν` in degree at most `d`, or `ν` is the limit of a continuous family over `w`. At a limit step the degree of the key polynomial increases strictly.
 * `Singularity.exists_macLaneVaquie_seq_or_forall_isStable`: the chain. Either `ν` is the limit of a chain `wₙ` of steps with `wₙ = ν` in degree at most `n`, or `ν` is the limit of a continuous family over a valuation of the chain.
 * `Singularity.reflTransGen_macLaneVaquieStep_of_map_eq_zero`: part 4 of the theorem of MacLane-Vaquié for a valuation `ν` with nonzero support. The chain reaches `ν` after finitely many steps. The corollary `reflTransGen_monomialValuation_of_map_eq_zero` starts at `[v; X, ν(X)]`.
+* `Singularity.reflTransGen_macLaneVaquieStep_iff_exists_keyPolynomial`: the criterion for a finite chain. For `w₀ ≠ ν`, finitely many steps lead from `w₀` to `ν` if and only if `ν` has a key polynomial. The value group and the support of `ν` are arbitrary. A monic `ν`-minimal polynomial of positive degree is sufficient (`reflTransGen_macLaneVaquieStep_of_isMuMinimal`).
+* `Singularity.reflTransGen_macLaneVaquieStep_or_forall_not_keyPolynomial`: part 4 with three cases. A finite chain reaches `ν`, or `ν` has no key polynomial and `ν` is the limit of an infinite chain `wₙ ≠ ν`, or `ν` has no key polynomial and `ν` is the limit of a continuous family over a valuation of the chain.
 
 ## What the file does not prove
 
-The index sets of the continuous families are totally ordered sets of values. They are not well ordered as in [Vaq07], and the file does not extract a cofinal well ordered subfamily. The file does not prove that the chain is unique, and it does not prove that the degrees and the values `ν(φ)` of the key polynomials depend only on `ν`. It does not prove the conditions of [Vaq07] on two consecutive steps of an admissible family. For a valuation with support `0`, it does not decide which case of `exists_macLaneVaquie_seq_or_forall_isStable` holds. In the first case it does not decide whether the chain reaches `ν` after finitely many steps.
+The index sets of the continuous families are totally ordered sets of values. They are not well ordered as in [Vaq07], and the file does not extract a cofinal well ordered subfamily. The file does not prove that the chain is unique, and it does not prove that the degrees and the values `ν(φ)` of the key polynomials depend only on `ν`. It does not prove the conditions of [Vaq07] on two consecutive steps of an admissible family. For a valuation without a key polynomial, it does not decide whether `ν` is the limit of an infinite chain or the limit of a continuous family. It does not relate the existence of a key polynomial to the value group and the residue field of `ν`.
 
 ## References
 
@@ -507,5 +511,144 @@ theorem reflTransGen_monomialValuation_of_map_eq_zero {v : Valuation K Γ₀}
     (map_le_monomialValuation hν) hF hF0
 
 end Support
+
+section KeyPolynomial
+
+variable {ν w : Valuation K[X] Γ₀}
+
+/-- Let `φ` be monic of positive degree and `ν`-minimal. Let `w ≤ ν` in additive notation, and let `w` agree with `ν` in degree less than the degree of `φ` and at `φ`. Then `w = ν`. By the expansion criterion, `ν(f)` is the minimum of `ν(aⱼ) + jν(φ)` in additive notation for the `φ`-expansion `f = ∑ aⱼ φ ^ j`, and `w(f)` is at least this minimum. -/
+theorem eq_of_isMuMinimal (hle : ∀ f, ν f ≤ w f) {φ : K[X]} (hm : φ.Monic)
+    (hd : 0 < φ.natDegree) (hmin : IsMuMinimal ν φ)
+    (hlow : ∀ a : K[X], a.degree < φ.degree → w a = ν a) (hφ : w φ = ν φ) : w = ν := by
+  refine Valuation.ext fun f => le_antisymm ?_ (hle f)
+  calc w f ≤ augmentedValuationFun w φ (w φ) f := map_le_augmentedValuationFun hm hd f
+    _ = augmentedValuationFun ν φ (ν φ) f := by
+      unfold augmentedValuationFun
+      rw [hφ]
+      refine Finset.sup_congr rfl fun j _ => ?_
+      rw [hlow _ (degree_expansionCoeff_lt hm f j)]
+    _ = ν f := (hmin.map_eq_augmentedValuationFun hm hd f).symm
+
+/-- The last step of a chain of MacLane-Vaquié gives a key polynomial. If one step of MacLane-Vaquié leads from `μ` to `μ'`, then the key polynomial `φ` of the step is a key polynomial for `μ'`. This holds for an ordinary step and for a limit step, and also if `μ'(φ) = ∞`. -/
+theorem MacLaneVaquieStep.exists_keyPolynomial {μ μ' : Valuation K[X] Γ₀}
+    (h : MacLaneVaquieStep ν μ μ') : ∃ φ, KeyPolynomial μ' φ := by
+  rcases h with ⟨φ, hle, hφ, hlt, hlow, h⟩ | ⟨ι, F, hν, hlow, φ, hφ, hdeg, h⟩
+  · exact ⟨φ, (keyPolynomial_of_map_lt hle hφ hlt hlow).keyPolynomial_of_forall_eq h⟩
+  · exact ⟨φ, hφ.keyPolynomial_of_forall_eq h⟩
+
+/-- Let finitely many steps of MacLane-Vaquié lead from `w₀` to `μ ≠ w₀`. Then `μ` has a key polynomial: the key polynomial of the last step. -/
+theorem exists_keyPolynomial_of_reflTransGen {w₀ μ : Valuation K[X] Γ₀}
+    (h : Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ μ) (hne : w₀ ≠ μ) :
+    ∃ φ, KeyPolynomial μ φ := by
+  rcases Relation.ReflTransGen.cases_tail h with rfl | ⟨c, -, hs⟩
+  · exact absurd rfl hne
+  · exact hs.exists_keyPolynomial
+
+end KeyPolynomial
+
+namespace ContinuousFamily
+
+variable {μ ν : Valuation K[X] Γ₀} {ι : Type*} [LinearOrder ι] [Nonempty ι] [NoMaxOrder ι]
+  {F : ContinuousFamily μ ι}
+
+/-- Let `φ` be a monic `ν`-minimal polynomial of positive degree. Let `(μᵢ)` be a continuous family of augmentations of `μ ≠ ν` below `ν`, and let `ν` agree with `μ` in degree less than the degree `d` of the family. Then some polynomial is not stable. Thus `ν` is not the limit of the family.
+
+If `deg φ < d`, then `μ` agrees with `ν` in degree less than `deg φ` and at `φ`, so `μ = ν` by `eq_of_isMuMinimal`. Let `deg φ ≥ d`, and assume that `φ` is stable. Then `μⱼ(φ) = ν(φ)` for `j` large. Let `r` be the remainder of `φ` modulo `φⱼ`. Then `μⱼ(φ - r) > μⱼ(φ)` in additive notation (`val_sub_modByMonic_lt`). Since `deg r < deg φ`, the polynomial `φ` is not `ν`-equivalent to `r`, so `ν(φ - r) = min(ν(r), ν(φ)) ≤ ν(φ)`. With `ν(φ - r) ≥ μⱼ(φ - r)` this is a contradiction. -/
+theorem not_forall_isStable_of_isMuMinimal
+    (hν : ∀ i f, ν f ≤ augmentedValuationFun μ (F.key i) (F.value i) f)
+    (hlow : ∀ i (a : K[X]), a.degree < (F.key i).degree → ν a = μ a) (hne : μ ≠ ν)
+    {φ : K[X]} (hm : φ.Monic) (hd : 0 < φ.natDegree) (hmin : IsMuMinimal ν φ) :
+    ¬ ∀ f, F.IsStable f := by
+  intro hst
+  obtain ⟨i⟩ := ‹Nonempty ι›
+  by_cases hdeg : φ.degree < (F.key i).degree
+  · refine hne (eq_of_isMuMinimal (fun f => ?_) hm hd hmin
+      (fun a ha => (hlow i a (ha.trans hdeg)).symm) (hlow i φ hdeg).symm)
+    exact (hν i f).trans (augmentedValuation_le (F.keyPolynomial i) (F.value_lt i).le f)
+  push Not at hdeg
+  by_cases h0 : ν φ = 0
+  · exact not_isStable_of_map_eq_zero hν hlow hne hm.ne_zero h0 (hst φ)
+  obtain ⟨i₀, hi₀⟩ := (hst φ).exists_forall_eq
+  obtain ⟨j, hj⟩ := exists_gt i₀
+  have hs := F.stableValue_eq_of_isStable hν hlow (hst φ)
+  have hvi : F.val i₀ φ = ν φ := (hi₀ i₀ le_rfl).trans hs
+  have hvj : F.val j φ = ν φ := (hi₀ j hj.le).trans hs
+  have hlt := F.val_sub_modByMonic_lt hj (hvi.trans hvj.symm) (by rw [hvj]; exact h0)
+  have hr : (-(φ %ₘ F.key j)).degree < φ.degree := by
+    rw [degree_neg]
+    exact (degree_modByMonic_lt φ (F.keyPolynomial j).monic).trans_le
+      ((F.degree_key_eq j i).trans_le hdeg)
+  have hmax := hmin.map_add_mul_eq_max hr 1
+  rw [mul_one, neg_add_eq_sub] at hmax
+  have h1 : ν φ ≤ ν (φ - φ %ₘ F.key j) := by
+    rw [hmax]
+    exact le_max_right _ _
+  exact lt_irrefl _ ((h1.trans (hν j _)).trans_lt (hlt.trans_eq hvj))
+
+end ContinuousFamily
+
+section Finite
+
+variable {ν w₀ : Valuation K[X] Γ₀}
+
+/-- Let `ν` agree with `w₀` on the constants, let `w₀ ≤ ν` in additive notation, and let `φ` be a monic `ν`-minimal polynomial of positive degree. Then finitely many steps of MacLane-Vaquié lead from `w₀` to `ν`. The value group and the support of `ν` are arbitrary.
+
+In the first case of `exists_macLaneVaquie_seq_or_forall_isStable`, the valuation `w_{deg φ}` agrees with `ν` in degree at most `deg φ`, so it is `ν` by `eq_of_isMuMinimal`. The second case does not hold by `ContinuousFamily.not_forall_isStable_of_isMuMinimal`. -/
+theorem reflTransGen_macLaneVaquieStep_of_isMuMinimal (hC : ∀ c, ν (C c) = w₀ (C c))
+    (hle : ∀ f, ν f ≤ w₀ f) {φ : K[X]} (hm : φ.Monic) (hd : 0 < φ.natDegree)
+    (hmin : IsMuMinimal ν φ) : Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ ν := by
+  rcases exists_macLaneVaquie_seq_or_forall_isStable hC hle with
+    ⟨w, hw0, hstep, hagree⟩ | ⟨μ, -, hne, ι, _, _, _, G, hν, hlow, hst⟩
+  · have hrt : ∀ n, Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ (w n) := by
+      intro n
+      induction n with
+      | zero => rw [hw0]
+      | succ n ih => exact ih.trans (hstep n)
+    have hr := hrt φ.natDegree
+    have heq := eq_of_isMuMinimal (macLaneBelow_of_reflTransGen hr hC hle).2 hm hd hmin
+      (fun a ha => hagree _ a (natDegree_le_natDegree ha.le)) (hagree _ φ le_rfl)
+    rwa [heq] at hr
+  · exact absurd (fun f => (hst f).1)
+      (ContinuousFamily.not_forall_isStable_of_isMuMinimal hν hlow hne hm hd hmin)
+
+/-- The criterion for a finite chain of MacLane-Vaquié. Let `ν` agree with `w₀` on the constants, let `w₀ ≤ ν` in additive notation, and let `w₀ ≠ ν`. Then finitely many steps of MacLane-Vaquié lead from `w₀` to `ν` if and only if `ν` has a key polynomial. The value group and the support of `ν` are arbitrary. -/
+theorem reflTransGen_macLaneVaquieStep_iff_exists_keyPolynomial (hC : ∀ c, ν (C c) = w₀ (C c))
+    (hle : ∀ f, ν f ≤ w₀ f) (hne : w₀ ≠ ν) :
+    Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ ν ↔ ∃ φ, KeyPolynomial ν φ :=
+  ⟨fun h => exists_keyPolynomial_of_reflTransGen h hne, fun ⟨_, hφ⟩ =>
+    reflTransGen_macLaneVaquieStep_of_isMuMinimal hC hle hφ.monic hφ.natDegree_pos
+      hφ.isMuMinimal⟩
+
+/-- Part 4 of the theorem of MacLane-Vaquié with the three cases. Let `ν` agree with `w₀` on the constants, and let `w₀ ≤ ν` in additive notation. Then one of three cases holds. In the first case, finitely many steps of MacLane-Vaquié lead from `w₀` to `ν`. Otherwise `ν` has no key polynomial, and one of two cases holds. In the second case, there is a sequence `wₙ` with `w₀` at the start and finitely many steps from `wₙ` to `wₙ₊₁`, such that `wₙ` agrees with `ν` in degree at most `n` and `wₙ ≠ ν` for each `n`. Thus `ν` is the limit of an infinite chain. In the third case, finitely many steps lead from `w₀` to a valuation `μ ≠ ν`, and `ν` is the limit of a continuous family of augmentations of `μ`: each polynomial is stable, and its limit value is its value for `ν`. The value group and the support of `ν` are arbitrary. If `ν` has nonzero support, the first case holds (`reflTransGen_macLaneVaquieStep_of_map_eq_zero`). -/
+theorem reflTransGen_macLaneVaquieStep_or_forall_not_keyPolynomial
+    (hC : ∀ c, ν (C c) = w₀ (C c)) (hle : ∀ f, ν f ≤ w₀ f) :
+    Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ ν ∨
+      ((∀ φ, ¬ KeyPolynomial ν φ) ∧
+        ((∃ w : ℕ → Valuation K[X] Γ₀, w 0 = w₀ ∧
+            (∀ n, Relation.ReflTransGen (MacLaneVaquieStep ν) (w n) (w (n + 1))) ∧
+            (∀ n (f : K[X]), f.natDegree ≤ n → w n f = ν f) ∧ ∀ n, w n ≠ ν) ∨
+          ∃ μ : Valuation K[X] Γ₀, Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ μ ∧ μ ≠ ν ∧
+            ∃ (ι : Type uV) (_ : LinearOrder ι) (_ : Nonempty ι) (_ : NoMaxOrder ι)
+              (F : ContinuousFamily μ ι),
+              (∀ i f, ν f ≤ augmentedValuationFun μ (F.key i) (F.value i) f) ∧
+              (∀ i (a : K[X]), a.degree < (F.key i).degree → ν a = μ a) ∧
+              ∀ f, F.IsStable f ∧ F.stableValue f = ν f)) := by
+  by_cases hR : Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ ν
+  · exact Or.inl hR
+  refine Or.inr ⟨fun φ hφ => hR (reflTransGen_macLaneVaquieStep_of_isMuMinimal hC hle hφ.monic
+    hφ.natDegree_pos hφ.isMuMinimal), ?_⟩
+  rcases exists_macLaneVaquie_seq_or_forall_isStable hC hle with
+    ⟨w, hw0, hstep, hagree⟩ | hB
+  · refine Or.inl ⟨w, hw0, hstep, hagree, fun n hn => hR ?_⟩
+    have hrt : ∀ n, Relation.ReflTransGen (MacLaneVaquieStep ν) w₀ (w n) := by
+      intro n
+      induction n with
+      | zero => rw [hw0]
+      | succ n ih => exact ih.trans (hstep n)
+    have h := hrt n
+    rwa [hn] at h
+  · exact Or.inr hB
+
+end Finite
 
 end Singularity
