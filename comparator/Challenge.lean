@@ -77,11 +77,12 @@ import Mathlib.RingTheory.AdjoinRoot
 import Mathlib.RingTheory.DedekindDomain.Different
 import Mathlib.RingTheory.Localization.Integral
 import Mathlib.FieldTheory.PrimitiveElement
+import Mathlib.FieldTheory.SeparableClosure
 
 /-!
 # The challenge of the comparator
 
-This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean`, `Singularity/Valuation/LocalUniformizationMonomial.lean`, `Singularity/Valuation/MonomialGroundField.lean`, `Singularity/Valuation/EtaleRegular.lean`, `Singularity/Valuation/EtaleGenerator.lean`, `Singularity/Valuation/EtaleGeneratorExistence.lean` and `Singularity/Valuation/MonomialFiniteExtension.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
+This file is the challenge of `lake comparator` (spec 14, row Q4). It states again, with `sorry`, the theorems of the package that prove a statement of `Singularity/Statements/`. It imports the statement files, and the Mathlib files that `Singularity/Valuation/Abhyankar.lean`, `Singularity/Valuation/ZariskiRiemann.lean`, `Singularity/Valuation/KeyPolynomials.lean`, `Singularity/Invariant/CharacteristicPolyhedron.lean`, `Singularity/Invariant/Order.lean`, `Singularity/Invariant/Residual.lean`, `Singularity/Invariant/RigidLayer.lean`, `Singularity/Invariant/LogJacobian.lean`, `Singularity/Invariant/Newton.lean`, `Singularity/Invariant/FrobeniusNewton.lean`, `Singularity/Algebra/MvHasse.lean` and `Singularity/Alteration/Basic.lean`, `Singularity/Valuation/LatticeLemma.lean`, `Singularity/Valuation/LatticeLemmaOrdered.lean`, `Singularity/Valuation/LocalUniformizationMonomial.lean`, `Singularity/Valuation/MonomialGroundField.lean`, `Singularity/Valuation/EtaleRegular.lean`, `Singularity/Valuation/EtaleGenerator.lean`, `Singularity/Valuation/EtaleGeneratorExistence.lean`, `Singularity/Valuation/MonomialFiniteExtension.lean` and `Singularity/Valuation/DegreePTowers.lean` import. A statement that uses a definition of the package states this definition again, with the same name and the same body. The file `comparator.json` names these theorems, and the comparator checks that the theorems of the same names in `Singularity` have the same types, use only the permitted axioms, and are accepted by the kernel.
 
 This file is not part of the library `Singularity`, and no module of the library imports it. Do not change a statement here without the same change in the proof.
 -/
@@ -2343,6 +2344,76 @@ theorem X_pow_add_C_tfae_threefold (k : Type*) [Field k] [CharP k p] (g : MvPoly
 end Reduced
 
 end DegreePSteps
+
+section DegreePTowers
+
+universe v
+
+open IntermediateField Module
+
+/-- `Singularity/Valuation/DegreePTowers.lean`: local uniformization is invariant under an isomorphism of `k`-algebras. -/
+theorem HasLocalUniformization.of_algEquiv {k K K' : Type*} [Field k] [Field K] [Field K']
+    [Algebra k K] [Algebra k K'] (e : K ≃ₐ[k] K') {V' : ValuationSubring K'}
+    (h : HasLocalUniformization k (V'.comap (e : K →+* K'))) : HasLocalUniformization k V' :=
+  sorry
+
+/-- The explicit hypothesis for one purely inseparable step of degree `p`. The library does not prove it. -/
+def LocalUniformizationInseparableStep (p n : ℕ) (k : Type v) [Field k] [CharP k p] : Prop :=
+  ∀ (E E' : Type u) [Field E] [Field E'] [Algebra k E] [Algebra k E'] [Algebra E E']
+    [IsScalarTower k E E'], Algebra.trdeg k E = n → finrank E E' = p → IsPurelyInseparable E E' →
+      ∀ W : ValuationSubring E', HasLocalUniformization k (W.comap (algebraMap E E')) →
+        HasLocalUniformization k W
+
+/-- The explicit hypothesis for one Galois step of degree `p`. The library does not prove it. -/
+def LocalUniformizationGaloisStep (p n : ℕ) (k : Type v) [Field k] [CharP k p] : Prop :=
+  ∀ (E E' : Type u) [Field E] [Field E'] [Algebra k E] [Algebra k E'] [Algebra E E']
+    [IsScalarTower k E E'], Algebra.trdeg k E = n → finrank E E' = p → IsGalois E E' →
+      ∀ W : ValuationSubring E', HasLocalUniformization k (W.comap (algebraMap E E')) →
+        HasLocalUniformization k W
+
+/-- `Singularity/Valuation/DegreePTowers.lean`: a Galois extension of degree `p ^ (r + 1)` has a Galois subextension of degree `p`. -/
+theorem exists_isGalois_finrank_eq_prime (p : ℕ) [hp : Fact p.Prime] {K L : Type u} [Field K]
+    [Field L] [Algebra K L] [FiniteDimensional K L] [IsGalois K L] {r : ℕ}
+    (hd : finrank K L = p ^ (r + 1)) :
+    ∃ M : IntermediateField K L, IsGalois K M ∧ finrank K M = p ∧ finrank M L = p ^ r := sorry
+
+/-- `Singularity/Valuation/DegreePTowers.lean`: Proposition 2.1.4 of Volume 6, a tower of Artin-Schreier steps. -/
+theorem exists_artinSchreier_tower (p : ℕ) [hp : Fact p.Prime] {K L : Type u} [Field K]
+    [Field L] [Algebra K L] [CharP K p] [FiniteDimensional K L] [IsGalois K L] {r : ℕ}
+    (hd : finrank K L = p ^ r) :
+    ∃ (E : ℕ → IntermediateField K L) (θ : ℕ → L), E 0 = ⊥ ∧ E r = ⊤ ∧
+      ∀ i < r, E (i + 1) = E i ⊔ K⟮θ i⟯ ∧ θ i ∉ E i ∧ θ i ^ p - θ i ∈ E i ∧
+        (E i).relfinrank (E (i + 1)) = p := sorry
+
+/-- `Singularity/Valuation/DegreePTowers.lean`: Step 3 of the reduction of Cossart-Piltant, with the step of degree `p` as a hypothesis. -/
+theorem hasLocalUniformization_of_isPurelyInseparable (p n : ℕ) [hp : Fact p.Prime] {k : Type v}
+    [Field k] [CharP k p]
+    (hstep : LocalUniformizationInseparableStep.{u} p n k) {K L : Type u} [Field K] [Field L]
+    [Algebra k K] [Algebra k L] [Algebra K L] [IsScalarTower k K L] [FiniteDimensional K L]
+    [IsPurelyInseparable K L] (hK : Algebra.trdeg k K = n) (W : ValuationSubring L)
+    (hW : HasLocalUniformization k (W.comap (algebraMap K L))) : HasLocalUniformization k W :=
+  sorry
+
+/-- `Singularity/Valuation/DegreePTowers.lean`: Step 3 of the reduction of Cossart-Piltant, from the separable closure. -/
+theorem hasLocalUniformization_of_separableClosure (p n : ℕ) [hp : Fact p.Prime] {k : Type v}
+    [Field k] [CharP k p]
+    (hstep : LocalUniformizationInseparableStep.{u} p n k) {F K : Type u} [Field F] [Field K]
+    [Algebra k F] [Algebra k K] [Algebra F K] [IsScalarTower k F K] [FiniteDimensional F K]
+    (hF : Algebra.trdeg k F = n) (V : ValuationSubring K)
+    (hV : HasLocalUniformization k (V.comap (algebraMap (separableClosure F K) K))) :
+    HasLocalUniformization k V := sorry
+
+/-- `Singularity/Valuation/DegreePTowers.lean`: the last part of Step 4 of the reduction of Cossart-Piltant, with the Galois step of degree `p` as a hypothesis. -/
+theorem hasLocalUniformization_of_isGalois (p n : ℕ) [hp : Fact p.Prime] {k : Type v} [Field k]
+    [CharP k p]
+    (hstep : LocalUniformizationGaloisStep.{u} p n k) {K L : Type u} [Field K] [Field L]
+    [Algebra k K] [Algebra k L] [Algebra K L] [IsScalarTower k K L] [FiniteDimensional K L]
+    [IsGalois K L] {r : ℕ} (hd : finrank K L = p ^ r) (hK : Algebra.trdeg k K = n)
+    (W : ValuationSubring L) (hW : HasLocalUniformization k (W.comap (algebraMap K L))) :
+    HasLocalUniformization k W := sorry
+
+end DegreePTowers
+
 section CossartPiltantOmega
 
 open MvPolynomial Finsupp
