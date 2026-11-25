@@ -271,7 +271,14 @@
     "Singularity.logJacobianOrder_cleanPart_lt_of_directrix_eq_bot_of_idealOrd",
     "Singularity.chartVector_mem_directrix_initialForm_of_logJacobianOrder_eq",
     "Singularity.chartVector_mem_directrix_pderiv_initialForm_of_logJacobianOrder_eq",
-    "Singularity.nearPointExample_not_mem_directrix"
+    "Singularity.nearPointExample_not_mem_directrix",
+    "Singularity.homogeneousComponent_mem_span_of_mem_span",
+    "Singularity.le_directrix_homogeneousComponent_of_mem_span",
+    "Singularity.finrank_iInf_directrix_pointChart_le",
+    "Singularity.finrank_logJacobianDirectrix_cleanPart_le",
+    "Singularity.logJacobianDirectrixCodim_le_cleanPart",
+    "Singularity.tauRhoExample_cases",
+    "Singularity.tauRhoExample_finrank"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }
