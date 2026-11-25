@@ -591,6 +591,64 @@ end IsLimitKeyPolynomial
 
 end Augmentation
 
+section LimitKeyPolynomial
+
+variable {F} {φ : K[X]} {γ : Γ₀}
+
+namespace IsLimitKeyPolynomial
+
+variable [Nonempty ι] [NoMaxOrder ι] (hφ : F.IsLimitKeyPolynomial φ)
+include hφ
+
+omit [NoMaxOrder ι] in
+/-- `Singularity/Valuation/LimitKeyPolynomial.lean`: for a valuation `w` with the values of the limit augmentation `[μ_∞; φ, γ]`, the limit key polynomial `φ` `w`-divides `f` if and only if `μ_∞ (f %ₘ φ) < w f`. -/
+theorem muDvd_iff_of_forall_eq {w : Valuation K[X] Γ₀}
+    (hw : ∀ f, w f = F.limitAugmentedValuationFun φ γ f) {f : K[X]} :
+    MuDvd w φ f ↔ F.stableValue (f %ₘ φ) < w f := sorry
+
+/-- `Singularity/Valuation/LimitKeyPolynomial.lean`: a limit key polynomial is a key polynomial for each valuation with the values of the limit augmentation `[μ_∞; φ, γ]`. -/
+theorem keyPolynomial_of_forall_eq {w : Valuation K[X] Γ₀}
+    (hw : ∀ f, w f = F.limitAugmentedValuationFun φ γ f) : KeyPolynomial w φ := sorry
+
+variable {ν : Valuation K[X] Γ₀}
+  (hν : ∀ i f, ν f ≤ augmentedValuationFun μ (F.key i) (F.value i) f)
+  (hlow : ∀ i (a : K[X]), a.degree < (F.key i).degree → ν a = μ a)
+
+include hν hlow in
+/-- `Singularity/Valuation/LimitKeyPolynomial.lean`: a monic polynomial of the degree of `φ` with a value at least `ν(φ)` in additive notation is a limit key polynomial. -/
+theorem of_map_le {ψ : K[X]} (hψ : ψ.Monic) (hdeg : ψ.natDegree = φ.natDegree)
+    (hle : ν ψ ≤ ν φ) : F.IsLimitKeyPolynomial ψ := sorry
+
+include hν hlow in
+/-- `Singularity/Valuation/LimitKeyPolynomial.lean`: if `φ` has the largest `ν`-value among the monic polynomials of its degree, then `[μ_∞; φ, ν(φ)]` agrees with `ν` in degree at most `deg φ`. -/
+theorem limitAugmentedValuationFun_eq_of_natDegree_le
+    (hopt : ∀ ψ : K[X], ψ.Monic → ψ.natDegree = φ.natDegree → ν φ ≤ ν ψ) {f : K[X]}
+    (hf : f.natDegree ≤ φ.natDegree) : F.limitAugmentedValuationFun φ (ν φ) f = ν f := sorry
+
+omit [NoMaxOrder ι] in
+/-- `Singularity/Valuation/LimitKeyPolynomial.lean`: the converse. If `[μ_∞; φ, ν(φ)]` agrees with `ν` in degree at most `deg φ`, then `φ` has the largest `ν`-value among the monic polynomials of its degree. -/
+theorem map_le_of_forall_eq
+    (h : ∀ f : K[X], f.natDegree ≤ φ.natDegree → F.limitAugmentedValuationFun φ (ν φ) f = ν f)
+    {ψ : K[X]} (hψ : ψ.Monic) (hdeg : ψ.natDegree = φ.natDegree) : ν φ ≤ ν ψ := sorry
+
+include hν hlow in
+/-- `Singularity/Valuation/LimitKeyPolynomial.lean`: `[μ_∞; φ, ν(φ)]` agrees with `ν` in degree at most `deg φ` if and only if `φ` has the largest `ν`-value among the monic polynomials of its degree. -/
+theorem forall_limitAugmentedValuationFun_eq_iff :
+    (∀ f : K[X], f.natDegree ≤ φ.natDegree → F.limitAugmentedValuationFun φ (ν φ) f = ν f) ↔
+      ∀ ψ : K[X], ψ.Monic → ψ.natDegree = φ.natDegree → ν φ ≤ ν ψ := sorry
+
+include hν hlow in
+/-- `Singularity/Valuation/LimitKeyPolynomial.lean`: the limit step of MacLane-Vaquié for a limit key polynomial of largest `ν`-value in its degree. -/
+theorem limitStep
+    (hopt : ∀ ψ : K[X], ψ.Monic → ψ.natDegree = φ.natDegree → ν φ ≤ ν ψ) :
+    ∃ w : Valuation K[X] Γ₀, (∀ f, w f = F.limitAugmentedValuationFun φ (ν φ) f) ∧
+      KeyPolynomial w φ ∧ (∀ i f, w f ≤ augmentedValuationFun μ (F.key i) (F.value i) f) ∧
+      (∀ f, ν f ≤ w f) ∧ ∀ f : K[X], f.natDegree ≤ φ.natDegree → w f = ν f := sorry
+
+end IsLimitKeyPolynomial
+
+end LimitKeyPolynomial
+
 end ContinuousFamily
 
 end LimitAugmentation

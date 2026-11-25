@@ -760,6 +760,35 @@ status:
       kind: theorem
       status: proved
       note: In characteristic 2 the example of Narasimhan is in Tschirnhausen form with m = 2 and has order 2 at the point (1, 1, 1, 1). So the hypothesis that m is a unit is necessary.
+      note: The lifting test (Lemma 10.5 of Volume 7, Chapter 4 of the handbook). For q = p^e, z^q + g lies in (z - h, I)^q if and only if g + h^q lies in I^q.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.muDvd_iff_of_forall_eq
+      kind: theorem
+      status: proved
+      note: A limit key polynomial φ divides f for a valuation w with the values of the limit augmentation [μ_∞; φ, γ] if and only if μ_∞ of the remainder of f modulo φ is less than w(f) in multiplicative notation.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.keyPolynomial_of_forall_eq
+      kind: theorem
+      status: proved
+      note: A limit key polynomial φ is a key polynomial for each valuation with the values of the limit augmentation [μ_∞; φ, γ].
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.of_map_le
+      kind: theorem
+      status: proved
+      note: A monic polynomial of the degree of a limit key polynomial φ, with a ν-value at least ν(φ) in additive notation, is a limit key polynomial.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.limitAugmentedValuationFun_eq_of_natDegree_le
+      kind: theorem
+      status: proved
+      note: If the limit key polynomial φ has the largest ν-value among the monic polynomials of its degree, then [μ_∞; φ, ν(φ)] agrees with ν in degree at most deg φ.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.map_le_of_forall_eq
+      kind: theorem
+      status: proved
+      note: If [μ_∞; φ, ν(φ)] agrees with ν in degree at most deg φ, then φ has the largest ν-value among the monic polynomials of its degree.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.forall_limitAugmentedValuationFun_eq_iff
+      kind: theorem
+      status: proved
+      note: The limit augmentation [μ_∞; φ, ν(φ)] agrees with ν in degree at most deg φ if and only if φ has the largest ν-value among the monic polynomials of its degree.
+    - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.limitStep
+      kind: theorem
+      status: proved
+      note: The limit step of MacLane-Vaquié. For a limit key polynomial φ of largest ν-value in its degree, φ is a key polynomial for w = [μ_∞; φ, ν(φ)], μᵢ ≤ w ≤ ν for each i, and w agrees with ν in degree at most deg φ.
     - name: Singularity.Fidelity.isResolution_id
       kind: theorem
       status: proved
