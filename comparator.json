@@ -290,7 +290,13 @@
     "Singularity.tauRhoDropExample_codim",
     "Singularity.idealOrd_logJacobianTangent_cleanPart_of_caseA",
     "Singularity.finrank_logJacobianDirectrix_cleanPart_le_of_ne_zero",
-    "Singularity.logJacobianDirectrixCodim_le_cleanPart_of_ne_zero"
+    "Singularity.logJacobianDirectrixCodim_le_cleanPart_of_ne_zero",
+    "Singularity.caseAToCaseBExample_hyp",
+    "Singularity.caseAToCaseBExample_cases",
+    "Singularity.caseAToCaseBExample_rho",
+    "Singularity.caseAToCaseBExample_not_caseA",
+    "Singularity.caseAToCaseBExample_finrank",
+    "Singularity.caseAToCaseBExample_codim"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }
