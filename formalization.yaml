@@ -1626,3 +1626,31 @@ status:
       kind: theorem
       status: proved
       note: Volume 3, Lemma 2.3.1 of the handbook, in an elementary form without the quotient P_gamma / P_gamma^+. If the sum of c_k z_k has value larger than v(z_j), then each c_k is in the maximal ideal of R.
+    - name: Singularity.IotaIndex.exists_least
+      kind: theorem
+      status: proved
+      note: Volume 6, Lemma 3.2.10 of the handbook, first part. Each nonempty subset of I = {1, ..., p} x N x {1, 2, 3, 4} has a least element for the lexicographic order.
+    - name: Singularity.IotaIndex.not_strictAnti
+      kind: theorem
+      status: proved
+      note: Volume 6, Lemma 3.2.10 of the handbook, second part. There is no infinite strictly decreasing sequence in I = {1, ..., p} x N x {1, 2, 3, 4}.
+    - name: Singularity.exists_algebraMap_eq_trace
+      kind: theorem
+      status: proved
+      note: Volume 8, Lemma 1.3.1 of the handbook. The trace of an element of L that is integral over a normal domain A is in A. The condition that A is Noetherian is not necessary.
+    - name: Singularity.isPurelyInseparable_isGalois_fixedField_top
+      kind: theorem
+      status: proved
+      note: The main part of Volume 8, Proposition 3.1.1 of the handbook. For a finite normal extension L' of K, the fixed field M of the K-automorphisms of L' is purely inseparable over K, and L' is Galois over M.
+    - name: Singularity.bijective_restrictScalars_fixedField_top
+      kind: theorem
+      status: proved
+      note: Volume 8, Proposition 3.1.1 of the handbook, last claim. The map from Gal(L'/M) to the group of the K-automorphisms of L' is bijective.
+    - name: Singularity.separable_distillation
+      kind: theorem
+      status: proved
+      note: Volume 8, Proposition 3.1.1 of the handbook, with L' the normal closure of L/K in an algebraic closure of L.
+    - name: Singularity.not_dvd_finrank_fixedField_sylow
+      kind: theorem
+      status: proved
+      note: Volume 8, Lemma 3.2.2 of the handbook. If [M:K] = p^e with p a prime other than l, and P is an l-Sylow subgroup of Gal(L'/M), then l does not divide [L'^P:K]. The statement uses only the degree of M/K.
