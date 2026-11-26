@@ -122,6 +122,10 @@ import Singularity.Valuation.Chevalley
 import Singularity.Valuation.Center
 import Singularity.Valuation.ExtensionComparable
 import Singularity.Valuation.AffineModelLocalization
+import Singularity.Valuation.ArtinSchreier
+import Singularity.Valuation.ArtinSchreierValue
+import Singularity.Valuation.RankOneArchimedean
+import Singularity.Valuation.ApproximationRankOne
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement
 import Singularity.Alteration.Trace
