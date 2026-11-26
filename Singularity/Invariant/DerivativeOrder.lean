@@ -113,8 +113,8 @@ theorem exists_ord_pderiv_eq {f : MvPolynomial σ k} {r : ℕ} (hf : ord f = r) 
   set fr := homogeneousComponent r f with hfr_def
   have hfr : fr ≠ 0 := by
     intro h
-    have := congrArg (coeff d) h
-    rw [hfr_def, coeff_homogeneousComponent, if_pos hdr, coeff_zero] at this
+    have : fr.coeff d = (0 : MvPolynomial σ k).coeff d := by rw [h]
+    rw [hfr_def, coeff_homogeneousComponent, if_pos hdr, MvPolynomial.coeff_zero] at this
     exact hd this
   have heuler := (homogeneousComponent_isHomogeneous r f).sum_X_mul_pderiv
   have hsum : ∑ i : σ, X i * pderiv i fr ≠ 0 := by
@@ -189,7 +189,8 @@ theorem le_idealOrd_iff_one_le_idealOrd_derivIdeal_iterate (I : Ideal (MvPolynom
     (hm : 1 ≤ m) : (m : ℕ∞) ≤ idealOrd I ↔ 1 ≤ idealOrd (derivIdeal^[m - 1] I) := by
   rw [idealOrd_derivIdeal_iterate]
   rcases eq_or_ne (idealOrd I) ⊤ with htop | htop
-  · simp [htop]
+  · rw [htop, ENat.top_sub_coe]
+    exact ⟨fun _ => le_top, fun _ => le_top⟩
   obtain ⟨r, hr⟩ := ENat.ne_top_iff_exists.mp htop
   rw [← hr, ← ENat.natCast_sub]
   norm_cast
