@@ -210,8 +210,9 @@ theorem derivIdeal_charPExample :
     rw [Ideal.span_le, Set.singleton_subset_iff]
     exact charPExample_mem p
   · have hf0 := Ideal.mem_span_singleton_self (charPExample (k := k) p)
-    have hy : (X 1 ^ p : MvPolynomial (Fin 2) k) ∈ derivIdeal (Ideal.span {charPExample p}) :=
-      (pderiv_charPExample p).2 ▸ pderiv_mem_derivIdeal hf0 1
+    have hy : (X 1 ^ p : MvPolynomial (Fin 2) k) ∈ derivIdeal (Ideal.span {charPExample p}) := by
+      have h := pderiv_mem_derivIdeal hf0 1
+      rwa [(pderiv_charPExample (k := k) p).2] at h
     rw [Ideal.span_le]
     intro g hg
     simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hg
