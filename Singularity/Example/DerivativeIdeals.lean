@@ -147,9 +147,9 @@ theorem coeffIdeal_H' {n : ℕ} (hn : 2 ≤ n) :
     rcases hg with rfl | rfl | rfl
     · exact Ideal.mem_sup_right le_span_pair_sq.1
     · exact Ideal.mem_sup_right le_span_pair_sq.2
-    · have h := sub_mem (Ideal.mem_sup_right (p := Ideal.span {X 0 ^ 2 - X 1 ^ n})
+    · have h := sub_mem (Ideal.mem_sup_right (S := Ideal.span {X 0 ^ 2 - X 1 ^ n})
         (le_span_pair_sq (n := n) (R := R)).1)
-        (Ideal.mem_sup_left (q := Ideal.span {X 0, X 1 ^ (n - 1)} ^ 2)
+        (Ideal.mem_sup_left (T := Ideal.span {X 0, X 1 ^ (n - 1)} ^ 2)
           (Ideal.mem_span_singleton_self (X 0 ^ 2 - X 1 ^ n)))
       rwa [sub_sub_cancel] at h
 
@@ -195,8 +195,9 @@ theorem derivIdeal_span_pow_le :
   rintro g (hg | ⟨i, f, hf, rfl⟩)
   · exact Ideal.subset_span hg
   · simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hf
-    rcases hf with rfl | rfl <;> rw [pderiv_X_pow_charP p] <;> exact zero_mem _
+    rcases hf with rfl | rfl <;> rw [pderiv_X_pow_charP (k := k) p] <;> exact zero_mem _
 
+omit [CharP k p] in
 theorem charPExample_mem : charPExample (k := k) p ∈ Ideal.span {X 0 ^ p, X 1 ^ p} := by
   rw [charPExample, pow_succ]
   exact add_mem (Ideal.subset_span (by simp)) (Ideal.mul_mem_right _ _ (Ideal.subset_span (by simp)))
