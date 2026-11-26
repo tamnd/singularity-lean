@@ -1970,3 +1970,47 @@ status:
       kind: theorem
       status: proved
       note: Volume 6, Example 3.3.4 of the handbook. In characteristic 2 the chart substitution sends u_1^3 + u_2^3 + u_3^3 to u_1^2 (u_1 g).
+    - name: Singularity.Example.cusp_normalization
+      kind: theorem
+      status: proved
+      note: Volume 1, Example 2.5.8 of the handbook. The field of fractions of k[t^2, t^3] is k(t), and k[t] is its integral closure in k(t).
+    - name: Singularity.Example.mul_mem_cusp_iff
+      kind: theorem
+      status: proved
+      note: Volume 1, Example 2.5.8 of the handbook. The conductor of k[t^2, t^3] in k[t] is t^2 k[t].
+    - name: Singularity.Example.node_normalization
+      kind: theorem
+      status: proved
+      note: Volume 1, Example 2.5.9 of the handbook. The field of fractions of k[t^2 - 1, t^3 - t] is k(t), and k[t] is its integral closure in k(t). The kernel that presents the node as a quotient is not proved.
+    - name: Singularity.Example.mul_mem_node_iff
+      kind: theorem
+      status: proved
+      note: Volume 1, Example 2.5.9 of the handbook. If 2 is not 0 in k, the conductor of k[t^2 - 1, t^3 - t] in k[t] is (t^2 - 1) k[t].
+    - name: Singularity.Example.umbrella_normalization
+      kind: theorem
+      status: proved
+      note: Volume 1, Example 2.5.10 of the handbook. The subalgebra k[y, yt, t^2] of k[y, t] has the same field of fractions, and k[y, t] is its integral closure. The kernel that presents the umbrella as a quotient is not proved.
+    - name: Singularity.Example.order_cusp
+      kind: theorem
+      status: proved
+      note: Volume 1, Example 3.2.6 of the handbook. In the local ring of k[x, y] at the origin, the order of y^2 - x^3 is 2.
+    - name: Singularity.Example.not_perfectRing_ratFunc
+      kind: theorem
+      status: proved
+      note: Volume 1, Example 6.1.4 of the handbook. The field F_p(t) is not perfect. The file also has perfectRing_of_finite and perfectRing_of_isAlgClosed.
+    - name: Singularity.Algebra.iInf_pow_eq_bot_of_isDomain
+      kind: theorem
+      status: proved
+      note: Volume 1, Corollary 4.1.9 of the handbook. In a Noetherian domain, the intersection of the powers of a proper ideal is 0.
+    - name: Singularity.Algebra.iInf_pow_prod_eq
+      kind: theorem
+      status: proved
+      note: Volume 1, Example 4.1.10 of the handbook. For I = k x 0 in k x k, the intersection of the powers of I is I, and I is not 0.
+    - name: Singularity.Example.cusp_strict_inter
+      kind: theorem
+      status: proved
+      note: Volume 1, Example 1.10.7 of the handbook. The strict transform u^2 - x of the cusp meets the exceptional divisor x = 0 in the ideal (x, u^2).
+    - name: Singularity.Example.cone_chart_x
+      kind: theorem
+      status: proved
+      note: Volume 1, Example 1.10.8 of the handbook. In the chart for x of the blowup of the cone xy = z^2, y = x v^2 and (x, y, z) = (x).
