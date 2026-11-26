@@ -4,6 +4,12 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/RankDimension.lean`: the primes of a valuation ring and the convex subgroups of its value group (Volume 3, Proposition 1.2.3, Corollary 1.2.4 and Corollary 2.1.6 of the handbook). The primes are in bijection with the convex subgroups (`primeSpectrumEquivConvexSubgroup`). The Krull dimension is the number of convex subgroups minus one (`ringKrullDim_eq_natCard_convexSubgroup_sub_one`). The rational rank, the dimension, the rank and the Krull dimension are at most a finite `trdeg_k K` (`rank_le_and_ringKrullDim_le_trdeg`).
+- `Singularity/Valuation/ValuationRingProperties.lean`: the first properties of a valuation ring (Volume 3, Lemma 1.1.8 of the handbook). The claim that the value group is `ℤ` in part 5 is not proved (`valuationSubring_properties`).
+- `Singularity/Valuation/LexConvexSubgroup.lean`: the convex subgroups of the lexicographic group `ℤ^n` (Volume 3, Example 1.2.7 of the handbook). They are the subgroups of the vectors whose first `m` entries are `0`, for `m ≤ n` (`LexZn.isConvexSubgroup_iff`), and there are exactly `n + 1` of them (`LexZn.natCard_convexSubgroup`). The claim that the rational rank is `n` is not proved.
+
 ## 0.4.35 - 2026-11-26
 
 ### Added
