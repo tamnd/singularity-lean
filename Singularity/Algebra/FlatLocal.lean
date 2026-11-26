@@ -80,8 +80,9 @@ theorem flat_of_faithfullyFlat_of_flat (A B C : Type*) [CommRing A] [CommRing B]
     rw [← AlgebraTensorModule.lTensor_comp_cancelBaseChange]
     exact h1.comp (AlgebraTensorModule.cancelBaseChange A B B C N).injective
   have h4 : Function.Injective
-      (AlgebraTensorModule.lTensor B C (AlgebraTensorModule.lTensor B B f)) :=
-    Function.Injective.of_comp h3
+      (AlgebraTensorModule.lTensor B C (AlgebraTensorModule.lTensor B B f)) := by
+    rw [LinearMap.coe_comp] at h3
+    exact h3.of_comp
   exact (Module.FaithfullyFlat.lTensor_injective_iff_injective (R := B) (M := C)
     (f := AlgebraTensorModule.lTensor B B f)).mp h4
 
