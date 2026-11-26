@@ -4,6 +4,12 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/FactorialSeries.lean`: a transcendental power series (Volume 3, Lemma 1.6.5 of the handbook). Let `k` be a field. The power series `φ = ∑_{i ≥ 1} t^{i!}` is transcendental over `k[t]` (`transcendental_factorialSeries`), so `P(φ) ≠ 0` for each nonzero polynomial `P` over `k[t]` (`aeval_factorialSeries_ne_zero`). Its image in the Laurent series `k((t))` is transcendental over `k(t)` (`transcendental_factorialSeries_ratFunc`).
+- `Singularity/Valuation/ConeLemma.lean`: the cone lemma (Volume 5, Lemma 2.1.3 of the handbook). Let `V` be a vector space of finite dimension over `ℚ` with a total order that is compatible with addition, and let `E` be a finite set of elements `e ≥ 0`. Then there is a basis `m_1, ..., m_r` of `V` with `m_i > 0`, such that each `e ∈ E` has coordinates `≥ 0` in this basis (`coneLemma`). The proof uses the lattice lemma, not the theorem of Hölder.
+- `Singularity/Valuation/GradedIndependence.lean`: independent classes in `P_γ / P_γ^+` (Volume 3, Lemma 2.3.1 of the handbook), in an elementary form. Let `R` be a local ring and let `V` be a valuation ring that contains the image of `R`. If the residues of the `z_k / z_j` are linearly independent over the residue field of `R`, and `v(∑ c_k z_k) > v(z_j)`, then each `c_k` is in the maximal ideal of `R` (`mem_maximalIdeal_of_valuation_sum_lt`).
+
 ## 0.4.32 - 2026-11-26
 
 ### Added

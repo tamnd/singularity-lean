@@ -106,5 +106,8 @@ import Singularity.Valuation.DecompositionField
 import Singularity.Valuation.AbhyankarSubfield
 import Singularity.Valuation.AbhyankarResidueField
 import Singularity.Valuation.AbhyankarValueGroup
+import Singularity.Valuation.FactorialSeries
+import Singularity.Valuation.ConeLemma
+import Singularity.Valuation.GradedIndependence
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement
