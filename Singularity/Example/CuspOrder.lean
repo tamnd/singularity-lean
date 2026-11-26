@@ -111,8 +111,12 @@ theorem order_cusp :
     have hcs : (c : MvPolynomial (Fin 2) k) * x.2 ∉ originIdeal k :=
       (originIdeal k).primeCompl.mul_mem c.2 x.2.2
     apply mul_cuspEq_not_mem_cube hcs
-    rw [show (c : MvPolynomial (Fin 2) k) * x.2 * cuspEq =
-        (c : MvPolynomial (Fin 2) k) * (cuspEq * (x.2 : MvPolynomial (Fin 2) k)) by ring, hc]
+    have hx : ((c : MvPolynomial (Fin 2) k) * (x.2 : MvPolynomial (Fin 2) k)) *
+        (cuspEq : MvPolynomial (Fin 2) k) =
+        (c : MvPolynomial (Fin 2) k) * (x.1 : MvPolynomial (Fin 2) k) := by
+      rw [← hc]
+      ring
+    rw [hx]
     exact Ideal.mul_mem_left _ _ x.1.2
   have hle2 : ((2 : ℕ) : ℕ∞) ≤ Singularity.Algebra.order (IsLocalRing.maximalIdeal R)
       (algebraMap (MvPolynomial (Fin 2) k) R cuspEq) := Singularity.Algebra.le_order_of_mem h2
