@@ -5,6 +5,7 @@ Released under the Apache 2.0 licence as described in the file LICENSE.
 import Mathlib.RingTheory.Localization.AtPrime.Basic
 import Mathlib.RingTheory.Localization.Ideal
 import Mathlib.Algebra.MvPolynomial.Basic
+import Mathlib.Algebra.MvPolynomial.CommRing
 import Mathlib.Algebra.Polynomial.Div
 import Singularity.Algebra.HilbertSamuel
 
@@ -70,7 +71,8 @@ theorem cuspEq_mem_sq : cuspEq ∈ originIdeal k ^ 2 := by
   exact Ideal.pow_le_pow_right (by norm_num) (Ideal.pow_mem_pow (X_mem_originIdeal 0) 3)
 
 theorem substXZero_cuspEq : substXZero (cuspEq : MvPolynomial (Fin 2) k) = Polynomial.X ^ 2 := by
-  simp [substXZero, cuspEq, eval₂_sub, eval₂_pow, eval₂_X]
+  rw [cuspEq, map_sub, map_pow, map_pow]
+  simp [substXZero]
 
 /-- Let `s ∉ 𝔫`. Then `s f ∉ 𝔫^3`. -/
 theorem mul_cuspEq_not_mem_cube {s : MvPolynomial (Fin 2) k} (hs : s ∉ originIdeal k) :
@@ -109,7 +111,8 @@ theorem order_cusp :
     have hcs : (c : MvPolynomial (Fin 2) k) * x.2 ∉ originIdeal k :=
       (originIdeal k).primeCompl.mul_mem c.2 x.2.2
     apply mul_cuspEq_not_mem_cube hcs
-    rw [show (c : MvPolynomial (Fin 2) k) * x.2 * cuspEq = c * (cuspEq * x.2) by ring, hc]
+    rw [show (c : MvPolynomial (Fin 2) k) * x.2 * cuspEq =
+        (c : MvPolynomial (Fin 2) k) * (cuspEq * (x.2 : MvPolynomial (Fin 2) k)) by ring, hc]
     exact Ideal.mul_mem_left _ _ x.1.2
   have hle2 : ((2 : ℕ) : ℕ∞) ≤ Singularity.Algebra.order (IsLocalRing.maximalIdeal R)
       (algebraMap (MvPolynomial (Fin 2) k) R cuspEq) := Singularity.Algebra.le_order_of_mem h2
