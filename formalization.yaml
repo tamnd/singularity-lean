@@ -1834,6 +1834,18 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 3, Proposition 1.5.5 of the handbook. W is in the closure of the point V of ZR(K/A) if and only if W is contained in V.'
+    - name: Singularity.ringKrullDim_eq_natCard_convexSubgroup_sub_one
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Corollary 1.2.4 of the handbook. If the value group has finitely many convex subgroups, then the Krull dimension of V is their number minus one, that is, the rank.'
+    - name: Singularity.rank_le_and_ringKrullDim_le_trdeg
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Corollary 2.1.6 of the handbook. The statement assumes only that trdeg_k K is finite, not that K/k is a function field.'
+    - name: Singularity.valuationSubring_properties
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Lemma 1.1.8 of the handbook. The claim of part 5 that the value group is isomorphic to Z is not proved.'
     - name: Singularity.aChain_chart_mul
       kind: theorem
       status: proved

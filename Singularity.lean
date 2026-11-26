@@ -131,6 +131,8 @@ import Singularity.Valuation.ArtinSchreierValue
 import Singularity.Valuation.RankOneArchimedean
 import Singularity.Valuation.ApproximationRankOne
 import Singularity.Valuation.ZariskiRiemannClosure
+import Singularity.Valuation.RankDimension
+import Singularity.Valuation.ValuationRingProperties
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement
 import Singularity.Alteration.Trace
