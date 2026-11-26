@@ -320,7 +320,14 @@
     "Singularity.fullDirectrixExample_rho",
     "Singularity.fullDirectrixExample_cases",
     "Singularity.fullDirectrixExample_finrank",
-    "Singularity.fullDirectrixExample_codim"
+    "Singularity.fullDirectrixExample_codim",
+    "Singularity.ord_eq_degree_divisorExponent_add",
+    "Singularity.idealOrd_logJacobianTangent_eq_ord",
+    "Singularity.idealOrd_logJacobianTangent_eq_degree_add_residualOrderAlong",
+    "Singularity.idealOrd_logJacobianTangent_eq_degree_add_iff",
+    "Singularity.idealOrd_logJacobianTangent_eq_degree_add_add_one_iff",
+    "Singularity.residualOrderAlong_cleanPart_le_of_forall_eq_zero",
+    "Singularity.logJacobianDirectrixCodim_le_cleanPart_of_residualOrderAlong_eq"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

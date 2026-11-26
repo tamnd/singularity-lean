@@ -1381,6 +1381,34 @@ status:
       kind: theorem
       status: proved
       note: Example 3.8.5 of Volume 7, Section 3.8 of the handbook, the form with the codimension. tau_rho(g) = tau_rho(g'_c) = 1, tau~(g) = 2 and tau~(g'_c) = 1. So tau~ goes down at a step from case A, and the case condition of Theorem 3.8.4 is necessary.
+    - name: Singularity.ord_eq_degree_divisorExponent_add
+      kind: theorem
+      status: proved
+      note: Volume 7, Section 3.10 of the handbook. For g = x^r G, ord g = |r| + ord G.
+    - name: Singularity.idealOrd_logJacobianTangent_eq_ord
+      kind: theorem
+      status: proved
+      note: Lemma 3.10.1 of Volume 7, Section 3.10 of the handbook. If g /= 0 is clean, then the order of Theta_0(g) is ord g. So sigma = d.
+    - name: Singularity.idealOrd_logJacobianTangent_eq_degree_add_residualOrderAlong
+      kind: theorem
+      status: proved
+      note: Lemma 3.10.1 of Volume 7, Section 3.10 of the handbook, the form with the residual order. If g /= 0 is clean, then the order of Theta_0(g) is |r| + d.
+    - name: Singularity.idealOrd_logJacobianTangent_eq_degree_add_iff
+      kind: theorem
+      status: proved
+      note: Lemma 3.10.1 of Volume 7, Section 3.10 of the handbook. Case A is the type 0. If g /= 0 is clean, then the order of Theta_0(g) is |r| + rho if and only if rho = d.
+    - name: Singularity.idealOrd_logJacobianTangent_eq_degree_add_add_one_iff
+      kind: theorem
+      status: proved
+      note: Lemma 3.10.1 of Volume 7, Section 3.10 of the handbook. Case B is the type 1. If g /= 0 is clean, then the order of Theta_0(g) is |r| + rho + 1 if and only if rho + 1 = d.
+    - name: Singularity.residualOrderAlong_cleanPart_le_of_forall_eq_zero
+      kind: theorem
+      status: proved
+      note: Theorem 3.10.3 of Volume 7, Section 3.10 of the handbook. Let g /= 0 be clean with ord g >= p, let the chart send g to x_j^p g', let rho(g) = rho(g'_c) = m, and let t_i = 0 for each i in Delta with i /= j. Then d' <= d.
+    - name: Singularity.logJacobianDirectrixCodim_le_cleanPart_of_residualOrderAlong_eq
+      kind: theorem
+      status: proved
+      note: Theorem 3.10.3 of Volume 7, Section 3.10 of the handbook. Under the same hypotheses, if d' = d, then tau_rho(g) <= tau_rho(g'_c).
     - name: Singularity.exists_macLaneVaquieStep_or_forall_isStable
       kind: theorem
       status: proved
