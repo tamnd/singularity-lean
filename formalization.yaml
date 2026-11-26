@@ -1460,11 +1460,23 @@ status:
     - name: Singularity.KangarooPathConjecture
       kind: statement
       status: open
-      note: Conjecture 3.11.3 of Volume 7, Section 3.11 of the handbook. On a kangaroo path with P_0 and P_m of case A and m >= 2, tau_rho(P_0) <= tau_rho(P_m). This is a definition of a proposition. The package does not prove it.
+      note: Conjecture 3.11.3 of Volume 7, Section 3.11 of the handbook. On a kangaroo path with P_0 and P_m of case A and m >= 2, tau_rho(P_0) <= tau_rho(P_m). This is a definition of a proposition. The statement is false, since Example 3.11.6 of the handbook is a counterexample with p = 2 and three variables. It holds if tau_rho(P_0) <= 1 (Singularity.kangarooPath_of_codim_le_one). The package does not prove the negation yet.
     - name: Singularity.logJacobianDirectrix_eq_iInf_caseAForm
       kind: theorem
       status: proved
       note: Lemma 3.11.4 of Volume 7, Section 3.11 of the handbook. If g is of case A and rho = m, then T_rho(g) is the intersection of the directrices of the forms E_i F = r_i F + x_i d_i F for i in Delta, with F the part of degree m of G. There is no hypothesis on k and no hypothesis that g is clean.
+    - name: Singularity.eq_zero_of_directrix_eq_top
+      kind: theorem
+      status: proved
+      note: A polynomial with constant term 0 and with the full space as directrix is 0. The proof works over each field, also over a finite field.
+    - name: Singularity.one_le_logJacobianDirectrixCodim_of_caseA
+      kind: theorem
+      status: proved
+      note: At a point of case A with rho = m and m at least 1, tau_rho is at least 1.
+    - name: Singularity.kangarooPath_of_codim_le_one
+      kind: theorem
+      status: proved
+      note: Proposition 3.11.5 of Volume 7, Section 3.11 of the handbook. The conclusion of Conjecture 3.11.3 holds if tau_rho(P_0) is at most 1.
     - name: Singularity.exists_macLaneVaquieStep_or_forall_isStable
       kind: theorem
       status: proved
