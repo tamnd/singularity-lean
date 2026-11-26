@@ -1782,3 +1782,39 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 5, Lemma 1.1.1 of the handbook. If A is in A'' and A'' is in A_p, then A''_(p'') = A_p, as sets of fractions in K.'
+    - name: Singularity.artinSchreierPoly_irreducible_or_splits
+      kind: theorem
+      status: proved
+      note: 'Volume 3, proof of Proposition 3.2.5 and Example 3.2.6 of the handbook. Over a field of characteristic p, X^p - X - a is irreducible or it splits.'
+    - name: Singularity.artinSchreierPoly_irreducible
+      kind: theorem
+      status: proved
+      note: 'Volume 3, proof of Proposition 3.2.5 of the handbook. If X^p - X - a has no root in F, then it is irreducible over F.'
+    - name: Singularity.artinSchreierPoly_roots_toFinset
+      kind: theorem
+      status: proved
+      note: 'Volume 3, proof of Proposition 3.2.5 of the handbook. If theta is a root of X^p - X - a, then the roots are theta + n with n < p.'
+    - name: Singularity.artinSchreierPoly_one_irreducible_zmod
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 3.2.6 (2) of the handbook. The polynomial X^p - X - 1 is irreducible over F_p.'
+    - name: Singularity.valuation_pow_eq_of_one_lt_valuation_pow_sub_self
+      kind: theorem
+      status: proved
+      note: 'Volume 3, proof of Lemma 3.2.4 of the handbook, in multiplicative notation. If v(eta^n - eta) > 1 and n >= 2, then v(eta)^n = v(eta^n - eta).'
+    - name: Singularity.valuation_eq_one_of_valuation_pow_sub_self_eq_one
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 3.2.6 (2) of the handbook, the first step. If v(eta^n - eta) = 1 and n >= 2, then v(eta) = 1.'
+    - name: Singularity.rankOne_iff_mulArchimedean
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Lemma 1.2.6 of the handbook. An ordered group G with G not trivial has exactly the convex subgroups 1 and G if and only if G is archimedean.'
+    - name: Singularity.exists_approx_one_of_valuation
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Lemma 3.1.5 (2) of the handbook. Part (1) of the lemma is a hypothesis: the element x with w_i(x) > 1 and w_j(x) < 1.'
+    - name: Singularity.ZariskiRiemann.mem_closure_singleton_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Proposition 1.5.5 of the handbook. W is in the closure of the point V of ZR(K/A) if and only if W is contained in V.'
