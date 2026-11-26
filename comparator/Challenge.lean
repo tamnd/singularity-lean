@@ -3625,4 +3625,53 @@ theorem logJacobianDirectrixCodim_le_cleanPart_of_residualOrderAlong_eq (hg : g 
 
 end LogJacobianType
 
+section LogJacobianKangaroo
+
+open MvPolynomial Finsupp
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] [Fintype σ] (p : ℕ) [CharP k p]
+
+/-- `Singularity/Invariant/LogJacobianKangaroo.lean`: a step of a point blowup where `ρ` stays
+`m`. -/
+def RhoStep (m : ℕ) (P Q : Finset σ × MvPolynomial σ k) : Prop :=
+  ∃ (j : σ) (t : σ → k) (g' : MvPolynomial σ k), P.2 ≠ 0 ∧ IsClean p P.2 ∧
+    (p : ℕ∞) ≤ ord P.2 ∧ pointChart j t P.2 = X j ^ p * g' ∧
+    Q = (blowupDivisor P.1 j t, cleanPart p g') ∧
+    logJacobianOrder P.1 P.2 = m ∧ logJacobianOrder Q.1 Q.2 = m
+
+/-- `Singularity/Invariant/LogJacobianKangaroo.lean`: a point of case B. -/
+def IsLogJacobianCaseB (P : Finset σ × MvPolynomial σ k) : Prop :=
+  idealOrd (logJacobianTangent P.1 P.2) =
+    ((degree (divisorExponent P.1 P.2) : ℕ) : ℕ∞) + logJacobianOrder P.1 P.2 + 1
+
+variable {p}
+
+/-- `Singularity/Invariant/LogJacobianKangaroo.lean`: one step into a point of case B
+(Proposition 3.8.2 of Volume 7 of the handbook). -/
+theorem logJacobianDirectrixCodim_le_of_rhoStep {m : ℕ} {P Q : Finset σ × MvPolynomial σ k}
+    (hs : RhoStep p m P Q) (hB : IsLogJacobianCaseB Q) :
+    logJacobianDirectrixCodim P.1 P.2 ≤ logJacobianDirectrixCodim Q.1 Q.2 := sorry
+
+/-- `Singularity/Invariant/LogJacobianKangaroo.lean`: the last step of a kangaroo path. -/
+theorem logJacobianDirectrixCodim_le_fullDirectrixCodim_of_rhoStep {m : ℕ}
+    {P Q : Finset σ × MvPolynomial σ k} (hs : RhoStep p m P Q) :
+    logJacobianDirectrixCodim P.1 P.2 ≤ logJacobianFullDirectrixCodim Q.1 Q.2 := sorry
+
+/-- `Singularity/Invariant/LogJacobianKangaroo.lean`: `τ_ρ` along a run of points of case B
+(Proposition 3.11.1 of Volume 7, Section 3.11 of the handbook). -/
+theorem logJacobianDirectrixCodim_le_of_reflTransGen {m : ℕ}
+    {P Q : Finset σ × MvPolynomial σ k}
+    (h : Relation.ReflTransGen (fun A B => RhoStep p m A B ∧ IsLogJacobianCaseB B) P Q) :
+    logJacobianDirectrixCodim P.1 P.2 ≤ logJacobianDirectrixCodim Q.1 Q.2 := sorry
+
+/-- `Singularity/Invariant/LogJacobianKangaroo.lean`: the kangaroo path (Proposition 3.11.1 of
+Volume 7, Section 3.11 of the handbook). -/
+theorem logJacobianDirectrixCodim_le_fullDirectrixCodim_of_reflTransGen {m : ℕ}
+    {P Q R : Finset σ × MvPolynomial σ k}
+    (h : Relation.ReflTransGen (fun A B => RhoStep p m A B ∧ IsLogJacobianCaseB B) P Q)
+    (hQR : RhoStep p m Q R) :
+    logJacobianDirectrixCodim P.1 P.2 ≤ logJacobianFullDirectrixCodim R.1 R.2 := sorry
+
+end LogJacobianKangaroo
+
 end Singularity

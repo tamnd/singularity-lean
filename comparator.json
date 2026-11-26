@@ -327,7 +327,11 @@
     "Singularity.idealOrd_logJacobianTangent_eq_degree_add_iff",
     "Singularity.idealOrd_logJacobianTangent_eq_degree_add_add_one_iff",
     "Singularity.residualOrderAlong_cleanPart_le_of_forall_eq_zero",
-    "Singularity.logJacobianDirectrixCodim_le_cleanPart_of_residualOrderAlong_eq"
+    "Singularity.logJacobianDirectrixCodim_le_cleanPart_of_residualOrderAlong_eq",
+    "Singularity.logJacobianDirectrixCodim_le_of_rhoStep",
+    "Singularity.logJacobianDirectrixCodim_le_fullDirectrixCodim_of_rhoStep",
+    "Singularity.logJacobianDirectrixCodim_le_of_reflTransGen",
+    "Singularity.logJacobianDirectrixCodim_le_fullDirectrixCodim_of_reflTransGen"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

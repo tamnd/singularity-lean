@@ -1425,6 +1425,26 @@ status:
       kind: theorem
       status: proved
       note: Theorem 3.10.3 of Volume 7, Section 3.10 of the handbook. Under the same hypotheses, if d' = d, then tau_rho(g) <= tau_rho(g'_c).
+    - name: Singularity.logJacobianDirectrixCodim_le_of_rhoStep
+      kind: theorem
+      status: proved
+      note: Volume 7, Section 3.11 of the handbook. If a step keeps rho and the new point is of case B, then tau_rho does not go down. There is no hypothesis on the case of the old point, and a component of the divisor can leave.
+    - name: Singularity.logJacobianDirectrixCodim_le_fullDirectrixCodim_of_rhoStep
+      kind: theorem
+      status: proved
+      note: Volume 7, Section 3.11 of the handbook. If a step keeps rho, then tau_rho of the old point is at most tau~ of the new point. There is no hypothesis on the cases.
+    - name: Singularity.logJacobianDirectrixCodim_le_of_reflTransGen
+      kind: theorem
+      status: proved
+      note: Proposition 3.11.1 of Volume 7, Section 3.11 of the handbook. Along a run of steps that keep rho into points of case B, tau_rho does not go down.
+    - name: Singularity.logJacobianDirectrixCodim_le_fullDirectrixCodim_of_reflTransGen
+      kind: theorem
+      status: proved
+      note: Proposition 3.11.1 of Volume 7, Section 3.11 of the handbook. Let P_0, ..., P_m be a sequence of steps that keep rho, with P_1, ..., P_(m-1) of case B. Then tau_rho(P_0) <= tau~(P_m).
+    - name: Singularity.KangarooPathConjecture
+      kind: statement
+      status: open
+      note: Conjecture 3.11.3 of Volume 7, Section 3.11 of the handbook. On a kangaroo path with P_0 and P_m of case A and m >= 2, tau_rho(P_0) <= tau_rho(P_m). This is a definition of a proposition. The package does not prove it.
     - name: Singularity.exists_macLaneVaquieStep_or_forall_isStable
       kind: theorem
       status: proved
