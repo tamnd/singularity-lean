@@ -1818,3 +1818,51 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 3, Proposition 1.5.5 of the handbook. W is in the closure of the point V of ZR(K/A) if and only if W is contained in V.'
+    - name: Singularity.aChain_chart_mul
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Proposition 2.3.10, part 1 of the handbook. The chart x = s^(m-i) t^(m-1-i), y = s^i t^(i+1), z = st satisfies xy = z^m in each commutative ring.'
+    - name: Singularity.aChain_glue_x
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Proposition 2.3.10, part 1 of the handbook. The gluing s_(i-1) = 1/t_i and t_(i-1) = s_i t_i^2 gives the same x. The theorems aChain_glue_y and aChain_glue_z give the same y and z.'
+    - name: Singularity.aChainChart_equation
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Proposition 2.3.10, part 1 of the handbook. The map of k-algebras k[x, y, z] to k[s, t] of the chart U_i sends xy - z^m to 0.'
+    - name: Singularity.an_xChart
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Proposition 2.3.2, part 2 of the handbook. In the x-chart of the blowup of xy = z^n at the origin, F = x^2 (y_1 - x^(n-2) z_1^n). The y-chart and the z-chart are an_yChart and an_zChart.'
+    - name: Singularity.an_not_X_dvd_xChart
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Proposition 2.3.2, part 2 of the handbook. The variable x does not divide y_1 - x^(n-2) z_1^n, so this is the strict transform in the x-chart.'
+    - name: Singularity.whitneyNormalization_equation
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 1.2.7, part 2 of the handbook. The map x to st, y to s, z to t^2 sends x^2 - y^2 z to 0.'
+    - name: Singularity.whitney_exists_eq_add_mul
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 1.2.7, part 2 of the handbook. Each element of k[s, t] is nu(a) + nu(b) t. The normalization claim is not proved.'
+    - name: Singularity.whitney_lineChart_x
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 3.1.6, part 2 of the handbook. In the chart x = y x_2 of the blowup along V(x, y), F = y^2 (x_2^2 - z). The other charts are whitney_lineChart_y and whitney_pointChart_z.'
+    - name: Singularity.cuspPair_inter
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 3.1.10, part 1 of the handbook. The curves y^2 = x^3 and y^2 = x^5 meet only at the origin where 1 - x^2 is not 0, in each ring without zero divisors.'
+    - name: Singularity.cuspPair_order_five
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 3.1.10, part 4 of the handbook. The factorizations cuspPair_order_one to cuspPair_order_five give the orders 4, 7, 8, 12, 16 of f along E_1 to E_5. That the last factors are not divisible by the local equation is not proved.'
+    - name: Singularity.separable_one_add_X_pow_succ
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.5 of the handbook. In characteristic p the polynomial 1 + Y^(p+1) is separable.'
+    - name: Singularity.card_roots_one_add_X_pow_succ
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.5 of the handbook. Over an algebraically closed field of characteristic p, 1 + Y^(p+1) has exactly p + 1 distinct roots. The claim that they give the singular points is not proved.'

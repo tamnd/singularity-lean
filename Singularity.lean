@@ -135,3 +135,8 @@ import Singularity.Algebra.Hypersurface
 import Singularity.Algebra.Frobenius
 import Singularity.Algebra.FlatLocal
 import Singularity.Algebra.ArtinRees
+import Singularity.Surface.AChainChart
+import Singularity.Surface.AnBlowupChart
+import Singularity.Surface.WhitneyUmbrella
+import Singularity.Surface.CuspPairBlowup
+import Singularity.Surface.InseparableBlowup
