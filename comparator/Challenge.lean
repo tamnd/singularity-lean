@@ -3561,4 +3561,68 @@ theorem hasLocalUniformization_of_isAbhyankarValuation_of_finrank_residueField_e
 
 end AbhyankarSubfield
 
+section LogJacobianType
+
+open MvPolynomial Finsupp Module
+
+section LemmaA
+
+variable {σ k : Type*} [Field k] (p : ℕ) [CharP k p] {Δ : Finset σ} {g : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/LogJacobianType.lean`: the order of `g = x^r G` is `|r| + ord G`. -/
+theorem ord_eq_degree_divisorExponent_add (Δ : Finset σ) (g : MvPolynomial σ k) :
+    ord g = degree (divisorExponent Δ g) + ord (residualFactor Δ g) := sorry
+
+/-- `Singularity/Invariant/LogJacobianType.lean`: Lemma 3.10.1 of Volume 7, Section 3.10 of the
+handbook. For a clean `g ≠ 0`, the order of `Θ₀(g)` is `ord g`. -/
+theorem idealOrd_logJacobianTangent_eq_ord (hg : g ≠ 0) (hc : IsClean p g) :
+    idealOrd (logJacobianTangent Δ g) = ord g := sorry
+
+/-- `Singularity/Invariant/LogJacobianType.lean`: Lemma 3.10.1 of Volume 7, Section 3.10 of the
+handbook, the form with the residual order. -/
+theorem idealOrd_logJacobianTangent_eq_degree_add_residualOrderAlong (hg : g ≠ 0)
+    (hc : IsClean p g) :
+    idealOrd (logJacobianTangent Δ g) =
+      degree (divisorExponent Δ g) + residualOrderAlong Δ p g := sorry
+
+/-- `Singularity/Invariant/LogJacobianType.lean`: Lemma 3.10.1 of Volume 7, Section 3.10 of the
+handbook. Case A is the type `0`. -/
+theorem idealOrd_logJacobianTangent_eq_degree_add_iff (hg : g ≠ 0) (hc : IsClean p g) :
+    idealOrd (logJacobianTangent Δ g) = degree (divisorExponent Δ g) + logJacobianOrder Δ g ↔
+      logJacobianOrder Δ g = residualOrderAlong Δ p g := sorry
+
+/-- `Singularity/Invariant/LogJacobianType.lean`: Lemma 3.10.1 of Volume 7, Section 3.10 of the
+handbook. Case B is the type `1`. -/
+theorem idealOrd_logJacobianTangent_eq_degree_add_add_one_iff (hg : g ≠ 0) (hc : IsClean p g) :
+    idealOrd (logJacobianTangent Δ g) =
+        degree (divisorExponent Δ g) + logJacobianOrder Δ g + 1 ↔
+      logJacobianOrder Δ g + 1 = residualOrderAlong Δ p g := sorry
+
+end LemmaA
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] [Fintype σ] (p : ℕ) [CharP k p]
+  {Δ : Finset σ} {j : σ} {t : σ → k} {g g' : MvPolynomial σ k}
+
+/-- `Singularity/Invariant/LogJacobianType.lean`: Theorem 3.10.3 of Volume 7, Section 3.10 of the
+handbook, the form `d' ≤ d`. -/
+theorem residualOrderAlong_cleanPart_le_of_forall_eq_zero (hg : g ≠ 0) (hc : IsClean p g)
+    (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {m : ℕ}
+    (hρ : logJacobianOrder Δ g = m)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = m)
+    (ht : ∀ i ∈ Δ, i ≠ j → t i = 0) :
+    residualOrderAlong (blowupDivisor Δ j t) p g' ≤ residualOrderAlong Δ p g := sorry
+
+/-- `Singularity/Invariant/LogJacobianType.lean`: Theorem 3.10.3 of Volume 7, Section 3.10 of the
+handbook, the form with `τ_ρ` if `d' = d`. -/
+theorem logJacobianDirectrixCodim_le_cleanPart_of_residualOrderAlong_eq (hg : g ≠ 0)
+    (hc : IsClean p g) (hord : (p : ℕ∞) ≤ ord g) (h : pointChart j t g = X j ^ p * g') {m : ℕ}
+    (hρ : logJacobianOrder Δ g = m)
+    (hρ' : logJacobianOrder (blowupDivisor Δ j t) (cleanPart p g') = m)
+    (ht : ∀ i ∈ Δ, i ≠ j → t i = 0)
+    (hdd : residualOrderAlong (blowupDivisor Δ j t) p g' = residualOrderAlong Δ p g) :
+    logJacobianDirectrixCodim Δ g ≤
+      logJacobianDirectrixCodim (blowupDivisor Δ j t) (cleanPart p g') := sorry
+
+end LogJacobianType
+
 end Singularity
