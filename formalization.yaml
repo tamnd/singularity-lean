@@ -1726,3 +1726,59 @@ status:
       kind: theorem
       status: proved
       note: Volume 1, Theorem 4.1.7 of the handbook. Let E be the intersection of the I^n M. Then I E = E, and (1 + a) E = 0 for some a in I.
+    - name: Singularity.exists_ord_pderiv_eq
+      kind: theorem
+      status: proved
+      note: Volume 2, Lemma 2.1.4 and Proposition 2.4.1 of the handbook, for one polynomial at the origin. If ord f = r is at least 1 and r is not 0 in k, then some partial derivative of f has order r - 1.
+    - name: Singularity.idealOrd_derivIdeal_of_ne_zero
+      kind: theorem
+      status: proved
+      note: Volume 2, Proposition 2.4.1 of the handbook, at the origin. If ord I = r is at least 1 and r is not 0 in k, then ord D(I) = r - 1.
+    - name: Singularity.idealOrd_derivIdeal_iterate
+      kind: theorem
+      status: proved
+      note: Volume 2, Lemma 2.1.4 of the handbook, at the origin, with the partial derivatives in place of all derivations. In characteristic 0, ord D^j(I) = ord I - j with the truncated subtraction of the extended natural numbers.
+    - name: Singularity.le_idealOrd_iff_one_le_idealOrd_derivIdeal_iterate
+      kind: theorem
+      status: proved
+      note: Volume 2, Corollary 2.1.5 (1) of the handbook, at the origin. In characteristic 0, the origin has order at least m for I if and only if it is in the zero set of D^(m-1)(I).
+    - name: Singularity.exists_mem_derivIdeal_iterate_ord_eq_one
+      kind: theorem
+      status: proved
+      note: The algebraic part of Volume 2, Lemma 2.3.2 of the handbook, at the origin. In characteristic 0, if ord I = m is at least 1, then D^(m-1)(I) has an element of order 1.
+    - name: Singularity.le_idealOrd_iSup_pow_iff
+      kind: theorem
+      status: proved
+      note: Volume 2, Lemma 3.2.2 (1) of the handbook, at the origin. If each c_j divides N and N is at least 1, then the sum of the B_j^(N / c_j) has order at least N if and only if each B_j has order at least c_j.
+    - name: Singularity.naiveCoeff_eq
+      kind: theorem
+      status: proved
+      note: Volume 2, Example 3.3.9 of the handbook, the arithmetic. The coefficients of the naive order reduction are m + F_i with F_i the Fibonacci numbers.
+    - name: Singularity.exists_lt_naiveCoeff_add
+      kind: theorem
+      status: proved
+      note: Volume 2, Example 3.3.9 of the handbook, the arithmetic. The order at the intersection of the last two divisors grows without bound.
+    - name: Singularity.DerivativeIdeals.derivIdeal_xy_sub_z_pow
+      kind: theorem
+      status: proved
+      note: Volume 2, Example 2.3.4 of the handbook. If n is at least 1 and not 0 in k, then D(xy - z^n) = (x, y, z^(n-1)).
+    - name: Singularity.DerivativeIdeals.coeffIdeal_H
+      kind: theorem
+      status: proved
+      note: Volume 2, Examples 2.3.4 and 3.2.8 of the handbook, on H = (x = 0). For n at least 2, (z^n) + (y, z^(n-1))^2 = (y^2, y z^(n-1), z^n).
+    - name: 'Singularity.DerivativeIdeals.coeffIdeal_H'''
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 3.2.8 of the handbook, on H'' = (x = y). For n at least 2, (y^2 - z^n) + (y, z^(n-1))^2 = (y^2, y z^(n-1), z^n).'
+    - name: Singularity.DerivativeIdeals.derivIdeal_charPExample
+      kind: theorem
+      status: proved
+      note: Volume 2, Example 2.4.2 of the handbook. In characteristic p, D(x^p + y^(p+1)) = (x^p, y^p).
+    - name: Singularity.DerivativeIdeals.le_idealOrd_derivIdeal_iterate_charPExample
+      kind: theorem
+      status: proved
+      note: Volume 2, Example 2.4.2 of the handbook. In characteristic p, each D^j(x^p + y^(p+1)) has order at least p at the origin.
+    - name: Singularity.centerLocalization_eq_of_le
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Lemma 1.1.1 of the handbook. If A is in A'' and A'' is in A_p, then A''_(p'') = A_p, as sets of fractions in K.'

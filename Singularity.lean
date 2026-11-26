@@ -74,9 +74,13 @@ import Singularity.Invariant.LogJacobianCaseAForms
 import Singularity.Invariant.LogJacobianKangarooSmall
 import Singularity.Invariant.LogJacobianKangarooCounterexample
 import Singularity.Invariant.LogJacobianKangarooExample
+import Singularity.Invariant.DerivativeOrder
+import Singularity.Invariant.CoefficientIdealOrder
+import Singularity.Invariant.FibonacciOrder
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
+import Singularity.Example.DerivativeIdeals
 import Singularity.Fidelity.Embedded
 import Singularity.Fidelity.LocalUniformization
 import Singularity.Scheme.Embedded
@@ -117,6 +121,7 @@ import Singularity.Valuation.ValuationProperties
 import Singularity.Valuation.Chevalley
 import Singularity.Valuation.Center
 import Singularity.Valuation.ExtensionComparable
+import Singularity.Valuation.AffineModelLocalization
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement
 import Singularity.Alteration.Trace
