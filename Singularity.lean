@@ -111,6 +111,12 @@ import Singularity.Valuation.AbhyankarValueGroup
 import Singularity.Valuation.FactorialSeries
 import Singularity.Valuation.ConeLemma
 import Singularity.Valuation.GradedIndependence
+import Singularity.Valuation.AbhyankarRankOne
+import Singularity.Valuation.ConvexSubgroup
+import Singularity.Valuation.ValuationProperties
+import Singularity.Valuation.Chevalley
+import Singularity.Valuation.Center
+import Singularity.Valuation.ExtensionComparable
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement
 import Singularity.Alteration.Trace
