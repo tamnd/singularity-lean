@@ -67,7 +67,7 @@ theorem linearIndependent_of_linearIndependent_residue {F : Type*} [Field F]
     E.mul_mem (g i).2 (E.inv_mem (g j).2)
   have hsum : ∑ i, (⟨_, hdV i⟩ : V) * z i = 0 := by
     apply Subtype.ext
-    simp only [ValuationSubring.coe_sum, ValuationSubring.coe_mul, ValuationSubring.coe_zero]
+    push_cast
     have hg' : ∑ i, (g i : K) * (z i : K) = 0 := by
       rw [← hg]
       refine Finset.sum_congr rfl fun i _ => ?_
