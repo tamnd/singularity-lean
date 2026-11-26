@@ -27,6 +27,9 @@ import Singularity.Algebra.MultiplicityRegular
 import Singularity.Algebra.BlowupChart
 import Singularity.Algebra.CurveOnSurface
 import Singularity.Algebra.MvHasse
+import Singularity.Algebra.DerivationIdealPow
+import Singularity.Algebra.PartialDerivCharP
+import Singularity.Algebra.PurelyInseparableSurface
 import Singularity.Curves.Affine
 import Singularity.Scheme.Components
 import Singularity.Scheme.Reduction
