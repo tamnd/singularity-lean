@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.32 - 2026-11-26
+
 ### Added
 
 - `Singularity/Algebra/DerivationIdealPow.lean`: a derivation lowers the power of an ideal by one (Volume 6, Lemma 1.2.4 of the handbook). Let `D` be a derivation of a commutative ring `B` over a commutative ring `R`, and let `I` be an ideal of `B`. Then `D x ∈ I^(e-1)` for each `x ∈ I^e` (`derivation_mem_pow_pred`). The form of the handbook, with an additive map that satisfies the Leibniz rule, is `addMonoidHom_mem_pow_pred`.
