@@ -68,6 +68,6 @@ theorem valuationSubring_properties (V : ValuationSubring K) :
   refine ⟨fun W hW => ⟨V.ofLE W hW, rfl⟩,
     fun I J => Std.Total.total (r := fun I J : Ideal V => I ≤ J) I J,
     fun I hI => IsBezout.isPrincipal_of_FG I hI, inferInstance, fun hN hV => ?_⟩
-  exact ((IsDiscreteValuationRing.TFAE V (not_isField_of_ne_top hV)).out 2 1).mp inferInstance
+  exact ((IsDiscreteValuationRing.TFAE V (not_isField_of_ne_top hV)).out 2 1).mp (inferInstance : ValuationRing V)
 
 end Singularity

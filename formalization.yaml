@@ -1846,6 +1846,14 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 3, Lemma 1.1.8 of the handbook. The claim of part 5 that the value group is isomorphic to Z is not proved.'
+    - name: Singularity.LexZn.isConvexSubgroup_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 1.2.7 of the handbook. A subgroup of Z^n with the lexicographic order is convex if and only if it is the subgroup of the vectors whose first m entries are 0, for some m at most n.'
+    - name: Singularity.LexZn.natCard_convexSubgroup
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 1.2.7 of the handbook. Z^n with the lexicographic order has exactly n + 1 convex subgroups. The claim that the rational rank is n is not proved.'
     - name: Singularity.aChain_chart_mul
       kind: theorem
       status: proved

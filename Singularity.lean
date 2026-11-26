@@ -133,6 +133,7 @@ import Singularity.Valuation.ApproximationRankOne
 import Singularity.Valuation.ZariskiRiemannClosure
 import Singularity.Valuation.RankDimension
 import Singularity.Valuation.ValuationRingProperties
+import Singularity.Valuation.LexConvexSubgroup
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement
 import Singularity.Alteration.Trace

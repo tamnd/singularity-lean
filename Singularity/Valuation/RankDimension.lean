@@ -27,6 +27,8 @@ The handbook assumes that `K/k` is a function field in the second result. The pr
 * `Singularity.rank_le_and_ringKrullDim_le_trdeg`: the four invariants are at most `trdeg_k K`.
 -/
 
+open TensorProduct
+
 namespace Singularity
 
 section Order
