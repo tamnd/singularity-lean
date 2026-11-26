@@ -83,6 +83,7 @@ import Singularity.Invariant.LogJacobianCurveRuns
 import Singularity.Invariant.LogJacobianSurfaceRuns
 import Singularity.Invariant.LogJacobianCornerCurves
 import Singularity.Invariant.LogJacobianCornerRuns
+import Singularity.Invariant.OriginRuns
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
