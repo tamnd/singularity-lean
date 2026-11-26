@@ -107,7 +107,7 @@ theorem exists_basis_of_mem_span (c : Basis ι ℚ V) (E : Finset V)
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [hM, Int.cast_smul_eq_zsmul]
     rw [he2, Basis.repr_sum_self]
-    exact Int.cast_nonneg.mpr (hmD _ (Finset.mem_subtype.mpr he) i)
+    exact_mod_cast hmD _ (Finset.mem_subtype.mpr he) i
 
 end ConeLemma
 

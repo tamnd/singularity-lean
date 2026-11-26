@@ -38,7 +38,7 @@ variable (k : Type*) [Field k]
 
 /-- The power series `φ = ∑_{i ≥ 1} t^{i!}` of Volume 3, Lemma 1.6.5 of the handbook. The coefficient of `t^n` is `1` if `n = i!` for some `i ≥ 1`, and `0` otherwise. Such an `i` is at most `n`. -/
 noncomputable def factorialSeries : PowerSeries k :=
-  PowerSeries.mk fun n => if ∃ i ∈ Finset.Icc 1 n, i ! = n then 1 else 0
+  PowerSeries.mk fun n => if n ∈ (Finset.Icc 1 n).image Nat.factorial then 1 else 0
 
 namespace FactorialSeries
 
@@ -57,11 +57,11 @@ theorem factorial_inj_of_one_le {i j : ℕ} (hi : 1 ≤ i) (hj : 1 ≤ j) (h : i
 
 /-- The coefficients of the partial sum. -/
 theorem coeff_partialSum (N m : ℕ) :
-    (partialSum k N).coeff m = if ∃ i ∈ Finset.Icc 1 N, i ! = m then 1 else 0 := by
+    (partialSum k N).coeff m = if m ∈ (Finset.Icc 1 N).image Nat.factorial then 1 else 0 := by
   rw [partialSum, Polynomial.finsetSum_coeff]
   simp only [Polynomial.coeff_X_pow]
   split_ifs with h
-  · obtain ⟨i, hi, rfl⟩ := h
+  · obtain ⟨i, hi, rfl⟩ := Finset.mem_image.mp h
     rw [Finset.sum_eq_single i]
     · simp
     · intro j hj hji
@@ -75,17 +75,18 @@ theorem coeff_partialSum (N m : ℕ) :
     intro j hj
     rw [if_neg]
     intro hmj
-    exact h ⟨j, hj, hmj.symm⟩
+    exact h (Finset.mem_image.mpr ⟨j, hj, hmj.symm⟩)
 
 /-- The coefficients of the series. -/
 theorem coeff_factorialSeries (n : ℕ) :
     PowerSeries.coeff n (factorialSeries k) =
-      if ∃ i ∈ Finset.Icc 1 n, i ! = n then 1 else 0 := by
+      if n ∈ (Finset.Icc 1 n).image Nat.factorial then 1 else 0 := by
   rw [factorialSeries, PowerSeries.coeff_mk]
 
 /-- Below `(N + 1)!`, the series and the partial sum have the same exponents. -/
 theorem exists_iff_of_lt {N m : ℕ} (hm : m < (N + 1)!) :
-    (∃ i ∈ Finset.Icc 1 m, i ! = m) ↔ ∃ i ∈ Finset.Icc 1 N, i ! = m := by
+    m ∈ (Finset.Icc 1 m).image Nat.factorial ↔ m ∈ (Finset.Icc 1 N).image Nat.factorial := by
+  simp only [Finset.mem_image]
   constructor
   · rintro ⟨i, hi, him⟩
     have hi1 := (Finset.mem_Icc.mp hi).1
@@ -121,14 +122,16 @@ theorem natDegree_partialSum_le (N : ℕ) : (partialSum k N).natDegree ≤ N ! :
 theorem partialSum_ne_of_lt {M N : ℕ} (h : M < N) : partialSum k M ≠ partialSum k N := by
   intro heq
   have h1 : (partialSum k M).coeff N ! = (partialSum k N).coeff N ! := by rw [heq]
-  have hpos : ∃ i ∈ Finset.Icc 1 N, i ! = N ! := ⟨N, Finset.mem_Icc.mpr ⟨by omega, le_rfl⟩, rfl⟩
-  have hneg : ¬ ∃ i ∈ Finset.Icc 1 M, i ! = N ! := by
+  have hpos : N ! ∈ (Finset.Icc 1 N).image Nat.factorial :=
+    Finset.mem_image.mpr ⟨N, Finset.mem_Icc.mpr ⟨by omega, le_rfl⟩, rfl⟩
+  have hneg : N ! ∉ (Finset.Icc 1 M).image Nat.factorial := by
+    rw [Finset.mem_image]
     rintro ⟨i, hi, hiN⟩
     have hi' := Finset.mem_Icc.mp hi
     have := factorial_inj_of_one_le hi'.1 (by omega) hiN
     omega
-  rw [coeff_partialSum, coeff_partialSum, if_pos hpos, if_neg hneg] at h1
-  exact zero_ne_one h1
+  rw [coeff_partialSum, coeff_partialSum] at h1
+  simp [hpos, hneg] at h1
 
 /-- The map `N ↦ φ_N` is injective. -/
 theorem partialSum_injective : Function.Injective (partialSum k) := by
@@ -219,7 +222,7 @@ open scoped RatFunc in
 theorem transcendental_factorialSeries_ratFunc :
     Transcendental (RatFunc k) (HahnSeries.ofPowerSeries ℤ k (factorialSeries k)) := by
   have h1 : Transcendental k[X] (HahnSeries.ofPowerSeries ℤ k (factorialSeries k)) := by
-    haveI : IsScalarTower k[X] (PowerSeries k) (LaurentSeries k) :=
+    have : IsScalarTower k[X] (PowerSeries k) (LaurentSeries k) :=
       IsScalarTower.of_algebraMap_eq fun _ => rfl
     have hinj : Function.Injective (algebraMap (PowerSeries k) (LaurentSeries k)) :=
       HahnSeries.ofPowerSeries_injective (Γ := ℤ) (R := k)

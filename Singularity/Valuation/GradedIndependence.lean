@@ -44,7 +44,7 @@ theorem mem_maximalIdeal_of_valuation_sum_lt {K : Type*} [Field K] {R : Type*} [
   have hw : (w : K) * algebraMap R K (z j) = algebraMap R K (∑ i, c i * z i) := by
     rw [hwdef]
     push_cast
-    simp only [map_sum, map_mul]
+    try simp only [map_sum, map_mul]
     rw [Finset.sum_mul]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [mul_assoc, hu i]
