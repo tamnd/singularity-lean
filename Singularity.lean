@@ -78,6 +78,7 @@ import Singularity.Invariant.LogJacobianKangarooExample
 import Singularity.Invariant.DerivativeOrder
 import Singularity.Invariant.CoefficientIdealOrder
 import Singularity.Invariant.FibonacciOrder
+import Singularity.Invariant.LogJacobianCurveRuns
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
