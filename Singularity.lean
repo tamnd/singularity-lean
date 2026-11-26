@@ -59,6 +59,7 @@ import Singularity.Invariant.LogJacobianCenterNonincrease
 import Singularity.Invariant.Tschirnhausen
 import Singularity.Invariant.LogJacobianEndCase
 import Singularity.Invariant.CossartPiltantOmega
+import Singularity.Invariant.IotaIndexOrder
 import Singularity.Invariant.LogJacobianNearPoint
 import Singularity.Invariant.LogJacobianDirectrix
 import Singularity.Invariant.LogJacobianDirectrixCaseA
@@ -111,3 +112,5 @@ import Singularity.Valuation.ConeLemma
 import Singularity.Valuation.GradedIndependence
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement
+import Singularity.Alteration.Trace
+import Singularity.Alteration.GaloisDegree
