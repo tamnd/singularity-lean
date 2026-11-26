@@ -3776,4 +3776,55 @@ theorem KangarooCounterexample.not_kangarooPathConjecture :
 
 end LogJacobianKangarooCounterexample
 
+section LogJacobianKangarooExample
+
+open MvPolynomial Finsupp
+
+namespace KangarooExample
+
+/-- `Singularity/Invariant/LogJacobianKangarooExample.lean`: `2` is a prime. -/
+instance factPrimeTwo : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
+
+/-- `Singularity/Invariant/LogJacobianKangarooExample.lean`: the polynomial ring `𝔽₂[x, y, z]`. -/
+abbrev Poly := MvPolynomial (Fin 3) (ZMod 2)
+
+/-- `Singularity/Invariant/LogJacobianKangarooExample.lean`: the monomial `x^a y^b z^c`. -/
+noncomputable def mono (a b c : ℕ) : Poly := X 0 ^ a * X 1 ^ b * X 2 ^ c
+
+/-- `Singularity/Invariant/LogJacobianKangarooExample.lean`: the sum of the monomials of a list of
+exponents. -/
+noncomputable def poly (L : List (ℕ × ℕ × ℕ)) : Poly := (L.map fun e => mono e.1 e.2.1 e.2.2).sum
+
+/-- `Singularity/Invariant/LogJacobianKangarooExample.lean`: `g₀ = x³z + xz³ + x⁴yz`. -/
+noncomputable def g0 : Poly := poly [(3, 0, 1), (1, 0, 3), (4, 1, 1)]
+
+/-- `Singularity/Invariant/LogJacobianKangarooExample.lean`: `g₁ = x²z³ + x⁴yz + x⁴y + x⁴z`. -/
+noncomputable def g1 : Poly := poly [(2, 0, 3), (4, 1, 1), (4, 1, 0), (4, 0, 1)]
+
+/-- `Singularity/Invariant/LogJacobianKangarooExample.lean`: the polynomial
+`g₂ = x²y³z³ + x⁴y⁴z + x⁴y³ + x⁴y³z`. -/
+noncomputable def g2 : Poly := poly [(2, 3, 3), (4, 4, 1), (4, 3, 0), (4, 3, 1)]
+
+/-- `Singularity/Invariant/LogJacobianKangarooExample.lean`: the first point `({x, z}, g₀)`. -/
+noncomputable def P0 : Finset (Fin 3) × Poly := ({0, 2}, g0)
+
+/-- `Singularity/Invariant/LogJacobianKangarooExample.lean`: the second point `({x}, g₁)`. -/
+noncomputable def P1 : Finset (Fin 3) × Poly := ({0}, g1)
+
+/-- `Singularity/Invariant/LogJacobianKangarooExample.lean`: the third point `({x, y}, g₂)`. -/
+noncomputable def P2 : Finset (Fin 3) × Poly := ({0, 1}, g2)
+
+/-- `Singularity/Invariant/LogJacobianKangarooExample.lean`: the computation of Example 3.11.2 of
+Volume 7, Section 3.11 of the handbook. The path `P₀ → P₁ → P₂` keeps `ρ = 2`, and `τ_ρ` is `1`,
+`2` and `1` at the three points. -/
+theorem kangarooExample :
+    RhoStep 2 2 P0 P1 ∧ IsLogJacobianCaseB P1 ∧ RhoStep 2 2 P1 P2 ∧
+    IsLogJacobianCaseA P0 ∧ IsLogJacobianCaseA P2 ∧
+    logJacobianDirectrixCodim P0.1 P0.2 = 1 ∧ logJacobianDirectrixCodim P1.1 P1.2 = 2 ∧
+    logJacobianDirectrixCodim P2.1 P2.2 = 1 := sorry
+
+end KangarooExample
+
+end LogJacobianKangarooExample
+
 end Singularity
