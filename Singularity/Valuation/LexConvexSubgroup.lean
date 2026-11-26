@@ -152,11 +152,10 @@ theorem isConvexSubgroup_iff (H : Subgroup (LexZn n)) :
           rw [← hi0]
           exact Fin.lt_iff_val_lt_val.mp hj
         rw [mem_delta.mp hg j hj', coord_pow, mem_delta.mp hδD j hj', mul_zero]
-      · rw [coord_pow]
+      · rw [coord_pow, Nat.cast_add, Nat.cast_one]
         have h1 : coord g i0 ≤ ((coord g i0).natAbs : ℤ) := Int.le_natAbs
         have h2 : (0 : ℤ) ≤ ((coord g i0).natAbs : ℤ) := by positivity
         have h3 : (1 : ℤ) ≤ coord δ i0 := by omega
-        push_cast
         nlinarith
     intro g hg
     rw [← mabs_mem_iff H]
@@ -172,8 +171,8 @@ theorem isConvexSubgroup_iff (H : Subgroup (LexZn n)) :
 theorem delta_ne_of_lt {m m' : ℕ} (hlt : m < m') (hm' : m' ≤ n) : delta n m ≠ delta n m' := by
   intro h
   let i : Fin n := ⟨m, by omega⟩
-  let e : LexZn n := Multiplicative.ofAdd (toLex (Pi.single i 1))
-  have he : ∀ j, coord e j = Pi.single i (1 : ℤ) j := fun j => rfl
+  let e : LexZn n := Multiplicative.ofAdd (toLex (Pi.single i (1 : ℤ) : Fin n → ℤ))
+  have he : ∀ j, coord e j = (Pi.single i (1 : ℤ) : Fin n → ℤ) j := fun _ => rfl
   have hmem : e ∈ delta n m := by
     rw [mem_delta]
     intro j hj
