@@ -3754,4 +3754,26 @@ end Path
 
 end LogJacobianKangarooSmall
 
+section LogJacobianKangarooCounterexample
+
+open MvPolynomial Finsupp
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] [Fintype σ] (p : ℕ) [CharP k p]
+
+/-- `Singularity/Invariant/LogJacobianKangaroo.lean`: the kangaroo path conjecture (Conjecture
+3.11.3 of Volume 7, Section 3.11 of the handbook). -/
+def KangarooPathConjecture : Prop :=
+  ∀ (m : ℕ) (P Q R : Finset σ × MvPolynomial σ k), IsLogJacobianCaseA P →
+    Relation.TransGen (fun A B => RhoStep p m A B ∧ IsLogJacobianCaseB B) P Q →
+    RhoStep p m Q R → IsLogJacobianCaseA R →
+    logJacobianDirectrixCodim P.1 P.2 ≤ logJacobianDirectrixCodim R.1 R.2
+
+/-- `Singularity/Invariant/LogJacobianKangarooCounterexample.lean`: the kangaroo path conjecture
+is false for `p = 2`, three variables and the field `ZMod 2` (Example 3.11.6 of Volume 7, Section
+3.11 of the handbook). -/
+theorem KangarooCounterexample.not_kangarooPathConjecture :
+    ¬ KangarooPathConjecture (σ := Fin 3) (k := ZMod 2) 2 := sorry
+
+end LogJacobianKangarooCounterexample
+
 end Singularity

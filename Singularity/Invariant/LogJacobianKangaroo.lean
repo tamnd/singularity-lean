@@ -40,7 +40,8 @@ Since `τ_ρ(P_m) ≤ τ̃(P_m)`, this file does not prove it. Example 3.11.2 of
 * `RhoStep p m P Q`: a step of a point blowup from `P` to `Q` where `ρ` is `m` at both points.
 * `IsLogJacobianCaseA P` and `IsLogJacobianCaseB P`: the point `P` is of case A or of case B,
   that is the order of `Θ₀(g)` is `|r| + ρ` or `|r| + ρ + 1`.
-* `KangarooPathConjecture p`: the statement of Conjecture 3.11.3. It is not proved.
+* `KangarooPathConjecture p`: the statement of Conjecture 3.11.3. It is false for `p = 2`
+  (`KangarooCounterexample.not_kangarooPathConjecture`).
 
 ## Main results
 
@@ -87,8 +88,8 @@ case A, and with `P_1, …, P_{l-1}` of case B. Then `τ_ρ(P_0) ≤ τ_ρ(P_l)`
 and it is false. Example 3.11.6 of the handbook is a counterexample with `p = 2`, three variables
 and the divisor `{y, z}`: from `g_0 = x^2 y^3 z + x^2 y z^3 + x^4 y z^2`, the `y`-chart at `z = 1`
 and then the `y`-chart at the origin give a kangaroo path where `τ_ρ` goes `2, 2, 1`. The statement
-holds if `τ_ρ(P_0) ≤ 1` (`kangarooPath_of_codim_le_one`). A Lean proof of the negation is not done
-yet. -/
+holds if `τ_ρ(P_0) ≤ 1` (`kangarooPath_of_codim_le_one`). The negation for `p = 2`, `Fin 3` and
+`ZMod 2` is `KangarooCounterexample.not_kangarooPathConjecture`. -/
 def KangarooPathConjecture : Prop :=
   ∀ (m : ℕ) (P Q R : Finset σ × MvPolynomial σ k), IsLogJacobianCaseA P →
     Relation.TransGen (fun A B => RhoStep p m A B ∧ IsLogJacobianCaseB B) P Q →
