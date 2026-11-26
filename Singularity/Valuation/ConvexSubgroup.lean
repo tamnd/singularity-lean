@@ -37,23 +37,23 @@ variable {G : Type*} [CommGroup G] [LinearOrder G] [IsOrderedMonoid G]
 def IsConvexSubgroup (H : Subgroup G) : Prop :=
   ∀ ⦃a b : G⦄, 1 ≤ a → a ≤ b → b ∈ H → a ∈ H
 
-/-- An element is in a subgroup if and only if its absolute value is in the subgroup. -/
 omit [IsOrderedMonoid G] in
+/-- An element is in a subgroup if and only if its absolute value is in the subgroup. -/
 theorem mabs_mem_iff (H : Subgroup G) {a : G} : mabs a ∈ H ↔ a ∈ H := by
   rcases mabs_choice a with h | h
   · rw [h]
   · rw [h, inv_mem_iff]
 
-/-- The trivial subgroup is convex. -/
 omit [IsOrderedMonoid G] in
+/-- The trivial subgroup is convex. -/
 theorem isConvexSubgroup_bot : IsConvexSubgroup (⊥ : Subgroup G) := by
   intro a b ha hab hb
   rw [Subgroup.mem_bot] at hb ⊢
   subst hb
   exact le_antisymm hab ha
 
-/-- The whole group is convex. -/
 omit [IsOrderedMonoid G] in
+/-- The whole group is convex. -/
 theorem isConvexSubgroup_top : IsConvexSubgroup (⊤ : Subgroup G) :=
   fun _ _ _ _ _ => Subgroup.mem_top _
 

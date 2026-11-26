@@ -93,7 +93,7 @@ theorem ValuationSubring.eq_of_le_of_comap_eq [Algebra.IsAlgebraic K L]
     have hcz : algebraMap K L c = z ^ n * (algebraMap K L c * (z ^ n)⁻¹) := by
       rw [mul_left_comm, mul_inv_cancel₀ hzn0, mul_one]
     rw [hcz]
-    exact B'.mul_mem (B'.pow_mem hz' n) (hle hu)
+    exact mul_mem (pow_mem hz' n) (hle hu)
   have hcB : algebraMap K L c ∈ B := by
     have hc' : c ∈ B'.comap (algebraMap K L) := hcB'
     rw [← hcomap] at hc'
@@ -107,6 +107,6 @@ theorem ValuationSubring.eq_of_le_of_comap_eq [Algebra.IsAlgebraic K L]
       mul_one]
   apply hz
   rw [hzm]
-  exact B.mul_mem hznB (B.pow_mem hzinv m)
+  exact mul_mem hznB (pow_mem hzinv m)
 
 end Singularity
