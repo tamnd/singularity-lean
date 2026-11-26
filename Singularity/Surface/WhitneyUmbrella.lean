@@ -2,7 +2,7 @@
 Copyright (c) 2026 The singularity authors. All rights reserved.
 Released under the Apache 2.0 licence as described in the file LICENSE.
 -/
-import Mathlib.Algebra.MvPolynomial.Basic
+import Mathlib.Algebra.MvPolynomial.Eval
 import Mathlib.Tactic.Ring
 
 /-!

@@ -59,7 +59,7 @@ theorem an_not_X_dvd_xChart [Nontrivial k] {n : ℕ} (hn : 2 ≤ n) :
   rintro ⟨c, hc⟩
   have h := congrArg (MvPolynomial.eval ![(0 : k), 1, 0]) hc
   have hn0 : n ≠ 0 := by omega
-  simp [zero_pow hn0, hn0] at h
+  simp [zero_pow hn0] at h
 
 variable (k)
 

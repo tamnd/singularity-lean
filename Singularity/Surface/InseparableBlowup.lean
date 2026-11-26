@@ -57,7 +57,8 @@ theorem separable_one_add_X_pow_succ : (1 + X ^ (p + 1) : R[X]).Separable := by
   exact ⟨1, -X, by ring⟩
 
 /-- Over an algebraically closed field of characteristic `p`, the polynomial `h = 1 + Y^(p+1)` has exactly `p + 1` distinct roots (Volume 4, Example 2.3.5 of the handbook). -/
-theorem card_roots_one_add_X_pow_succ {k : Type*} [Field k] [IsAlgClosed k] [CharP k p] :
+theorem card_roots_one_add_X_pow_succ {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k]
+    [CharP k p] :
     (1 + X ^ (p + 1) : k[X]).roots.toFinset.card = p + 1 := by
   have h : (1 + X ^ (p + 1) : k[X]) = X ^ (p + 1) + C 1 := by
     rw [C_1]
