@@ -70,7 +70,7 @@ theorem cuspEq_mem_sq : cuspEq ∈ originIdeal k ^ 2 := by
   exact Ideal.pow_le_pow_right (by norm_num) (Ideal.pow_mem_pow (X_mem_originIdeal 0) 3)
 
 theorem substXZero_cuspEq : substXZero (cuspEq : MvPolynomial (Fin 2) k) = Polynomial.X ^ 2 := by
-  simp [substXZero, cuspEq]
+  simp [substXZero, cuspEq, eval₂_sub, eval₂_pow, eval₂_X]
 
 /-- Let `s ∉ 𝔫`. Then `s f ∉ 𝔫^3`. -/
 theorem mul_cuspEq_not_mem_cube {s : MvPolynomial (Fin 2) k} (hs : s ∉ originIdeal k) :
@@ -83,21 +83,22 @@ theorem mul_cuspEq_not_mem_cube {s : MvPolynomial (Fin 2) k} (hs : s ∉ originI
     exact Ideal.mem_map_of_mem _ h
   rw [Ideal.mem_span_singleton, map_mul, substXZero_cuspEq,
     show (Polynomial.X : Polynomial k) ^ 3 = Polynomial.X * Polynomial.X ^ 2 by ring] at h1
-  have h2 := (mul_dvd_mul_iff_right (pow_ne_zero 2 Polynomial.X_ne_zero)).mp h1
+  have h2 := (mul_dvd_mul_iff_right (pow_ne_zero 2 (Polynomial.X_ne_zero (R := k)))).mp h1
   rw [Polynomial.X_dvd_iff, Polynomial.coeff_zero_eq_eval_zero, eval_zero_substXZero] at h2
   exact hs (mem_originIdeal.mpr h2)
 
 /-- The order of the cusp (Volume 1, Example 3.2.6 of the handbook). Let `R` be the local ring of `k[x, y]` at the origin, with maximal ideal `𝔪`. Then the order of `f = y^2 - x^3` is `ord_𝔪(f) = 2`. -/
 theorem order_cusp :
     Singularity.Algebra.order (IsLocalRing.maximalIdeal (Localization.AtPrime (originIdeal k)))
-      (algebraMap _ (Localization.AtPrime (originIdeal k)) cuspEq) = 2 := by
+      (algebraMap (MvPolynomial (Fin 2) k) (Localization.AtPrime (originIdeal k)) cuspEq) = 2 := by
   set R := Localization.AtPrime (originIdeal k)
-  have hmax : IsLocalRing.maximalIdeal R = (originIdeal k).map (algebraMap _ R) :=
+  have hmax : IsLocalRing.maximalIdeal R =
+      (originIdeal k).map (algebraMap (MvPolynomial (Fin 2) k) R) :=
     (IsLocalization.AtPrime.map_eq_maximalIdeal (originIdeal k) R).symm
-  have h2 : algebraMap _ R cuspEq ∈ IsLocalRing.maximalIdeal R ^ 2 := by
+  have h2 : algebraMap (MvPolynomial (Fin 2) k) R cuspEq ∈ IsLocalRing.maximalIdeal R ^ 2 := by
     rw [hmax, ← Ideal.map_pow]
     exact Ideal.mem_map_of_mem _ cuspEq_mem_sq
-  have h3 : algebraMap _ R cuspEq ∉ IsLocalRing.maximalIdeal R ^ 3 := by
+  have h3 : algebraMap (MvPolynomial (Fin 2) k) R cuspEq ∉ IsLocalRing.maximalIdeal R ^ 3 := by
     rw [hmax, ← Ideal.map_pow]
     intro h
     obtain ⟨x, h⟩ :=
@@ -111,9 +112,9 @@ theorem order_cusp :
     rw [show (c : MvPolynomial (Fin 2) k) * x.2 * cuspEq = c * (cuspEq * x.2) by ring, hc]
     exact Ideal.mul_mem_left _ _ x.1.2
   have hle2 : ((2 : ℕ) : ℕ∞) ≤ Singularity.Algebra.order (IsLocalRing.maximalIdeal R)
-      (algebraMap _ R cuspEq) := Singularity.Algebra.le_order_of_mem h2
+      (algebraMap (MvPolynomial (Fin 2) k) R cuspEq) := Singularity.Algebra.le_order_of_mem h2
   have hlt3 : Singularity.Algebra.order (IsLocalRing.maximalIdeal R)
-      (algebraMap _ R cuspEq) < ((3 : ℕ) : ℕ∞) :=
+      (algebraMap (MvPolynomial (Fin 2) k) R cuspEq) < ((3 : ℕ) : ℕ∞) :=
     not_le.mp fun h => h3 (Singularity.Algebra.le_order_iff.mp h)
   obtain ⟨m, hm⟩ := ENat.ne_top_iff_exists.mp (ne_top_of_lt hlt3)
   rw [← hm] at hle2 hlt3 ⊢

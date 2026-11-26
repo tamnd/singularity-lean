@@ -3,6 +3,7 @@ Copyright (c) 2026 The singularity authors. All rights reserved.
 Released under the Apache 2.0 licence as described in the file LICENSE.
 -/
 import Mathlib.FieldTheory.Perfect
+import Mathlib.Algebra.Field.ZMod
 import Mathlib.FieldTheory.IsAlgClosed.Basic
 import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Mathlib.FieldTheory.RatFunc.Degree
@@ -56,7 +57,7 @@ theorem X_ne_pow {F : Type*} [Field F] {p : ℕ} (hp : 2 ≤ p) (f : RatFunc F) 
 /-- The field `𝔽_p(t)` is not perfect (Volume 1, Example 6.1.4 of the handbook): the variable `t` is not a `p`-th power. -/
 theorem not_perfectRing_ratFunc (p : ℕ) [Fact p.Prime] : ¬ PerfectRing (RatFunc (ZMod p)) p := by
   intro h
-  obtain ⟨f, hf⟩ := h.bijective_frobenius.2 RatFunc.X
+  obtain ⟨f, hf⟩ := h.bijective_frobenius.2 (RatFunc.X : RatFunc (ZMod p))
   exact X_ne_pow (Fact.out : p.Prime).two_le f hf
 
 end Singularity.Example

@@ -27,8 +27,6 @@ The handbook defines the node and the Whitney umbrella as quotients of a polynom
 
 namespace Singularity.Example
 
-open Polynomial
-
 section General
 
 variable {R C K : Type*} [CommRing R] [CommRing C] [IsDomain C] [Algebra R C] [Field K]
@@ -66,6 +64,8 @@ end General
 
 section Polynomial
 
+open Polynomial
+
 variable {k : Type*} [Field k]
 
 theorem C_mem (B : Subalgebra k k[X]) (a : k) : C a ∈ B := by
@@ -101,7 +101,9 @@ theorem X_cube_mem_cusp : (X ^ 3 : k[X]) ∈ cusp k := by
 
 theorem X_sq_mul_X_pow_mem_cusp : ∀ n : ℕ, (X ^ 2 * X ^ n : k[X]) ∈ cusp k
   | 0 => by simpa using X_sq_mem_cusp
-  | 1 => by simpa [← pow_succ] using X_cube_mem_cusp
+  | 1 => by
+      rw [← pow_add]
+      exact X_cube_mem_cusp
   | n + 2 => by
       rw [pow_add X n 2, ← mul_assoc]
       exact mul_mem (X_sq_mul_X_pow_mem_cusp n) X_sq_mem_cusp
@@ -133,6 +135,9 @@ noncomputable def coeffOneZero : Subalgebra k k[X] where
   algebraMap_mem' a := by
     simp [Polynomial.algebraMap_eq, coeff_C]
 
+theorem mem_coeffOneZero {p : k[X]} : p ∈ coeffOneZero k ↔ p.coeff 1 = 0 :=
+  Iff.rfl
+
 /-- A polynomial is in `k[t^2, t^3]` if and only if its coefficient of `t` is `0`. -/
 theorem mem_cusp_iff {p : k[X]} : p ∈ cusp k ↔ p.coeff 1 = 0 := by
   constructor
@@ -140,8 +145,8 @@ theorem mem_cusp_iff {p : k[X]} : p ∈ cusp k ↔ p.coeff 1 = 0 := by
     have hle : cusp k ≤ coeffOneZero k := by
       unfold cusp
       refine Algebra.adjoin_le ?_
-      rintro _ (rfl | rfl) <;> simp [coeffOneZero, coeff_X_pow]
-    exact hle hp
+      rintro _ (rfl | rfl) <;> simp [mem_coeffOneZero, coeff_X_pow]
+    exact mem_coeffOneZero.mp (hle hp)
   · intro hp
     have hdvd : X ^ 2 ∣ p - C (p.coeff 0) := by
       rw [X_pow_dvd_iff]
@@ -162,7 +167,9 @@ theorem mul_mem_cusp_iff (g : k[X]) : (∀ p : k[X], g * p ∈ cusp k) ↔ X ^ 2
     have h1 : g.coeff 1 = 0 := by simpa [mem_cusp_iff] using h 1
     have h0 : g.coeff 0 = 0 := by
       have := mem_cusp_iff.mp (h X)
-      rwa [show (g * X).coeff 1 = g.coeff 0 from coeff_mul_X g 0] at this
+      have h' : (g * X).coeff 1 = g.coeff 0 := Polynomial.coeff_mul_X g 0
+      rw [h'] at this
+      exact this
     rw [X_pow_dvd_iff]
     intro d hd
     interval_cases d
@@ -247,7 +254,9 @@ theorem mem_node_iff (h2 : (2 : k) ≠ 0) {p : k[X]} : p ∈ node k ↔ p.eval 1
         (Polynomial.aeval (R := k) (-1 : k)) := by
       unfold node
       refine Algebra.adjoin_le ?_
-      rintro _ (rfl | rfl) <;> simp [AlgHom.mem_equalizer]
+      rintro _ (rfl | rfl) <;>
+        simp only [SetLike.mem_coe, AlgHom.mem_equalizer, map_sub, map_pow, Polynomial.aeval_X,
+          map_one] <;> ring
     have := (AlgHom.mem_equalizer _ _ _).mp (hle hp)
     simpa using this
   · intro hp
