@@ -1658,3 +1658,35 @@ status:
       kind: theorem
       status: proved
       note: Volume 8, Lemma 3.2.2 of the handbook. If [M:K] = p^e with p a prime other than l, and P is an l-Sylow subgroup of Gal(L'/M), then l does not divide [L'^P:K]. The statement uses only the degree of M/K.
+    - name: Singularity.IsAbhyankarValuation.nonempty_orderMonoidIso_units_valueGroup
+      kind: theorem
+      status: proved
+      note: Volume 3, Corollary 2.2.4 of the handbook, the last claim. An Abhyankar valuation with rational rank 1 has a value group that is order isomorphic to Multiplicative ℤ.
+    - name: Singularity.IsConvexSubgroup.le_or_le
+      kind: theorem
+      status: proved
+      note: Volume 3, Lemma 1.2.2 of the handbook. The convex subgroups of an ordered group are totally ordered by inclusion.
+    - name: Singularity.IsConvexSubgroup.finite_and_card_le
+      kind: theorem
+      status: proved
+      note: Volume 3, Proposition 1.2.5 of the handbook. A group of rational rank r has at most r + 1 convex subgroups.
+    - name: Singularity.valuation_basic_properties
+      kind: theorem
+      status: proved
+      note: Volume 3, Lemma 1.1.3 of the handbook, in multiplicative notation.
+    - name: Singularity.exists_valuationSubring_of_isPrime
+      kind: theorem
+      status: proved
+      note: Volume 3, Corollary 1.3.3 of the handbook. A valuation ring V dominates A_P, and P is the set of a in A with v(a) < 1.
+    - name: Singularity.Valuation.exists_hasExtension
+      kind: theorem
+      status: proved
+      note: Volume 3, Corollary 1.3.5 of the handbook. Each valuation of K extends to each field extension L.
+    - name: Singularity.exists_center_iff
+      kind: theorem
+      status: proved
+      note: Volume 3, Lemma 1.4.2 of the handbook. A valuation ring V has a center on A if and only if A is in V. The uniqueness is eq_of_ofPrime_le.
+    - name: Singularity.ValuationSubring.eq_of_le_of_comap_eq
+      kind: theorem
+      status: proved
+      note: Volume 3, Lemma 3.1.1 of the handbook, for each algebraic extension L/K.
