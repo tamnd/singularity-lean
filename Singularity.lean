@@ -121,3 +121,7 @@ import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement
 import Singularity.Alteration.Trace
 import Singularity.Alteration.GaloisDegree
+import Singularity.Algebra.Hypersurface
+import Singularity.Algebra.Frobenius
+import Singularity.Algebra.FlatLocal
+import Singularity.Algebra.ArtinRees
