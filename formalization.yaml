@@ -1610,3 +1610,19 @@ status:
       kind: theorem
       status: proved
       note: The algebraic core of Volume 4, Lemma 2.3.4 of the handbook with G in k[s, t]. If c^p = G(a, b), then w^p - G is in the square of the maximal ideal of (a, b, c) if and only if G_s(a, b) = G_t(a, b) = 0.
+    - name: Singularity.transcendental_factorialSeries
+      kind: theorem
+      status: proved
+      note: Volume 3, Lemma 1.6.5 of the handbook over k[t]. The power series sum of t^(i!) for i at least 1 is transcendental over k[t]. The proof uses the finite number of roots of a polynomial over k[t], not the minimal polynomial.
+    - name: Singularity.transcendental_factorialSeries_ratFunc
+      kind: theorem
+      status: proved
+      note: Volume 3, Lemma 1.6.5 of the handbook over k(t). The image of the power series in the Laurent series k((t)) is transcendental over RatFunc k.
+    - name: Singularity.coneLemma
+      kind: theorem
+      status: proved
+      note: Volume 5, Lemma 2.1.3 of the handbook. The order of V needs only to be compatible with addition. The proof uses the lattice lemma, not the theorem of Hoelder.
+    - name: Singularity.mem_maximalIdeal_of_valuation_sum_lt
+      kind: theorem
+      status: proved
+      note: Volume 3, Lemma 2.3.1 of the handbook, in an elementary form without the quotient P_gamma / P_gamma^+. If the sum of c_k z_k has value larger than v(z_j), then each c_k is in the maximal ideal of R.
