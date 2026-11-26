@@ -12,7 +12,7 @@ Let `V` be an Abhyankar valuation of a function field `K/k`. This file proves th
 
 The proof follows the handbook. Choose the subfield `K₀ = k(x, y)` of `Singularity.IsAbhyankarValuation.exists_isMonomialValuation_comap`. Then:
 
-1. Let `E` be a subfield of `K`, and let `F` be a field that contains the residues of the elements of `E ∩ V`. Let `z_1, ..., z_m ∈ V` have residues that are linearly independent over `F`. Then the `z_i` are linearly independent over `E` (`Singularity.linearIndependent_of_residue`). In a relation `∑ c_i z_i = 0`, divide by the coefficient of largest value and take residues. So if `[K : E]` is finite, then `Kv` is finite over `F` (`Singularity.finiteDimensional_residueField_of_residue_mem`).
+1. Let `E` be a subfield of `K`, and let `F` be a field that contains the residues of the elements of `E ∩ V`. Let `z_1, ..., z_m ∈ V` have residues that are linearly independent over `F`. Then the `z_i` are linearly independent over `E` (`Singularity.linearIndependent_of_linearIndependent_residue`). In a relation `∑ c_i z_i = 0`, divide by the coefficient of largest value and take residues. So if `[K : E]` is finite, then `Kv` is finite over `F` (`Singularity.finiteDimensional_residueField_of_residue_mem`).
 2. Let `y_1, ..., y_t ∈ V` have residues that are algebraically independent over `k`. Then the residue of each element of `k(y)` is in `k(ȳ)` (`Singularity.residue_mem_adjoin_of_mem_adjoin`).
 3. The restriction of `V` to `K₀` is monomial over `k(y)`. So each `c ∈ K₀ ∩ V` is `c' x^a` times a unit with residue `1`, with `c' ∈ k(y)`. If `v(c) = 1`, then `a = 0`, and the residue of `c` is the residue of `c'`. So the residues of `K₀ ∩ V` are in `k(ȳ)` (`Singularity.residue_mem_adjoin_of_mem_adjoin_sumElim`).
 4. By step 1 for `E = K₀` and `F = k(ȳ)`, the field `Kv` is finite over `k(ȳ)`. So `Kv` is generated over `k` by `ȳ` and a basis over `k(ȳ)`.
@@ -22,7 +22,7 @@ The proof follows the handbook. Choose the subfield `K₀ = k(x, y)` of `Singula
 * `Singularity.IsAbhyankarValuation.fg_residueField`: the residue field of an Abhyankar valuation is finitely generated over `k`.
 * `Singularity.IsAbhyankarValuation.finiteDimensional_residueField`: it is finite over `k(ȳ)`.
 * `Singularity.finiteDimensional_residueField_of_residue_mem`: for a finite extension `K/E`, the residue field `Kv` is finite over each field that contains the residues of `E`.
-* `Singularity.linearIndependent_of_residue`: lifts of independent residues are linearly independent.
+* `Singularity.linearIndependent_of_linearIndependent_residue`: lifts of independent residues are linearly independent.
 -/
 
 open IsLocalRing MvPolynomial
@@ -38,7 +38,8 @@ section Residues
 variable (V : ValuationSubring K) {E : IntermediateField k K}
 
 /-- **Lifts of independent residues** (Volume 3, proof of Corollary 2.1.3 of the handbook, the part on `f`). Let `E` be a subfield of `K`, and let `F` be a field with a map to `Kv` whose image contains the residues of the elements of `E ∩ V`. Let `z_1, ..., z_m ∈ V` have residues that are linearly independent over `F`. Then the `z_i` are linearly independent over `E`. -/
-theorem linearIndependent_of_residue {F : Type*} [Field F] [Algebra F (ResidueField V)]
+theorem linearIndependent_of_linearIndependent_residue {F : Type*} [Field F]
+    [Algebra F (ResidueField V)]
     (hF : ∀ (c : E) (hc : (c : K) ∈ V), ∃ f : F, algebraMap F _ f = residue V ⟨c, hc⟩)
     {m : Type*} [Fintype m] {z : m → V}
     (hz : LinearIndependent F fun i => residue V (z i)) :
@@ -102,9 +103,9 @@ theorem finiteDimensional_residueField_of_residue_mem [FiniteDimensional E K] {F
     choose z hz using fun w : s => residue_surjective (R := V) (w : ResidueField V)
     have hs' : LinearIndependent F fun w : s => residue V (z w) := by
       simpa only [hz] using hs
-    have := (linearIndependent_of_residue V hF hs').fintype_card_le_finrank
+    have := (linearIndependent_of_linearIndependent_residue V hF hs').fintype_card_le_finrank
     simpa only [Fintype.card_coe] using this
-  exact Module.rank_lt_aleph0_iff.mp (lt_of_le_of_lt hrank (Cardinal.nat_lt_aleph0 _))
+  exact Module.rank_lt_aleph0_iff.mp (lt_of_le_of_lt hrank (Cardinal.natCast_lt_aleph0))
 
 end Residues
 
@@ -186,20 +187,33 @@ theorem residue_mem_adjoin_of_mem_adjoin_sumElim {x : ι → K} {y : κ → V}
   have hc'K : (((algebraMap F K₀ c' : K₀)) : K) ∈
       IntermediateField.adjoin k (Set.range fun j => (y j : K)) := by
     have hmem : (algebraMap F K₀ c') ∈ F := c'.2
-    have hmap := IntermediateField.mem_map.mpr ⟨_, hmem, rfl⟩ (f := K₀.val)
+    have hmap : ((algebraMap F K₀ c' : K₀) : K) ∈ (IntermediateField.adjoin k
+        (Set.range fun j => adjoinRangeElem k (Sum.elim x fun j => (y j : K)) (.inr j))).map
+          K₀.val := by
+      rw [← SetLike.mem_coe, IntermediateField.coe_map]
+      exact ⟨_, hmem, rfl⟩
     rw [IntermediateField.adjoin_map, ← Set.range_comp] at hmap
+    have hcomp : (⇑K₀.val ∘
+        fun j => adjoinRangeElem k (Sum.elim x fun j => (y j : K)) (.inr j)) =
+          fun j => (y j : K) := by
+      funext j
+      simp
+    rw [hcomp] at hmap
     exact hmap
   have hc'V : (((algebraMap F K₀ c' : K₀)) : K) ∈ V := mem_of_mem_adjoin_residue hy hc'K
   have hFmV : V.valuation (Fm : K) < 1 := (valuation_comap_lt_one_iff V _ Fm).mp hFm
   have hGV : V.valuation (G : K) < 1 := (valuation_comap_lt_one_iff V _ G).mp hG
   have hhK : (c : K) * (1 + (G : K)) =
       ((algebraMap F K₀ c' : K₀) : K) * laurentMonomial x a * (1 + (Fm : K)) := by
+    have hm : ((laurentMonomial
+        (fun i => adjoinRangeElem k (Sum.elim x fun j => (y j : K)) (.inl i)) a : K₀) : K) =
+          laurentMonomial x a := by
+      change algebraMap K₀ K _ = _
+      simp [laurentMonomial, map_prod, map_zpow₀]
     have h' := congrArg (fun z : K₀ => (z : K)) h
     simp only [IntermediateField.coe_mul, IntermediateField.coe_add, IntermediateField.coe_one]
       at h'
-    rw [h']
-    congr 2
-    simp [laurentMonomial, map_prod, map_zpow₀]
+    rw [h', hm]
   have hc'1 : V.valuation (((algebraMap F K₀ c' : K₀)) : K) = 1 := by
     have hne : (((algebraMap F K₀ c' : K₀)) : K) ≠ 0 := by
       intro h0
@@ -273,7 +287,7 @@ theorem IsAbhyankarValuation.fg_residueField (hK : IsFunctionField k K)
   refine ⟨Set.range (fun j => residue V (y j)) ∪ Set.range b,
     (Set.finite_range _).union (Set.finite_range _), ?_⟩
   rw [eq_top_iff]
-  intro w -
+  rintro w -
   rw [← b.sum_repr w]
   refine sum_mem fun i _ => ?_
   rw [IntermediateField.smul_def, smul_eq_mul]

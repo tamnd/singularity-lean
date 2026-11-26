@@ -245,7 +245,7 @@ status:
       kind: theorem
       status: proved
       note: 'Let E be a subfield of K with [K : E] finite. Then the residue field of V is finite over each field whose image contains the residues of the elements of E in V (Volume 3, Corollary 2.1.3 of the handbook, the part on f).'
-    - name: Singularity.linearIndependent_of_residue
+    - name: Singularity.linearIndependent_of_linearIndependent_residue
       kind: theorem
       status: proved
       note: Elements of V whose residues are linearly independent over a field that contains the residues of E are linearly independent over E.
