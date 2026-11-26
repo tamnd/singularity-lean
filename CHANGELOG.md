@@ -4,6 +4,11 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/OrderAlong.lean`: the order along a coordinate subvariety `Z = V(x_i : i ∈ S)` (Volume 7, Definition 3.13.2 and Lemma 3.13.14 of the handbook). The order `ordAlong S f` is the smallest sum `∑ i ∈ S, d i` for a monomial `x^d` of `f` (`ordAlong_eq_iInf`), and it is the largest `n` with `f ∈ I_Z^n` (`le_ordAlong_iff_mem_pow`). It is a valuation (`ordAlong_mul`, `min_le_ordAlong_add`), and `∂_j` and `x_j ∂_j` lower it by at most `1` (`ordAlong_le_ordAlong_pderiv_add_one`, `ordAlong_le_ordAlong_X_mul_pderiv_add_one`). The clean order `cleanOrdAlong p S g` is the supremum of the order along `Z` of `g + h^p`, where `h` is a polynomial and not a series. The order of `G` along `Z` is `orderGAlong p Δ S g`, the clean order minus the sum of `r_i` over `i ∈ Δ ∩ S`. Lemma 3.13.14 for coordinate subvarieties is `orderGAlong_le_idealOrdAlong_add_one`, and its consequence `J ⊆ I_Z^n` is `residualLogJacobian_le_pow_varsIdeal`.
+- `Singularity/Invariant/LogJacobianCornerRuns.lean`: part 2 of Example 3.13.15 for coordinate subvarieties. If `S` does not both contain `x` and meet `{y, z}`, then the order of `G` along `V(x_i : i ∈ S)` is at most `1` (`CornerRuns.orderGAlong_cornerPoly_le_one`), so it is less than `p` at each point of a run (`CornerRuns.cornerRun_orderGAlong_lt`).
+
 ## 0.4.37 - 2026-11-27
 
 ### Added

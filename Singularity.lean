@@ -42,6 +42,7 @@ import Singularity.Known.DimZero
 import Singularity.Hypotheses.Integral
 import Singularity.Bridge.FormalConjectures
 import Singularity.Invariant.Order
+import Singularity.Invariant.OrderAlong
 import Singularity.Invariant.Newton
 import Singularity.Invariant.Residual
 import Singularity.Invariant.OrderBlowup

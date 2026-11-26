@@ -3,6 +3,7 @@ Copyright (c) 2026 The singularity authors. All rights reserved.
 Released under the Apache 2.0 licence as described in the file LICENSE.
 -/
 import Singularity.Invariant.LogJacobianSurfaceRuns
+import Singularity.Invariant.OrderAlong
 
 /-!
 # A run with an infinite number of corner steps
@@ -28,8 +29,14 @@ with `m = μ + p` and `l = λ + p`. The start `P_0` has `(a, b, μ, λ) = (1, 1,
 * For each `h`, the variable `x` does not divide `g + h^p` (`not_X_dvd_cornerPoly_add_pow`). So the
   clean order of `g` along the surface `V(x)` is `0` (Example 3.13.15, part 3, the second claim).
 
-The library has no notion of the order along a formal subvariety. So this file does not prove
-Lemma 3.13.14, part 2 of Example 3.13.15, or the first claim of part 3.
+* Let `Z = V(x_i : i ∈ S)` be a coordinate subvariety. If `S` does not both contain `x` and meet
+  `{y, z}`, then `x^p` or `y^m z^l` is a generator of `J` with the order `0` along `Z`. So
+  Lemma 3.13.14 gives `ν^G_Z ≤ 1 < p` (`orderGAlong_cornerPoly_le_one`,
+  `cornerRun_orderGAlong_lt`). This is part 2 of Example 3.13.15 for coordinate subvarieties,
+  with `h` a polynomial in the clean order.
+
+This file does not prove part 2 of Example 3.13.15 for the subvarieties that are not coordinate
+subvarieties, or the first claim of part 3.
 
 ## Main definitions
 
@@ -45,6 +52,8 @@ Lemma 3.13.14, part 2 of Example 3.13.15, or the first claim of part 3.
 * `CornerRuns.cornerRun_of_charts`: Example 3.13.15, part 1, each sequence of the charts.
 * `CornerRuns.cornerRun`: the run where the charts alternate.
 * `CornerRuns.not_X_dvd_cornerPoly_add_pow`: the clean order along `V(x)` is `0`.
+* `CornerRuns.cornerRun_orderGAlong_lt`: `ν^G_Z < p` along the coordinate subvarieties of
+  part 2.
 
 ## References
 
@@ -447,6 +456,29 @@ theorem not_X_dvd_cornerPoly_add_pow {D : CornerData} (hD : D.IsGood)
     coeff_X_mul', ite_eq_right (by simp [cornerE2])] at hc
   exact one_ne_zero hc
 
+/-- **Example 3.13.15, part 2, for a coordinate subvariety.** Let `Z = V(x_i : i ∈ S)`, where `S`
+does not both contain `x` and meet `{y, z}`. Then the order of `G` along `Z` is at most `1`. The
+reason is that `J = (x^p, y^m z^l)` has a generator with the order `0` along `Z`, so Lemma 3.13.14
+gives the bound. -/
+theorem orderGAlong_cornerPoly_le_one {D : CornerData} (h : D.IsGood) (S : Finset (Fin 3))
+    (hS : ¬ (0 ∈ S ∧ (1 ∈ S ∨ 2 ∈ S))) : orderGAlong p {1, 2} S (cornerPoly p D) ≤ 1 := by
+  refine (orderGAlong_le_idealOrdAlong_add_one p {1, 2} S (cornerPoly p D)).trans ?_
+  rw [divisorExponent_cornerPoly, residualFactor_cornerPoly, residualLogJacobian_cornerG h]
+  have h0 : idealOrdAlong S (Ideal.span {X 0 ^ p, cornerM p D.mu D.lam}) = 0 := by
+    refine nonpos_iff_eq_zero.mp ?_
+    by_cases h0S : 0 ∈ S
+    · have h1 : 1 ∉ S := fun h1 => hS ⟨h0S, Or.inl h1⟩
+      have h2 : 2 ∉ S := fun h2 => hS ⟨h0S, Or.inr h2⟩
+      refine (idealOrdAlong_le_ordAlong
+        (Ideal.subset_span (Set.mem_insert_of_mem _ (Set.mem_singleton _)))).trans (le_of_eq ?_)
+      rw [cornerM, ordAlong_mul, ordAlong_X_pow, ordAlong_X_pow]
+      simp [h1, h2]
+    · refine (idealOrdAlong_le_ordAlong (Ideal.subset_span (Set.mem_insert _ _))).trans
+        (le_of_eq ?_)
+      rw [ordAlong_X_pow]
+      simp [h0S]
+  rw [h0, zero_add]
+
 end Point
 
 /-! ### The runs -/
@@ -550,6 +582,15 @@ theorem cornerRun :
       (cornerRunPoint p alternate k).2 = p) ∧
     Function.Injective (cornerRunPoint p alternate) :=
   cornerRun_of_charts alternate
+
+/-- **Example 3.13.15, part 2, for coordinate subvarieties.** At each point of a run, let
+`Z = V(x_i : i ∈ S)`, where `S` does not both contain `x` and meet `{y, z}`. Then the order of
+`G` along `Z` is less than `p`. -/
+theorem cornerRun_orderGAlong_lt (c : ℕ → Bool) (k : ℕ) (S : Finset (Fin 3))
+    (hS : ¬ (0 ∈ S ∧ (1 ∈ S ∨ 2 ∈ S))) :
+    orderGAlong p (cornerRunPoint p c k).1 S (cornerRunPoint p c k).2 < p :=
+  (orderGAlong_cornerPoly_le_one (cornerSeq_spec c k).1 S hS).trans_lt
+    (by exact_mod_cast (Fact.out : p.Prime).one_lt)
 
 end Run
 
