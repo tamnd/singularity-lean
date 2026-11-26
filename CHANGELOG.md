@@ -7,6 +7,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 ### Added
 
 - `Singularity/Invariant/LogJacobianCaseAForms.lean`: the forms of `H` in case A (Volume 7, Section 3.11 of the handbook, Lemma 3.11.4). The form `E_i F = r_i F + x_i ∂_i F` is `caseAForm`, with `F` the part of degree `ρ` of `G`. If `g` is of case A, then `T_ρ(g)` is the intersection of the directrices of the `E_i F` for `i ∈ Δ` (`logJacobianDirectrix_eq_iInf_caseAForm`). The proof uses that each `x_a ∂_l G` with `l ∉ Δ` has order at least `ρ + 1`. The lemma needs no hypothesis on `k` and no hypothesis that `g` is clean.
+- `Singularity/Valuation/AbhyankarValueGroup.lean`: the value group of an Abhyankar valuation is free of finite rank (Volume 3, Corollary 2.2.4 of the handbook). Let `V` be an Abhyankar valuation of the function field `K/k`. Then its value group `Γ` is a finitely generated free abelian group (`IsAbhyankarValuation.free_valueGroup`), and it has a basis with `r` elements, where `r` is the rational rank (`IsAbhyankarValuation.exists_basis_valueGroup`). Let `E` be a subfield with `[K : E]` finite, and let `H` be a subgroup of `Γ` that contains the values of `E`. Then `Γ / H` is finite (`finite_quotient_of_valuation_mem`). The proof uses that nonzero elements with values in different cosets are linearly independent over `E` (`linearIndependent_of_valuation_mul_eq`). The statement that the residue field is finitely generated over `k` is not proved.
 
 ## 0.4.28 - 2026-11-26
 

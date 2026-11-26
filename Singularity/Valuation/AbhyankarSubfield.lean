@@ -20,7 +20,7 @@ If also the residue extension `Kv/K₀v₀` is separable of degree `[K : K₀]`,
 
 ## Differences with the handbook
 
-The handbook chooses the `x_i` such that their values are a basis of `Γ`. This uses that `Γ` is free of rank `r` (Volume 3, Corollary 2.2.4), which needs the finiteness of `Γ / Γ₀` for the finite extension `K/K₀` (Volume 3, Corollary 2.1.3). These are not in the library. Here the values of the `x_i` are only linearly independent over `ℤ`. There are `r` of them, so their images in `ℚ ⊗ Γ` are a basis (this step of linear algebra is not stated in Lean). But the value group `Γ₀` of `v₀`, which is free with basis `v(x_1), ..., v(x_r)`, can be a subgroup of finite index in `Γ`. The hypothesis of the last theorem, that `[Kv : K₀v₀] = [K : K₀]`, implies `Γ₀ = Γ` by the fundamental inequality, so this difference does not matter there.
+The handbook chooses the `x_i` such that their values are a basis of `Γ`. This uses that `Γ` is free of rank `r` (Volume 3, Corollary 2.2.4), which needs the finiteness of `Γ / Γ₀` for the finite extension `K/K₀` (Volume 3, Corollary 2.1.3). The file `Singularity/Valuation/AbhyankarValueGroup.lean` proves both (`Singularity.IsAbhyankarValuation.free_valueGroup`), but it imports this file. Here the values of the `x_i` are only linearly independent over `ℤ`. There are `r` of them, so their images in `ℚ ⊗ Γ` are a basis (this step of linear algebra is not stated in Lean). But the value group `Γ₀` of `v₀`, which is free with basis `v(x_1), ..., v(x_r)`, can be a subgroup of finite index in `Γ`. The hypothesis of the last theorem, that `[Kv : K₀v₀] = [K : K₀]`, implies `Γ₀ = Γ` by the fundamental inequality, so this difference does not matter there.
 
 The general theorem of Knaf-Kuhlmann allows several extensions of `v₀` to `K` and needs the henselization and the generalized stability theorem of Kuhlmann. These are not in the library. This file does not prove `Singularity.localUniformization_abhyankar`.
 
@@ -294,7 +294,7 @@ theorem finiteDimensional_adjoin_sumElim_of_isAbhyankarValuation (hK : IsFunctio
 5. The restriction of `V` to `K₀` is trivial on `k(y)`.
 6. The restriction of `V` to `K₀` is the monomial valuation of `K₀ = k(y)(x_1, ..., x_r)` over `k(y)` with the weights `v(x_i)`.
 
-The handbook chooses the `x_i` such that their values are a basis of `Γ`. This needs that `Γ` is free of rank `r` (Volume 3, Corollary 2.2.4), and this is not proved here. Here the values of the `x_i` are only independent over `ℤ`, so the value group of `K₀` can be a subgroup of finite index in `Γ`. -/
+The handbook chooses the `x_i` such that their values are a basis of `Γ`. This needs that `Γ` is free of rank `r` (Volume 3, Corollary 2.2.4). This is `Singularity.IsAbhyankarValuation.free_valueGroup`, in a file that imports this one. Here the values of the `x_i` are only independent over `ℤ`, so the value group of `K₀` can be a subgroup of finite index in `Γ`. -/
 theorem IsAbhyankarValuation.exists_isMonomialValuation_comap (hK : IsFunctionField k K)
     (hV : IsAbhyankarValuation k V) :
     ∃ (r t : ℕ) (x : Fin r → K) (y : Fin t → V),
