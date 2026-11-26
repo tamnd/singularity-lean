@@ -5,6 +5,7 @@ Released under the Apache 2.0 licence as described in the file LICENSE.
 import Mathlib.Algebra.CharP.Lemmas
 import Mathlib.FieldTheory.Finite.Basic
 import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+import Mathlib.Tactic.LinearCombination
 
 /-!
 # Artin-Schreier polynomials
@@ -74,7 +75,7 @@ theorem natCast_pow_char {E : Type*} [CommRing E] [CharP E p] (n : ℕ) : (n : E
   rwa [frobenius_def] at h
 
 /-- The `p` elements `θ + n` with `0 ≤ n < p` are distinct. -/
-theorem card_image_add_natCast {E : Type*} [Field E] [CharP E p] (θ : E) :
+theorem card_image_add_natCast {E : Type*} [Field E] [CharP E p] [DecidableEq E] (θ : E) :
     ((Finset.range p).image (fun n : ℕ => θ + n)).card = p := by
   rw [Finset.card_image_of_injOn, Finset.card_range]
   intro m hm n hn h
@@ -83,7 +84,8 @@ theorem card_image_add_natCast {E : Type*} [Field E] [CharP E p] (θ : E) :
   exact ((CharP.natCast_eq_natCast (R := E) (p := p)).mp h').eq_of_lt_of_lt hm hn
 
 /-- Let `θ` be a root of `X^p - X - a` in a field `E` of characteristic `p`. Then the roots of `X^p - X - a` in `E` are the `p` elements `θ + n` with `0 ≤ n < p` (Volume 3, proof of Proposition 3.2.5 of the handbook: the roots are `θ + i` with `i ∈ 𝔽_p`). -/
-theorem artinSchreierPoly_roots_toFinset {E : Type*} [Field E] [CharP E p] {a θ : E}
+theorem artinSchreierPoly_roots_toFinset {E : Type*} [Field E] [CharP E p] [DecidableEq E]
+    {a θ : E}
     (hθ : θ ^ p - θ - a = 0) :
     (artinSchreierPoly p a).roots.toFinset = (Finset.range p).image (fun n : ℕ => θ + n) := by
   have hf0 : artinSchreierPoly p a ≠ 0 := (artinSchreierPoly_monic p a).ne_zero
@@ -106,6 +108,7 @@ theorem artinSchreierPoly_roots_toFinset {E : Type*} [Field E] [CharP E p] {a θ
 /-- If `X^p - X - a` has a root in a field `E` of characteristic `p`, then it splits over `E` (Volume 3, proof of Proposition 3.2.5 of the handbook). -/
 theorem artinSchreierPoly_splits {E : Type*} [Field E] [CharP E p] {a θ : E}
     (hθ : θ ^ p - θ - a = 0) : (artinSchreierPoly p a).Splits := by
+  classical
   rw [splits_iff_card_roots]
   apply le_antisymm (card_roots' _)
   have hcard := card_image_add_natCast p (E := E) θ
