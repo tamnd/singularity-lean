@@ -81,7 +81,7 @@ theorem ValuationSubring.exists_comap_eq {L : Type*} [Field L] [Algebra K L]
     have hx0 : x ≠ 0 := fun h => hxA (h ▸ A.zero_mem)
     have hxB : algebraMap K L x ∈ B := hx
     let y : (A.toLocalSubring.map (algebraMap K L)).toSubring :=
-      ⟨algebraMap K L x⁻¹, Subring.mem_map_of_mem _ hinv⟩
+      ⟨algebraMap K L x⁻¹, Subring.mem_map.mpr ⟨_, hinv, rfl⟩⟩
     have hu : IsUnit (Subring.inclusion hle y) := by
       refine isUnit_iff_exists_inv.mpr ⟨⟨algebraMap K L x, hxB⟩, Subtype.ext ?_⟩
       show algebraMap K L x⁻¹ * algebraMap K L x = 1
@@ -96,7 +96,7 @@ theorem ValuationSubring.exists_comap_eq {L : Type*} [Field L] [Algebra K L]
     rw [inv_mul_eq_one₀ hx0] at hxa
     exact hxA (by rw [hxa]; exact ha)
   · intro x hx
-    exact hle (Subring.mem_map_of_mem _ hx)
+    exact hle (Subring.mem_map.mpr ⟨x, hx, rfl⟩)
 
 /-- Let `L/K` be a field extension and let `v` be a valuation of `K`. Then there is a valuation `w` of `L` that extends `v` (Volume 3, Corollary 1.3.5 of the handbook). Here `w` is the valuation of a valuation ring `B` of `L`, and `w` extends `v` in the sense of Mathlib: the restriction of `w` to `K` is equivalent to `v`. -/
 theorem Valuation.exists_hasExtension {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀]

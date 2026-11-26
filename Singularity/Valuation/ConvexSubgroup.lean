@@ -38,12 +38,14 @@ def IsConvexSubgroup (H : Subgroup G) : Prop :=
   ∀ ⦃a b : G⦄, 1 ≤ a → a ≤ b → b ∈ H → a ∈ H
 
 /-- An element is in a subgroup if and only if its absolute value is in the subgroup. -/
+omit [IsOrderedMonoid G] in
 theorem mabs_mem_iff (H : Subgroup G) {a : G} : mabs a ∈ H ↔ a ∈ H := by
   rcases mabs_choice a with h | h
   · rw [h]
   · rw [h, inv_mem_iff]
 
 /-- The trivial subgroup is convex. -/
+omit [IsOrderedMonoid G] in
 theorem isConvexSubgroup_bot : IsConvexSubgroup (⊥ : Subgroup G) := by
   intro a b ha hab hb
   rw [Subgroup.mem_bot] at hb ⊢
@@ -51,6 +53,7 @@ theorem isConvexSubgroup_bot : IsConvexSubgroup (⊥ : Subgroup G) := by
   exact le_antisymm hab ha
 
 /-- The whole group is convex. -/
+omit [IsOrderedMonoid G] in
 theorem isConvexSubgroup_top : IsConvexSubgroup (⊤ : Subgroup G) :=
   fun _ _ _ _ _ => Subgroup.mem_top _
 
@@ -58,7 +61,7 @@ theorem isConvexSubgroup_top : IsConvexSubgroup (⊤ : Subgroup G) :=
 theorem IsConvexSubgroup.le_or_le {H₁ H₂ : Subgroup G} (h₁ : IsConvexSubgroup H₁)
     (h₂ : IsConvexSubgroup H₂) : H₁ ≤ H₂ ∨ H₂ ≤ H₁ := by
   by_contra h
-  rw [not_or, SetLike.not_le_iff_exists, SetLike.not_le_iff_exists] at h
+  rw [not_or, IsConcreteLE.not_le_iff_exists, IsConcreteLE.not_le_iff_exists] at h
   obtain ⟨⟨a, ha₁, ha₂⟩, ⟨b, hb₂, hb₁⟩⟩ := h
   rcases le_total (mabs a) (mabs b) with hab | hab
   · exact ha₂ ((mabs_mem_iff H₂).mp (h₂ (one_le_mabs a) hab ((mabs_mem_iff H₂).mpr hb₂)))
@@ -86,6 +89,7 @@ def subgroupToIntSubmodule (H : Subgroup G) : Submodule ℤ (Additive G) where
     rw [toMul_zsmul]
     exact H.zpow_mem hy c
 
+omit [LinearOrder G] [IsOrderedMonoid G] in
 theorem mem_subgroupToIntSubmodule (H : Subgroup G) {y : Additive G} :
     y ∈ subgroupToIntSubmodule H ↔ Additive.toMul y ∈ H :=
   Iff.rfl
@@ -102,7 +106,7 @@ theorem exists_linearIndependent_of_strictMono (t : ℕ) (f : Fin (t + 1) → Su
       ih (f ∘ Fin.castSucc) (hf.comp Fin.strictMono_castSucc) (fun i => hc _)
     have hlt : f (Fin.castSucc (Fin.last t)) < f (Fin.last (t + 1)) :=
       hf (Fin.castSucc_lt_last _)
-    obtain ⟨x, hx, hxn⟩ := SetLike.exists_of_lt hlt
+    obtain ⟨x, hx, hxn⟩ := IsConcreteLE.exists_of_lt hlt
     set H := f (Fin.castSucc (Fin.last t)) with hH
     have hδ : mabs x ∈ f (Fin.last (t + 1)) := (mabs_mem_iff _).mpr hx
     have hδn : mabs x ∉ H := fun h => hxn ((mabs_mem_iff _).mp h)
@@ -163,7 +167,7 @@ theorem IsConvexSubgroup.finite_and_card_le {r : ℕ}
     have := hcard s
     omega
   refine ⟨hfin, ?_⟩
-  haveI := Fintype.ofFinite {H : Subgroup G // IsConvexSubgroup H}
+  have := Fintype.ofFinite {H : Subgroup G // IsConvexSubgroup H}
   rw [Nat.card_eq_fintype_card, ← Finset.card_univ]
   exact hcard _
 

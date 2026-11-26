@@ -60,7 +60,7 @@ theorem exists_pow_valuation_eq_algebraMap {w : Valuation L Γ₀} {z : L} (hz :
         w (algebraMap K L (p.coeff j) * z ^ j) := Valuation.map_sum_eq_of_lt w hj htie
     rw [hpz, Valuation.map_zero] at key
     exact absurd key.symm (htne j hj)
-  · push_neg at htie
+  · push Not at htie
     obtain ⟨i, hi, hle⟩ := htie
     rw [Finset.mem_sdiff, Finset.mem_singleton] at hi
     have heq : w (algebraMap K L (p.coeff i) * z ^ i) = w (algebraMap K L (p.coeff j) * z ^ j) :=
@@ -80,7 +80,8 @@ theorem ValuationSubring.eq_of_le_of_comap_eq [Algebra.IsAlgebraic K L]
   have hzinv : z⁻¹ ∈ B := (B.mem_or_inv_mem z).resolve_left hz
   have hz0 : z ≠ 0 := fun h => hz (h ▸ B.zero_mem)
   obtain ⟨n, hn, c, hc⟩ :=
-    exists_pow_valuation_eq_algebraMap (w := B.valuation) hz0 (Algebra.IsAlgebraic.isAlgebraic z)
+    exists_pow_valuation_eq_algebraMap (w := B.valuation) hz0
+      (Algebra.IsAlgebraic.isAlgebraic (R := K) z)
   have hzn0 : z ^ n ≠ 0 := pow_ne_zero _ hz0
   have hvzn : B.valuation (z ^ n) ≠ 0 := by
     rw [Valuation.ne_zero_iff]
