@@ -104,6 +104,7 @@ import Singularity.Valuation.DegreePTowers
 import Singularity.Valuation.InertiaField
 import Singularity.Valuation.DecompositionField
 import Singularity.Valuation.AbhyankarSubfield
+import Singularity.Valuation.AbhyankarResidueField
 import Singularity.Valuation.AbhyankarValueGroup
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement

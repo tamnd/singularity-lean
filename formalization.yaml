@@ -233,6 +233,30 @@ status:
       kind: theorem
       status: proved
       note: Let V be an Abhyankar valuation of the function field K/k, with value group of rational rank r and residue field of transcendence degree t over k. Then there are nonzero x_1, ..., x_r in K with values linearly independent over the integers and y_1, ..., y_t in V with residues algebraically independent over k, such that x and y are algebraically independent over k, K is finite over K_0 = k(x, y), and the restriction of V to K_0 is trivial on k(y) and is a monomial valuation of K_0 over k(y) in the x_i. This is the choice of the subfield in the proof of Volume 5, Theorem 2.2.1 of the handbook, with values that are independent over the integers and not a basis of the value group.
+    - name: Singularity.IsAbhyankarValuation.fg_residueField
+      kind: theorem
+      status: proved
+      note: The residue field of an Abhyankar valuation of a function field K/k is finitely generated over k as a field (Volume 3, Corollary 2.2.4 of the handbook, the part on the residue field).
+    - name: Singularity.IsAbhyankarValuation.finiteDimensional_residueField
+      kind: theorem
+      status: proved
+      note: The residue field of an Abhyankar valuation is finite over k(y), where y_1, ..., y_t are elements of V whose residues are a transcendence basis of the residue field over k.
+    - name: Singularity.finiteDimensional_residueField_of_residue_mem
+      kind: theorem
+      status: proved
+      note: 'Let E be a subfield of K with [K : E] finite. Then the residue field of V is finite over each field whose image contains the residues of the elements of E in V (Volume 3, Corollary 2.1.3 of the handbook, the part on f).'
+    - name: Singularity.linearIndependent_of_residue
+      kind: theorem
+      status: proved
+      note: Elements of V whose residues are linearly independent over a field that contains the residues of E are linearly independent over E.
+    - name: Singularity.residue_mem_adjoin_of_mem_adjoin_sumElim
+      kind: theorem
+      status: proved
+      note: For the subfield K_0 = k(x, y) of an Abhyankar valuation, the residue of each element of K_0 in V is in the field that the residues of the y_j generate over k.
+    - name: Singularity.residue_mem_adjoin_of_mem_adjoin
+      kind: theorem
+      status: proved
+      note: Let y_1, ..., y_t be in V with residues algebraically independent over k. Then the residue of each element of k(y) is in the field that the residues of the y_j generate over k.
     - name: Singularity.IsAbhyankarValuation.free_valueGroup
       kind: theorem
       status: proved
