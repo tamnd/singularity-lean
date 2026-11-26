@@ -3827,4 +3827,65 @@ end KangarooExample
 
 end LogJacobianKangarooExample
 
+section LogJacobianCurveRuns
+
+open MvPolynomial Finsupp
+
+/-- `Singularity/Invariant/LogJacobianCurveRuns.lean`: the point `P = (Δ, g)` seen at the point `a` of
+`k^σ`. The divisor is the set of the `i ∈ Δ` with `a_i = 0`, and the polynomial is the clean part
+of `g(x + a)`. -/
+noncomputable def localPoint {σ k : Type*} [Field k] [DecidableEq k] (p : ℕ) (a : σ → k)
+    (P : Finset σ × MvPolynomial σ k) : Finset σ × MvPolynomial σ k :=
+  (P.1.filter fun i => a i = 0, cleanPart p (aeval (fun i => X i + C (a i)) P.2))
+
+namespace CurveRuns
+
+/-- `Singularity/Invariant/LogJacobianCurveRuns.lean`: the polynomial
+`g_k = x^4 y^(2k+1) + x^2 y^(3k+1) z^3` of Example 3.12.2. -/
+noncomputable def curvePoly (k : ℕ) : MvPolynomial (Fin 3) (ZMod 2) :=
+  X 0 ^ 4 * X 1 ^ (2 * k + 1) + X 0 ^ 2 * X 1 ^ (3 * k + 1) * X 2 ^ 3
+
+/-- `Singularity/Invariant/LogJacobianCurveRuns.lean`: the point `P_k = ({y}, g_k)` of Example 3.12.2. -/
+noncomputable def curvePoint (k : ℕ) : Finset (Fin 3) × MvPolynomial (Fin 3) (ZMod 2) :=
+  ({1}, curvePoly k)
+
+/-- `Singularity/Invariant/LogJacobianCurveRuns.lean`: Example 3.12.2 of Volume 7, Section 3.12 of the
+handbook. The origin of the `y`-chart sends `P_k` to `P_(k+1)`, `ρ = 4` at each point, and the
+points are distinct. So the run does not end. -/
+theorem curveRun : (∀ k, RhoStep 2 4 (curvePoint k) (curvePoint (k + 1))) ∧
+    (∀ k, logJacobianOrder (curvePoint k).1 (curvePoint k).2 = 4) ∧
+    Function.Injective curvePoint := sorry
+
+/-- `Singularity/Invariant/LogJacobianCurveRuns.lean`: Example 3.12.2, part 3, at the point `(0, 1, 0)`
+of the curve `x = z = 0`. The order `ρ` is `4`. -/
+theorem logJacobianOrder_localPoint_curvePoint :
+    logJacobianOrder (localPoint 2 ![0, 1, 0] (curvePoint 0)).1
+      (localPoint 2 ![0, 1, 0] (curvePoint 0)).2 = 4 := sorry
+
+/-- `Singularity/Invariant/LogJacobianCurveRuns.lean`: the polynomial
+`g_k = x^(5+3k) y^2 z^3 + x^(10+3k) y^3 z^2` of Example 3.12.4. -/
+noncomputable def isolatedPoly (k : ℕ) : MvPolynomial (Fin 3) (ZMod 2) :=
+  X 0 ^ (5 + 3 * k) * X 1 ^ 2 * X 2 ^ 3 + X 0 ^ (10 + 3 * k) * X 1 ^ 3 * X 2 ^ 2
+
+/-- `Singularity/Invariant/LogJacobianCurveRuns.lean`: the point `P_k = ({x, z}, g_k)` of Example 3.12.4. -/
+noncomputable def isolatedPoint (k : ℕ) : Finset (Fin 3) × MvPolynomial (Fin 3) (ZMod 2) :=
+  ({0, 2}, isolatedPoly k)
+
+/-- `Singularity/Invariant/LogJacobianCurveRuns.lean`: Example 3.12.4 of Volume 7, Section 3.12 of the
+handbook. The origin of the `x`-chart sends `P_k` to `P_(k+1)`, `ρ = 3` at each point, and the
+points are distinct. So the run does not end. -/
+theorem isolatedRun : (∀ k, RhoStep 2 3 (isolatedPoint k) (isolatedPoint (k + 1))) ∧
+    (∀ k, logJacobianOrder (isolatedPoint k).1 (isolatedPoint k).2 = 3) ∧
+    Function.Injective isolatedPoint := sorry
+
+/-- `Singularity/Invariant/LogJacobianCurveRuns.lean`: Example 3.12.4, part 4, at the point `(1, 0, 0)`
+of the `x`-axis. The order `ρ` is `2`. -/
+theorem logJacobianOrder_localPoint_isolatedPoint :
+    logJacobianOrder (localPoint 2 ![1, 0, 0] (isolatedPoint 0)).1
+      (localPoint 2 ![1, 0, 0] (isolatedPoint 0)).2 = 2 := sorry
+
+end CurveRuns
+
+end LogJacobianCurveRuns
+
 end Singularity

@@ -1493,6 +1493,22 @@ status:
       kind: theorem
       status: proved
       note: Example 3.11.2 of Volume 7, Section 3.11 of the handbook. The field is ZMod 2, so p = 2, and there are three variables. The path starts at g_0 = x^3 z + x z^3 + x^4 y z with Delta = {x, z}. It goes by the x-chart at y = z = 1 to a point of case B with Delta = {x}, and by the y-chart at the origin to a point of case A with Delta = {x, y}. The order rho is 2 at each point, and tau_rho is 1, 2 and 1 at the three points.
+    - name: Singularity.CurveRuns.curveRun
+      kind: theorem
+      status: proved
+      note: Example 3.12.2 of Volume 7, Section 3.12 of the handbook. The field is ZMod 2, so p = 2, and there are three variables. For each k, the point P_k has Delta = {y} and g_k = x^4 y^(2k+1) + x^2 y^(3k+1) z^3. The origin of the y-chart sends P_k to P_(k+1) with no cleaning, and rho = 4 at each point. The points are distinct, so the run is infinite and is not a cycle. The proof is symbolic in k.
+    - name: Singularity.CurveRuns.logJacobianOrder_localPoint_curvePoint
+      kind: theorem
+      status: proved
+      note: Example 3.12.2, part 3, of Volume 7, Section 3.12 of the handbook, at the point (0, 1, 0) of the curve x = z = 0. At this point the divisor is empty, and rho of the clean part of g_0(x, y + 1, z) is 4. The point at a is Singularity.localPoint, a definition of this file.
+    - name: Singularity.CurveRuns.isolatedRun
+      kind: theorem
+      status: proved
+      note: Example 3.12.4 of Volume 7, Section 3.12 of the handbook. The field is ZMod 2, so p = 2, and there are three variables. For each k, the point P_k has Delta = {x, z} and g_k = x^(5+3k) y^2 z^3 + x^(10+3k) y^3 z^2. The origin of the x-chart sends P_k to P_(k+1) with no cleaning, and rho = 3 at each point. The points are distinct, so the run is infinite. The proof is symbolic in k.
+    - name: Singularity.CurveRuns.logJacobianOrder_localPoint_isolatedPoint
+      kind: theorem
+      status: proved
+      note: Example 3.12.4, part 4, of Volume 7, Section 3.12 of the handbook, at the point (1, 0, 0) of the x-axis. At this point the divisor is {z}, g_0(x + 1, y, z) is clean, and rho = 2. The isolation of the origin in the locus where rho >= 3 is not proved, since it is a statement over an algebraically closed field.
     - name: Singularity.logJacobianDirectrix_eq_iInf_caseAForm
       kind: theorem
       status: proved
