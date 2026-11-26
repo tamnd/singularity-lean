@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.29 - 2026-11-26
+
 ### Added
 
 - `Singularity/Invariant/LogJacobianCaseAForms.lean`: the forms of `H` in case A (Volume 7, Section 3.11 of the handbook, Lemma 3.11.4). The form `E_i F = r_i F + x_i ∂_i F` is `caseAForm`, with `F` the part of degree `ρ` of `G`. If `g` is of case A, then `T_ρ(g)` is the intersection of the directrices of the `E_i F` for `i ∈ Δ` (`logJacobianDirectrix_eq_iInf_caseAForm`). The proof uses that each `x_a ∂_l G` with `l ∉ Δ` has order at least `ρ + 1`. The lemma needs no hypothesis on `k` and no hypothesis that `g` is clean.
