@@ -337,7 +337,8 @@
     "Singularity.logJacobianDirectrixCodim_eq_zero_of_order_eq_zero",
     "Singularity.one_le_logJacobianDirectrixCodim_of_caseA",
     "Singularity.logJacobianDirectrixCodim_le_of_le_one",
-    "Singularity.kangarooPath_of_codim_le_one"
+    "Singularity.kangarooPath_of_codim_le_one",
+    "Singularity.KangarooCounterexample.not_kangarooPathConjecture"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

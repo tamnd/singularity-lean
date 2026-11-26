@@ -4,6 +4,14 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/LogJacobianKangarooCounterexample.lean`: the kangaroo path conjecture is false (Volume 7, Section 3.11 of the handbook, Example 3.11.6). For `p = 2`, `Fin 3` and `ZMod 2`, the path starts at `g_0 = x^2 y^3 z + x^2 y z^3 + x^4 y z^2` with `Δ = {y, z}`, goes by the `y`-chart at `z = 1` to a point of case B, and goes by the `y`-chart at the origin to a point of case A. The order `ρ` is 4 at each point, `τ_ρ(P_0) ≥ 2` and `τ_ρ(P_2) ≤ 1` (`KangarooCounterexample.not_kangarooPathConjecture`).
+
+### Changed
+
+- The docstring of `KangarooPathConjecture` and its note in `formalization.yaml` give the name of the negation.
+
 ## 0.4.30 - 2026-11-26
 
 ### Added
