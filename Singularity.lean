@@ -81,6 +81,7 @@ import Singularity.Invariant.CoefficientIdealOrder
 import Singularity.Invariant.FibonacciOrder
 import Singularity.Invariant.LogJacobianCurveRuns
 import Singularity.Invariant.LogJacobianSurfaceRuns
+import Singularity.Invariant.LogJacobianCornerCurves
 import Singularity.Invariant.LogJacobianCornerRuns
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
