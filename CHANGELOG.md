@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/LogJacobianCornerRuns.lean`: a run with an infinite number of corner steps (Volume 7, Example 3.13.15 of the handbook). The field is `ZMod p` for a prime `p`, `Δ = {y, z}` and `g = y^a z^b (x^p + y^m z^l)`, with `(a, b, m, l) = (1, 1, p + 1, p)` at the start. The origin of the `y`-chart sends `(a, b, m, l)` to `(a + b, b, m + l - p, l)`, the origin of the `z`-chart sends it to `(a, a + b, m, m + l - p)`, and `ρ = p` at each point (`CornerRuns.rhoStep_cornerPoint_y`, `CornerRuns.rhoStep_cornerPoint_z`). The ideal is `J = (x^p, y^m z^l)` (`CornerRuns.residualLogJacobian_cornerG`). Along each run, `a l - b m ≡ -1 (mod p)` (`CornerRuns.cornerSeq_modEq`) and neither monomial of `g` is a `p`-th power (`CornerRuns.cornerSeq_not_dvd`). Each sequence of the two charts is an infinite run with distinct points (`CornerRuns.cornerRun_of_charts`), and the run where the charts alternate is `CornerRuns.cornerRun`. For each `h`, the variable `x` does not divide `g + h^p` (`CornerRuns.not_X_dvd_cornerPoly_add_pow`). Lemma 3.13.14 and part 2 of the example are not proved, because the library has no order along a formal subvariety.
+
 ## 0.4.36 - 2026-11-27
 
 ### Added
