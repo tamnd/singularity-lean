@@ -1489,6 +1489,10 @@ status:
       kind: theorem
       status: proved
       note: Example 3.11.6 of Volume 7, Section 3.11 of the handbook. The kangaroo path conjecture is false for p = 2, three variables and the field ZMod 2. The path starts at g_0 = x^2 y^3 z + x^2 y z^3 + x^4 y z^2 with Delta = {y, z}. It goes by the y-chart at z = 1 to a point of case B, and by the y-chart at the origin to a point of case A. The order rho is 4 at each point, and tau_rho goes down from 2 to 1.
+    - name: Singularity.KangarooExample.kangarooExample
+      kind: theorem
+      status: proved
+      note: Example 3.11.2 of Volume 7, Section 3.11 of the handbook. The field is ZMod 2, so p = 2, and there are three variables. The path starts at g_0 = x^3 z + x z^3 + x^4 y z with Delta = {x, z}. It goes by the x-chart at y = z = 1 to a point of case B with Delta = {x}, and by the y-chart at the origin to a point of case A with Delta = {x, y}. The order rho is 2 at each point, and tau_rho is 1, 2 and 1 at the three points.
     - name: Singularity.logJacobianDirectrix_eq_iInf_caseAForm
       kind: theorem
       status: proved

@@ -33,7 +33,8 @@ gives `τ_ρ(P_{m-1}) ≤ τ̃(P_m)` with no hypothesis on the cases.
 
 Conjecture 3.11.3 of the handbook is the bound `τ_ρ(P_0) ≤ τ_ρ(P_m)` if `P_m` is of case A.
 Since `τ_ρ(P_m) ≤ τ̃(P_m)`, this file does not prove it. Example 3.11.2 of the handbook shows that
-`T_ρ(P_m)` and `T_ρ(P_0)` can be different subspaces of the same dimension.
+`T_ρ(P_m)` and `T_ρ(P_0)` can be different subspaces of the same dimension. The computation of this
+example is `KangarooExample.kangarooExample`.
 
 ## Main definitions
 
@@ -51,7 +52,7 @@ Since `τ_ρ(P_m) ≤ τ̃(P_m)`, this file does not prove it. Example 3.11.2 of
 
 ## References
 
-* Volume 7, Section 3.11 of the handbook: Proposition 3.11.1 and Conjecture 3.11.3.
+* Volume 7, Section 3.11 of the handbook: Proposition 3.11.1, Example 3.11.2 and Conjecture 3.11.3.
 * Volume 7, Section 3.8 of the handbook: Proposition 3.8.2 and Theorem 3.8.4.
 -/
 
