@@ -3674,4 +3674,30 @@ theorem logJacobianDirectrixCodim_le_fullDirectrixCodim_of_reflTransGen {m : ℕ
 
 end LogJacobianKangaroo
 
+section LogJacobianCaseAForms
+
+open MvPolynomial Finsupp
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] [Fintype σ]
+
+/-- `Singularity/Invariant/LogJacobianKangaroo.lean`: a point of case A. -/
+def IsLogJacobianCaseA (P : Finset σ × MvPolynomial σ k) : Prop :=
+  idealOrd (logJacobianTangent P.1 P.2) =
+    ((degree (divisorExponent P.1 P.2) : ℕ) : ℕ∞) + logJacobianOrder P.1 P.2
+
+/-- `Singularity/Invariant/LogJacobianCaseAForms.lean`: the form `E_i F = r_i F + x_i ∂_i F`. -/
+noncomputable def caseAForm (Δ : Finset σ) (g : MvPolynomial σ k) (m : ℕ) (i : σ) :
+    MvPolynomial σ k :=
+  (divisorExponent Δ g i : k) • homogeneousComponent m (residualFactor Δ g) +
+    X i * pderiv i (homogeneousComponent m (residualFactor Δ g))
+
+omit [Fintype σ] in
+/-- `Singularity/Invariant/LogJacobianCaseAForms.lean`: the forms of `H` in case A (Lemma 3.11.4
+of Volume 7, Section 3.11 of the handbook). -/
+theorem logJacobianDirectrix_eq_iInf_caseAForm {Δ : Finset σ} {g : MvPolynomial σ k} {m : ℕ}
+    (hρ : logJacobianOrder Δ g = m) (hA : IsLogJacobianCaseA (Δ, g)) :
+    logJacobianDirectrix Δ g = ⨅ i ∈ Δ, directrix (caseAForm Δ g m i) := sorry
+
+end LogJacobianCaseAForms
+
 end Singularity
