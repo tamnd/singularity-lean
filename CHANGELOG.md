@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.28 - 2026-11-26
+
 ### Added
 
 - `Singularity/Invariant/LogJacobianKangaroo.lean`: the kangaroo path (Volume 7, Section 3.11 of the handbook). A step of a point blowup where `ρ` stays `m` is `RhoStep`, and a point of case B is `IsLogJacobianCaseB`. Proposition 3.8.2 has no hypothesis on the case of the old point and allows a leaving component, so `τ_ρ` does not go down at each step into a point of case B (`logJacobianDirectrixCodim_le_of_rhoStep`) and along a run of such steps (`logJacobianDirectrixCodim_le_of_reflTransGen`). At a step that keeps `ρ`, `τ_ρ` of the old point is at most `τ̃` of the new point (`logJacobianDirectrixCodim_le_fullDirectrixCodim_of_rhoStep`). So Proposition 3.11.1 holds: `τ_ρ(P_0) ≤ τ̃(P_m)` on a kangaroo path (`logJacobianDirectrixCodim_le_fullDirectrixCodim_of_reflTransGen`). The statement of Conjecture 3.11.3, `τ_ρ(P_0) ≤ τ_ρ(P_m)` if `P_m` is of case A, is `KangarooPathConjecture`. It is not proved.
