@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/LogJacobianCornerCurves.lean`: the conditions (H1) and (H2) and the end of the run for `a < p` in Volume 7, Example 3.13.21 of the handbook. Let `p ∤ a` and let `S` contain `x`. Each element of `Θ(g)` is `x^r` times an element of `I_C^(a-1)` (`CornerCurves.curvePoly_H1`), and each element of `Θ_C(g)` is `x^r` times an element of `I_C^a` (`CornerCurves.curvePoly_H2`). If `a + b ≥ p`, then `g ∈ I_C^p` for `C = V(x, y)` (`CornerCurves.curvePoly_mem_pow_xy`), so Theorem 3.4.5 applies to each chart of the blowup of `C` (`CornerCurves.logJacobianOrder_cleanPart_le_curve_xy`). The same holds for `V(x, z)` (`CornerCurves.logJacobianOrder_cleanPart_le_curve_xz`). If `a < p`, each step lowers `b + c` by `p - a` (`CornerCurves.curveSeq_sum_succ`), so at most `(b + c) / (p - a)` steps have the order at least `p` along the curve (`CornerCurves.curveSeq_length_le`). A sequence of blowups of the corner curves (`CornerCurves.IsCurveRun`) stops after at most `(b + c) / (p - a)` steps at a point with `a + b < p` and `a + c < p`. There the order of `g` along each corner curve is less than `p`, `g ∉ I_C^p`, and `ρ = a - 1` (`CornerCurves.curveRun_end`).
+
 ## 0.4.39 - 2026-11-27
 
 ### Added

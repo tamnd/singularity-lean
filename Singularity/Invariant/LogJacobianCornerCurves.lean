@@ -38,13 +38,17 @@ for a prime `p`. The variables `x, y, z` are the indices `0, 1, 2` of `Fin 3`, t
   (`logJacobianOrder_curve_z_translate`, `logJacobianOrder_curve_xz_origin`,
   `logJacobianOrder_curve_xz_translate`). The result is for the clean part of the new polynomial,
   since the chart can give a `p`-th power.
-
-The handbook says that each sequence of blowups of corner curves keeps `ρ = a - 1` for ever. If
-`a < p`, the `y`-chart lowers `b` by `p - a`, so after a finite number of steps the order of `g`
-along the curve is less than `p`. Then this file gives no step. The file proves the claim for each
-step where the order along the curve is at least `p`, and for all the steps if `a > p`.
-
-The file does not prove that (H1) and (H2) of Section 3.4 hold for `C`.
+* The conditions (H1) and (H2) of Theorem 3.4.5 hold for each coordinate center
+  `C = V(x_i : i ∈ S)` with `x ∈ S` (`curvePoly_H1`, `curvePoly_H2`). Each element of `Θ(g)` is
+  `x^r` times an element of `I_C^(a-1)`, and each element of `Θ_C(g)` is `x^r` times an element
+  of `I_C^a`. If `a + b ≥ p`, then `g ∈ I_C^p` for `C = V(x, y)` (`curvePoly_mem_pow_xy`), so
+  `logJacobianOrder_cleanPart_le_center` applies to each chart of the blowup of `C`
+  (`logJacobianOrder_cleanPart_le_curve_xy`). The same holds for `V(x, z)`
+  (`logJacobianOrder_cleanPart_le_curve_xz`).
+* If `a < p`, each step lowers `b + c` by `p - a` (`curveSeq_sum_succ`). So a sequence of the
+  steps has at most `(b + c) / (p - a)` steps (`curveSeq_length_le`). A sequence of blowups of the
+  corner curves (`IsCurveRun`) stops at a point where `a + b < p` and `a + c < p`. There the order
+  of `g` along each corner curve is less than `p`, `g ∉ I_C^p`, and `ρ = a - 1` (`curveRun_end`).
 
 ## Main definitions
 
@@ -53,6 +57,8 @@ The file does not prove that (H1) and (H2) of Section 3.4 hold for `C`.
 * `CornerCurves.curvePoint p a b c`: the point `({y, z}, x^a y^b z^c)`.
 * `CornerCurves.curveStepData` and `CornerCurves.curveSeq`: the map on the exponent data and its
   iteration.
+* `CornerCurves.IsCurveRun`: a sequence of the two charts that blows up a corner curve with the
+  order at least `p` while there is one.
 
 ## References
 
@@ -855,6 +861,281 @@ theorem logJacobianOrder_curve_xz_translate {a c : ℕ} (ha : ¬ p ∣ a) (h : p
         exact mul_ne_zero he (pow_ne_zero _ ht)
 
 end Other
+
+/-! ### The conditions (H1) and (H2) of Theorem 3.4.5 -/
+
+section Hyp
+
+variable {p : ℕ} [Fact p.Prime]
+
+theorem X_mem_span_X {S : Finset (Fin 3)} {i : Fin 3} (hi : i ∈ S) :
+    (X i : MvPolynomial (Fin 3) (ZMod p)) ∈ Ideal.span (X '' (S : Set (Fin 3))) :=
+  Ideal.subset_span ⟨i, hi, rfl⟩
+
+/-- If `a + b ≥ p`, then `x^a y^b z^c ∈ I_C^p` for `C = V(x, y)`. The order along `C` is
+`a + b`. -/
+theorem curvePoly_mem_pow_xy {a b : ℕ} (h : p ≤ a + b) (c : ℕ) :
+    curvePoly p a b c ∈ Ideal.span (X '' (({0, 1} : Finset (Fin 3)) : Set (Fin 3))) ^ p :=
+  le_ordAlong_iff_mem_pow.mp (by rw [ordAlong_curvePoly_xy]; exact_mod_cast h)
+
+/-- If `a + c ≥ p`, then `x^a y^b z^c ∈ I_C^p` for `C = V(x, z)`. The order along `C` is
+`a + c`. -/
+theorem curvePoly_mem_pow_xz {a c : ℕ} (h : p ≤ a + c) (b : ℕ) :
+    curvePoly p a b c ∈ Ideal.span (X '' (({0, 2} : Finset (Fin 3)) : Set (Fin 3))) ^ p :=
+  le_ordAlong_iff_mem_pow.mp (by rw [ordAlong_curvePoly_xz]; exact_mod_cast h)
+
+/-- If `a + b < p`, then `x^a y^b z^c ∉ I_C^p` for `C = V(x, y)`. So Theorem 3.4.5 does not
+apply to `C`. -/
+theorem curvePoly_notMem_pow_xy {a b : ℕ} (h : a + b < p) (c : ℕ) :
+    curvePoly p a b c ∉ Ideal.span (X '' (({0, 1} : Finset (Fin 3)) : Set (Fin 3))) ^ p := by
+  intro hmem
+  have h' := (le_ordAlong_iff_mem_pow (S := ({0, 1} : Finset (Fin 3))) (n := p)).mpr hmem
+  rw [ordAlong_curvePoly_xy] at h'
+  have h'' : p ≤ a + b := by exact_mod_cast h'
+  omega
+
+/-- If `a + c < p`, then `x^a y^b z^c ∉ I_C^p` for `C = V(x, z)`. So Theorem 3.4.5 does not
+apply to `C`. -/
+theorem curvePoly_notMem_pow_xz {a c : ℕ} (h : a + c < p) (b : ℕ) :
+    curvePoly p a b c ∉ Ideal.span (X '' (({0, 2} : Finset (Fin 3)) : Set (Fin 3))) ^ p := by
+  intro hmem
+  have h' := (le_ordAlong_iff_mem_pow (S := ({0, 2} : Finset (Fin 3))) (n := p)).mpr hmem
+  rw [ordAlong_curvePoly_xz] at h'
+  have h'' : p ≤ a + c := by exact_mod_cast h'
+  omega
+
+/-- **(H1) for the curves of Example 3.13.21.** Let `S` contain `x`, and let
+`I_C = (x_i : i ∈ S)`. Each element of `Θ(x^a y^b z^c)` for `Δ = {y, z}` is `x^r` times an element
+of `I_C^(a-1)`, with `r = (0, b, c)`. The reason is that `Θ(g) = x^r J`, and the generators
+`b x^a`, `c x^a` and `a x^(a-1)` of `J` are in `I_C^(a-1)`. For `S = {x, y}` and `S = {x, z}`
+these are the corner curves. -/
+theorem curvePoly_H1 {a : ℕ} (b c : ℕ) {S : Finset (Fin 3)} (hS : 0 ∈ S) :
+    ∀ f ∈ logJacobian ({1, 2} : Finset (Fin 3)) (curvePoly p a b c),
+      ∃ q ∈ Ideal.span (X '' (S : Set (Fin 3))) ^ (a - 1),
+        f = monomial (divisorExponent {1, 2} (curvePoly p a b c)) 1 * q := by
+  have h0 : (X 0 ^ (a - 1) : MvPolynomial (Fin 3) (ZMod p)) ∈
+      Ideal.span (X '' (S : Set (Fin 3))) ^ (a - 1) := Ideal.pow_mem_pow (X_mem_span_X hS) _
+  have h1 : (X 0 ^ a : MvPolynomial (Fin 3) (ZMod p)) ∈
+      Ideal.span (X '' (S : Set (Fin 3))) ^ (a - 1) :=
+    Ideal.pow_le_pow_right (Nat.sub_le a 1) (Ideal.pow_mem_pow (X_mem_span_X hS) _)
+  have hle : residualLogJacobian {1, 2} (single 1 b + single 2 c)
+      (X 0 ^ a : MvPolynomial (Fin 3) (ZMod p)) ≤
+        Ideal.span (X '' (S : Set (Fin 3))) ^ (a - 1) := by
+    rw [residualLogJacobian_curve, Ideal.span_le]
+    rintro s (rfl | rfl | rfl)
+    · exact Ideal.mul_mem_left _ _ h1
+    · exact Ideal.mul_mem_left _ _ h1
+    · exact Ideal.mul_mem_left _ _ h0
+  intro f hf
+  rw [curvePoly_eq_mul, logJacobian_monomial_mul (surface_hr b c),
+    Ideal.mem_span_singleton_mul] at hf
+  obtain ⟨q, hq, rfl⟩ := hf
+  exact ⟨q, hle hq, by rw [divisorExponent_curvePoly]⟩
+
+/-- **(H2) for the curves of Example 3.13.21.** Let `p ∤ a`, let `S` contain `x`, and let
+`I_C = (x_i : i ∈ S)`. Each element of `Θ_C(x^a y^b z^c)` for `Δ = {y, z}` is `x^r` times an
+element of `I_C^a`, with `r = (0, b, c)` and `a = ρ + 1`. The generators are `x^r` times `b x^a`,
+`c x^a` and `a x_m x^(a-1)` for `m ∈ S`. For `S = {x, y}` and `S = {x, z}` these are the corner
+curves. -/
+theorem curvePoly_H2 {a : ℕ} (ha : ¬ p ∣ a) (b c : ℕ) {S : Finset (Fin 3)} (hS : 0 ∈ S) :
+    ∀ f ∈ logJacobianCenter ({1, 2} : Finset (Fin 3)) S (curvePoly p a b c),
+      ∃ q ∈ Ideal.span (X '' (S : Set (Fin 3))) ^ (a - 1 + 1),
+        f = monomial (divisorExponent {1, 2} (curvePoly p a b c)) 1 * q := by
+  have ha0 : 1 ≤ a := Nat.one_le_iff_ne_zero.mpr fun h => ha (h ▸ dvd_zero p)
+  have hN0 : (single 1 b + single 2 c : Fin 3 →₀ ℕ) 0 = 0 := by simp
+  have hpow : (X 0 ^ (a - 1) : MvPolynomial (Fin 3) (ZMod p)) ∈
+      Ideal.span (X '' (S : Set (Fin 3))) ^ (a - 1) := Ideal.pow_mem_pow (X_mem_span_X hS) _
+  have hxa : (X 0 ^ a : MvPolynomial (Fin 3) (ZMod p)) ∈
+      Ideal.span (X '' (S : Set (Fin 3))) ^ (a - 1 + 1) := by
+    rw [Nat.sub_add_cancel ha0]
+    exact Ideal.pow_mem_pow (X_mem_span_X hS) _
+  have hle : logJacobianCenter ({1, 2} : Finset (Fin 3)) S (curvePoly p a b c) ≤
+      Ideal.span {monomial (single 1 b + single 2 c) 1} *
+        Ideal.span (X '' (S : Set (Fin 3))) ^ (a - 1 + 1) := by
+    rw [logJacobianCenter, Ideal.span_le]
+    rintro s ((⟨i, hi, rfl⟩ | ⟨l, ⟨hlΔ, hlS⟩, rfl⟩) | ⟨⟨m, l⟩, ⟨hlΔ, -, hm⟩, rfl⟩)
+    · have hi0 : i ≠ 0 := by
+        rintro rfl
+        simp at hi
+      refine Ideal.mem_span_singleton_mul.mpr
+        ⟨(((single 1 b + single 2 c : Fin 3 →₀ ℕ) i : ℕ) : MvPolynomial (Fin 3) (ZMod p)) *
+          X 0 ^ a, Ideal.mul_mem_left _ _ hxa, ?_⟩
+      have e := X_mul_pderiv_monomial_one (p := p) i (single 1 b + single 2 c)
+      dsimp only
+      rw [curvePoly_eq_mul, pderiv_mul, pderiv_X_zero_pow_of_ne hi0]
+      linear_combination (-(X 0 ^ a : MvPolynomial (Fin 3) (ZMod p))) * e
+    · exfalso
+      have hl : l = 0 := by fin_cases l <;> simp_all
+      subst hl
+      exact hlS hS
+    · have hl : l = 0 := by fin_cases l <;> simp_all
+      subst hl
+      have hm' : m ∈ S := hm
+      refine Ideal.mem_span_singleton_mul.mpr
+        ⟨(a : MvPolynomial (Fin 3) (ZMod p)) * (X 0 ^ (a - 1) * X m), Ideal.mul_mem_left _ _ ?_, ?_⟩
+      · rw [pow_succ]
+        exact Ideal.mul_mem_mul hpow (X_mem_span_X hm')
+      · dsimp only
+        rw [curvePoly_eq_mul, pderiv_mul, pderiv_monomial_of_eq_zero hN0, pderiv_zero_X_pow]
+        ring
+  intro f hf
+  obtain ⟨q, hq, rfl⟩ := Ideal.mem_span_singleton_mul.mp (hle hf)
+  exact ⟨q, hq, by rw [divisorExponent_curvePoly]⟩
+
+/-- **Theorem 3.4.5 for the curves of Example 3.13.21.** Let `p ∤ a`, let `S` contain `x`, let
+`g = x^a y^b z^c ∈ I_C^p` with `I_C = (x_i : i ∈ S)`, and let `π(g) = x_j^p g'` in the chart
+`π = centerChart S j t` with `j ∈ S`. Then (H1) and (H2) hold (`curvePoly_H1`, `curvePoly_H2`), so
+`logJacobianOrder_cleanPart_le_center` applies. The clean part `g'_c` is not `0`, and
+`ρ(g'_c) ≤ a - 1` for the new divisor. -/
+theorem logJacobianOrder_cleanPart_le_curve {a : ℕ} (ha : ¬ p ∣ a) (b c : ℕ)
+    {S : Finset (Fin 3)} (hS : 0 ∈ S)
+    (hgS : curvePoly p a b c ∈ Ideal.span (X '' (S : Set (Fin 3))) ^ p) {j : Fin 3} (hj : j ∈ S)
+    (t : Fin 3 → ZMod p) {g' : MvPolynomial (Fin 3) (ZMod p)}
+    (h : centerChart S j t (curvePoly p a b c) = X j ^ p * g') :
+    cleanPart p g' ≠ 0 ∧
+      logJacobianOrder (centerDivisor {1, 2} S j t) (cleanPart p g') ≤ (a - 1 : ℕ) := by
+  have H := logJacobianOrder_cleanPart_le_center p hj hgS h (logJacobianOrder_curvePoly ha b c)
+    (curvePoly_H1 b c hS) (Or.inl (curvePoly_H2 ha b c hS))
+  rwa [logJacobianOrder_curvePoly ha b c] at H
+
+/-- **Theorem 3.4.5 for `C = V(x, y)`** (Example 3.13.21). Let `p ∤ a` and `a + b ≥ p`. Then
+`x^a y^b z^c ∈ I_C^p`, and (H1) and (H2) hold for `C`. For each chart of the blowup of `C`, the
+clean part `g'_c` is not `0`, and `ρ(g'_c) ≤ a - 1`. -/
+theorem logJacobianOrder_cleanPart_le_curve_xy {a b : ℕ} (ha : ¬ p ∣ a) (h : p ≤ a + b) (c : ℕ)
+    {j : Fin 3} (hj : j ∈ ({0, 1} : Finset (Fin 3))) (t : Fin 3 → ZMod p)
+    {g' : MvPolynomial (Fin 3) (ZMod p)}
+    (hg' : centerChart {0, 1} j t (curvePoly p a b c) = X j ^ p * g') :
+    cleanPart p g' ≠ 0 ∧
+      logJacobianOrder (centerDivisor {1, 2} {0, 1} j t) (cleanPart p g') ≤ (a - 1 : ℕ) :=
+  logJacobianOrder_cleanPart_le_curve ha b c (by decide) (curvePoly_mem_pow_xy h c) hj t hg'
+
+/-- **Theorem 3.4.5 for `C = V(x, z)`** (Example 3.13.21). Let `p ∤ a` and `a + c ≥ p`. Then
+`x^a y^b z^c ∈ I_C^p`, and (H1) and (H2) hold for `C`. For each chart of the blowup of `C`, the
+clean part `g'_c` is not `0`, and `ρ(g'_c) ≤ a - 1`. -/
+theorem logJacobianOrder_cleanPart_le_curve_xz {a c : ℕ} (ha : ¬ p ∣ a) (h : p ≤ a + c) (b : ℕ)
+    {j : Fin 3} (hj : j ∈ ({0, 2} : Finset (Fin 3))) (t : Fin 3 → ZMod p)
+    {g' : MvPolynomial (Fin 3) (ZMod p)}
+    (hg' : centerChart {0, 2} j t (curvePoly p a b c) = X j ^ p * g') :
+    cleanPart p g' ≠ 0 ∧
+      logJacobianOrder (centerDivisor {1, 2} {0, 2} j t) (cleanPart p g') ≤ (a - 1 : ℕ) :=
+  logJacobianOrder_cleanPart_le_curve ha b c (by decide) (curvePoly_mem_pow_xz h b) hj t hg'
+
+end Hyp
+
+/-! ### The end of the run for `a < p` -/
+
+section Finite
+
+/-- If `a < p` and `a + b ≥ p`, then the step `b ↦ a + b - p` makes `b` strictly smaller. -/
+theorem curveStep_lt {p a b : ℕ} (hap : a < p) (h : p ≤ a + b) : a + b - p < b := by
+  omega
+
+/-- If `a < p`, then each step of a sequence of the two charts where the curve has the order at
+least `p` makes `b + c` smaller by exactly `p - a`. -/
+theorem curveSeq_sum_succ {p a : ℕ} (hap : a < p) (b c : ℕ) (ch : ℕ → Bool) (k : ℕ)
+    (hk : curveStepOK p a (ch k) (curveSeq p a b c ch k)) :
+    (curveSeq p a b c ch (k + 1)).1 + (curveSeq p a b c ch (k + 1)).2 + (p - a) =
+      (curveSeq p a b c ch k).1 + (curveSeq p a b c ch k).2 := by
+  rw [curveSeq_succ]
+  unfold curveStepOK at hk
+  unfold curveStepData
+  cases hc : ch k
+  · simp only [hc, Bool.false_eq_true, ↓reduceIte] at hk ⊢
+    omega
+  · simp only [hc, ↓reduceIte] at hk ⊢
+    omega
+
+/-- If `a < p`, then each step of a sequence of the two charts where the curve has the order at
+least `p` makes `b + c` strictly smaller. -/
+theorem curveSeq_sum_lt_of_lt {p a : ℕ} (hap : a < p) (b c : ℕ) (ch : ℕ → Bool) (k : ℕ)
+    (hk : curveStepOK p a (ch k) (curveSeq p a b c ch k)) :
+    (curveSeq p a b c ch (k + 1)).1 + (curveSeq p a b c ch (k + 1)).2 <
+      (curveSeq p a b c ch k).1 + (curveSeq p a b c ch k).2 := by
+  have := curveSeq_sum_succ hap b c ch k hk
+  omega
+
+/-- If `a < p` and the first `N` steps have the order at least `p` along the curve, then
+`b_N + c_N + N (p - a) = b + c`. -/
+theorem curveSeq_sum_add_mul {p a : ℕ} (hap : a < p) (b c : ℕ) (ch : ℕ → Bool) :
+    ∀ N, (∀ k < N, curveStepOK p a (ch k) (curveSeq p a b c ch k)) →
+      (curveSeq p a b c ch N).1 + (curveSeq p a b c ch N).2 + N * (p - a) = b + c
+  | 0, _ => by simp [curveSeq]
+  | N + 1, hN => by
+    have h1 := curveSeq_sum_add_mul hap b c ch N fun k hk => hN k (by omega)
+    have h2 := curveSeq_sum_succ hap b c ch N (hN N (by omega))
+    rw [Nat.succ_mul]
+    generalize N * (p - a) = M at h1 ⊢
+    omega
+
+/-- **The length of a sequence of blowups of the corner curves for `a < p`.** If the first `N`
+steps have the order at least `p` along the curve, then `N ≤ (b + c) / (p - a)`. -/
+theorem curveSeq_length_le {p a : ℕ} (hap : a < p) (b c : ℕ) (ch : ℕ → Bool) {N : ℕ}
+    (hN : ∀ k < N, curveStepOK p a (ch k) (curveSeq p a b c ch k)) :
+    N ≤ (b + c) / (p - a) := by
+  rw [Nat.le_div_iff_mul_le (by omega)]
+  have := curveSeq_sum_add_mul hap b c ch N hN
+  generalize N * (p - a) = M at this ⊢
+  omega
+
+/-- If `a < p`, then each sequence of the two charts has a first step `N ≤ (b + c) / (p - a)`
+where the chosen curve has the order less than `p`. -/
+theorem exists_curveSeq_not_ok {p a : ℕ} (hap : a < p) (b c : ℕ) (ch : ℕ → Bool) :
+    ∃ N ≤ (b + c) / (p - a), (∀ k < N, curveStepOK p a (ch k) (curveSeq p a b c ch k)) ∧
+      ¬ curveStepOK p a (ch N) (curveSeq p a b c ch N) := by
+  classical
+  have hex : ∃ N, ¬ curveStepOK p a (ch N) (curveSeq p a b c ch N) := by
+    by_contra hall
+    have := curveSeq_length_le hap b c ch (N := (b + c) / (p - a) + 1)
+      fun k _ => not_not.mp fun h => hall ⟨k, h⟩
+    omega
+  have hmin : ∀ k < Nat.find hex, curveStepOK p a (ch k) (curveSeq p a b c ch k) :=
+    fun k hk => not_not.mp (Nat.find_min hex hk)
+  exact ⟨Nat.find hex, curveSeq_length_le hap b c ch hmin, hmin, Nat.find_spec hex⟩
+
+/-- A sequence of blowups of the corner curves: at each step where one of the two corner curves
+has the order at least `p`, the sequence takes the chart of such a curve. -/
+def IsCurveRun (p a b c : ℕ) (ch : ℕ → Bool) : Prop :=
+  ∀ k, (curveStepOK p a true (curveSeq p a b c ch k) ∨
+      curveStepOK p a false (curveSeq p a b c ch k)) →
+    curveStepOK p a (ch k) (curveSeq p a b c ch k)
+
+variable {p : ℕ} [Fact p.Prime]
+
+/-- **Example 3.13.21, the end of the run for `a < p`** (Volume 7, Section 3.13 of the handbook).
+Let `p` be a prime, `Δ = {y, z}`, `g = x^a y^b z^c`, `p ∤ a` and `a < p`. Each sequence of blowups
+of the corner curves stops after `N ≤ (b + c) / (p - a)` steps. Each of the first `N` steps keeps
+`ρ = a - 1`. At the point `P_N`, `a + b_N < p` and `a + c_N < p`, the order of `g` along each
+corner curve is less than `p`, `g ∉ I_C^p` for each corner curve `C`, so Theorem 3.4.5 does not
+apply to `C`, and `ρ = a - 1`. -/
+theorem curveRun_end {a : ℕ} (ha : ¬ p ∣ a) (hap : a < p) (b c : ℕ) {ch : ℕ → Bool}
+    (hch : IsCurveRun p a b c ch) :
+    ∃ N ≤ (b + c) / (p - a),
+      (∀ k < N, CenterRhoStep p (curveCenter (ch k)) (a - 1) (curveRunPoint p a b c ch k)
+        (curveRunPoint p a b c ch (k + 1))) ∧
+      a + (curveSeq p a b c ch N).1 < p ∧ a + (curveSeq p a b c ch N).2 < p ∧
+      ordAlong {0, 1} (curveRunPoint p a b c ch N).2 < p ∧
+      ordAlong {0, 2} (curveRunPoint p a b c ch N).2 < p ∧
+      (curveRunPoint p a b c ch N).2 ∉
+        Ideal.span (X '' (({0, 1} : Finset (Fin 3)) : Set (Fin 3))) ^ p ∧
+      (curveRunPoint p a b c ch N).2 ∉
+        Ideal.span (X '' (({0, 2} : Finset (Fin 3)) : Set (Fin 3))) ^ p ∧
+      logJacobianOrder (curveRunPoint p a b c ch N).1 (curveRunPoint p a b c ch N).2 =
+        (a - 1 : ℕ) := by
+  obtain ⟨N, hN, hok, hnot⟩ := exists_curveSeq_not_ok hap b c ch
+  have hboth : ¬ (curveStepOK p a true (curveSeq p a b c ch N) ∨
+      curveStepOK p a false (curveSeq p a b c ch N)) := fun h => hnot (hch N h)
+  simp only [curveStepOK, ↓reduceIte, Bool.false_eq_true, not_or, not_le] at hboth
+  obtain ⟨h1, h2⟩ := hboth
+  refine ⟨N, hN, fun k hk => centerRhoStep_curveRunPoint ha b c ch k (hok k hk), h1, h2, ?_, ?_,
+    curvePoly_notMem_pow_xy h1 _, curvePoly_notMem_pow_xz h2 _, logJacobianOrder_curvePoly ha _ _⟩
+  · show ordAlong {0, 1} (curvePoly p a _ _) < p
+    rw [ordAlong_curvePoly_xy]
+    exact_mod_cast h1
+  · show ordAlong {0, 2} (curvePoly p a _ _) < p
+    rw [ordAlong_curvePoly_xz]
+    exact_mod_cast h2
+
+end Finite
 
 end CornerCurves
 
