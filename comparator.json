@@ -331,7 +331,8 @@
     "Singularity.logJacobianDirectrixCodim_le_of_rhoStep",
     "Singularity.logJacobianDirectrixCodim_le_fullDirectrixCodim_of_rhoStep",
     "Singularity.logJacobianDirectrixCodim_le_of_reflTransGen",
-    "Singularity.logJacobianDirectrixCodim_le_fullDirectrixCodim_of_reflTransGen"
+    "Singularity.logJacobianDirectrixCodim_le_fullDirectrixCodim_of_reflTransGen",
+    "Singularity.logJacobianDirectrix_eq_iInf_caseAForm"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }

@@ -66,6 +66,7 @@ import Singularity.Invariant.LogJacobianNoLeave
 import Singularity.Invariant.LogJacobianFullDirectrix
 import Singularity.Invariant.LogJacobianType
 import Singularity.Invariant.LogJacobianKangaroo
+import Singularity.Invariant.LogJacobianCaseAForms
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
