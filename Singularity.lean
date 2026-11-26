@@ -49,6 +49,7 @@ import Singularity.Invariant.Directrix
 import Singularity.Invariant.CharacteristicPolyhedron
 import Singularity.Invariant.MohBound
 import Singularity.Invariant.CharacteristicPolyhedronClean
+import Singularity.Invariant.CharacteristicPolyhedronExamples
 import Singularity.Invariant.RigidLayer
 import Singularity.Invariant.LogJacobian
 import Singularity.Invariant.FrobeniusNewton
@@ -81,6 +82,7 @@ import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
 import Singularity.Example.DerivativeIdeals
+import Singularity.Example.XYWThreefold
 import Singularity.Fidelity.Embedded
 import Singularity.Fidelity.LocalUniformization
 import Singularity.Scheme.Embedded
