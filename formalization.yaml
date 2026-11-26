@@ -1009,6 +1009,22 @@ status:
       kind: theorem
       status: proved
       note: The unramified part of Step 4 of the reduction of Cossart-Piltant (Volume 6, Proposition 2.2.1 of the handbook). Local uniformization of W ∩ K^Z gives local uniformization of W ∩ K^T. This is unconditional. The passage from K to K^Z, the tame part and Steps 1 and 2 are not proved.
+    - name: Singularity.exists_mem_fixedField_decompositionSubgroup
+      kind: theorem
+      status: proved
+      note: Let L/K be finite Galois and let W be a valuation subring of L. There is z in the decomposition field K^Z, integral over W ∩ K, with w(z - 1) < 1 and w(σ z) < 1 for each σ outside the decomposition group.
+    - name: Singularity.isEtaleGenerator_decompositionField
+      kind: theorem
+      status: proved
+      note: An element z as above is an étale generator of K^Z/K at W ∩ K^Z.
+    - name: Singularity.hasLocalUniformization_decompositionField
+      kind: theorem
+      status: proved
+      note: The passage from K to K^Z in Step 4 of the reduction of Cossart-Piltant (Volume 6, Proposition 2.2.1 of the handbook). Local uniformization of W ∩ K gives local uniformization of W ∩ K^Z. This is unconditional and does not use the henselization.
+    - name: Singularity.hasLocalUniformization_inertiaField_of_base
+      kind: theorem
+      status: proved
+      note: Local uniformization of W ∩ K gives local uniformization of W ∩ K^T, where K^T is the inertia field. This is unconditional. The tame part, the passage down to K, Steps 1 and 2 and the Galois steps of degree p are not proved.
     - name: Singularity.ContinuousFamily.IsLimitKeyPolynomial.muDvd_iff_of_forall_eq
       kind: theorem
       status: proved
