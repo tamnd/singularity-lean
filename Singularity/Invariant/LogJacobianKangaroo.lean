@@ -84,7 +84,11 @@ def IsLogJacobianCaseA (P : Finset σ × MvPolynomial σ k) : Prop :=
 /-- **The kangaroo path conjecture** (Volume 7, Section 3.11 of the handbook, Conjecture 3.11.3).
 Let `P_0, …, P_l` be a sequence of steps that keep `ρ = m`, with `l ≥ 2`, with `P_0` and `P_l` of
 case A, and with `P_1, …, P_{l-1}` of case B. Then `τ_ρ(P_0) ≤ τ_ρ(P_l)`. This is a statement,
-and it is open. -/
+and it is false. Example 3.11.6 of the handbook is a counterexample with `p = 2`, three variables
+and the divisor `{y, z}`: from `g_0 = x^2 y^3 z + x^2 y z^3 + x^4 y z^2`, the `y`-chart at `z = 1`
+and then the `y`-chart at the origin give a kangaroo path where `τ_ρ` goes `2, 2, 1`. The statement
+holds if `τ_ρ(P_0) ≤ 1` (`kangarooPath_of_codim_le_one`). A Lean proof of the negation is not done
+yet. -/
 def KangarooPathConjecture : Prop :=
   ∀ (m : ℕ) (P Q R : Finset σ × MvPolynomial σ k), IsLogJacobianCaseA P →
     Relation.TransGen (fun A B => RhoStep p m A B ∧ IsLogJacobianCaseB B) P Q →

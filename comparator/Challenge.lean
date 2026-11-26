@@ -3700,4 +3700,58 @@ theorem logJacobianDirectrix_eq_iInf_caseAForm {Δ : Finset σ} {g : MvPolynomia
 
 end LogJacobianCaseAForms
 
+section LogJacobianKangarooSmall
+
+open MvPolynomial Finsupp
+
+section KillVar
+
+variable {σ k : Type*} [Field k] [DecidableEq σ]
+
+/-- `Singularity/Invariant/LogJacobianKangarooSmall.lean`: a polynomial with constant term `0` and
+with the full space as directrix is `0`. -/
+theorem eq_zero_of_directrix_eq_top {F : MvPolynomial σ k} (h0 : constantCoeff F = 0)
+    (h : directrix F = ⊤) : F = 0 := sorry
+
+end KillVar
+
+section Small
+
+variable {σ k : Type*} [Field k] [Fintype σ]
+
+/-- `Singularity/Invariant/LogJacobianKangarooSmall.lean`: if `ρ = 0`, then `τ_ρ = 0`. -/
+theorem logJacobianDirectrixCodim_eq_zero_of_order_eq_zero {Δ : Finset σ}
+    {g : MvPolynomial σ k} (hρ : logJacobianOrder Δ g = 0) :
+    logJacobianDirectrixCodim Δ g = 0 := sorry
+
+/-- `Singularity/Invariant/LogJacobianKangarooSmall.lean`: in case A with `ρ ≥ 1`, `τ_ρ ≥ 1`. -/
+theorem one_le_logJacobianDirectrixCodim_of_caseA {Δ : Finset σ} {g : MvPolynomial σ k} {m : ℕ}
+    (hρ : logJacobianOrder Δ g = m) (hm : m ≠ 0) (hA : IsLogJacobianCaseA (Δ, g)) :
+    1 ≤ logJacobianDirectrixCodim Δ g := sorry
+
+/-- `Singularity/Invariant/LogJacobianKangarooSmall.lean`: the comparison if `τ_ρ(P) ≤ 1`. -/
+theorem logJacobianDirectrixCodim_le_of_le_one {m : ℕ} {P R : Finset σ × MvPolynomial σ k}
+    (hP : logJacobianOrder P.1 P.2 = m) (hR : logJacobianOrder R.1 R.2 = m)
+    (hA : IsLogJacobianCaseA R) (h1 : logJacobianDirectrixCodim P.1 P.2 ≤ 1) :
+    logJacobianDirectrixCodim P.1 P.2 ≤ logJacobianDirectrixCodim R.1 R.2 := sorry
+
+end Small
+
+section Path
+
+variable {σ k : Type*} [Field k] [DecidableEq σ] [DecidableEq k] [Fintype σ]
+
+/-- `Singularity/Invariant/LogJacobianKangarooSmall.lean`: the kangaroo path if `τ_ρ(P_0) ≤ 1`
+(Proposition 3.11.5 of Volume 7, Section 3.11 of the handbook). -/
+theorem kangarooPath_of_codim_le_one {p : ℕ} [CharP k p] {m : ℕ}
+    {P Q R : Finset σ × MvPolynomial σ k}
+    (hPQ : Relation.TransGen (fun A B => RhoStep p m A B ∧ IsLogJacobianCaseB B) P Q)
+    (hQR : RhoStep p m Q R) (hR : IsLogJacobianCaseA R)
+    (h1 : logJacobianDirectrixCodim P.1 P.2 ≤ 1) :
+    logJacobianDirectrixCodim P.1 P.2 ≤ logJacobianDirectrixCodim R.1 R.2 := sorry
+
+end Path
+
+end LogJacobianKangarooSmall
+
 end Singularity

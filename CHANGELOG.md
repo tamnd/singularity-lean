@@ -4,6 +4,14 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/LogJacobianKangarooSmall.lean`: the kangaroo path if `τ_ρ(P_0) ≤ 1` (Volume 7, Section 3.11 of the handbook, Proposition 3.11.5). A polynomial with constant term `0` and with the full space as directrix is `0` (`eq_zero_of_directrix_eq_top`). This holds over each field. So `τ_ρ ≥ 1` at a point of case A with `ρ ≥ 1` (`one_le_logJacobianDirectrixCodim_of_caseA`), and `τ_ρ = 0` if `ρ = 0`. Thus the conclusion of Conjecture 3.11.3 holds if `τ_ρ(P_0) ≤ 1` (`kangarooPath_of_codim_le_one`).
+
+### Changed
+
+- `Singularity/Invariant/LogJacobianKangaroo.lean`: the docstring of `KangarooPathConjecture` says that the statement is false. Example 3.11.6 of the handbook is a counterexample with `p = 2` and three variables. The statement of the definition does not change.
+
 ## 0.4.29 - 2026-11-26
 
 ### Added
