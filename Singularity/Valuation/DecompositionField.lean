@@ -5,6 +5,7 @@ Released under the Apache 2.0 licence as described in the file LICENSE.
 import Singularity.Valuation.InertiaField
 import Singularity.Valuation.EtaleGenerator
 import Singularity.Valuation.DegreePTowers
+import Mathlib.FieldTheory.Minpoly.IsConjRoot
 
 /-!
 # Local uniformization from the base field to the decomposition field
@@ -147,7 +148,7 @@ theorem exists_isIntegral_mul_eq_one {W : ValuationSubring L}
     (fun i => W.valuation (algebraMap K L (f.coeff i))) (support_nonempty.mpr hf0)
   set a := f.coeff t
   have ha0 : a ≠ 0 := mem_support_iff.mp ht
-  have ha0' : algebraMap K L a ≠ 0 := (map_ne_zero _).2 ha0
+  have ha0' : algebraMap K L a ≠ 0 := (_root_.map_ne_zero _).2 ha0
   have hva : ∀ i, W.valuation (algebraMap K L (f.coeff i)) ≤ W.valuation (algebraMap K L a) := by
     intro i
     by_cases hi : i ∈ f.support
@@ -235,13 +236,14 @@ theorem exists_isIntegral_sub_one_of_ne {W₁ W₂ : ValuationSubring L}
     (ValuationSubring.valuation_lt_one_iff V (φ V hV b)).trans Iff.rfl
   have hMmax : ∀ V hV, (M V hV).IsMaximal := by
     intro V hV
-    haveI : (M V hV).IsPrime := Ideal.comap_isPrime _ _
+    have : (M V hV).IsPrime := Ideal.comap_isPrime _ _
     refine Ideal.isMaximal_of_isIntegral_of_isMaximal_under (R := A) (M V hV) ?_
     have : (M V hV).under A = maximalIdeal A := by
       ext a
-      rw [Ideal.under, Ideal.mem_comap, hM, mem_maximalIdeal_iff_of_comap_eq hV,
-        IsScalarTower.algebraMap_apply A B L, IsScalarTower.algebraMap_apply A K L]
-      rfl
+      rw [Ideal.under, Ideal.mem_comap, hM V hV, mem_maximalIdeal_iff_of_comap_eq hV]
+      have e : ((algebraMap A B a : B) : L) = algebraMap K L (a : K) := by
+        exact IsScalarTower.algebraMap_apply A K L a
+      rw [e]
     rw [this]
     exact maximalIdeal.isMaximal A
   -- If the centers are equal, then the valuation rings are equal.
@@ -252,7 +254,7 @@ theorem exists_isIntegral_sub_one_of_ne {W₁ W₂ : ValuationSubring L}
     have hu' : ¬ V'.valuation u < 1 := by
       intro hlt
       have : (⟨u, hu⟩ : B) ∈ M V' hV' := (hM V' hV' _).2 hlt
-      rw [← hMM, hM] at this
+      rw [← hMM, hM V hV] at this
       exact lt_irrefl _ (hu1 ▸ this)
     have hu'' : V'.valuation u = 1 :=
       le_antisymm ((V'.valuation_le_one_iff _).2 (mem_of_isIntegral hV' hu)) (not_lt.1 hu')
@@ -264,7 +266,7 @@ theorem exists_isIntegral_sub_one_of_ne {W₁ W₂ : ValuationSubring L}
     intro hle
     have heq := (hMmax W₁ h₁).eq_of_le (hMmax W₂ h₂).ne_top hle
     exact hne (le_antisymm (key _ _ h₁ h₂ heq) (key _ _ h₂ h₁ heq.symm))
-  obtain ⟨c, hc₁, hc₂⟩ := SetLike.not_le_iff_exists.mp hle
+  obtain ⟨c, hc₁, hc₂⟩ := IsConcreteLE.not_le_iff_exists.mp hle
   obtain ⟨d, i, hi, hdi⟩ := (hMmax W₂ h₂).exists_inv hc₂
   refine ⟨i, i.2, ?_, (hM W₂ h₂ i).1 hi⟩
   have hdi' : (d : L) * c + i = 1 := by
