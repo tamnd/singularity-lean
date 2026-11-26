@@ -83,6 +83,7 @@ import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
 import Singularity.Example.DerivativeIdeals
 import Singularity.Example.XYWThreefold
+import Singularity.Example.ThreefoldPolyhedronExamples
 import Singularity.Fidelity.Embedded
 import Singularity.Fidelity.LocalUniformization
 import Singularity.Scheme.Embedded

@@ -106,7 +106,7 @@ theorem tschirnhausen_not_isSolvableVertex [CommRing k] {f : (MvPowerSeries σ k
   · rw [natDegree_taylor]
     exact hm
   · rw [natDegree_taylor]
-    exact isUnit_of_mul_eq_one _ _ hu
+    exact IsUnit.of_mul_eq_one _ hu
   · rw [natDegree_taylor]
     exact h0
 

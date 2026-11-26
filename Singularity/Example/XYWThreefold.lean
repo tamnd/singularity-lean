@@ -136,7 +136,8 @@ theorem ord_X_pow_add_xyw (p : ℕ) :
   have h3 := ord_X_mul_X_mul_X (k := k) 0 1 2
   rcases lt_trichotomy p 3 with hlt | heq | hgt
   · have hlt' : (p : ℕ∞) < 3 := by exact_mod_cast hlt
-    have hlt2 : ord (X 3 ^ p : MvPolynomial (Fin 4) k) < ord (X 0 * X 1 * X 2) := by
+    have hlt2 : ord (X 3 ^ p : MvPolynomial (Fin 4) k) <
+        ord (X 0 * X 1 * X 2 : MvPolynomial (Fin 4) k) := by
       rw [hp, h3]
       exact hlt'
     rw [ord_add_of_lt hlt2, hp, min_eq_left hlt'.le]
@@ -150,13 +151,14 @@ theorem ord_X_pow_add_xyw (p : ℕ) :
       simp [Finsupp.single_apply] at this
     have hc : (X 3 ^ 3 + X 0 * X 1 * X 2 : MvPolynomial (Fin 4) k).coeff
         (Finsupp.single 0 1 + Finsupp.single 1 1 + Finsupp.single 2 1) ≠ 0 := by
-      rw [coeff_add, coeff_X_pow, if_neg hne, coeff_mul_X, coeff_mul_X, coeff_X, if_pos rfl,
+      rw [MvPolynomial.coeff_add, coeff_X_pow, if_neg hne, coeff_mul_X, coeff_mul_X, coeff_X, if_pos rfl,
         zero_add]
       exact one_ne_zero
     calc ord _ ≤ _ := ord_le hc
       _ = 3 := by simp [Finsupp.degree_single]
   · have hgt' : (3 : ℕ∞) < p := by exact_mod_cast hgt
-    have hgt2 : ord (X 0 * X 1 * X 2 : MvPolynomial (Fin 4) k) < ord (X 3 ^ p) := by
+    have hgt2 : ord (X 0 * X 1 * X 2 : MvPolynomial (Fin 4) k) <
+        ord (X 3 ^ p : MvPolynomial (Fin 4) k) := by
       rw [hp, h3]
       exact hgt'
     rw [add_comm, ord_add_of_lt hgt2, h3, min_eq_right hgt'.le]

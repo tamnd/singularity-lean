@@ -1918,3 +1918,19 @@ status:
       kind: theorem
       status: proved
       note: Volume 6, Example 2.3.4 of the handbook. Over a field the order of (x + a) y w at the origin is 2 for a nonzero a.
+    - name: Singularity.Examples.example_3_3_1_chart
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.1 of the handbook. In characteristic 2 the chart substitution sends f to u_1^2 times the series of the handbook.
+    - name: Singularity.Examples.example_3_3_2_combination
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.2 of the handbook. The point w is 8/15 v_1 + 2/15 v_2 + 1/3 v_3, and the weights add up to 1.
+    - name: Singularity.Examples.taylor_example_3_3_3
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.3 of the handbook. In characteristic 3 the translation by -u_1 - u_1 u_2 sends X^3 + f to X^3 + u_2^4 + u_3^5.
+    - name: Singularity.Examples.example_3_3_4_chart
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.4 of the handbook. In characteristic 2 the chart substitution sends u_1^3 + u_2^3 + u_3^3 to u_1^2 (u_1 g).
