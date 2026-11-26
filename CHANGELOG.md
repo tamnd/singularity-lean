@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/AbhyankarSubfield.lean`: the choice of the subfield in the proof of the theorem of Knaf-Kuhlmann (Volume 5, Theorem 2.2.1 of the handbook). Let `V` be an Abhyankar valuation of the function field `K/k`. Let `r` be the rational rank of its value group, and let `t` be the transcendence degree of its residue field over `k`. Then there are nonzero `x_1, ..., x_r ∈ K` whose values are linearly independent over `ℤ` and `y_1, ..., y_t ∈ V` whose residues are algebraically independent over `k`. For such `x, y`, the elements `x, y` are algebraically independent over `k` (`algebraicIndependent_sumElim_of_laurentMonomial`), `K` is a finite extension of `K₀ = k(x, y)` (`finiteDimensional_adjoin_sumElim_of_isAbhyankarValuation`), and the restriction of `V` to `K₀` is trivial on `k(y)` (`mem_comap_adjoin_sumElim_of_residue`) and is a monomial valuation of `K₀` over `k(y)` in the `x_i` (`isMonomialValuation_comap_adjoin_sumElim`). The theorem `IsAbhyankarValuation.exists_isMonomialValuation_comap` collects these facts. If also the residue extension of `V` over `K₀` is separable of degree `[K : K₀]`, then `V` has local uniformization over `k` (`hasLocalUniformization_of_isAbhyankarValuation_of_finrank_residueField_eq`). The handbook chooses the values of the `x_i` as a basis of the value group. This needs Volume 3, Corollary 2.2.4, which is not proved. The general theorem `localUniformization_abhyankar` is not proved.
+
 ## 0.4.25 - 2026-11-26
 
 ### Added

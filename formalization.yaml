@@ -216,19 +216,43 @@ status:
     - name: Singularity.exists_isEtaleGenerator_of_finrank_residueField_eq
       kind: theorem
       status: proved
-      note: If the valuation v of K extends v_0 of K_0, [K : K_0] is finite and the residue extension is separable of degree [K : K_0], then K/K_0 is separable and there is an étale generator of K/K_0 for v. This is the case of one extension (e = d = g = 1) of Volume 5, Lemma 1.3.3, part 2 of the handbook (node SG0000004Y). The general case with g extensions is not proved.
+      note: If the valuation v of K extends v_0 of K_0, [K:K_0] is finite and the residue extension is separable of degree [K:K_0], then K/K_0 is separable and there is an étale generator of K/K_0 for v. This is the case of one extension (e = d = g = 1) of Volume 5, Lemma 1.3.3, part 2 of the handbook (node SG0000004Y). The general case with g extensions is not proved.
     - name: Singularity.hasLocalUniformization_of_finrank_residueField_eq
       kind: theorem
       status: proved
-      note: If the valuation v of K extends v_0 of K_0, [K : K_0] is finite, the residue extension is separable of degree [K : K_0] and v_0 has local uniformization over k, then v has local uniformization over k (Volume 5, Lemma 1.3.3 and Theorem 1.3.4 of the handbook, the case of one extension).
+      note: If the valuation v of K extends v_0 of K_0, [K:K_0] is finite, the residue extension is separable of degree [K:K_0] and v_0 has local uniformization over k, then v has local uniformization over k (Volume 5, Lemma 1.3.3 and Theorem 1.3.4 of the handbook, the case of one extension).
     - name: Singularity.hasLocalUniformization_of_monomial_of_finrank_residueField_eq
       kind: theorem
       status: proved
-      note: If v extends v_0, [K : K_0] is finite, v_0 is trivial on k(y) and a monomial valuation of K_0 over k(y), and the residue extension is separable of degree [K : K_0], then v has local uniformization over k. This is Volume 5, Theorem 2.2.1 of the handbook (Knaf-Kuhlmann) in the case without ramification, defect and splitting. The general case (localUniformization_abhyankar) is not proved.
+      note: If v extends v_0, [K:K_0] is finite, v_0 is trivial on k(y) and a monomial valuation of K_0 over k(y), and the residue extension is separable of degree [K:K_0], then v has local uniformization over k. This is Volume 5, Theorem 2.2.1 of the handbook (Knaf-Kuhlmann) in the case without ramification, defect and splitting. The general case (localUniformization_abhyankar) is not proved.
     - name: Singularity.hasLocalUniformization_of_isMonomialValuation_of_finrank_residueField_eq
       kind: theorem
       status: proved
       note: The same as hasLocalUniformization_of_monomial_of_finrank_residueField_eq for v_0 a monomial valuation of K_0 over k.
+    - name: Singularity.IsAbhyankarValuation.exists_isMonomialValuation_comap
+      kind: theorem
+      status: proved
+      note: Let V be an Abhyankar valuation of the function field K/k, with value group of rational rank r and residue field of transcendence degree t over k. Then there are nonzero x_1, ..., x_r in K with values linearly independent over the integers and y_1, ..., y_t in V with residues algebraically independent over k, such that x and y are algebraically independent over k, K is finite over K_0 = k(x, y), and the restriction of V to K_0 is trivial on k(y) and is a monomial valuation of K_0 over k(y) in the x_i. This is the choice of the subfield in the proof of Volume 5, Theorem 2.2.1 of the handbook, with values that are independent over the integers and not a basis of the value group.
+    - name: Singularity.isMonomialValuation_comap_adjoin_sumElim
+      kind: theorem
+      status: proved
+      note: If the values of the nonzero x_1, ..., x_r in K are linearly independent over the integers, then the restriction of V to k(x, y) is a monomial valuation over k(y) in the x_i, for each family y (Volume 3, Lemma 2.2.1 of the handbook).
+    - name: Singularity.mem_comap_adjoin_sumElim_of_residue
+      kind: theorem
+      status: proved
+      note: If the residues of y_1, ..., y_t in V are algebraically independent over k, then the restriction of V to k(x, y) is trivial on k(y) (Volume 5, Lemma 1.4.2 of the handbook).
+    - name: Singularity.algebraicIndependent_sumElim_of_laurentMonomial
+      kind: theorem
+      status: proved
+      note: Nonzero x_1, ..., x_r in K with values linearly independent over the integers and y_1, ..., y_t in V with residues algebraically independent over k are together algebraically independent over k (Volume 3, Theorem 2.1.4 of the handbook, for the trivially valued field k).
+    - name: Singularity.finiteDimensional_adjoin_sumElim_of_isAbhyankarValuation
+      kind: theorem
+      status: proved
+      note: For an Abhyankar valuation V of the function field K/k, with r elements x_i of independent values and t elements y_j of V with algebraically independent residues, where r is the rational rank of the value group and t is the transcendence degree of the residue field, K is a finite extension of k(x, y) (Volume 3, proof of Theorem 2.2.2 of the handbook).
+    - name: Singularity.hasLocalUniformization_of_isAbhyankarValuation_of_finrank_residueField_eq
+      kind: theorem
+      status: proved
+      note: Let v be an Abhyankar valuation of the function field K/k, and let K_0 = k(x, y) be a monomial subfield as in IsAbhyankarValuation.exists_isMonomialValuation_comap. If the residue extension of v over its restriction to K_0 is separable and its degree is the degree of K over K_0, then v has local uniformization over k (Volume 5, Theorem 2.2.1 of the handbook, the case of one extension with e = d = 1). The general theorem localUniformization_abhyankar is not proved.
     - name: Singularity.IsEtaleGenerator.centerSubring_closure_eq
       kind: theorem
       status: proved
