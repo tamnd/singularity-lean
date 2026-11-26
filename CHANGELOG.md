@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.35 - 2026-11-26
+
 ### Added
 
 - `Singularity/Surface/AChainChart.lean`: the charts of the resolution of the singularity $A_{m-1}$ (Volume 4, Proposition 2.3.10, part 1 of the handbook). The chart $U_i$ satisfies $xy = z^m$ (`aChain_chart_mul`, `aChainChart_equation`), and `aChainChartQuot` is its map from $k[x, y, z]/(xy - z^m)$. The equations $s_i y = z^{i+1}$ and $t_i z^i = y$ hold, and the formulas of $U_{i-1}$ and $U_i$ agree on the overlap (`aChain_glue_x`, `aChain_glue_y`, `aChain_glue_z`).
