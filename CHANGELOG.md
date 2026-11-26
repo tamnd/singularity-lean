@@ -4,6 +4,13 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Algebra/Hypersurface.lean`: a hypersurface in a regular local ring (Volume 1, Proposition 1.2.10 of the handbook). Let `S` be a regular local ring and let `f ∈ 𝔪` with `f ≠ 0`. Then `dim S/(f) + 1 = dim S`, and `S/(f)` is regular if and only if `f ∉ 𝔪²` (`isRegularLocalRing_quotient_iff`). If `f ∈ 𝔪²`, the maximal ideal of `S/(f)` needs as many generators as `𝔪` (`spanFinrank_maximalIdeal_le_spanFinrank_maximalIdeal_quotient_of_mem_sq`).
+- `Singularity/Algebra/Frobenius.lean`: the first properties of the Frobenius (Volume 1, Lemma 6.1.2 and Proposition 6.1.3 of the handbook). For each prime `𝔭`, `F⁻¹(𝔭) = 𝔭` (`comap_frobenius_eq`), so the map of `Spec R` is the identity (`primeSpectrum_comap_frobenius`). In prime characteristic, `F` is injective if and only if `R` is reduced (`injective_frobenius_iff_isReduced`).
+- `Singularity/Algebra/FlatLocal.lean`: flat local homomorphisms and descent of flatness (Volume 1, Proposition 6.4.1 and Lemma 6.4.6 of the handbook). A flat local homomorphism of local rings is faithfully flat and injective (`faithfullyFlat_and_injective_of_flat_of_isLocalHom`). A ring of prime characteristic with a flat Frobenius is reduced (`isReduced_of_flat_frobenius`). The proof uses the equational criterion of flatness, and the ring does not have to be Noetherian. If `C` is faithfully flat over `B` and flat over `A`, then `B` is flat over `A` (`flat_of_faithfullyFlat_of_flat`).
+- `Singularity/Algebra/ArtinRees.lean`: the lemma of Artin-Rees and the intersection theorem of Krull in the form of the handbook (Volume 1, Theorems 4.1.5 and 4.1.7 and Corollary 4.1.6 of the handbook). The lemma of Artin-Rees is `artinRees`, and its corollary `I^n N ⊆ I^n M ∩ N ⊆ I^(n-c) N` is `artinRees_le`. Let `E = ⋂ I^n M`. Then `I E = E`, and there is `a ∈ I` with `(1 + a) E = 0` (`krull_intersection`).
+
 ## 0.4.34 - 2026-11-26
 
 ### Added
