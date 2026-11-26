@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.33 - 2026-11-26
+
 ### Added
 
 - `Singularity/Invariant/IotaIndexOrder.lean`: the well order on the values of the invariant `ι` (Volume 6, Lemma 3.2.10 of the handbook). The set `I = {1, ..., p} × ℕ × {1, 2, 3, 4}` with the lexicographic order is `IotaIndex p`. Each nonempty subset of `I` has a least element (`IotaIndex.exists_least`). There is no infinite strictly decreasing sequence in `I` (`IotaIndex.not_strictAnti`).
