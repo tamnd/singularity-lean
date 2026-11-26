@@ -41,7 +41,7 @@ theorem bijective_restrictScalars_fixedField_top (K L' : Type*) [Field K] [Field
       (fun σ : Gal(L'/(fixedField (⊤ : Subgroup Gal(L'/K)))) => σ.restrictScalars K) := by
   refine ⟨fun σ τ h => AlgEquiv.restrictScalars_injective K h, fun τ => ?_⟩
   have hτ : τ ∈ (fixedField (⊤ : Subgroup Gal(L'/K))).fixingSubgroup := by
-    rw [mem_fixingSubgroup_iff]
+    rw [IntermediateField.mem_fixingSubgroup_iff]
     intro x hx
     exact (mem_fixedField_iff _ _).mp hx τ (Subgroup.mem_top τ)
   refine ⟨(fixedField (⊤ : Subgroup Gal(L'/K))).fixingSubgroupEquiv ⟨τ, hτ⟩, ?_⟩
@@ -69,7 +69,7 @@ theorem not_dvd_finrank_fixedField_sylow {K M L' : Type*} [Field K] [Field M] [F
   have h1 : finrank M (fixedField (P : Subgroup Gal(L'/M))) =
       (P : Subgroup Gal(L'/M)).index := by
     have h2 := Module.finrank_mul_finrank M (fixedField (P : Subgroup Gal(L'/M))) L'
-    rw [finrank_fixedField_eq_card, ← IsGalois.card_aut_eq_finrank,
+    rw [finrank_fixedField_eq_card, ← IsGalois.card_aut_eq_finrank (F := M) (E := L'),
       ← Subgroup.index_mul_card (P : Subgroup Gal(L'/M))] at h2
     exact Nat.eq_of_mul_eq_mul_right Nat.card_pos h2
   rw [← Module.finrank_mul_finrank K M (fixedField (P : Subgroup Gal(L'/M))), h1, hM]
