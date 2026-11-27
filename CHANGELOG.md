@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.65 - 2026-11-28
+
 ### Added
 
 - `Singularity/Algebra/QuadraticTransform.lean`: Volume 5, Proposition 1.1.3 and Lemma 1.1.5 of the handbook, in a large part. The setting with a valuation and the length in part (3) are not in Lean.
