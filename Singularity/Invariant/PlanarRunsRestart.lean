@@ -31,6 +31,13 @@ be the monomial `M_m`, and let `Δ : σ → K` be the tail `Δ_m = Φ_∞ - Φ_m
 
 ## Main results
 
+* `eq_cornerSum_add_cornerMono_mul` (Lemma 3.17.1, part 1): if `x_m = L_m (x_{m+1} + a_m)` for
+  each `m`, then `x_0 = φ_m + M_m x_m`, with `M_{m+1} = M_m L_m` and
+  `φ_{m+1} = φ_m + a_m M_{m+1}`.
+* `coeff_clean_chart` (Lemma 3.17.1, part 3): the coefficient of `X^k` in `cl(g̃_m)` is
+  `A_k = M^{|k|} g^{[k]}(φ)` if some `k_i` is not divisible by `p`, and `cl A_k` otherwise.
+* `hasse_single_clean_chart` (Lemma 3.17.1, part 4): in characteristic `p`,
+  `∂_{X_i} cl(g̃_m) = M g_{X_i}(φ + M X)`.
 * `eval_hasse_single_restart` (Lemma 3.19.2, part 1): in characteristic `p`,
   `g^{(m)}_{X_i}(Δ / M) = M^{1 - p} g_{X_i}(φ + Δ)`.
 * `cl_eval_restart` (Lemma 3.19.2, part 2): `cl g^{(m)}(Δ / M) = M^{-p} cl g(φ + Δ)`.
@@ -41,15 +48,21 @@ be the monomial `M_m`, and let `Δ : σ → K` be the tail `Δ_m = Φ_∞ - Φ_m
 * `restart_sub_mem` (Corollary 3.19.3, part 2): if `p ∣ j_i` for each `i`, then
   `M^{p - |j|} (g^{(m)})^{[j]}(Δ / M) - g^{[j]}(φ + Δ)` lies in `K0`, that is, it has only terms
   of class `0`.
+* `map_hasse_single_restart_add` (Corollary 3.19.3, part 1): for a valuation `v` with
+  `v(M) = r`, `v(g^{(m)}_{X_i}(Δ / M)) + (Θ - r) + p r = v(g_{X_i}(φ + Δ)) + Θ`, that is,
+  `Λ^{(m)}_0 + p v(M_m) = Λ_0` for each first derivative.
+* `map_cl_eval_restart_add` (Corollary 3.19.3, part 3):
+  `v(cl g^{(m)}(Δ / M)) + p v(M) = v(cl g(φ + Δ))`.
 
-Only part 1 uses the characteristic. It uses no property of `cl`.
+Part 1 of Lemma 3.19.2 and part 4 of Lemma 3.17.1 use the characteristic. They use no property
+of `cl`.
 
 ## What is not proved
 
 The file does not build the corner runs, the Hahn field and its classes. So it does not prove
-that `restart p cl φ M g` is the function of `P_m` (Lemma 3.17.1), and it does not prove
-Lemma 3.19.1. The bound on the values of the terms of class `0` in part 4 of Lemma 3.19.2, and
-parts 1 and 3 of Corollary 3.19.3, which are on values, are not proved.
+that `restart p cl φ M g` is the function of `P_m` (Lemma 3.17.1, part 2), and it does not
+prove Lemma 3.19.1. The bound on the values of the terms of class `0` in part 4 of
+Lemma 3.19.2 is not proved.
 
 ## References
 
@@ -62,6 +75,32 @@ open MvPolynomial Finsupp
 namespace Singularity
 
 namespace PlanarRuns
+
+section CornerCoordinates
+
+variable {R : Type*} [CommRing R]
+
+/-- The monomial `M_m` of a run, with `M_0 = 1` and `M_{m+1} = M_m L_m`. -/
+def cornerMono (L : ℕ → R) : ℕ → R
+  | 0 => 1
+  | m + 1 => cornerMono L m * L m
+
+/-- The sum `φ_m` of a run, with `φ_0 = 0` and `φ_{m+1} = φ_m + a_m M_{m+1}`. -/
+def cornerSum (L a : ℕ → R) : ℕ → R
+  | 0 => 0
+  | m + 1 => cornerSum L a m + a m * cornerMono L (m + 1)
+
+/-- Lemma 3.17.1, part 1: if `x_m = L_m (x_{m+1} + a_m)` for each `m`, then
+`x_0 = φ_m + M_m x_m`. -/
+theorem eq_cornerSum_add_cornerMono_mul (L a x : ℕ → R) (hx : ∀ m, x m = L m * (x (m + 1) + a m))
+    (m : ℕ) : x 0 = cornerSum L a m + cornerMono L m * x m := by
+  induction m with
+  | zero => simp [cornerSum, cornerMono]
+  | succ m ih =>
+    rw [ih, hx m, cornerSum, cornerMono]
+    ring
+
+end CornerCoordinates
 
 section HasseLinear
 
@@ -392,6 +431,62 @@ theorem restart_sub_mem (hcl : IsClassPart p K0 cl) (φ Δ : σ → K) {M : K} (
     ring
   rw [heq]
   exact Subring.neg_mem _ (Subring.mul_mem _ (hcl.inv_pow_mem M hdiv) hq)
+
+omit [DecidableEq σ] in
+theorem clean_eq_sub_removed (p : ℕ) (cl : K →+ K) (h : MvPolynomial σ K) :
+    clean p cl h = h - removed p cl h := by
+  rw [removed, sub_sub_cancel]
+
+/-- Lemma 3.17.1, part 3: the coefficient of `X^k` in `g_m = cl(g̃_m)` is `A_k = M^{|k|} g^{[k]}(φ)`
+if some `k_i` is not divisible by `p`, and `cl A_k` otherwise. -/
+theorem coeff_clean_chart (p : ℕ) (cl : K →+ K) (φ : σ → K) (M : K) (g : MvPolynomial σ K)
+    (k : σ →₀ ℕ) :
+    (clean p cl (chart φ M g)).coeff k = clCoeff p cl k (M ^ ord k * eval φ (hasse k g)) := by
+  rw [coeff_clean, coeff_chart]
+
+/-- Lemma 3.17.1, part 4: in characteristic `p`, `∂_{X_i} g_m = M g_{X_i}(φ + M X)`. -/
+theorem hasse_single_clean_chart {p : ℕ} [CharP K p] (cl : K →+ K) (φ : σ → K) (M : K)
+    (g : MvPolynomial σ K) (i : σ) :
+    hasse (single i 1) (clean p cl (chart φ M g)) =
+      C M * chart φ M (hasse (single i 1) g) := by
+  have hord : ord (single i 1 : σ →₀ ℕ) = 1 := by
+    simp [ord, single_apply]
+  rw [clean_eq_sub_removed, hasse_sub, hasse_single_removed, sub_zero, hasse_chart, hord, pow_one]
+
+theorem map_zpow_one_sub (v : AddValuation K (WithTop ℝ)) {M : K} (hM : M ≠ 0) {r : ℝ}
+    (hr : v M = r) (p : ℕ) : v (M ^ (1 - p : ℤ)) = (((1 - p : ℝ) * r : ℝ) : WithTop ℝ) := by
+  rw [zpow_sub₀ hM, zpow_one, zpow_natCast, AddValuation.map_div, AddValuation.map_pow, hr,
+    ← WithTop.coe_nsmul, ← WithTop.LinearOrderedAddCommGroup.coe_sub, nsmul_eq_mul]
+  congr 1
+  ring
+
+theorem map_inv_pow (v : AddValuation K (WithTop ℝ)) {M : K} {r : ℝ} (hr : v M = r) (p : ℕ) :
+    v (M ^ p)⁻¹ = ((-((p : ℝ) * r) : ℝ) : WithTop ℝ) := by
+  rw [AddValuation.map_inv, AddValuation.map_pow, hr, ← WithTop.coe_nsmul, nsmul_eq_mul]
+  rfl
+
+/-- Corollary 3.19.3, part 1: `Λ^{(m)}_0 + p v(M_m) = Λ_0`, for each first derivative. Here
+`v(M) = r`, so `δ_m = Θ - r`. -/
+theorem map_hasse_single_restart_add {p : ℕ} [CharP K p] (v : AddValuation K (WithTop ℝ))
+    (cl : K →+ K) (φ Δ : σ → K) {M : K} (hM : M ≠ 0) {r : ℝ} (hr : v M = r) (Θ : ℝ)
+    (g : MvPolynomial σ K) (i : σ) :
+    v (eval (fun l => Δ l / M) (hasse (single i 1) (restart p cl φ M g))) +
+        ((Θ - r + p * r : ℝ) : WithTop ℝ) =
+      v (eval (φ + Δ) (hasse (single i 1) g)) + (Θ : WithTop ℝ) := by
+  rw [eval_hasse_single_restart cl φ Δ hM, AddValuation.map_mul, map_zpow_one_sub v hM hr,
+    add_comm (((1 - p : ℝ) * r : ℝ) : WithTop ℝ), add_assoc, ← WithTop.coe_add]
+  congr 2
+  ring
+
+/-- Corollary 3.19.3, part 3: `v(cl g^{(m)}(Δ / M)) + p v(M) = v(cl g(φ + Δ))`. -/
+theorem map_cl_eval_restart_add {p : ℕ} {K0 : Subring K} {cl : K →+ K}
+    (hcl : IsClassPart p K0 cl) (v : AddValuation K (WithTop ℝ)) (φ Δ : σ → K) {M : K}
+    (hM : M ≠ 0) {r : ℝ} (hr : v M = r) (g : MvPolynomial σ K) :
+    v (cl (eval (fun l => Δ l / M) (restart p cl φ M g))) + (((p : ℝ) * r : ℝ) : WithTop ℝ) =
+      v (cl (eval (φ + Δ) g)) := by
+  rw [cl_eval_restart hcl φ Δ hM, AddValuation.map_mul, map_inv_pow v hr,
+    add_comm (((-((p : ℝ) * r)) : ℝ) : WithTop ℝ), add_assoc, ← WithTop.coe_add, neg_add_cancel,
+    WithTop.coe_zero, add_zero]
 
 end Restart
 
