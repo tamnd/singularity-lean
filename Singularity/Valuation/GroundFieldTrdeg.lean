@@ -50,7 +50,7 @@ theorem cardinalMk_add_trdeg_adjoin {ι : Type u} {y : ι → K} (hy : Algebraic
     (faithfulSMul_iff_algebraMap_injective (IntermediateField.adjoin k (Set.range y)) K).mpr
       (RingHom.injective (algebraMap (IntermediateField.adjoin k (Set.range y)) K))
   rw [(isTranscendenceBasis_adjoinRangeElem hy).cardinalMk_eq_trdeg]
-  exact trdeg_add_eq k (IntermediateField.adjoin k (Set.range y)) K
+  exact trdeg_add_eq k (IntermediateField.adjoin k (Set.range y))
 
 variable {V : ValuationSubring K} [Algebra k V] [IsScalarTower k V K]
 
