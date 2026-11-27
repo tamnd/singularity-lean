@@ -2102,3 +2102,27 @@ status:
       kind: theorem
       status: proved
       note: Volume 5, Lemma 1.4.2 of the handbook, the formula for the transcendence degree. If the residues of the y_i form a transcendence basis of the residue field over k, then trdeg of K over k(y) plus trdeg of the residue field is trdeg of K over k.
+    - name: Singularity.cpKappa_eq_one_iff
+      kind: theorem
+      status: proved
+      note: Volume 6, Definition 3.2.5 of the handbook. kappa(x) = 1 if and only if omega(x) = 0, for kappa with only the values 1 and at least 2.
+    - name: Singularity.cpIota_le_of_cpOmega_le
+      kind: theorem
+      status: proved
+      note: Volume 6, Definition 3.2.5 of the handbook. If m(x') = m(x) = p and omega(x') is at most omega(x), then iota(x') is at most iota(x) in the lexicographic order.
+    - name: Singularity.cpIota_originTransform_lt_of_lt
+      kind: theorem
+      status: proved
+      note: Volume 6, Proposition 4.3.4 part 4 of the handbook, the case m(x') < p. At the origin of the x_j-chart, iota(x') < iota(x).
+    - name: Singularity.cpIota_originTransform_le
+      kind: theorem
+      status: proved
+      note: Volume 6, Proposition 4.3.4 part 4 of the handbook, the bound on iota. For a clean g with ord g at least p, iota(x') is at most iota(x) at the origin of the x_j-chart, for iota = (m, omega, kappa) with kappa only 1 or at least 2.
+    - name: Singularity.charPolyhedron_originTransform
+      kind: theorem
+      status: proved
+      note: Volume 6, Proposition 4.3.4 part 2 of the handbook. At the origin of the x_j-chart, the characteristic polyhedron of Z'^p + g' is (1/p) N(g').
+    - name: Singularity.charPolyhedron_originTransform_eq_projPolyhedron
+      kind: theorem
+      status: proved
+      note: Volume 6, Proposition 4.3.4 part 2 of the handbook. At the origin of the x_j-chart, the projected polyhedron of Z'^p + g' is the characteristic polyhedron, so (x; Z') is well adapted.
