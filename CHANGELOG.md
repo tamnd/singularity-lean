@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.52 - 2026-11-27
+
 ### Added
 
 - `Singularity/Valuation/Coarsening.lean`: Volume 3, Lemma 2.3.2, part 1 of the handbook. Let `H` be a subgroup of the value group of `V`. The ring `W = {x | v(x) ≤ h for some h ∈ H}` is a valuation ring with `V ⊆ W` (`coarseningSubring`, `coarsening`, `le_coarsening`). If `H` is convex, an element `x ≠ 0` has `x, x⁻¹ ∈ W` if and only if `v(x) ∈ H` (`mem_coarsening_and_inv_mem_iff`). The maximal ideal of `W` is the set of the `x` with `v(x) < h` for each `h ∈ H` (`mem_nonunits_coarsening_iff`). The isomorphism of the value group of `W` with `Γ / H` and part 2 are not proved.
