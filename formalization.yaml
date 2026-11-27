@@ -1786,6 +1786,26 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 1, Lemma 4.2.4 of the handbook. Cofinal chains of submodules give the same inverse limit.'
+    - name: Singularity.Algebra.flat_frobenius_iff_forall_localization
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 6.4.2 of the handbook. Flatness of the Frobenius is local.'
+    - name: Singularity.Algebra.injOn_invLimMap
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 4.2.3 of the handbook, exactness at the limit of the first system.'
+    - name: Singularity.Algebra.exists_invLim_of_invLimMap_eq_zero
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 4.2.3 of the handbook, exactness at the limit of the middle system.'
+    - name: Singularity.Algebra.surjOn_invLimMap
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 4.2.3 of the handbook. The map of limits onto the last system is surjective.'
+    - name: Singularity.Scheme.eq_of_isCenter
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Proposition 1.4.3 of the handbook. A valuation ring has at most one center on a separated integral scheme.'
     - name: Singularity.Algebra.isRegularLocalRing_quotient_span_range
       kind: theorem
       status: proved

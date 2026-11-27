@@ -8,6 +8,8 @@ import Singularity.Algebra.RegularSystem
 import Singularity.Algebra.RegularComponent
 import Singularity.Algebra.RegularParameter
 import Singularity.Algebra.CofinalChains
+import Singularity.Algebra.FrobeniusLocalization
+import Singularity.Algebra.InverseLimitExact
 import Singularity.Algebra.RegularSequence
 import Singularity.Algebra.ExtCriterion
 import Singularity.Algebra.GlobalDimension
@@ -119,6 +121,7 @@ import Singularity.Fidelity.LocalUniformization
 import Singularity.Scheme.Embedded
 import Singularity.Valuation.Abhyankar
 import Singularity.Valuation.ZariskiRiemann
+import Singularity.Valuation.SchemeCenter
 import Singularity.Valuation.KeyPolynomials
 import Singularity.Valuation.Augmentation
 import Singularity.Valuation.MacLaneStep
