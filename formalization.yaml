@@ -1982,6 +1982,14 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 8, Lemma 1.1.5 of the handbook in the affine form.'
+    - name: Singularity.Algebra.SurfaceA.not_isRegularLocalRing_quotient
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Example 1.2.11 of the handbook, the surfaces A_m.'
+    - name: Singularity.Algebra.RamifiedDVR.isDiscreteValuationRing_quotient
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Example 1.2.11 of the handbook, the ramified discrete valuation ring.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved
