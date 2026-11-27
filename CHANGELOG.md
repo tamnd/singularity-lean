@@ -6,6 +6,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Invariant/CoefficientIdealTransform.lean`: Volume 2, Lemma 3.2.2 (2) of the handbook for the blowup of a point, in one chart. A general center is not in Lean.
+- `Singularity/Algebra/CohenMap.lean`: Volume 1, Theorem 4.4.6 of the handbook, for finitely many elements and an $\mathfrak{m}$-adically complete local ring. The proof does not use that $R$ is Noetherian.
+- `Singularity/Algebra/CuspFrobeniusLocal.lean`: Volume 1, Example 6.4.9 of the handbook, the local form, for the subring $k[t^2, t^3]$ of $k[t]$.
+- `Singularity/Algebra/NodeRegular.lean`: Volume 8, Lemma 2.1.3 and Corollary 2.1.4 of the handbook. The file has the general step for a quotient of a regular local ring by one element. The regularity of $A[[u, v]]$ for a regular $A$ is a hypothesis, because Mathlib does not have it.
 - `Singularity/Valuation/AbhyankarRationalRank.lean`: Volume 3, Theorem 2.2.2 of the handbook in the form of the handbook, with the choice of the elements `x` and `y` from the rational rank and the residue transcendence degree.
 - `Singularity/Algebra/CuspFrobenius.lean`: Volume 1, Example 6.4.9 of the handbook for the ring `k[t^2, t^3]`. The localization at `(t^2, t^3)` is not in Lean.
 - `Singularity/Algebra/NodeChart.lean`: Volume 8, Proposition 2.1.5 of the handbook, the first chart. The file does not prove that the quotient is the blowup chart, and the second chart is not in Lean.
