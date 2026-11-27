@@ -55,6 +55,7 @@ import Singularity.Invariant.OrderAlong
 import Singularity.Invariant.Newton
 import Singularity.Invariant.Residual
 import Singularity.Invariant.OrderBlowup
+import Singularity.Invariant.MaxOrderChart
 import Singularity.Invariant.Directrix
 import Singularity.Invariant.CharacteristicPolyhedron
 import Singularity.Invariant.MohBound
@@ -126,6 +127,7 @@ import Singularity.Valuation.SchemeCenter
 import Singularity.Valuation.CenterExists
 import Singularity.Valuation.CenterMap
 import Singularity.Valuation.ZariskiRiemannCover
+import Singularity.Valuation.DefectlessDistance
 import Singularity.Valuation.KeyPolynomials
 import Singularity.Valuation.Augmentation
 import Singularity.Valuation.MacLaneStep

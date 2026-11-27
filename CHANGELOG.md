@@ -4,6 +4,11 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/DefectlessDistance.lean`: Volume 3, Lemma 2.1.2 of the handbook (`exists_valuation_sum_eq_max`), and Proposition 3.2.3 in an elementary form (`exists_forall_valuation_sub_le`). The hypotheses `ef = n` and `x_1 = y_1 = 1` are given as families `x` and `y` with `|x| |y| = [L : K]` and `x i₀ * y j₀ = 1`. The choice of these families from `e` and `f` is not in Lean.
+- `Singularity/Invariant/MaxOrderChart.lean`: Volume 2, Corollary 2.2.8 of the handbook in a special case. For one blowup of the origin of `k[x_1, ..., x_n]`, the controlled transform of `(I, m)` in a chart has order at most `m` at the origin of the chart (`idealOrd_chartTransformIdeal_le`). The general case needs Theorem 2.2.7.
+
 ## 0.4.60 - 2026-11-27
 
 ### Added
