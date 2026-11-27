@@ -20,7 +20,7 @@ The definition is Definition 6.2.1 of the handbook for a finite set `B`. The `p`
 * `Singularity.Algebra.finrank_pSubring_eq`: `[K : L] = p^|B|`, the first claim of Corollary 6.2.4.
 * `Singularity.Algebra.IsPBasis.card_eq`: two finite `p`-bases have the same number of elements.
 
-The second claim of Corollary 6.2.4, `dim_K Ω_{K/k} = |B|`, needs Theorem 6.2.3. The file `Singularity/Algebra/PBasisDifferentials.lean` proves the inequality `dim_K Ω_{K/k} ≤ |B|`, and the equality is not in Lean.
+The second claim of Corollary 6.2.4, `dim_K Ω_{K/k} = |B|`, needs Theorem 6.2.3. The file `Singularity/Algebra/PBasisDifferentials.lean` proves the inequality `dim_K Ω_{K/k} ≤ |B|`, and the file `Singularity/Algebra/PBasisExistence.lean` proves the equality.
 -/
 
 namespace Singularity.Algebra

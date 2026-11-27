@@ -1854,6 +1854,30 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 5, Corollary 3.1.3 of the handbook, given Proposition 3.1.2 as a hypothesis.'
+    - name: Singularity.Algebra.boxBasisPoly
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 6.1.5 of the handbook, the polynomial case.'
+    - name: Singularity.Algebra.iterateFrobenius_finite_and_flat
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Corollary 6.1.6 of the handbook, the finite and flat part, for a perfect field.'
+    - name: Singularity.Algebra.existsUnique_derivation_pBasis
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Theorem 6.2.3 of the handbook, for a finite p-basis.'
+    - name: Singularity.Algebra.finrank_kaehler_eq_card
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Corollary 6.2.4 of the handbook, dim Omega equals |B| for a finite p-basis.'
+    - name: Singularity.chartTransformIdeal_derivIdeal_iterate_le
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Theorem 2.2.7 of the handbook, for the blowup of a point, in each chart.'
+    - name: Singularity.exists_valuation_eq_of_mem_adjoin
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Lemma 2.2.1 of the handbook, the value group inclusion only.'
     - name: Singularity.Algebra.isRegularLocalRing_quotient_span_range
       kind: theorem
       status: proved

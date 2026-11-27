@@ -10,9 +10,12 @@ import Singularity.Algebra.RegularParameter
 import Singularity.Algebra.CofinalChains
 import Singularity.Algebra.FrobeniusLocalization
 import Singularity.Algebra.FrobeniusBasis
+import Singularity.Algebra.FrobeniusBasisPoly
+import Singularity.Algebra.FrobeniusFlat
 import Singularity.Algebra.InverseLimitExact
 import Singularity.Algebra.PBasis
 import Singularity.Algebra.PBasisDifferentials
+import Singularity.Algebra.PBasisExistence
 import Singularity.Algebra.RegularSequence
 import Singularity.Algebra.ExtCriterion
 import Singularity.Algebra.GlobalDimension
@@ -58,6 +61,7 @@ import Singularity.Invariant.Newton
 import Singularity.Invariant.Residual
 import Singularity.Invariant.OrderBlowup
 import Singularity.Invariant.MaxOrderChart
+import Singularity.Invariant.DerivTransformChart
 import Singularity.Invariant.Directrix
 import Singularity.Invariant.CharacteristicPolyhedron
 import Singularity.Invariant.MohBound
@@ -125,6 +129,7 @@ import Singularity.Fidelity.Embedded
 import Singularity.Fidelity.LocalUniformization
 import Singularity.Scheme.Embedded
 import Singularity.Valuation.Abhyankar
+import Singularity.Valuation.AbhyankarEquality
 import Singularity.Valuation.ZariskiRiemann
 import Singularity.Valuation.SchemeCenter
 import Singularity.Valuation.CenterExists
