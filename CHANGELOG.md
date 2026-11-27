@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.58 - 2026-11-27
+
 ### Added
 
 - `Singularity/Algebra/RegularComponent.lean`: Volume 1, Corollary 1.3.4 of the handbook, in affine form. Let `q` be a prime ideal of `A` such that `A_q` is a regular local ring. Then exactly one minimal prime of `A` is contained in `q` (`existsUnique_minimalPrimes_le_of_isRegularLocalRing`). So the point `q` of `Spec A` lies on exactly one irreducible component.
