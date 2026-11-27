@@ -4,6 +4,12 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Algebra/QuadraticTransformFactor.lean`: Volume 5, Lemma 1.1.6 of the handbook, under hypotheses. Let `R` be a unique factorization domain and let `R_1` be a domain with `R → R_1` injective, `x` prime in `R_1`, and each element of `R_1` of the form `r / s` with `s` an associate of a power of `x`. If `f` and `g` have no common prime factor in `R` and `x` does not divide the strict transform `f'`, then `f'` and `g'` have no common prime factor in `R_1` (`exists_prime_forall_dvd_of_prime`, `not_prime_dvd_transform`). The hypothesis on `R_1` holds for a localization of a ring between `R` and `R_x` (`exists_mul_eq_algebraMap_of_isLocalization`), and so for a localization of the chart `R[𝔪/x]` (`not_prime_dvd_transform_blowupChart`).
+- `Singularity/Algebra/IntersectionNumber.lean`: Volume 5, Lemma 1.2.2 of the handbook, with `i_R(f, g)` the length of `R/(f, g)`. Part 2 holds in each unique factorization domain: if `f ≠ 0` has no common prime factor with `g_1`, then `i_R(f, g_1 g_2) = i_R(f, g_1) + i_R(f, g_2)` (`mulQuotientSpanPair`, `quotientSpanPairMap`, `exact_mulQuotientSpanPair`, `length_quotient_span_pair_mul`, `length_quotient_span_pair_mul_of_prime`). In part 1, `i_R(f, g) = 0` if and only if `f` or `g` is a unit, in each local ring (`length_quotient_span_pair_eq_zero_iff`). The finiteness of `i_R(f, g)` is not proved.
+- `Singularity/Valuation/GroundFieldTrdeg.lean`: the formula for the transcendence degree in Volume 5, Lemma 1.4.2 of the handbook. If the residues of `y_i ∈ V` form a transcendence basis of the residue field over `k`, then `trdeg_{k(y)} K + trdeg_k κ_v = trdeg_k K` (`isTranscendenceBasis_adjoinRangeElem`, `cardinalMk_add_trdeg_adjoin`, `trdeg_adjoin_add_trdeg_residueField`). The claim that `V` is zero-dimensional over `k(y)` is not proved.
+
 ## 0.4.46 - 2026-11-27
 
 ### Added

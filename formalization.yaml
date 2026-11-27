@@ -2058,3 +2058,47 @@ status:
       kind: theorem
       status: proved
       note: Volume 6, Proposition 4.3.4 part 4 of the handbook, the part on omega. For a clean g, omega(x') is at most omega(x). The bound on iota is not proved.
+    - name: Singularity.exists_prime_forall_dvd_of_prime
+      kind: theorem
+      status: proved
+      note: Used in Volume 5, Lemma 1.1.6 of the handbook. A prime p of R_1 that does not divide x gives a prime of R that divides each z in R with p dividing z in R_1.
+    - name: Singularity.not_prime_dvd_transform
+      kind: theorem
+      status: proved
+      note: Volume 5, Lemma 1.1.6 of the handbook, under hypotheses. If f and g have no common prime factor in the unique factorization domain R, and x does not divide f', then f' and g' have no common prime factor in R_1.
+    - name: Singularity.exists_mul_eq_algebraMap_of_isLocalization
+      kind: theorem
+      status: proved
+      note: Used in Volume 5, Lemma 1.1.6 of the handbook. Each element of a localization of a ring between R and R_x is r / s with s an associate of a power of x.
+    - name: Singularity.not_prime_dvd_transform_blowupChart
+      kind: theorem
+      status: proved
+      note: Volume 5, Lemma 1.1.6 of the handbook, for a localization R_1 of the chart R[m/x]. The primality of x in R_1 and the claim that x does not divide f' are hypotheses.
+    - name: Singularity.exact_mulQuotientSpanPair
+      kind: theorem
+      status: proved
+      note: Used in Volume 5, Lemma 1.2.2 of the handbook. The sequence R/(f, g_2) to R/(f, g_1 g_2) to R/(f, g_1) is exact.
+    - name: Singularity.length_quotient_span_pair_mul
+      kind: theorem
+      status: proved
+      note: Volume 5, Lemma 1.2.2 part 2 of the handbook, in a general form. If f divides g_1 c only when f divides c, then i(f, g_1 g_2) = i(f, g_1) + i(f, g_2).
+    - name: Singularity.length_quotient_span_pair_mul_of_prime
+      kind: theorem
+      status: proved
+      note: Volume 5, Lemma 1.2.2 part 2 of the handbook, in each unique factorization domain. If f is nonzero and has no common prime factor with g_1, then i(f, g_1 g_2) = i(f, g_1) + i(f, g_2).
+    - name: Singularity.length_quotient_span_pair_eq_zero_iff
+      kind: theorem
+      status: proved
+      note: Volume 5, Lemma 1.2.2 part 1 of the handbook, the second claim. In a local ring, i(f, g) = 0 if and only if f or g is a unit. The finiteness is not proved.
+    - name: Singularity.isTranscendenceBasis_adjoinRangeElem
+      kind: theorem
+      status: proved
+      note: Used in Volume 5, Lemma 1.4.2 of the handbook. Algebraically independent elements y_i are a transcendence basis of k(y) over k.
+    - name: Singularity.cardinalMk_add_trdeg_adjoin
+      kind: theorem
+      status: proved
+      note: Used in Volume 5, Lemma 1.4.2 of the handbook. For algebraically independent y_i, the number of the y_i plus trdeg of K over k(y) is trdeg of K over k.
+    - name: Singularity.trdeg_adjoin_add_trdeg_residueField
+      kind: theorem
+      status: proved
+      note: Volume 5, Lemma 1.4.2 of the handbook, the formula for the transcendence degree. If the residues of the y_i form a transcendence basis of the residue field over k, then trdeg of K over k(y) plus trdeg of the residue field is trdeg of K over k.

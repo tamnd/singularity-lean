@@ -28,6 +28,8 @@ import Singularity.Algebra.BlowupChart
 import Singularity.Algebra.CurveOnSurface
 import Singularity.Algebra.MvHasse
 import Singularity.Algebra.DerivationIdealPow
+import Singularity.Algebra.QuadraticTransformFactor
+import Singularity.Algebra.IntersectionNumber
 import Singularity.Algebra.PartialDerivCharP
 import Singularity.Algebra.PurelyInseparableSurface
 import Singularity.Curves.Affine
@@ -124,6 +126,7 @@ import Singularity.Valuation.DegreePTowers
 import Singularity.Valuation.InertiaField
 import Singularity.Valuation.DecompositionField
 import Singularity.Valuation.AbhyankarSubfield
+import Singularity.Valuation.GroundFieldTrdeg
 import Singularity.Valuation.AbhyankarResidueField
 import Singularity.Valuation.AbhyankarValueGroup
 import Singularity.Valuation.FactorialSeries
