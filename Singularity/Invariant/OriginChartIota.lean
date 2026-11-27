@@ -83,20 +83,14 @@ variable {α β : Type*} [Preorder α] [Preorder β]
 theorem toLex_le_toLex_of_or {a a' : α} {b b' : β} (h : a < a' ∨ a = a' ∧ b ≤ b') :
     toLex (a, b) ≤ toLex (a', b') := by
   rcases h with h | ⟨rfl, h⟩
-  · first
-      | exact Prod.Lex.left _ _ h
-      | exact Prod.Lex.toLex_le_toLex.mpr (Or.inl h)
-  · first
-      | exact Prod.Lex.right _ h
-      | exact Prod.Lex.toLex_le_toLex.mpr (Or.inr ⟨rfl, h⟩)
+  · exact Prod.Lex.left _ _ h
+  · exact Prod.Lex.right _ h
 
 /-- If the first coordinates satisfy `a < a'`, then `(a, b) < (a', b')` in the lexicographic
 order. -/
 theorem toLex_lt_toLex_of_lt {a a' : α} (b b' : β) (h : a < a') :
-    toLex (a, b) < toLex (a', b') := by
-  first
-    | exact Prod.Lex.left _ _ h
-    | exact Prod.Lex.toLex_lt_toLex.mpr (Or.inl h)
+    toLex (a, b) < toLex (a', b') :=
+  Prod.Lex.left _ _ h
 
 end Lex
 
@@ -141,13 +135,13 @@ theorem cpMult_of_le {p : ℕ} {g : MvPolynomial σ k} (h : (p : ℕ∞) ≤ ord
 theorem cpOmegaAt_of_lt {p : ℕ} (Δ : Finset σ) {g : MvPolynomial σ k} (h : cpMult p g < p) :
     cpOmegaAt p Δ g = 0 := by
   unfold cpOmegaAt
-  exact if_pos h
+  exact ite_eq_left h
 
 /-- If `m(x) = p`, then `ω(x)` is `cpOmega Δ g`. -/
 theorem cpOmegaAt_of_not_lt {p : ℕ} (Δ : Finset σ) {g : MvPolynomial σ k}
     (h : ¬ cpMult p g < p) : cpOmegaAt p Δ g = cpOmega Δ g := by
   unfold cpOmegaAt
-  exact if_neg h
+  exact ite_eq_right h
 
 /-- If `ord g ≥ p`, then `ω(x)` is `cpOmega Δ g`. -/
 theorem cpOmegaAt_of_le {p : ℕ} (Δ : Finset σ) {g : MvPolynomial σ k} (h : (p : ℕ∞) ≤ ord g) :
