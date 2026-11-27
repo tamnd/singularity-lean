@@ -152,3 +152,8 @@ import Singularity.Surface.AnBlowupChart
 import Singularity.Surface.WhitneyUmbrella
 import Singularity.Surface.CuspPairBlowup
 import Singularity.Surface.InseparableBlowup
+import Singularity.Example.CurveNormalization
+import Singularity.Example.CuspOrder
+import Singularity.Example.ImperfectField
+import Singularity.Algebra.KrullDomain
+import Singularity.Example.BlowupCharts
