@@ -6,6 +6,11 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Valuation/AbhyankarRationalRank.lean`: Volume 3, Theorem 2.2.2 of the handbook in the form of the handbook, with the choice of the elements `x` and `y` from the rational rank and the residue transcendence degree.
+- `Singularity/Algebra/CuspFrobenius.lean`: Volume 1, Example 6.4.9 of the handbook for the ring `k[t^2, t^3]`. The localization at `(t^2, t^3)` is not in Lean.
+- `Singularity/Algebra/NodeChart.lean`: Volume 8, Proposition 2.1.5 of the handbook, the first chart. The file does not prove that the quotient is the blowup chart, and the second chart is not in Lean.
+- `Singularity/Algebra/NodeChartTwo.lean`: Volume 8, Proposition 2.1.5 of the handbook, the second chart. The file does not prove that the quotient is the blowup chart.
+- `Singularity/Algebra/FrobeniusRank.lean`: Volume 1, Corollary 6.1.6 of the handbook, the rank. The type `FrobeniusPush` is the ring of power series with the action of $S$ through the Frobenius, and the file proves that it is free of rank $(p^e)^n$.
 - `Singularity/Algebra/PowerSeriesFlat.lean`: Volume 1, Corollary 6.4.4 and Proposition 6.4.5 of the handbook in full, for finitely many variables. The proof uses Lemma 6.4.3 with the ideal of the variables, and a basis of `(A/J) ⊗_A B` for the ideal `J` of the powers `x_i^(n+1)`.
 - `Singularity/Valuation/AbhyankarFiniteGeneration.lean`: Volume 3, Theorem 2.2.2 of the handbook. The theorem takes the elements `x` and `y` of Theorem 2.1.4 as hypotheses, with `trdeg(L/K) ≤ r + s`. The choice of `x` and `y` from the rational rank and the residue transcendence degree is not in Lean.
 - `Singularity/Algebra/FlatnessModPowers.lean`: Volume 1, Lemma 6.4.3 of the handbook, the flatness criterion modulo the powers of an ideal. The hypothesis uses `(A/I^n) ⊗_A B` in place of `B/I^n B`.

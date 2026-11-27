@@ -1894,6 +1894,26 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 3, Theorem 2.2.2 of the handbook, with x and y given as hypotheses.'
+    - name: Singularity.valueGroup_fg_and_residueField_fg_of_rank_rat_add_trdeg_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Theorem 2.2.2 of the handbook, in the form of the handbook.'
+    - name: Singularity.Algebra.cuspFrob_not_flat
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Example 6.4.9 of the handbook, for the ring k[t^2, t^3].'
+    - name: Singularity.Algebra.nodeChartEquiv
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 2.1.5 of the handbook, the first chart as a quotient.'
+    - name: Singularity.Algebra.nodeChartTwoEquiv
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 2.1.5 of the handbook, the second chart as a quotient.'
+    - name: Singularity.Algebra.free_and_finrank_frobeniusPush
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Corollary 6.1.6 of the handbook, the rank.'
     - name: Singularity.valuation_chartEval_inv_div_lt_one_iff
       kind: theorem
       status: proved
