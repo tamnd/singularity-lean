@@ -1882,6 +1882,22 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 3, Lemma 2.2.1 of the handbook, the residue field part.'
+    - name: Singularity.valueGroup_adjoin_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Lemma 2.2.1 of the handbook, the equality of the value groups.'
+    - name: Singularity.linearIndependent_and_disjoint_valueGroup
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Lemma 2.2.1 of the handbook, the directness of the sum.'
+    - name: Singularity.valuation_chartEval_inv_div_lt_one_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 1.6.7 of the handbook, the first claim, with a hypothesis on the monomial valuation.'
+    - name: Singularity.Algebra.flat_of_flat_quotient_pow
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 6.4.3 of the handbook, with (A/I^n) tensor B in place of B/I^nB.'
     - name: Singularity.Algebra.iff_sum_eq_one_of_iff_notMem_sq
       kind: theorem
       status: proved

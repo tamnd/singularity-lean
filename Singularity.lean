@@ -14,6 +14,7 @@ import Singularity.Algebra.FrobeniusBasis
 import Singularity.Algebra.FrobeniusBasisPoly
 import Singularity.Algebra.FrobeniusFlat
 import Singularity.Algebra.PowerSeriesBaseChange
+import Singularity.Algebra.FlatnessModPowers
 import Singularity.Algebra.InverseLimitExact
 import Singularity.Algebra.PBasis
 import Singularity.Algebra.PBasisDifferentials
@@ -135,6 +136,7 @@ import Singularity.Scheme.Embedded
 import Singularity.Valuation.Abhyankar
 import Singularity.Valuation.AbhyankarEquality
 import Singularity.Valuation.AbhyankarResidue
+import Singularity.Valuation.AbhyankarValueGroup
 import Singularity.Valuation.ZariskiRiemann
 import Singularity.Valuation.SchemeCenter
 import Singularity.Valuation.CenterExists
@@ -156,6 +158,7 @@ import Singularity.Valuation.LatticeLemma
 import Singularity.Valuation.LatticeLemmaOrdered
 import Singularity.Valuation.LocalUniformizationMonomial
 import Singularity.Valuation.MonomialGroundField
+import Singularity.Valuation.MonomialNegativeWeights
 import Singularity.Valuation.LocalUniformizationTrdegTwo
 import Singularity.Valuation.DegreePSteps
 import Singularity.Valuation.EtaleRegular

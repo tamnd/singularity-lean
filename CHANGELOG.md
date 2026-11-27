@@ -6,6 +6,9 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Algebra/FlatnessModPowers.lean`: Volume 1, Lemma 6.4.3 of the handbook, the flatness criterion modulo the powers of an ideal. The hypothesis uses `(A/I^n) ⊗_A B` in place of `B/I^n B`.
+- `Singularity/Valuation/AbhyankarValueGroup.lean`: Volume 3, Lemma 2.2.1 of the handbook, the equality of the value groups, with the independence of the `γ_i` and the directness. With `AbhyankarEquality.lean` and `AbhyankarResidue.lean`, Lemma 2.2.1 is in Lean.
+- `Singularity/Valuation/MonomialNegativeWeights.lean`: Volume 3, Example 1.6.7 of the handbook, the claim `m_v ∩ k[u, w] = (u)` for negative weights. The monomial valuation is not constructed, and its property on homogeneous forms is a hypothesis.
 - `Singularity/Valuation/AbhyankarResidue.lean`: Volume 3, Lemma 2.2.1 of the handbook, the residue field part `K_0 w_0 = Kv(ȳ_1, ..., ȳ_s)`, in the relative form of the handbook. The equality of the value groups is not stated as an equality of groups.
 - `Singularity/Algebra/MonomialParameter.lean`: Volume 8, Corollary 2.1.4 of the handbook, given Lemma 2.1.3 as a hypothesis. Lemma 2.1.3 is not in Lean.
 - `Singularity/Algebra/PowerSeriesBaseChange.lean`: Volume 1, Corollary 6.4.4 of the handbook when `[K : L]` is finite, and Proposition 6.4.5 when `[K : K^p]` is finite. Lemma 6.4.3 and the infinite cases are not in Lean.
