@@ -1878,6 +1878,26 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 3, Lemma 2.2.1 of the handbook, the value group inclusion only.'
+    - name: Singularity.residueIntermediateField_adjoin_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Lemma 2.2.1 of the handbook, the residue field part.'
+    - name: Singularity.Algebra.iff_sum_eq_one_of_iff_notMem_sq
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Corollary 2.1.4 of the handbook, given Lemma 2.1.3 as a hypothesis.'
+    - name: Singularity.Algebra.flat_mvPowerSeries_of_finiteDimensional
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Corollary 6.4.4 of the handbook, when [K : L] is finite.'
+    - name: Singularity.Algebra.frobenius_mvPowerSeries_finite_and_flat
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 6.4.5 of the handbook, when [K : K^p] is finite.'
+    - name: Singularity.pointChart_quadricCone_x
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 3.1.5 of the handbook, the x-chart of the blowup of the quadric cone.'
     - name: Singularity.Algebra.isRegularLocalRing_quotient_span_range
       kind: theorem
       status: proved
