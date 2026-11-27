@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Algebra/RegularSystem.lean`: Volume 1, Corollary 1.2.7 of the handbook. Let `(R, m)` be a regular local ring of dimension `d` and let `x_1, ..., x_d` generate `m`. Then `R / (x_1, ..., x_i)` is a regular local ring of dimension `d - i` for each `i ≤ d` (`isRegularLocalRing_quotient_span_range`).
+
 ## 0.4.57 - 2026-11-27
 
 ### Added
