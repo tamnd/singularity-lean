@@ -2206,3 +2206,99 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Example 2.3.5 of the handbook. If 2 and 3 are not 0, (y1) is in (y1, x^3), and (y1, x^3) is in D(y1^2 - x^3).'
+    - name: Singularity.originXChart_injective
+      kind: theorem
+      status: proved
+      note: 'Used in Volume 4, Lemma 1.1.6 of the handbook. Over a domain, the substitution F(x, x y_1, x z_1) of the x-chart of the blowup of A^3 at the origin is injective.'
+    - name: Singularity.originXChart_of_isHomogeneous
+      kind: theorem
+      status: proved
+      note: 'Used in Volume 4, Lemma 1.1.6 of the handbook. For P homogeneous of degree d, P(x, x y_1, x z_1) = x^d P(1, y_1, z_1).'
+    - name: Singularity.originXChart_eq_pow_mul_originStrict
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Lemma 1.1.6 of the handbook. If the homogeneous parts of F of degree less than m are 0, then F(x, x y_1, x z_1) = x^m F''.'
+    - name: Singularity.originRestrict_originStrict
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Lemma 1.1.6 of the handbook. With m the least degree of a monomial of F, F''(0, y_1, z_1) = F_m(1, y_1, z_1).'
+    - name: Singularity.not_X_dvd_originStrict
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Lemma 1.1.6 of the handbook. Over a domain, with m the least degree of a monomial of F, x does not divide F''.'
+    - name: Singularity.exists_originXChart_eq_pow_mul
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Lemma 1.1.6 of the handbook, the algebraic part. F(x, x y_1, x z_1) = x^m F'' with x not dividing F'' and F''(0, y_1, z_1) = F_m(1, y_1, z_1). The claims on schemes are not proved.'
+    - name: Singularity.quartic_xChart
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.6 of the handbook. In the x-chart of the blowup of z^2 = x^4 + y^4, f = x^2 (z_1^2 - x^2 (1 + y_1^4)). The other charts are quartic_yChart and quartic_zChart.'
+    - name: Singularity.quarticNormHom_equation
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.6 of the handbook. The map B to C = k[x, y_1, w]/(w^2 - 1 - y_1^4) with z_1 to x w sends z_1^2 - x^2 (1 + y_1^4) to 0.'
+    - name: Singularity.quartic_normalization_regular
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.6 of the handbook. If 2 is a unit, w^2 - 1 - y_1^4, 4 y_1^3 and 2 w generate the unit ideal, so C is regular by the Jacobian criterion.'
+    - name: Singularity.separable_one_add_X_pow_four
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.6 of the handbook. If 2 is a unit, 1 + Y^4 is separable.'
+    - name: Singularity.card_roots_one_add_X_pow_four
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.6 of the handbook. Over an algebraically closed field of characteristic not 2, 1 + Y^4 has exactly four distinct roots.'
+    - name: Singularity.quartic_exceptional_ideal
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.6 of the handbook. The ideal (x, x y_1, x^2 w) is (x).'
+    - name: Singularity.quartic_charTwo
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.6 of the handbook. In characteristic 2, z^2 - x^4 - y^4 = (z + x^2 + y^2)^2.'
+    - name: Singularity.dFour_singular_origin
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.11, part 1 of the handbook. In a domain of any characteristic, the only common zero of z^2 + xy(x + y) and its partial derivatives is the origin.'
+    - name: Singularity.dFour_xChart
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.11, part 2 of the handbook. In the x-chart, F = x^2 (z_1^2 + x y_1 (1 + y_1)). The other charts are dFour_yChart and dFour_zChart.'
+    - name: Singularity.dFour_xChart_singular_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.11, part 2 of the handbook. In a domain of any characteristic, the common zeros of z_1^2 + x y_1 (1 + y_1) and its partial derivatives are (0, 0, 0) and (0, -1, 0).'
+    - name: Singularity.dFour_order_z
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.11, part 3 of the handbook, the order of z along E_0. On the strict transform, z y_1 (1 + y_1) = -z_1^3.'
+    - name: Singularity.eSix_xChart_regular
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.12, part 2 of the handbook. In each commutative ring, z_1^2 + x + x^2 y_1^4, 1 + 2 x y_1^4 and 2 z_1 generate the unit ideal, so the x-chart is regular.'
+    - name: Singularity.eSix_yChart_exceptional
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.12, part 2 of the handbook. On y = 0 in the y-chart, H = H_y = 0 gives x_1 = z_1 = 0.'
+    - name: Singularity.eSix_complete_square
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.12, part 2 of the handbook. With iota^2 = -1, zeta^3 = 2 and 2 a unit, z_1^2 + y^2 + y x_1^3 = ab - c^6.'
+    - name: Singularity.eSix_complete_square_inverse
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.12, part 2 of the handbook. The inverse of the change of coordinates to a, b, c.'
+    - name: Singularity.eSix_exceptional_curve
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.12, part 2 of the handbook. On E_0, a = b = c^3.'
+    - name: Singularity.eEight_xChart_regular
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.13, part 2 of the handbook. If 2 = 0, 3 = 0 or 5 = 0, then z_1^2 + x + x^3 y_1^5 and its partial derivatives generate the unit ideal, so the x-chart is regular.'
+    - name: Singularity.eEight_yChart_exceptional
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.13, part 2 of the handbook. On y = 0 in the y-chart, the equation and its derivative in y vanish only at x_1 = z_1 = 0.'
