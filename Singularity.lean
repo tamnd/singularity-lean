@@ -166,6 +166,11 @@ import Singularity.Surface.AnBlowupChart
 import Singularity.Surface.WhitneyUmbrella
 import Singularity.Surface.CuspPairBlowup
 import Singularity.Surface.InseparableBlowup
+import Singularity.Surface.OriginChart
+import Singularity.Surface.QuarticNormalization
+import Singularity.Surface.DFourBlowup
+import Singularity.Surface.ESixBlowup
+import Singularity.Surface.EEightChart
 import Singularity.Example.CurveNormalization
 import Singularity.Example.CuspOrder
 import Singularity.Example.ImperfectField
