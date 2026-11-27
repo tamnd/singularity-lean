@@ -75,6 +75,7 @@ import Singularity.Invariant.LogJacobianNoLeave
 import Singularity.Invariant.LogJacobianFullDirectrix
 import Singularity.Invariant.LogJacobianType
 import Singularity.Invariant.LogJacobianTau
+import Singularity.Invariant.LogJacobianBlowupLocal
 import Singularity.Invariant.LogJacobianKangaroo
 import Singularity.Invariant.LogJacobianCaseAForms
 import Singularity.Invariant.LogJacobianKangarooSmall
