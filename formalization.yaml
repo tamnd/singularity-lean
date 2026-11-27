@@ -1922,6 +1922,30 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 1, Theorem 4.4.6 of the handbook.'
+    - name: Singularity.Algebra.exists_surjective_mvPowerSeries_residueField
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Corollary 4.4.8 of the handbook, with a coefficient field as a hypothesis.'
+    - name: Singularity.sInf_linWeight_projPolyhedron
+      kind: theorem
+      status: proved
+      note: 'Volume 6, Lemma 3.1.2 (3) of the handbook.'
+    - name: Singularity.projPolyhedron_eq_empty_iff_of_monic
+      kind: theorem
+      status: proved
+      note: 'Volume 6, Lemma 3.1.2 (2) of the handbook.'
+    - name: Singularity.quadricConeGlue_exceptional_generator
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.7 (2) of the handbook, the transition function.'
+    - name: Singularity.map_algEquiv_eq_of_mul_derivIdeal_le
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Proposition 3.2.10 of the handbook, for polynomials.'
+    - name: Singularity.maximalContact_change
+      kind: theorem
+      status: proved
+      note: 'Volume 2, the last step of Corollary 3.2.11 of the handbook.'
     - name: Singularity.Algebra.cuspLocFrob_not_flat
       kind: theorem
       status: proved
