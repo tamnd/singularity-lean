@@ -61,6 +61,7 @@ import Singularity.Invariant.LogJacobianCenterNonincrease
 import Singularity.Invariant.Tschirnhausen
 import Singularity.Invariant.LogJacobianEndCase
 import Singularity.Invariant.CossartPiltantOmega
+import Singularity.Invariant.CossartPiltantOmegaBounds
 import Singularity.Invariant.IotaIndexOrder
 import Singularity.Invariant.LogJacobianNearPoint
 import Singularity.Invariant.LogJacobianDirectrix
@@ -86,6 +87,7 @@ import Singularity.Invariant.LogJacobianCornerRuns
 import Singularity.Invariant.OriginRuns
 import Singularity.Invariant.OriginRunsCorner
 import Singularity.Invariant.OriginRunsLimit
+import Singularity.Invariant.OriginChartResidualOrder
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
