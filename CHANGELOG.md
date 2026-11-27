@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/OriginRunsCorner.lean`: Lemma 3.14.3, parts 1, 2 and 3 of Theorem 3.14.7 (Theorem B) and Example 3.14.9 of Volume 7 of the handbook, on the origin runs whose letters are in a set `L` of `k ≥ 2` letters. The exponent columns start as the unit vectors, and a step with the letter `j` replaces `c_j` by `Σ_{t ∈ L} c_t` (`OriginRuns.cols`). At the end of the run, the image of `x^e` has the exponent `E_s` of `x_s` with `(k - 1) E_s = q(e) · c_s - σ(e) + p`, and the exponents of the other variables do not change (`OriginRuns.expSteps_formula`). The inequalities of Lemma 3.14.6 are a hypothesis (`OriginRuns.CornerIneq`, `OriginRuns.cornerIneq_of`). Under them, with `L ⊆ Δ`, the run gives `r_s = E_s(T)` for `s ∈ L` (`OriginRuns.originRun_divisorExponent_eq`), `d_m = σ(T) - r_U` (`OriginRuns.originRun_ord_residualFactor`), and `ν^G = d_m ≥ ρ` along each corner curve `C_t = V(x_i : i ≠ t)` (`OriginRuns.originRun_orderGAlong_corner`, `OriginRuns.originRun_logJacobianOrder_le_orderGAlong`, `OriginRuns.originRun_cornerCurves`). If `g` is clean and a monomial `b` has the least order along `V(x_i : i ∈ S)`, then the clean order is `Σ_{i ∈ S} b_i` (`OriginRuns.cleanOrdAlong_eq_of_min`). In Example 3.14.9, with `g = x_1 x_4^p + x_1^2 x_2 x_3 x_4^(p-2)` and `Δ = {x_1, x_2, x_3}`, each point of an origin run in the letters of `Δ` has `ρ = d = p`, `ν^G = p` along the corner curves, `ν^G = p - 1 < ρ` along `V(x_4, x_s)` and `ν^G = p - 2` along `V(x_4)`, and each step keeps `ρ = p` (`OriginRuns.example_3_14_9`, `OriginRuns.rhoStep_exPoly`). The limit argument of Proposition 3.14.4 and Lemma 3.14.6, the initial form in part 2, parts 4 and 5 of the theorem and part 3 of the example are not proved.
+
 ## 0.4.42 - 2026-11-27
 
 ### Added
