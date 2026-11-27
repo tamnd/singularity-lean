@@ -6,6 +6,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Algebra/RegularComponent.lean`: Volume 1, Corollary 1.3.4 of the handbook, in affine form. Let `q` be a prime ideal of `A` such that `A_q` is a regular local ring. Then exactly one minimal prime of `A` is contained in `q` (`existsUnique_minimalPrimes_le_of_isRegularLocalRing`). So the point `q` of `Spec A` lies on exactly one irreducible component.
 - `Singularity/Algebra/RegularSystem.lean`: Volume 1, Corollary 1.2.7 of the handbook. Let `(R, m)` be a regular local ring of dimension `d` and let `x_1, ..., x_d` generate `m`. Then `R / (x_1, ..., x_i)` is a regular local ring of dimension `d - i` for each `i ≤ d` (`isRegularLocalRing_quotient_span_range`).
 
 ## 0.4.57 - 2026-11-27
