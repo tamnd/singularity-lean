@@ -4,6 +4,11 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/CossartPiltantOmegaBounds.lean`: Lemma 3.2.14 of Volume 6 of the handbook for polynomials over a field. The invariant `ω` of Definition 3.2.5 satisfies `ε - 1 ≤ ω ≤ ε`, with `ε` the order of the residual factor (`cpOmega_le_ord_residualFactor`, `ord_residualFactor_sub_one_le_cpOmega`). In the first case of the definition, `ε ≥ 1` and `ω + 1 = ε` (`one_le_ord_residualFactor_of_exists`, `cpOmega_add_one_of_exists`). For `g ≠ 0`, `ω = 0` if and only if `ε = 0`, or `ε = 1` and the residual factor has a nonzero coefficient of `x_j` for some `j ∉ Δ` (`cpOmega_eq_zero_iff`). If each coordinate is in `Δ`, then `ω = ε` (`cpOmega_eq_of_forall_mem`).
+- `Singularity/Invariant/OriginChartResidualOrder.lean`: part 3 of Proposition 4.3.4 of Volume 6 of the handbook, and the part of part 4 on `ω`. Let `g ≠ 0` with `p ≤ ord g`, and let `g'` be the transform of `g` at the origin of the `x_j`-chart. For each monomial `x^a` of `g` of degree `ord g`, `ε(x') + a_j ≤ ε(x) + r_j` (`ord_residualFactor_originTransform_add_le`), and `ε(x') + a_j ≤ ε(x)` if `j ∉ Δ` (`ord_residualFactor_originTransform_add_le_of_notMem`). So `ε(x') ≤ ε(x)` (`ord_residualFactor_originTransform_le`). For a clean `g` in characteristic `p`, `ω(x') ≤ ω(x)` (`cpOmega_originTransform_le`). This proof uses `cpOmega_cleanPart_le`, so it rests on Volume 7. Parts 1 and 2 were already in `Singularity/Invariant/OriginRuns.lean`. The bound on `ι` is not proved.
+
 ## 0.4.44 - 2026-11-27
 
 ### Added
