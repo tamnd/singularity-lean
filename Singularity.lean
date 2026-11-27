@@ -54,6 +54,7 @@ import Singularity.Algebra.CurveOnSurface
 import Singularity.Algebra.MvHasse
 import Singularity.Algebra.DerivationIdealPow
 import Singularity.Algebra.DerivationLocalPow
+import Singularity.Algebra.DerivationSeparable
 import Singularity.Algebra.QuadraticTransformFactor
 import Singularity.Algebra.IntersectionNumber
 import Singularity.Algebra.PartialDerivCharP
@@ -224,6 +225,7 @@ import Singularity.Alteration.Trace
 import Singularity.Alteration.GaloisDegree
 import Singularity.Alteration.TraceSplitting
 import Singularity.Alteration.GenericEtale
+import Singularity.Alteration.DimensionCriterion
 import Singularity.Alteration.Reynolds
 import Singularity.Alteration.WildInvolution
 import Singularity.Alteration.InseparableQuotient
