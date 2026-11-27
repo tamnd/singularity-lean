@@ -1966,6 +1966,22 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Example 3.2.7 of the handbook, the order of a function in Weierstrass form.'
+    - name: Singularity.PurelyInseparableEquation.ord_shift_X_pow_add
+      kind: theorem
+      status: proved
+      note: 'Volume 6, Lemma 2.3.2 of the handbook, the order at a point.'
+    - name: Singularity.Examples.example_4_3_3_strictTransform
+      kind: theorem
+      status: proved
+      note: 'Volume 6, Example 4.3.3 of the handbook, the chart of the blowup.'
+    - name: Singularity.derivation_mem_of_algebraMap_mem_pow
+      kind: theorem
+      status: proved
+      note: 'Volume 6, Lemma 2.3.3 of the handbook, the algebraic part.'
+    - name: Singularity.exists_etale_away_algebraMap_iff_isSeparable
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 1.1.5 of the handbook in the affine form.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved
