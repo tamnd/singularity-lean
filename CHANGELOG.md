@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.55 - 2026-11-27
+
 ### Added
 
 - `Singularity/Algebra/Completion.lean`: Volume 1, Lemma 4.1.4 of the handbook. Let `R` be Noetherian, let `M` be a finitely generated `R`-module and let `F` be an `I`-filtration of `M`. Then the module `M^*` over the Rees algebra is finitely generated if and only if `F` is stable (`fg_filtration_submodule_iff_stable`). The proof uses `Ideal.Filtration.submodule_fg_iff_stable` of Mathlib.
