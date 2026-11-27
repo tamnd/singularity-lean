@@ -171,6 +171,7 @@ import Singularity.Algebra.Hypersurface
 import Singularity.Algebra.Frobenius
 import Singularity.Algebra.FlatLocal
 import Singularity.Algebra.ArtinRees
+import Singularity.Algebra.Completion
 import Singularity.Surface.AChainChart
 import Singularity.Surface.AnBlowupChart
 import Singularity.Surface.WhitneyUmbrella
