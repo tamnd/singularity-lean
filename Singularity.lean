@@ -177,6 +177,8 @@ import Singularity.Algebra.Completion
 import Singularity.Surface.AChainChart
 import Singularity.Surface.AnBlowupChart
 import Singularity.Surface.WhitneyUmbrella
+import Singularity.Surface.IdealChart
+import Singularity.Surface.IsolatedSingular
 import Singularity.Surface.CuspPairBlowup
 import Singularity.Surface.InseparableBlowup
 import Singularity.Surface.OriginChart
