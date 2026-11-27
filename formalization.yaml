@@ -1742,6 +1742,10 @@ status:
       kind: theorem
       status: proved
       note: Volume 1, Theorem 4.1.7 of the handbook. Let E be the intersection of the I^n M. Then I E = E, and (1 + a) E = 0 for some a in I.
+    - name: Singularity.Algebra.fg_filtration_submodule_iff_stable
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 4.1.4 of the handbook. Over a Noetherian ring, an I-filtration of a finitely generated module is stable if and only if M^* is a finitely generated module over the Rees algebra.'
     - name: Singularity.Algebra.isNoetherianRing_reesAlgebra
       kind: theorem
       status: proved

@@ -3,6 +3,7 @@ Copyright (c) 2026 The singularity authors. All rights reserved.
 Released under the Apache 2.0 licence as described in the file LICENSE.
 -/
 import Mathlib.RingTheory.ReesAlgebra
+import Mathlib.RingTheory.Filtration
 import Mathlib.RingTheory.AdicCompletion.Exactness
 import Mathlib.RingTheory.AdicCompletion.AsTensorProduct
 import Mathlib.RingTheory.AdicCompletion.LocalRing
@@ -12,9 +13,10 @@ import Singularity.Algebra.FlatLocal
 /-!
 # The Rees algebra and the completion of a Noetherian ring
 
-This file states six results of Volume 1, Sections 4.1 to 4.3 of the handbook in the form of the handbook. Mathlib proves most of them, and the results here are short consequences.
+This file states seven results of Volume 1, Sections 4.1 to 4.3 of the handbook in the form of the handbook. Mathlib proves most of them, and the results here are short consequences.
 
 * `Singularity.Algebra.isNoetherianRing_reesAlgebra`: the Rees algebra of an ideal of a Noetherian ring is Noetherian (Volume 1, Lemma 4.1.3 of the handbook).
+* `Singularity.Algebra.fg_filtration_submodule_iff_stable`: over a Noetherian ring, an `I`-filtration of a finitely generated module is stable if and only if the module `M^*` over the Rees algebra is finitely generated (Volume 1, Lemma 4.1.4 of the handbook).
 * `Singularity.Algebra.adicCompletion_shortExact`: over a Noetherian ring, `I`-adic completion is exact on short exact sequences of finitely generated modules (Volume 1, Proposition 4.2.5 of the handbook).
 * `Singularity.Algebra.exists_tensorProduct_equiv_adicCompletion`: over a Noetherian ring, `R̂ ⊗_R M → M̂` is an isomorphism of `R̂`-modules for each finitely generated `M` (Volume 1, Theorem 4.2.6 of the handbook).
 * `Singularity.Algebra.flat_adicCompletion`: the `I`-adic completion of a Noetherian ring is flat (Volume 1, Theorem 4.2.7 of the handbook).
@@ -34,6 +36,12 @@ namespace Singularity.Algebra
 theorem isNoetherianRing_reesAlgebra {R : Type*} [CommRing R] [IsNoetherianRing R]
     (I : Ideal R) : IsNoetherianRing (reesAlgebra I) :=
   inferInstance
+
+/-- Stable filtrations and the Rees algebra (Volume 1, Lemma 4.1.4 of the handbook). Let `R` be a Noetherian ring, let `M` be a finitely generated `R`-module and let `F` be an `I`-filtration of `M`. Then `M^* = ⊕ M_n t^n` is a finitely generated module over `R^*` if and only if `F` is stable. In Lean, `M^*` is `F.submodule`, the `R^*`-submodule of `M[t]` of the polynomials whose coefficient of `t^n` is in `M_n`. Each `M_n` is finitely generated since `M` is a Noetherian module, so Mathlib's `Ideal.Filtration.submodule_fg_iff_stable` applies. -/
+theorem fg_filtration_submodule_iff_stable {R M : Type*} [CommRing R] [IsNoetherianRing R]
+    [AddCommGroup M] [Module R M] [Module.Finite R M] {I : Ideal R} (F : I.Filtration M) :
+    F.submodule.FG ↔ F.Stable :=
+  F.submodule_fg_iff_stable fun _ => IsNoetherian.noetherian _
 
 /-- Completion is exact (Volume 1, Proposition 4.2.5 of the handbook). Let `R` be a Noetherian ring, let `I` be an ideal and let `0 → N → M → P → 0` be an exact sequence of finitely generated `R`-modules. Then `0 → N̂ → M̂ → P̂ → 0` is exact. Only `M` needs to be finitely generated. -/
 theorem adicCompletion_shortExact {R : Type u} [CommRing R] [IsNoetherianRing R] (I : Ideal R)
