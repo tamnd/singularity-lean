@@ -161,3 +161,4 @@ import Singularity.Example.CuspOrder
 import Singularity.Example.ImperfectField
 import Singularity.Algebra.KrullDomain
 import Singularity.Example.BlowupCharts
+import Singularity.Portfolio.Mixed
