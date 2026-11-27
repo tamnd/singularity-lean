@@ -1934,6 +1934,34 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 4, Example 3.1.6, part 2 of the handbook. In the chart x = y x_2 of the blowup along V(x, y), F = y^2 (x_2^2 - z). The other charts are whitney_lineChart_y and whitney_pointChart_z.'
+    - name: Singularity.map_idealChart_eq_span
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Lemma 1.1.3, part 3 of the handbook. If f is in I, then I R[I/f] = f R[I/f].'
+    - name: Singularity.algebraMap_mem_nonZeroDivisors_idealChart
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Lemma 1.1.3, part 3 of the handbook. The element f is a nonzerodivisor of R[I/f].'
+    - name: Singularity.coe_mem_map_iff_idealChart
+      kind: theorem
+      status: proved
+      note: 'Volume 4, proof of Proposition 1.1.5 of the handbook. For B = R[I/f], the intersection of B with J R_f is (J B : f^infinity).'
+    - name: Singularity.mem_saturation_of_mul_mem_idealChart
+      kind: theorem
+      status: proved
+      note: 'Volume 4, proof of Proposition 1.1.5 of the handbook. The element f is a nonzerodivisor on B / (J B : f^infinity).'
+    - name: Singularity.finite_isMaximal_of_height_eq_two
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Lemma 1.2.3 of the handbook, for an affine scheme. A closed subset of Spec R with R Noetherian whose points have height 2 is a finite set of closed points.'
+    - name: Singularity.height_eq_two_of_notMem_regularLocus
+      kind: theorem
+      status: proved
+      note: 'Volume 4, proof of Theorem 1.2.4 of the handbook. If dim R is at most 2 and R_p is an integrally closed domain that is not regular, then p has height 2.'
+    - name: Singularity.finite_isMaximal_compl_regularLocus
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Theorem 1.2.4 of the handbook, for an affine scheme. The singular locus is a finite set of closed points of height 2. The case of an excellent surface is not proved.'
     - name: Singularity.cuspPair_inter
       kind: theorem
       status: proved
