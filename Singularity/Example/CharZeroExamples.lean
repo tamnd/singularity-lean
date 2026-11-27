@@ -172,7 +172,8 @@ theorem pderiv_whitneyEq_z : pderiv 2 (whitneyEq R) = -(X 1 ^ 2) := by
 
 /-- **Volume 2, Example 1.3.3 (2) of the handbook**, the translation. With `z = c + t`, `f = x^2 - c y^2 - y^2 t`. -/
 theorem aeval_whitneyEq_translate (c : R) :
-    aeval ![X 0, X 1, C c + X 2] (whitneyEq R) = X 0 ^ 2 - C c * X 1 ^ 2 - X 1 ^ 2 * X 2 := by
+    aeval (![X 0, X 1, C c + X 2] : Fin 3 → MvPolynomial (Fin 3) R) (whitneyEq R) =
+      X 0 ^ 2 - C c * X 1 ^ 2 - X 1 ^ 2 * X 2 := by
   simp only [whitneyEq, map_sub, map_mul, map_pow, aeval_X]
   show (X 0 : MvPolynomial (Fin 3) R) ^ 2 - X 1 ^ 2 * (C c + X 2) = _
   ring
