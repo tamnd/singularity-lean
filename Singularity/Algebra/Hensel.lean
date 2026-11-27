@@ -113,9 +113,8 @@ theorem isUnit_derivative_eval_of_sub_mem {R : Type*} [CommRing R] [IsLocalRing 
   by_contra hn
   have h1 : g.derivative.eval b ∈ maximalIdeal R := (mem_maximalIdeal _).mpr hn
   have h2 : g.derivative.eval b - g.derivative.eval a₀ ∈ maximalIdeal R := by
-    obtain ⟨c, hc⟩ := Polynomial.sub_dvd_eval_sub b a₀ g.derivative
-    rw [hc]
-    exact Ideal.mul_mem_right _ _ hb
+    have hb' : b ≡ a₀ [SMOD maximalIdeal R] := SModEq.sub_mem.mpr hb
+    exact SModEq.sub_mem.mp (hb'.eval g.derivative)
   have h3 : g.derivative.eval a₀ ∈ maximalIdeal R := by
     have := Ideal.sub_mem _ h1 h2
     rwa [sub_sub_cancel] at this
