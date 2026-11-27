@@ -1826,6 +1826,18 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 3, Corollary 1.5.4 of the handbook. Finitely many neighbourhoods of the centers cover the Zariski-Riemann space.'
+    - name: Singularity.exists_valuation_sum_eq_max
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Lemma 2.1.2 of the handbook.'
+    - name: Singularity.exists_forall_valuation_sub_le
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Proposition 3.2.3 of the handbook in an elementary form. The families x and y are hypotheses.'
+    - name: Singularity.idealOrd_chartTransformIdeal_le
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Corollary 2.2.8 of the handbook for one blowup of the origin, at the origin of a chart.'
     - name: Singularity.Algebra.isRegularLocalRing_quotient_span_range
       kind: theorem
       status: proved
