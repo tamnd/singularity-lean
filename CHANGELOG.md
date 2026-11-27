@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/LogJacobianTau.lean`: Definition 3.9 of research note 03 and Corollary 3.8 of the note in fixed coordinates. The type of `g` is `τ = d - ρ`, with `d = residualOrderAlong Δ p g` and `ρ = logJacobianOrder Δ g` (`logJacobianType`). For a clean `g`, `d = ρ + τ` (`residualOrderAlong_eq_logJacobianOrder_add_logJacobianType`), `τ ≤ 1` (`logJacobianType_le_one`) and `τ` is `0` or `1` (`logJacobianType_eq_zero_or_eq_one`). The type is `0` if and only if `ρ = d` (`logJacobianType_eq_zero_iff`), and for `g ≠ 0` it is `1` if and only if `ρ + 1 = d` (`logJacobianType_eq_one_iff`). With `ord G = d`, the type is `1` if and only if `∂_j in(G) ≠ 0` for some `j ∉ Δ` (`logJacobianType_eq_one_iff_pderiv`), and `0` if and only if `∂_j in(G) = 0` for each `j ∉ Δ` (`logJacobianType_eq_zero_iff_pderiv`). For `g ≠ 0` the residual order is finite (`residualOrderAlong_ne_top`), and `residualFactor Δ 0 = 0` (`residualFactor_zero`). The bound `ρ ≤ d^max ≤ ρ + 1` on the largest residual order over all adapted coordinates is not proved, because part 3 of Lemma 3.6 of the note is not proved.
+
 ## 0.4.47 - 2026-11-27
 
 ### Added
