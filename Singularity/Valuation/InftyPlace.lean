@@ -103,17 +103,17 @@ theorem inftyValuation_aeval_inv_X_lt_one_iff (q : F[X]) :
 
 /-- The ring `F[1/x]` of the chart of `P^1` at infinity, as a subring of `F(x)`. -/
 noncomputable def inftyChart : Subring (RatFunc F) :=
-  (aeval (RatFunc.X⁻¹ : RatFunc F) : F[X] →ₐ[F] RatFunc F).range.toSubring
+  ((aeval (RatFunc.X⁻¹ : RatFunc F) : F[X] →ₐ[F] RatFunc F) : F[X] →+* RatFunc F).range
 
 theorem aeval_mem_inftyChart (q : F[X]) :
     aeval (RatFunc.X⁻¹ : RatFunc F) q ∈ inftyChart F :=
-  Subalgebra.mem_toSubring.mpr (AlgHom.mem_range_self _ q)
+  RingHom.mem_range.mpr ⟨q, rfl⟩
 
 /-- The ring `F[1/x]` lies in the valuation ring of the valuation at infinity (Volume 3, Example 1.4.6 of the handbook). -/
 theorem inftyChart_le :
     inftyChart F ≤ (RatFunc.inftyValuation F).valuationSubring.toSubring := by
   intro y hy
-  obtain ⟨q, rfl⟩ := AlgHom.mem_range.mp (Subalgebra.mem_toSubring.mp hy)
+  obtain ⟨q, rfl⟩ := RingHom.mem_range.mp hy
   exact inftyValuation_aeval_inv_X_le_one F q
 
 /-- **The center at infinity** (Volume 3, Example 1.4.6 of the handbook). The center `m_v ∩ F[1/x]` of the valuation at infinity on `F[1/x]` is the ideal `(1/x)`: the element `q(1/x)` is in the center if and only if `X` divides `q`. So the center of `v` on `P^1` is the point `∞`. -/

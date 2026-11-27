@@ -43,7 +43,9 @@ theorem valuation_ne_of_sq_eq {K L : Type*} [Field K] [Field L] [Algebra K L]
     rw [zero_pow two_ne_zero, Valuation.map_zero, ht] at h2
     exact exp_ne_zero h2.symm
   have hva : v a ≠ 0 := (Valuation.ne_zero_iff v).mpr ha
-  rw [Valuation.map_pow, ← exp_log hva, ← exp_nsmul, ht, exp_inj, smul_eq_mul] at h2
+  rw [Valuation.map_pow, ← exp_log hva, ← exp_nsmul, ht, exp_inj] at h2
+  have h3 : 2 * log (v a) = m := by
+    rw [← h2, two_nsmul, two_mul]
   obtain ⟨k, hk⟩ := hm
   omega
 
