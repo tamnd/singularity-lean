@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.49 - 2026-11-27
+
 ### Added
 
 - `Singularity/Surface/OriginChart.lean`: Volume 4, Lemma 1.1.6 of the handbook, the algebraic part. Let `k` be a domain and let `m` be the least degree of a monomial of `F ∈ k[x, y, z]`, that is, `F_m ≠ 0` and the homogeneous parts of lower degree are `0`. In the `x`-chart, `F(x, x y_1, x z_1) = x^m F'`, where `x` does not divide `F'` and `F'(0, y_1, z_1) = F_m(1, y_1, z_1)` (`exists_originXChart_eq_pow_mul`, `originXChart_eq_pow_mul_originStrict`, `not_X_dvd_originStrict`, `originRestrict_originStrict`). The substitution is injective (`originXChart_injective`), and it sends a homogeneous `P` of degree `d` to `x^d P(1, y_1, z_1)` (`originXChart_of_isHomogeneous`). The identification of the chart with a polynomial ring and the claims on schemes are not proved.
