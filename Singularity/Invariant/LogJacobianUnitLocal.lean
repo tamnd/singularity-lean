@@ -18,7 +18,7 @@ unit of `k[x]` in general, but it is a unit of `O` (`isUnit_algebraMap_of_consta
 So the image of `(u^p)` in `O` is the unit ideal, and `Θ(u^p g) O = Θ(g) O`
 (`map_logJacobian_pow_mul_of_constantCoeff_ne_zero`).
 
-The units of the power series ring that are not images of polynomials are not covered.
+The file `LogJacobianPowerSeries.lean` covers all the units of the power series ring.
 
 ## Main results
 
