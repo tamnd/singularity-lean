@@ -45,8 +45,8 @@ theorem diffComm_add (D E : Module.End k A) (a : A) :
 
 theorem diffComm_mul (D E : Module.End k A) (a : A) :
     diffComm (D * E) a = diffComm D a * E + D * diffComm E a := by
-  unfold diffComm
-  noncomm_ring
+  simp only [diffComm, sub_mul, mul_sub, mul_assoc]
+  abel
 
 /-- The commutator of an `A`-linear map with a multiplication is zero. -/
 theorem diffComm_eq_zero {D : Module.End k A} (hD : IsDiffOp 0 D) (a : A) :
@@ -138,12 +138,10 @@ theorem IsDiffOp.of_hasseSchmidt (D : ℕ → Module.End k A) (h0 : D 0 = 1)
       have hc : diffComm (D (n + 1)) a =
           ∑ i ∈ range (n + 1), LinearMap.mulLeft k (D (i + 1) a) * D (n - i) := by
         ext b
-        simp only [diffComm, LinearMap.sub_apply, Module.End.mul_apply, LinearMap.mulLeft_apply,
-          LinearMap.coeFn_sum, Finset.sum_apply]
+        rw [LinearMap.sum_apply]
+        simp only [diffComm, LinearMap.sub_apply, Module.End.mul_apply, LinearMap.mulLeft_apply]
         rw [hmul, Finset.sum_range_succ', h0]
-        simp only [Module.End.one_apply, Nat.sub_zero, add_sub_cancel_right]
-        refine Finset.sum_congr rfl fun i _ => ?_
-        rw [Nat.add_sub_add_right]
+        simp [Nat.add_sub_add_right]
       rw [hc]
       refine IsDiffOp.sum _ fun i hi => ?_
       have hi' : n - i < n + 1 := by omega
