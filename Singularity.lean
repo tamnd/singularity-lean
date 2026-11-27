@@ -176,6 +176,7 @@ import Singularity.Algebra.ArtinRees
 import Singularity.Algebra.Completion
 import Singularity.Algebra.Hensel
 import Singularity.Algebra.Equicharacteristic
+import Singularity.Algebra.DifferentialOperator
 import Singularity.Surface.AChainChart
 import Singularity.Surface.AnBlowupChart
 import Singularity.Surface.WhitneyUmbrella
