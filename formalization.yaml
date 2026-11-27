@@ -1746,6 +1746,14 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 1, Lemma 4.1.4 of the handbook. Over a Noetherian ring, an I-filtration of a finitely generated module is stable if and only if M^* is a finitely generated module over the Rees algebra.'
+    - name: Singularity.Algebra.exists_root_of_isAdicComplete
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 4.4.3 of the handbook, the existence. The proof of IsAdicComplete.henselianRing of Mathlib, without the hypothesis that the polynomial is monic.'
+    - name: Singularity.Algebra.existsUnique_root_of_isAdicComplete
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 4.4.3 of the handbook. The lemma of Hensel for each polynomial over a local ring that is complete for the m-adic topology.'
     - name: Singularity.Algebra.isNoetherianRing_reesAlgebra
       kind: theorem
       status: proved
