@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.63 - 2026-11-27
+
 ### Added
 
 - `Singularity/Algebra/CohenQuotient.lean`: Volume 1, Corollary 4.4.8 of the handbook. The existence of a coefficient field is a hypothesis, because Mathlib does not have it.
