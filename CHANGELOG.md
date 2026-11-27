@@ -6,6 +6,9 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Invariant/MaximalContactSmall.lean`: Volume 6, Proposition 1.2.5 of the handbook at the points with coordinates in the base ring. The proof needs only that $m$ is a unit.
+- `Singularity/Valuation/MonomialValuationConstruction.lean`: Volume 3, Lemma 1.6.1 of the handbook, the monomial valuation of $k(x_1, \dots, x_n)$ with values in an ordered group.
+- `Singularity/Algebra/HypersurfaceHeight.lean`: Volume 4, Lemma 1.2.6 of the handbook, the dimension of the local rings and the condition $R_1$. The condition $S_2$ and the normality are not in Lean, because Mathlib does not have the criterion of Serre.
 - `Singularity/Invariant/PlanarRunsConjectureP.lean`: Volume 7, Theorem 3.19.6 of the handbook (Conjecture P), Steps 2 to 5 of the proof, in the model of `PlanarRuns`. The conclusion of Statement D (Theorem 3.18.26) for a polynomial is `StatementDHolds`, and `statementD` gives it for the degrees less than `p` (`statementDHolds_of_degreeOf_lt`). The hypotheses are Lemma 3.19.2, part 1, for the first derivatives at the point `P_m`, Statement D for each nonzero Hasse derivative `g^{[k]}`, and for each large `m` an order `e ≥ 1` and an index `k` with the inequalities of Theorem 3.18.32, part 1, and Corollary 3.18.33 for the run from `P_m`. From them there is a contradiction (`conjectureP_of_restart`). The proof is the pigeonhole on the finite set of the pairs `(e, k)`, the limit `v(M_m) → Θ`, and Statement D for `g_{X_i}` at the index `k - e_i` with `p ∤ k_i`. Theorem 3.18.26 for degrees at least `p`, Theorem 3.18.32 and Corollary 3.18.33 at the points `P_m`, Lemma 3.19.1 and the value bound of Lemma 3.19.2, part 4, are not proved.
 
 ## 0.4.63 - 2026-11-27
