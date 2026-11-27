@@ -1746,6 +1746,22 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 1, Lemma 4.1.4 of the handbook. Over a Noetherian ring, an I-filtration of a finitely generated module is stable if and only if M^* is a finitely generated module over the Rees algebra.'
+    - name: Singularity.Algebra.IsDiffOp.add_max
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 6.3.4 of the handbook. The sum of operators of orders m and n has order at most max m n.'
+    - name: Singularity.Algebra.IsDiffOp.mulLeft_mul
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 6.3.4 of the handbook. The product of an operator with an element of A keeps the order.'
+    - name: Singularity.Algebra.IsDiffOp.mul
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 6.3.4 of the handbook. The composite of operators of orders m and n has order at most m + n.'
+    - name: Singularity.Algebra.IsDiffOp.of_hasseSchmidt
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 6.3.4 of the handbook. The term D n of a Hasse-Schmidt derivation has order at most n.'
     - name: Singularity.Algebra.exists_isField_subring_iff_ringChar_eq
       kind: theorem
       status: proved
