@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Algebra/Completion.lean`: Volume 1, Lemma 4.1.3, Proposition 4.2.5, Theorems 4.2.6 and 4.2.7, Proposition 4.3.1, parts 1 and 2 and Proposition 4.3.2 of the handbook, with the results of Mathlib. The Rees algebra of an ideal of a Noetherian ring is Noetherian (`isNoetherianRing_reesAlgebra`). Let `R` be Noetherian. Then `I`-adic completion is exact on short exact sequences `0 → N → M → P → 0` with `M` finitely generated (`adicCompletion_shortExact`), the natural map `R̂ ⊗_R M → M̂` is an isomorphism of `R̂`-modules for `M` finitely generated (`exists_tensorProduct_equiv_adicCompletion`), and `R̂` is flat over `R` (`flat_adicCompletion`). Let `(R, m)` be a Noetherian local ring. Then `R̂` is local with maximal ideal `m R̂`, the residue fields are the same, `R → R̂` is injective (`adicCompletion_isLocalRing`), and `R̂` is faithfully flat, so `R̂ ⊗_R P = 0` implies `P = 0` (`faithfullyFlat_adicCompletion`). That `R̂` is Noetherian, part 3 of Proposition 4.3.1 and the reflection of exact sequences are not proved.
+
 ## 0.4.52 - 2026-11-27
 
 ### Added
