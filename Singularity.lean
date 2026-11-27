@@ -10,6 +10,7 @@ import Singularity.Algebra.RegularParameter
 import Singularity.Algebra.MonomialParameter
 import Singularity.Algebra.NodeChart
 import Singularity.Algebra.NodeChartTwo
+import Singularity.Algebra.NodeRegular
 import Singularity.Algebra.CofinalChains
 import Singularity.Algebra.FrobeniusLocalization
 import Singularity.Algebra.FrobeniusBasis
@@ -20,6 +21,7 @@ import Singularity.Algebra.PowerSeriesBaseChange
 import Singularity.Algebra.FlatnessModPowers
 import Singularity.Algebra.PowerSeriesFlat
 import Singularity.Algebra.CuspFrobenius
+import Singularity.Algebra.CuspFrobeniusLocal
 import Singularity.Algebra.InverseLimitExact
 import Singularity.Algebra.PBasis
 import Singularity.Algebra.PBasisDifferentials
@@ -114,6 +116,7 @@ import Singularity.Invariant.LogJacobianKangarooCounterexample
 import Singularity.Invariant.LogJacobianKangarooExample
 import Singularity.Invariant.DerivativeOrder
 import Singularity.Invariant.CoefficientIdealOrder
+import Singularity.Invariant.CoefficientIdealTransform
 import Singularity.Invariant.FibonacciOrder
 import Singularity.Invariant.LogJacobianCurveRuns
 import Singularity.Invariant.LogJacobianSurfaceRuns
@@ -216,6 +219,7 @@ import Singularity.Algebra.ArtinRees
 import Singularity.Algebra.Completion
 import Singularity.Algebra.Hensel
 import Singularity.Algebra.Equicharacteristic
+import Singularity.Algebra.CohenMap
 import Singularity.Algebra.DifferentialOperator
 import Singularity.Surface.AChainChart
 import Singularity.Surface.AnBlowupChart
