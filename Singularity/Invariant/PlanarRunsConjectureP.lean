@@ -2,7 +2,7 @@
 Copyright (c) 2026 The singularity authors. All rights reserved.
 Released under the Apache 2.0 licence as described in the file LICENSE.
 -/
-import Singularity.Invariant.PlanarRuns
+import Singularity.Invariant.PlanarRunsRestart
 
 /-!
 # Conjecture P from the restart inequalities
@@ -94,13 +94,6 @@ theorem add_coe_sub_le {a b : WithTop ℝ} {r s : ℝ}
   have h2 := add_le_add h (le_refl ((-s : ℝ) : WithTop ℝ))
   rwa [add_assoc, add_assoc, ← WithTop.coe_add, ← WithTop.coe_add, add_neg_cancel,
     WithTop.coe_zero, add_zero, ← sub_eq_add_neg] at h2
-
-theorem map_zpow_one_sub (v : AddValuation K (WithTop ℝ)) {M : K} (hM : M ≠ 0) {r : ℝ}
-    (hr : v M = r) (p : ℕ) : v (M ^ (1 - p : ℤ)) = (((1 - p : ℝ) * r : ℝ) : WithTop ℝ) := by
-  rw [zpow_sub₀ hM, zpow_one, zpow_natCast, AddValuation.map_div, AddValuation.map_pow, hr,
-    ← WithTop.coe_nsmul, ← WithTop.LinearOrderedAddCommGroup.coe_sub, nsmul_eq_mul]
-  congr 1
-  ring
 
 /-- Steps 2 to 5 of the proof of Theorem 3.19.6 (Conjecture P). The hypotheses are named in the
 docstring of the file: `hH1` is Lemma 3.19.2, part 1, `hD` is Theorem 3.18.26 for the nonzero
