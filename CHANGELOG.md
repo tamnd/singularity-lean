@@ -4,6 +4,12 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/Coarsening.lean`: Volume 3, Lemma 2.3.2, part 1 of the handbook. Let `H` be a subgroup of the value group of `V`. The ring `W = {x | v(x) ≤ h for some h ∈ H}` is a valuation ring with `V ⊆ W` (`coarseningSubring`, `coarsening`, `le_coarsening`). If `H` is convex, an element `x ≠ 0` has `x, x⁻¹ ∈ W` if and only if `v(x) ∈ H` (`mem_coarsening_and_inv_mem_iff`). The maximal ideal of `W` is the set of the `x` with `v(x) < h` for each `h ∈ H` (`mem_nonunits_coarsening_iff`). The isomorphism of the value group of `W` with `Γ / H` and part 2 are not proved.
+- `Singularity/Valuation/InftyPlace.lean`: Volume 3, Example 1.4.6 of the handbook, the claims on centers, with Mathlib's `RatFunc.inftyValuation`. The element `x` is not in the valuation ring (`not_mem_inftyValuationSubring_X`), so there is no center on `F[x]` (`not_exists_center_inftyValuation_polynomial`). For each polynomial `q`, `v(q(1/x)) ≤ 1` (`inftyValuation_aeval_inv_X_le_one`), and `v(q(1/x)) < 1` if and only if `X ∣ q` (`inftyValuation_aeval_inv_X_lt_one_iff`). So `F[1/x]` lies in the valuation ring (`inftyChart_le`), and the center on `F[1/x]` is `(1/x)` (`mem_centerIdeal_inftyChart_iff`). The claims on the valuation ring as a localization, the value group, the residue field and the dimension are not proved.
+- `Singularity/Valuation/QuadraticExtension.lean`: Volume 3, Example 3.1.7, cases 2 and 3 of the handbook, the key steps in a general form. Let `v(t) = exp m` with `m` odd, let the restriction of `w` to `K` be equivalent to `v`, and let `s^2 = t`. Then `w(s) ≠ w(a)` for each `a ∈ K`, so `e ≥ 2` (`valuation_ne_of_sq_eq`). Let `w` be trivial on `k`, and let `s^2 = c` with `c ∈ k` not a square. Then `w(s) = 1` (`valuation_eq_one_of_sq_eq`) and `w(s - b) = 1` for each `b ∈ k` (`valuation_sub_eq_one_of_sq_eq`), so the residue of `s` is not in `k`. The equalities `e = 2` and `f = 2`, which need the fundamental inequality, and case 1 are not proved.
+
 ## 0.4.51 - 2026-11-27
 
 ## 0.4.50 - 2026-11-27
