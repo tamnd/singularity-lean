@@ -86,6 +86,7 @@ import Singularity.Invariant.LogJacobianCoordinates
 import Singularity.Invariant.LogJacobianUnitLocal
 import Singularity.Invariant.LogJacobianPowerSeries
 import Singularity.Invariant.LogJacobianTypeSwitch
+import Singularity.Invariant.LogJacobianRhoConstant
 import Singularity.Invariant.LogJacobianKangaroo
 import Singularity.Invariant.LogJacobianCaseAForms
 import Singularity.Invariant.LogJacobianKangarooSmall
