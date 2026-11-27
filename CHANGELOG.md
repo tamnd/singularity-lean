@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.66 - 2026-11-28
+
 ### Added
 
 - `Singularity/Algebra/DerivationSeparable.lean`: Volume 2, Lemma 2.1.1 of the handbook, the statements on derivations. The existence and the uniqueness of the coefficient field are not in Lean.
