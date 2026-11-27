@@ -43,10 +43,12 @@ theorem isTranscendenceBasis_adjoinRangeElem {ι : Type*} {y : ι → K}
 /-- Let `y_i`, for `i ∈ ι`, be algebraically independent over `k`. Then `|ι| + trdeg_{k(y)} K = trdeg_k K`. -/
 theorem cardinalMk_add_trdeg_adjoin {ι : Type u} {y : ι → K} (hy : AlgebraicIndependent k y) :
     #ι + Algebra.trdeg (IntermediateField.adjoin k (Set.range y)) K = Algebra.trdeg k K := by
-  haveI : FaithfulSMul k (IntermediateField.adjoin k (Set.range y)) :=
-    (faithfulSMul_iff_algebraMap_injective _ _).mpr (algebraMap _ _).injective
-  haveI : FaithfulSMul (IntermediateField.adjoin k (Set.range y)) K :=
-    (faithfulSMul_iff_algebraMap_injective _ _).mpr (algebraMap _ _).injective
+  have : FaithfulSMul k (IntermediateField.adjoin k (Set.range y)) :=
+    (faithfulSMul_iff_algebraMap_injective k (IntermediateField.adjoin k (Set.range y))).mpr
+      (RingHom.injective (algebraMap k (IntermediateField.adjoin k (Set.range y))))
+  have : FaithfulSMul (IntermediateField.adjoin k (Set.range y)) K :=
+    (faithfulSMul_iff_algebraMap_injective (IntermediateField.adjoin k (Set.range y)) K).mpr
+      (RingHom.injective (algebraMap (IntermediateField.adjoin k (Set.range y)) K))
   rw [(isTranscendenceBasis_adjoinRangeElem hy).cardinalMk_eq_trdeg]
   exact trdeg_add_eq k (IntermediateField.adjoin k (Set.range y)) K
 

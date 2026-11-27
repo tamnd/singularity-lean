@@ -5,6 +5,7 @@ Released under the Apache 2.0 licence as described in the file LICENSE.
 import Mathlib.RingTheory.Length
 import Mathlib.RingTheory.LocalRing.MaximalIdeal.Basic
 import Mathlib.RingTheory.UniqueFactorizationDomain.Basic
+import Mathlib.Tactic.LinearCombination
 
 /-!
 # The intersection number of two elements
@@ -120,8 +121,8 @@ theorem length_quotient_span_pair_eq_zero_iff [IsLocalRing R] {f g : R} :
   rw [Module.length_eq_zero_iff, Ideal.Quotient.subsingleton_iff]
   constructor
   · intro h
-    by_contra hne
-    push_neg at hne
+    by_contra hne'
+    have hne := not_or.mp hne'
     have hle : span ({f, g} : Set R) ≤ maximalIdeal R := by
       refine span_le.mpr ?_
       rintro z (rfl | rfl)
