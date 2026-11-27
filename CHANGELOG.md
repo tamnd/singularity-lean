@@ -7,6 +7,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 ### Added
 
 - `Singularity/Algebra/Completion.lean`: Volume 1, Lemma 4.1.4 of the handbook. Let `R` be Noetherian, let `M` be a finitely generated `R`-module and let `F` be an `I`-filtration of `M`. Then the module `M^*` over the Rees algebra is finitely generated if and only if `F` is stable (`fg_filtration_submodule_iff_stable`). The proof uses `Ideal.Filtration.submodule_fg_iff_stable` of Mathlib.
+- `Singularity/Algebra/Hensel.lean`: Volume 1, Lemma 4.4.3 of the handbook. Let `(R, m)` be a local ring that is complete for the `m`-adic topology, let `g ∈ R[X]` and let `a₀ ∈ R` with `g(a₀) ∈ m` and `g'(a₀)` a unit. Then there is exactly one `a` with `g(a) = 0` and `a - a₀ ∈ m` (`existsUnique_root_of_isAdicComplete`). The classes of Mathlib ask for a monic polynomial, so the existence repeats the proof of `IsAdicComplete.henselianRing` of Mathlib, by Johan Commelin, without this hypothesis (`exists_root_of_isAdicComplete`). The proof does not need that `R` is Noetherian.
 
 ## 0.4.54 - 2026-11-27
 
