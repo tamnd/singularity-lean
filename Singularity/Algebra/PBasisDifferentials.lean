@@ -17,7 +17,7 @@ This file proves the uniqueness half of Volume 1, Theorem 6.2.3 of the handbook.
 * `Singularity.Algebra.span_D_pBasis`: the `db` for `b ∈ B` span `Ω_{K/k}` over `K`.
 * `Singularity.Algebra.finrank_kaehler_le_card`: `dim_K Ω_{K/k} ≤ |B|`.
 
-The existence half of Theorem 6.2.3 is not in Lean. It says that the `db` are linearly independent, so it gives the equality `dim_K Ω_{K/k} = |B|` of Corollary 6.2.4.
+The file `Singularity/Algebra/PBasisExistence.lean` proves the existence half of Theorem 6.2.3. It says that the `db` are linearly independent, so it gives the equality `dim_K Ω_{K/k} = |B|` of Corollary 6.2.4.
 -/
 
 namespace Singularity.Algebra
