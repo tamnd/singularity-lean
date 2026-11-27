@@ -44,10 +44,12 @@ theorem exists_algebraMap_eq_pow_of_isPurelyInseparable {A K M : Type*} [CommRin
     [Algebra A M] [IsScalarTower A K M] [IsPurelyInseparable K M] (q : ℕ) [ExpChar K q] {b : M}
     (hb : IsIntegral A b) : ∃ n : ℕ, ∃ a : A, algebraMap A M a = b ^ q ^ n := by
   obtain ⟨n, c, hc⟩ := IsPurelyInseparable.pow_mem (F := K) (q := q) b
-  have hc' : IsIntegral A (algebraMap K M c) := by
-    rw [hc]
+  have hc' : IsIntegral A (IsScalarTower.toAlgHom A K M c) := by
+    rw [IsScalarTower.toAlgHom_apply, hc]
     exact hb.pow _
-  have hci : IsIntegral A c := (isIntegral_algebraMap_iff (algebraMap K M).injective).mp hc'
+  have hci : IsIntegral A c :=
+    (isIntegral_algHom_iff (IsScalarTower.toAlgHom A K M)
+      (fun x y hxy => (algebraMap K M).injective hxy)).mp hc'
   obtain ⟨a, ha⟩ := IsIntegrallyClosed.isIntegral_iff.mp hci
   exact ⟨n, a, by rw [IsScalarTower.algebraMap_apply A K M, ha, hc]⟩
 

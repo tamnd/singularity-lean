@@ -70,7 +70,7 @@ theorem reynolds_smul_inv_card (hG : IsUnit (Fintype.card G : B)) (g : G) :
 theorem reynolds_smul_sum (g : G) (b : B) : g • ∑ h : G, h • b = ∑ h : G, h • b := by
   rw [Finset.smul_sum]
   simp_rw [← mul_smul]
-  exact (Equiv.mulLeft g).sum_comp (fun h => h • b)
+  exact Fintype.sum_equiv (Equiv.mulLeft g) _ _ (fun h => rfl)
 
 /-- Volume 8, Lemma 3.1.8 of the handbook: the Reynolds operator sends `B` into `B^G`. -/
 theorem reynolds_mem (hG : IsUnit (Fintype.card G : B)) (b : B) :

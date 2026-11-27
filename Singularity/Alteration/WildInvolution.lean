@@ -47,7 +47,10 @@ theorem wildSigma_X_one : wildSigma (X 1 : MvPolynomial (Fin 2) k) = X 1 + X 0 :
   simp [wildSigma]
 
 theorem wild_two_eq_zero [CharP k 2] : (2 : MvPolynomial (Fin 2) k) = 0 := by
-  rw [← map_ofNat (C (σ := Fin 2) (R := k)) 2, CharTwo.two_eq_zero, map_zero]
+  have h : (2 : k) = 0 := CharTwo.two_eq_zero
+  calc (2 : MvPolynomial (Fin 2) k) = C 2 := (map_ofNat (C (σ := Fin 2) (R := k)) 2).symm
+    _ = C 0 := congrArg C h
+    _ = 0 := map_zero _
 
 theorem wild_add_self [CharP k 2] (f : MvPolynomial (Fin 2) k) : f + f = 0 := by
   rw [← two_mul, wild_two_eq_zero, zero_mul]
