@@ -4,6 +4,8 @@ Released under the Apache 2.0 licence as described in the file LICENSE.
 -/
 import Mathlib.Algebra.Algebra.Bilinear
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+import Mathlib.Algebra.CharP.Lemmas
+import Mathlib.RingTheory.Adjoin.Basic
 import Mathlib.Tactic.NoncommRing
 
 /-!
@@ -15,6 +17,7 @@ This file proves Volume 1, Lemma 6.3.4 of the handbook. Let `k` be a ring and le
 * `Singularity.Algebra.IsDiffOp.mono`: an operator of order at most `m` has order at most `n` for each `n ≥ m`.
 * `Singularity.Algebra.IsDiffOp.add`, `Singularity.Algebra.IsDiffOp.mulLeft_mul` and `Singularity.Algebra.IsDiffOp.mul`: the sum, the product with an element of `A` and the composite (Lemma 6.3.4 of the handbook).
 * `Singularity.Algebra.IsDiffOp.of_hasseSchmidt`: the term `D n` of a Hasse-Schmidt derivation has order at most `n` (Lemma 6.3.4 of the handbook).
+* `Singularity.Algebra.IsDiffOp.map_mul_of_mem_adjoin`: in characteristic `p`, an operator of order less than `q = p ^ e` is linear over the subring `k[A^q]` (Lemma 6.3.5 of the handbook).
 -/
 
 open Finset
@@ -61,7 +64,7 @@ theorem isDiffOp_mulLeft (c : A) : IsDiffOp 0 (LinearMap.mulLeft k c) := fun a b
   simp only [LinearMap.mulLeft_apply]
   exact mul_left_comm c a b
 
-theorem isDiffOp_one : IsDiffOp 0 (1 : Module.End k A) := fun a b => rfl
+theorem isDiffOp_one : IsDiffOp 0 (1 : Module.End k A) := fun _ _ => rfl
 
 /-- An operator of order at most `n` has order at most `n + 1`. -/
 theorem IsDiffOp.succ : ∀ {n : ℕ} {D : Module.End k A}, IsDiffOp n D → IsDiffOp (n + 1) D
@@ -146,5 +149,85 @@ theorem IsDiffOp.of_hasseSchmidt (D : ℕ → Module.End k A) (h0 : D 0 = 1)
       refine IsDiffOp.sum _ fun i hi => ?_
       have hi' : n - i < n + 1 := by omega
       exact ((ih (n - i) hi').mulLeft_mul _).mono (Nat.sub_le n i)
+
+/-- The commutator of the zero map is zero. -/
+theorem diffComm_zero (a : A) : diffComm (0 : Module.End k A) a = 0 := by
+  simp [diffComm]
+
+/-- For an operator `D` of order at most `n`, the commutator with `a` taken `n + 1` times is zero. -/
+theorem IsDiffOp.iterate_diffComm : ∀ {n : ℕ} {D : Module.End k A}, IsDiffOp n D → ∀ a : A,
+    (fun F => diffComm F a)^[n + 1] D = 0
+  | 0, D, hD, a => diffComm_eq_zero hD a
+  | n + 1, D, hD, a => by
+      rw [Function.iterate_succ_apply]
+      exact IsDiffOp.iterate_diffComm (hD a) a
+
+theorem IsDiffOp.iterate_diffComm_of_lt {n m : ℕ} {D : Module.End k A} (hD : IsDiffOp n D)
+    (a : A) (h : n < m) : (fun F => diffComm F a)^[m] D = 0 := by
+  obtain ⟨j, rfl⟩ : ∃ j, m = j + (n + 1) := ⟨m - (n + 1), by omega⟩
+  rw [Function.iterate_add_apply, hD.iterate_diffComm a]
+  exact Function.iterate_fixed (diffComm_zero a) j
+
+/-- If `A` has characteristic `p`, then the ring of `k`-linear maps of `Module.End k A` also has characteristic `p`. -/
+theorem charP_end_end (p : ℕ) [CharP A p] : CharP (Module.End k (Module.End k A)) p := by
+  refine ⟨fun n => ⟨fun h => ?_, fun h => ?_⟩⟩
+  · have h1 := congrArg (fun T : Module.End k (Module.End k A) => T 1 1) h
+    simp only [Module.End.natCast_apply, LinearMap.zero_apply, nsmul_eq_mul, mul_one] at h1
+    exact (CharP.cast_eq_zero_iff A p n).mp h1
+  · refine LinearMap.ext fun F => LinearMap.ext fun b => ?_
+    rw [Module.End.natCast_apply, LinearMap.smul_apply, LinearMap.zero_apply, LinearMap.zero_apply,
+      nsmul_eq_mul, (CharP.cast_eq_zero_iff A p n).mpr h, zero_mul]
+
+/-- Let `A` have characteristic `p`, let `q = p ^ e` and let `D` have order at most `n` with `n < q`. Then `D (a ^ q * b) = a ^ q * D b` for all `a` and `b` (Volume 1, Lemma 6.3.5 of the handbook). -/
+theorem IsDiffOp.map_pow_mul {p : ℕ} [Fact p.Prime] [CharP A p] {e n : ℕ} {D : Module.End k A}
+    (hD : IsDiffOp n D) (hn : n < p ^ e) (a b : A) : D (a ^ p ^ e * b) = a ^ p ^ e * D b := by
+  have := charP_end_end (k := k) (A := A) p
+  set l : Module.End k A := LinearMap.mulLeft k a
+  let X : Module.End k (Module.End k A) := LinearMap.mulRight k l
+  let Y : Module.End k (Module.End k A) := LinearMap.mulLeft k l
+  have hXY : Commute X Y := (LinearMap.commute_mulLeft_right l l).symm
+  have hX : ∀ m : ℕ, ∀ F : Module.End k A, (X ^ m) F = F * l ^ m := by
+    intro m
+    induction m with
+    | zero => intro F; simp
+    | succ m ih => intro F; rw [pow_succ', Module.End.mul_apply, ih, pow_succ, ← mul_assoc]; rfl
+  have hY : ∀ m : ℕ, ∀ F : Module.End k A, (Y ^ m) F = l ^ m * F := by
+    intro m
+    induction m with
+    | zero => intro F; simp
+    | succ m ih => intro F; rw [pow_succ', Module.End.mul_apply, ih, pow_succ', mul_assoc]; rfl
+  have had : ⇑(X - Y) = fun F => diffComm F a := by
+    funext F
+    simp [X, Y, diffComm, l]
+  have hpow : ((X - Y) ^ p ^ e) D = diffComm D (a ^ p ^ e) := by
+    rw [sub_pow_char_pow_of_commute (R := Module.End k (Module.End k A)) p e hXY, LinearMap.sub_apply, hX, hY, LinearMap.pow_mulLeft]
+    rfl
+  have h0 : diffComm D (a ^ p ^ e) = 0 := by
+    rw [← hpow, Module.End.pow_apply, had]
+    exact hD.iterate_diffComm_of_lt a hn
+  have h1 := congrArg (fun F : Module.End k A => F b) h0
+  simp only [diffComm, LinearMap.sub_apply, Module.End.mul_apply, LinearMap.mulLeft_apply,
+    LinearMap.zero_apply, sub_eq_zero] at h1
+  exact h1
+
+/-- Let `A` have characteristic `p`, let `q = p ^ e` and let `D` have order at most `n` with `n < q`. Then `D` is linear over the subring `k[A^q]` of `A` that `k` and the `q`-th powers generate (Volume 1, Lemma 6.3.5 of the handbook). -/
+theorem IsDiffOp.map_mul_of_mem_adjoin {p : ℕ} [Fact p.Prime] [CharP A p] {e n : ℕ}
+    {D : Module.End k A} (hD : IsDiffOp n D) (hn : n < p ^ e) {s : A}
+    (hs : s ∈ Algebra.adjoin k (Set.range fun a : A => a ^ p ^ e)) (b : A) :
+    D (s * b) = s * D b := by
+  revert b
+  induction hs using Algebra.adjoin_induction with
+  | mem x hx =>
+      obtain ⟨a, rfl⟩ := hx
+      exact hD.map_pow_mul hn a
+  | algebraMap r =>
+      intro b
+      rw [← Algebra.smul_def, ← Algebra.smul_def, LinearMap.map_smul]
+  | add x y _ _ hx hy =>
+      intro b
+      rw [add_mul, map_add, hx, hy, add_mul]
+  | mul x y _ _ hx hy =>
+      intro b
+      rw [mul_assoc, hx, hy, mul_assoc]
 
 end Singularity.Algebra
