@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Algebra/Equicharacteristic.lean`: Volume 1, Lemma 4.4.2 of the handbook. A local ring `(R, m, κ)` has a subring that is a field if and only if `ringChar R = ringChar κ` (`exists_isField_subring_iff_ringChar_eq`). If `char κ` is a prime `p`, the field is the image of `ZMod p`. If `char κ = 0`, the field is the image of `ℚ`, from `EqualCharZero.nonempty_algebraRat_iff` of Mathlib. The image of a field in a nontrivial ring is a field (`isField_range`).
+
 ## 0.4.55 - 2026-11-27
 
 ### Added

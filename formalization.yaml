@@ -1746,6 +1746,10 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 1, Lemma 4.1.4 of the handbook. Over a Noetherian ring, an I-filtration of a finitely generated module is stable if and only if M^* is a finitely generated module over the Rees algebra.'
+    - name: Singularity.Algebra.exists_isField_subring_iff_ringChar_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 4.4.2 of the handbook. A local ring contains a field if and only if char R = char of the residue field.'
     - name: Singularity.Algebra.exists_root_of_isAdicComplete
       kind: theorem
       status: proved
