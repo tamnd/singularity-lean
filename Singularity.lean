@@ -9,11 +9,13 @@ import Singularity.Algebra.RegularComponent
 import Singularity.Algebra.RegularParameter
 import Singularity.Algebra.MonomialParameter
 import Singularity.Algebra.NodeChart
+import Singularity.Algebra.NodeChartTwo
 import Singularity.Algebra.CofinalChains
 import Singularity.Algebra.FrobeniusLocalization
 import Singularity.Algebra.FrobeniusBasis
 import Singularity.Algebra.FrobeniusBasisPoly
 import Singularity.Algebra.FrobeniusFlat
+import Singularity.Algebra.FrobeniusRank
 import Singularity.Algebra.PowerSeriesBaseChange
 import Singularity.Algebra.FlatnessModPowers
 import Singularity.Algebra.PowerSeriesFlat

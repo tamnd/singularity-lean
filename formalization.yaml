@@ -1906,6 +1906,14 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 8, Proposition 2.1.5 of the handbook, the first chart as a quotient.'
+    - name: Singularity.Algebra.nodeChartTwoEquiv
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 2.1.5 of the handbook, the second chart as a quotient.'
+    - name: Singularity.Algebra.free_and_finrank_frobeniusPush
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Corollary 6.1.6 of the handbook, the rank.'
     - name: Singularity.valuation_chartEval_inv_div_lt_one_iff
       kind: theorem
       status: proved
