@@ -9,8 +9,10 @@ import Singularity.Algebra.RegularComponent
 import Singularity.Algebra.RegularParameter
 import Singularity.Algebra.CofinalChains
 import Singularity.Algebra.FrobeniusLocalization
+import Singularity.Algebra.FrobeniusBasis
 import Singularity.Algebra.InverseLimitExact
 import Singularity.Algebra.PBasis
+import Singularity.Algebra.PBasisDifferentials
 import Singularity.Algebra.RegularSequence
 import Singularity.Algebra.ExtCriterion
 import Singularity.Algebra.GlobalDimension
@@ -143,6 +145,7 @@ import Singularity.Valuation.LatticeLemma
 import Singularity.Valuation.LatticeLemmaOrdered
 import Singularity.Valuation.LocalUniformizationMonomial
 import Singularity.Valuation.MonomialGroundField
+import Singularity.Valuation.LocalUniformizationTrdegTwo
 import Singularity.Valuation.DegreePSteps
 import Singularity.Valuation.EtaleRegular
 import Singularity.Valuation.EtaleGenerator
