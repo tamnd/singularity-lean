@@ -2018,6 +2018,238 @@ status:
       kind: theorem
       status: proved
       note: Volume 6, Example 3.3.4 of the handbook. In characteristic 2 the chart substitution sends u_1^3 + u_2^3 + u_3^3 to u_1^2 (u_1 g).
+    - name: Singularity.Examples.example_3_2_8_residualFactor
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.8 of the handbook. For f = u_1 u_2 u_3 and E = div(u_1 u_2 u_3) the residual factor is G = 1.
+    - name: Singularity.Examples.example_3_2_8_cpOmega
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.8 of the handbook. For f = u_1 u_2 u_3 and E = div(u_1 u_2 u_3), omega = 0.
+    - name: Singularity.Examples.example_3_2_8_ord
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.8 of the handbook. The order of u_1 u_2 u_3 is 3.
+    - name: Singularity.Examples.example_3_2_8_cpIota
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.8 of the handbook. For h = Z^3 + u_1 u_2 u_3 and E = div(u_1 u_2 u_3), iota = (3, 0, 1).
+    - name: Singularity.Examples.example_3_2_8_chart
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.8 of the handbook. The u_1-chart with translations t sends u_1 u_2 u_3 to u_1^3 (u_2 + t_2)(u_3 + t_3).
+    - name: Singularity.Examples.example_3_2_8_translate
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.8 of the handbook. In characteristic 3, if c^3 = s t, then Z ↦ Z - c sends Z^3 + (u_2 + s)(u_3 + t) to Z^3 + u_2 u_3 + t u_2 + s u_3.
+    - name: Singularity.Examples.example_3_2_15_clean
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.15 of the handbook. In characteristic 2, for g = u_1 + u_1 u_2, g^2 + f = u_1^3 u_2 + u_2^5 + u_2^3 u_3^2.
+    - name: Singularity.Examples.example_3_2_15_ord
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.15 of the handbook. The order of the clean part f^cl is 4.
+    - name: Singularity.Examples.example_3_2_15_initialForm
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.15 of the handbook. The initial form of f^cl is U_1^3 U_2.
+    - name: Singularity.Examples.example_3_2_15_residualFactor_01
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.15 of the handbook. For E = div(u_1 u_2) the residual factor of f^cl is u_1^3 + u_2^4 + u_2^2 u_3^2.
+    - name: Singularity.Examples.example_3_2_15_epsilon_01
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.15 of the handbook. For E = div(u_1 u_2), epsilon = 3.
+    - name: Singularity.Examples.example_3_2_15_cpOmega_01
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.15 of the handbook. For E = div(u_1 u_2), omega = 3.
+    - name: Singularity.Examples.example_3_2_15_residualFactor_0
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.15 of the handbook. For E = div(u_1) the residual factor of f^cl is f^cl.
+    - name: Singularity.Examples.example_3_2_15_epsilon_0
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.15 of the handbook. For E = div(u_1), epsilon = 4.
+    - name: Singularity.Examples.example_3_2_15_cpOmega_0
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.15 of the handbook. For E = div(u_1), omega = 3.
+    - name: Singularity.Examples.example_3_2_15_residualFactor_empty
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.15 of the handbook. For the empty divisor the residual factor of f^cl is f^cl.
+    - name: Singularity.Examples.example_3_2_15_epsilon_empty
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.15 of the handbook. For the empty divisor, epsilon = 4.
+    - name: Singularity.Examples.example_3_2_15_cpOmega_empty
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.15 of the handbook. For the empty divisor, omega = 3.
+    - name: Singularity.Examples.example_3_2_16_ord
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.16 of the handbook. The order of f = u_1^2 u_2 + u_1^3 u_3 is 3.
+    - name: Singularity.Examples.example_3_2_16_residualFactor_0
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.16 of the handbook. For E = div(u_1) the residual factor is G = u_2 + u_1 u_3.
+    - name: Singularity.Examples.example_3_2_16_residualFactor_01
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.16 of the handbook. For E = div(u_1 u_2) the residual factor is G = u_2 + u_1 u_3.
+    - name: Singularity.Examples.example_3_2_16_epsilon_0
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.16 of the handbook. For E = div(u_1), epsilon = 1.
+    - name: Singularity.Examples.example_3_2_16_epsilon_01
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.16 of the handbook. For E = div(u_1 u_2), epsilon = 1.
+    - name: Singularity.Examples.example_3_2_16_cpOmega_0
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.16 of the handbook. For E = div(u_1), omega = 0.
+    - name: Singularity.Examples.example_3_2_16_cpIota_0
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.16 of the handbook. For E = div(u_1), iota = (3, 0, 1).
+    - name: Singularity.Examples.example_3_2_16_cpOmega_01
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.16 of the handbook. For E = div(u_1 u_2), omega = 1.
+    - name: Singularity.Examples.example_3_2_16_cpIota_01
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.2.16 of the handbook. For E = div(u_1 u_2), iota = (3, 1, 2), where the value 2 of kappa stands for kappa at least 2.
+    - name: Singularity.Examples.example_3_3_5_chart_identity
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. In characteristic 3, (u_2 + 1)^4 - (u_2 + 1) = u_2^4 + u_2^3.
+    - name: Singularity.Examples.example_3_3_5_cube
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. In characteristic 3, (z + w)^3 = z^3 + w^3. This is the cleaning step.
+    - name: Singularity.Examples.example_3_3_5_initialForm_cube
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. In characteristic 3, (U_2 - U_1)^3 = U_2^3 - U_1^3.
+    - name: Singularity.Examples.example_3_3_5_chart_identity_two
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. In characteristic 3, (u_2 - 1)^4 - (u_2 - 1) = u_2^4 + 2 u_2^3 + u_2 + 2.
+    - name: Singularity.Examples.example_3_3_5_residualFactor
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. For E = div(u_1 u_2 u_3) the residual factor of f is G = u_2^3 - u_1^3 + u_3^4.
+    - name: Singularity.Examples.example_3_3_5_epsilon
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. At x, epsilon = 3.
+    - name: Singularity.Examples.example_3_3_5_cpOmega
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. At x, omega = 3.
+    - name: Singularity.Examples.example_3_3_5_ord
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. At x, the order of f is 6.
+    - name: Singularity.Examples.example_3_3_5_cpIota
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. At x, iota = (3, 3, 2), where the value 2 of kappa stands for kappa at least 2.
+    - name: Singularity.Examples.example_3_3_5_chart
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. In characteristic 3, the u_1-chart at t = (1, 0) sends f to u_1^3 times the series of the handbook.
+    - name: Singularity.Examples.example_3_3_5_blowupDivisor
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. At t = (1, 0) of the u_1-chart the new divisor is div(u_1 u_3).
+    - name: Singularity.Examples.example_3_3_5_residualFactor'
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. At x' the residual factor of the clean part f' for E' = div(u_1 u_3) is u_2^4 + u_1 u_2 u_3^4 + u_1 u_3^4.
+    - name: Singularity.Examples.example_3_3_5_epsilon'
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. At x', epsilon = 4.
+    - name: Singularity.Examples.example_3_3_5_cpOmega'
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. In characteristic 3, omega = 3 at x'.
+    - name: Singularity.Examples.example_3_3_5_ord'
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. At x', the order of f' is 7.
+    - name: Singularity.Examples.example_3_3_5_cpIota'
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.5 of the handbook. In characteristic 3, iota = (3, 3, 2) at x', where the value 2 of kappa stands for kappa at least 2.
+    - name: Singularity.Examples.example_3_3_6_residualFactor
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. For E = div(u_1) the residual factor of f = u_1^2 u_2 + u_1^2 u_3^2 is G = u_2 + u_3^2.
+    - name: Singularity.Examples.example_3_3_6_epsilon
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. At x, epsilon = 1.
+    - name: Singularity.Examples.example_3_3_6_cpOmega
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. At x, omega = 0.
+    - name: Singularity.Examples.example_3_3_6_ord
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. At x, the order of f is 3.
+    - name: Singularity.Examples.example_3_3_6_cpIota
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. At x, iota = (3, 0, 1).
+    - name: Singularity.Examples.example_3_3_6_chart
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. The u_3-chart at the origin sends f to u_3^3 (u_1'^2 u_2' + u_1'^2 u_3).
+    - name: Singularity.Examples.example_3_3_6_blowupDivisor
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. At the origin of the u_3-chart the new divisor is div(u_1' u_3).
+    - name: Singularity.Examples.example_3_3_6_residualFactor'
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. At x' the residual factor for E' = div(u_1' u_3) is u_2' + u_3.
+    - name: Singularity.Examples.example_3_3_6_epsilon'
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. At x', epsilon = 1.
+    - name: Singularity.Examples.example_3_3_6_cpOmega'
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. At x', omega = 0.
+    - name: Singularity.Examples.example_3_3_6_ord'
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. At x', the order is 3.
+    - name: Singularity.Examples.example_3_3_6_cpIota'
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. At x', iota = (3, 0, 1), the value at x.
+    - name: Singularity.Examples.example_3_3_6_curve_chart
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. In the u_1-chart of the blowup of Y, u_1^2 u_1 (v' + a) = u_1^3 (v' + a).
+    - name: Singularity.Examples.example_3_3_6_translate
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. In characteristic 3, if b^3 = a, then Z^3 + v' + a = (Z + b)^3 + v'.
+    - name: Singularity.Examples.example_3_3_6_v_chart
+      kind: theorem
+      status: proved
+      note: Volume 6, Example 3.3.6 of the handbook. In the v-chart of the blowup of Y, the strict transform of Z^3 + u_1^2 v is Z'^3 + u_1'^2.
     - name: Singularity.Example.cusp_normalization
       kind: theorem
       status: proved

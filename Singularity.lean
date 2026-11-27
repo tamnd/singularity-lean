@@ -107,6 +107,7 @@ import Singularity.Example.DerivativeIdeals
 import Singularity.Example.CharZeroExamples
 import Singularity.Example.XYWThreefold
 import Singularity.Example.ThreefoldPolyhedronExamples
+import Singularity.Example.ThreefoldInvariantExamples
 import Singularity.Fidelity.Embedded
 import Singularity.Fidelity.LocalUniformization
 import Singularity.Scheme.Embedded
