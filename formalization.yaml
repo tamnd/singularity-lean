@@ -2126,3 +2126,83 @@ status:
       kind: theorem
       status: proved
       note: Volume 6, Proposition 4.3.4 part 2 of the handbook. At the origin of the x_j-chart, the projected polyhedron of Z'^p + g' is the characteristic polyhedron, so (x; Z') is well adapted.
+    - name: 'Singularity.CharZeroExamples.bm_strict_inter'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 1.2.2 of the handbook. The strict transform (x1 - y1^2, x1 + z1^2 - w1^3) meets the plane x1 = y1 = 0 in the cuspidal curve z1^2 = w1^3.'
+    - name: 'Singularity.CharZeroExamples.bm_chart_second'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 1.2.2 of the handbook. In the chart of the blowup, x^4 + x z^2 - w^3 = x1^3 (x1 + z1^2 - w1^3).'
+    - name: 'Singularity.CharZeroExamples.cusp_total_u'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 1.3.2 of the handbook. After the three blowups, y^2 - x^3 = x2^6 u^3 (u - 1) in the chart of u.'
+    - name: 'Singularity.CharZeroExamples.cusp_total_v'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 1.3.2 of the handbook. After the three blowups, y^2 - x^3 = v^2 y1^6 (1 - v) in the chart of v.'
+    - name: 'Singularity.CharZeroExamples.cusp_step_three_disjoint'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 1.3.2 of the handbook. On the last exceptional curve, E2 and C3 do not meet, and E1 and C3 do not meet.'
+    - name: 'Singularity.CharZeroExamples.whitneyEq_singular_iff'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 1.3.3 (1) of the handbook. If 2 is not 0, the common zeros of x^2 - y^2 z and its partial derivatives are the points with x = y = 0.'
+    - name: 'Singularity.CharZeroExamples.ord_whitneyEq'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 1.3.3 (1) of the handbook. The order of x^2 - y^2 z at the origin is 2.'
+    - name: 'Singularity.CharZeroExamples.ord_whitneyEq_translate'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 1.3.3 (1) and (2) of the handbook. At the point (0, 0, c), the translate x^2 - c y^2 - y^2 t has order 2.'
+    - name: 'Singularity.CharZeroExamples.derivIdeal_whitneyEq'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 3.2.6 of the handbook. If 2 is not 0, D(x^2 - y^2 z) = (x, yz, y^2).'
+    - name: 'Singularity.CharZeroExamples.derivIdeal_derivIdeal_whitneyEq'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 3.2.6 of the handbook. If 2 is not 0, D^2(x^2 - y^2 z) is the unit ideal.'
+    - name: 'Singularity.CharZeroExamples.coeffIdeal_whitney'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 3.2.6 of the handbook. On H = (x = 0), (y^2 z) + (yz, y^2)^2 = (y^2 z, y^4).'
+    - name: 'Singularity.CharZeroExamples.coeffIdeal_whitney_eq_mul'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 3.2.6 of the handbook. (y^2 z, y^4) = (y^2) (z, y^2).'
+    - name: 'Singularity.CharZeroExamples.idealOrd_coeffIdeal_whitney'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 3.2.6 of the handbook. The coefficient ideal (y^2 z, y^4) has order 3 at the origin.'
+    - name: 'Singularity.CharZeroExamples.idealOrd_coeffIdeal_whitney_translate'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 3.2.6 of the handbook. For c not 0, the ideal (y^2 (c + t), y^4) has order 2 at the origin.'
+    - name: 'Singularity.CharZeroExamples.idealOrd_transform_whitney'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 3.2.6 of the handbook. The transform (z, y^2) has order 1 at the origin.'
+    - name: 'Singularity.CharZeroExamples.sub_not_mem_mc'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 2.3.5 of the handbook. The element y - x is not in MC(I) = (y, x^4).'
+    - name: 'Singularity.CharZeroExamples.ord_restrict_H'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 2.3.5 of the handbook. The restriction of y^2 - x^5 to y = 0 has order 5.'
+    - name: 'Singularity.CharZeroExamples.ord_restrict_H'''
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 2.3.5 of the handbook. The restriction of y^2 - x^5 to y = x has order 2.'
+    - name: 'Singularity.CharZeroExamples.derivIdeal_transform'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 2.3.5 of the handbook. If 2 and 3 are not 0, D(y1^2 - x^3) = (y1, x^2).'
+    - name: 'Singularity.CharZeroExamples.mc_chain_transform'
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 2.3.5 of the handbook. If 2 and 3 are not 0, (y1) is in (y1, x^3), and (y1, x^3) is in D(y1^2 - x^3).'
