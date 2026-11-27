@@ -1746,6 +1746,10 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 1, Lemma 4.1.4 of the handbook. Over a Noetherian ring, an I-filtration of a finitely generated module is stable if and only if M^* is a finitely generated module over the Rees algebra.'
+    - name: Singularity.Algebra.IsDiffOp.map_mul_of_mem_adjoin
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 6.3.5 of the handbook. In characteristic p, an operator of order less than q = p^e is linear over k[A^q].'
     - name: Singularity.Algebra.IsDiffOp.add_max
       kind: theorem
       status: proved

@@ -6,6 +6,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Algebra/DifferentialOperator.lean`: Volume 1, Lemma 6.3.5 of the handbook. Let `A` have characteristic `p` and let `q = p ^ e`. A differential operator of order less than `q` is linear over the subring `k[A^q]` that `k` and the `q`-th powers generate (`IsDiffOp.map_mul_of_mem_adjoin`). The proof uses the identity `ad(a)^q = ad(a^q)` in characteristic `p`.
+
+### Added
+
 - `Singularity/Algebra/DifferentialOperator.lean`: Volume 1, Lemma 6.3.4 of the handbook. The predicate `IsDiffOp n D` says that `D` is a differential operator of order at most `n`. The sum of operators of orders `m` and `n` has order at most `max m n` (`IsDiffOp.add_max`), the product with an element of `A` keeps the order (`IsDiffOp.mulLeft_mul`), and the composite has order at most `m + n` (`IsDiffOp.mul`). The term `D n` of a Hasse-Schmidt derivation has order at most `n` (`IsDiffOp.of_hasseSchmidt`).
 
 ## 0.4.56 - 2026-11-27
