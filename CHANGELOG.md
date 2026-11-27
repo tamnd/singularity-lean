@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.42 - 2026-11-27
+
 ### Added
 
 - `Singularity/Example/CurveNormalization.lean`: the normalization of the cusp, the node and the Whitney umbrella (Volume 1, Examples 2.5.8, 2.5.9 and 2.5.10 of the handbook). Let `C` be a domain with field of fractions `K` and let `B` be a subalgebra of `C`. If `c C ⊆ B` for some `c ≠ 0`, then `K` is the field of fractions of `B` (`isFractionRing_of_mul_mem`). If `C` is integrally closed and integral over `B`, then `C` is the integral closure of `B` in `K` (`isIntegralClosure_of_isIntegral`). Thus `k[t]` is the normalization of `k[t^2, t^3]` (`cusp_normalization`) and of `k[t^2 - 1, t^3 - t]` (`node_normalization`), and `k[y, t]` is the normalization of `k[y, yt, t^2]` (`umbrella_normalization`). A polynomial is in `k[t^2, t^3]` if and only if its coefficient of `t` is `0` (`mem_cusp_iff`), and the conductor is `t^2 k[t]` (`mul_mem_cusp_iff`). If `2 ≠ 0` in `k`, a polynomial `p` is in `k[t^2 - 1, t^3 - t]` if and only if `p(1) = p(-1)` (`mem_node_iff`), and the conductor is `(t^2 - 1) k[t]` (`mul_mem_node_iff`). The ideal `y k[y, t]` is in `k[y, yt, t^2]` (`umbrella_mul_mem`). The file starts from the subalgebras, so it does not prove that the quotients of the handbook are isomorphic to them.
