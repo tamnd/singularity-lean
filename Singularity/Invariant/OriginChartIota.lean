@@ -67,7 +67,7 @@ polynomial in `Z'` over the power series ring.
 * Volume 7, Section 1.2 of the handbook: Proposition 1.2.7.
 -/
 
-open MvPolynomial Finsupp
+open MvPolynomial Finsupp Pointwise
 
 namespace Singularity
 
