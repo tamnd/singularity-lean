@@ -1838,6 +1838,22 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Corollary 2.2.8 of the handbook for one blowup of the origin, at the origin of a chart.'
+    - name: Singularity.Algebra.derivation_ext_pBasis
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Theorem 6.2.3 of the handbook, the uniqueness half.'
+    - name: Singularity.Algebra.finrank_kaehler_le_card
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Corollary 6.2.4 of the handbook, the inequality dim Omega at most |B|.'
+    - name: Singularity.Algebra.boxBasis
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 6.1.5 of the handbook. The monomials with exponents less than q are a basis of S over S_e.'
+    - name: Singularity.hasLocalUniformization_of_trdeg_le_trdeg_residueField_add_two
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Corollary 3.1.3 of the handbook, given Proposition 3.1.2 as a hypothesis.'
     - name: Singularity.Algebra.isRegularLocalRing_quotient_span_range
       kind: theorem
       status: proved
