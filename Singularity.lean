@@ -56,6 +56,7 @@ import Singularity.Invariant.CharacteristicPolyhedronExamples
 import Singularity.Invariant.RigidLayer
 import Singularity.Invariant.LogJacobian
 import Singularity.Invariant.FrobeniusNewton
+import Singularity.Invariant.FrobeniusNewtonCriterion
 import Singularity.Invariant.LogJacobianBlowup
 import Singularity.Invariant.LogJacobianNonincrease
 import Singularity.Invariant.LogJacobianCenter
