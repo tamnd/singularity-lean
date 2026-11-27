@@ -6,6 +6,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Algebra/SurfaceRegularExamples.lean`: Volume 1, Example 1.2.11 of the handbook, the surfaces $A_m$ and the ramified discrete valuation ring. The dimensions and the statement that $R/(p)$ is not regular are not in Lean.
 - `Singularity/Invariant/PurelyInseparableOrder.lean`: Volume 6, Lemma 2.3.2 of the handbook, the derivatives, the translation and the order of $z^p + G$. The equality of the order and the multiplicity, and the Jacobian criterion, are not in Lean.
 - `Singularity/Example/CleanBlowupExamples.lean`: Volume 6, Examples 4.3.3 and 4.3.5 of the handbook, the polynomial computations. The invariants $\omega$ and $\iota$ and the condition (E) are not in Lean.
 - `Singularity/Algebra/DerivationLocalPow.lean`: Volume 6, Lemma 2.3.3 of the handbook, the algebraic part. The geometric setting and the condition (E) are not in Lean.

@@ -11,6 +11,7 @@ import Singularity.Algebra.MonomialParameter
 import Singularity.Algebra.NodeChart
 import Singularity.Algebra.NodeChartTwo
 import Singularity.Algebra.NodeRegular
+import Singularity.Algebra.SurfaceRegularExamples
 import Singularity.Algebra.CofinalChains
 import Singularity.Algebra.FrobeniusLocalization
 import Singularity.Algebra.FrobeniusBasis
