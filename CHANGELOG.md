@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.61 - 2026-11-27
+
 ### Added
 
 - `Singularity/Algebra/FrobeniusBasisPoly.lean`: Volume 1, Proposition 6.1.5 of the handbook for the polynomial ring. The ring `K[x_1, ..., x_n]` is free of rank `q^n` over the subring of the polynomials supported on `qℕ^n`.
