@@ -4,6 +4,7 @@ Released under the Apache 2.0 licence as described in the file LICENSE.
 -/
 import Mathlib.Algebra.MvPolynomial.CommRing
 import Singularity.Invariant.PlanarRuns
+import Singularity.Invariant.PlanarRunsCondition
 
 /-!
 # The run seen from a later point
@@ -53,6 +54,9 @@ be the monomial `M_m`, and let `Δ : σ → K` be the tail `Δ_m = Φ_∞ - Φ_m
   `Λ^{(m)}_0 + p v(M_m) = Λ_0` for each first derivative.
 * `map_cl_eval_restart_add` (Corollary 3.19.3, part 3):
   `v(cl g^{(m)}(Δ / M)) + p v(M) = v(cl g(φ + Δ))`.
+* `totalDegree_restart` (Lemma 3.19.1, part 3): if `g` is clean (`IsClean`), that is, `cl c = c`
+  for each coefficient `c` of a monomial `X^k` with `p ∣ k_i` for each `i`, and `M ≠ 0`, then
+  `g^{(m)}` has the same total degree as `g`.
 
 Part 1 of Lemma 3.19.2 and part 4 of Lemma 3.17.1 use the characteristic. They use no property
 of `cl`.
@@ -61,8 +65,8 @@ of `cl`.
 
 The file does not build the corner runs, the Hahn field and its classes. So it does not prove
 that `restart p cl φ M g` is the function of `P_m` (Lemma 3.17.1, part 2), and it does not
-prove Lemma 3.19.1. The bound on the values of the terms of class `0` in part 4 of
-Lemma 3.19.2 is not proved.
+prove parts 1, 2 and 4 of Lemma 3.19.1. The bound on the values of the terms of class `0` in
+part 4 of Lemma 3.19.2 is not proved.
 
 ## References
 
@@ -489,6 +493,85 @@ theorem map_cl_eval_restart_add {p : ℕ} {K0 : Subring K} {cl : K →+ K}
     WithTop.coe_zero, add_zero]
 
 end Restart
+
+section Degree
+
+variable {σ K : Type*} [Fintype σ] [DecidableEq σ] [Field K]
+variable {p : ℕ} {K0 : Subring K} {cl : K →+ K}
+
+omit [DecidableEq σ] in
+theorem ord_eq_degree (k : σ →₀ ℕ) : ord k = degree k := by
+  rw [ord, degree_apply]
+  exact (Finset.sum_subset (Finset.subset_univ _) fun i _ hi => by
+    simpa using hi).symm
+
+/-- The condition that `g` is clean: each coefficient of a monomial `X^k` with `p ∣ k_i` for
+each `i` has only terms of nonzero class. -/
+def IsClean (p : ℕ) (cl : K →+ K) (g : MvPolynomial σ K) : Prop :=
+  ∀ k : σ →₀ ℕ, (∀ i, p ∣ k i) → cl (g.coeff k) = g.coeff k
+
+theorem hasse_eq_zero_of_totalDegree_lt {g : MvPolynomial σ K} {k : σ →₀ ℕ}
+    (h : g.totalDegree < ord k) : hasse k g = 0 := by
+  ext m
+  rw [ord_eq_degree] at h
+  rw [coeff_hasse_eq_zero_of_totalDegree_lt (by omega)]
+  simp
+
+theorem hasse_eq_C_of_totalDegree_eq {g : MvPolynomial σ K} {k : σ →₀ ℕ}
+    (h : ord k = g.totalDegree) : hasse k g = C (g.coeff k) := by
+  ext m
+  rw [coeff_C]
+  split_ifs with hm
+  · subst hm
+    exact coeff_zero_hasse k g
+  · apply coeff_hasse_eq_zero_of_totalDegree_lt
+    rw [ord_eq_degree] at h
+    have : degree m ≠ 0 := fun h0 => hm ((degree_eq_zero_iff m).mp h0).symm
+    omega
+
+theorem coeff_restart (p : ℕ) (cl : K →+ K) (φ : σ → K) (M : K) (g : MvPolynomial σ K)
+    (k : σ →₀ ℕ) :
+    (restart p cl φ M g).coeff k =
+      (M ^ p)⁻¹ * clCoeff p cl k (M ^ ord k * eval φ (hasse k g)) := by
+  rw [restart, coeff_C_mul, coeff_clean_chart]
+
+/-- Lemma 3.19.1, part 3: for a clean `g`, the function `g^{(m)}` of `P_m` has the same degree
+as `g`. -/
+theorem totalDegree_restart (hcl : IsClassPart p K0 cl) (φ : σ → K) {M : K} (hM : M ≠ 0)
+    {g : MvPolynomial σ K} (hg : IsClean p cl g) :
+    (restart p cl φ M g).totalDegree = g.totalDegree := by
+  apply le_antisymm
+  · rw [totalDegree]
+    refine Finset.sup_le fun k hk => ?_
+    rw [MvPolynomial.mem_support_iff, coeff_restart] at hk
+    by_contra hlt
+    have hlt' : g.totalDegree < ord k := by
+      rw [ord_eq_degree, degree_apply]
+      exact lt_of_not_ge hlt
+    rw [hasse_eq_zero_of_totalDegree_lt hlt', map_zero, mul_zero, clCoeff_zero, mul_zero] at hk
+    exact hk rfl
+  · rcases eq_or_ne g 0 with h0 | h0
+    · simp [h0]
+    obtain ⟨k, hk, hkmax⟩ := Finset.exists_mem_eq_sup g.support (support_nonempty.mpr h0)
+      fun s => s.sum fun _ e => e
+    have hD : ord k = g.totalDegree := by
+      rw [totalDegree, hkmax, ord_eq_degree, degree_apply]
+      rfl
+    have hc : (restart p cl φ M g).coeff k ≠ 0 := by
+      rw [coeff_restart, hasse_eq_C_of_totalDegree_eq hD, eval_C]
+      have hgk : g.coeff k ≠ 0 := MvPolynomial.mem_support_iff.mp hk
+      refine mul_ne_zero (inv_ne_zero (pow_ne_zero _ hM)) ?_
+      rw [clCoeff]
+      split_ifs with hdiv
+      · have hmem : M ^ ord k ∈ K0 := hcl.pow_mul_mem M (Finset.dvd_sum fun i _ => hdiv i)
+        rw [hcl.map_mul _ hmem, hg k hdiv]
+        exact mul_ne_zero (pow_ne_zero _ hM) hgk
+      · exact mul_ne_zero (pow_ne_zero _ hM) hgk
+    have := le_totalDegree (MvPolynomial.mem_support_iff.mpr hc)
+    rw [← hD, ord_eq_degree]
+    simpa [Finsupp.sum, degree_apply] using this
+
+end Degree
 
 end PlanarRuns
 
