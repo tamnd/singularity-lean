@@ -5,6 +5,7 @@ Released under the Apache 2.0 licence as described in the file LICENSE.
 import Mathlib.Algebra.GroupWithZero.Basic
 import Mathlib.RingTheory.Ideal.Span
 import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.Ring
 import Mathlib.Tactic.NormNum
 
 /-!
@@ -44,13 +45,16 @@ theorem eSix_zChart (z x₁ y₁ : R) :
 /-- The `x`-chart is regular: `G = z_1^2 + x + x^2 y_1^4`, `G_x = 1 + 2 x y_1^4` and `G_{z_1} = 2 z_1` generate the unit ideal, in each commutative ring (Volume 4, Example 2.3.12, part 2 of the handbook). -/
 theorem eSix_xChart_regular (x y₁ z₁ : R) :
     Ideal.span {z₁ ^ 2 + x + x ^ 2 * y₁ ^ 4, 1 + 2 * x * y₁ ^ 4, 2 * z₁} = ⊤ := by
-  rw [Ideal.eq_top_iff_one]
-  have e : (1 : R) = (-4 * y₁ ^ 4) * (z₁ ^ 2 + x + x ^ 2 * y₁ ^ 4) +
-      (1 + 2 * x * y₁ ^ 4) * (1 + 2 * x * y₁ ^ 4) + (2 * y₁ ^ 4 * z₁) * (2 * z₁) := by
+  have hmem : (-4 * y₁ ^ 4) * (z₁ ^ 2 + x + x ^ 2 * y₁ ^ 4) +
+      (1 + 2 * x * y₁ ^ 4) * (1 + 2 * x * y₁ ^ 4) + (2 * y₁ ^ 4 * z₁) * (2 * z₁) ∈
+      Ideal.span {z₁ ^ 2 + x + x ^ 2 * y₁ ^ 4, 1 + 2 * x * y₁ ^ 4, 2 * z₁} := by
+    refine Ideal.add_mem _ (Ideal.add_mem _ ?_ ?_) ?_ <;>
+      exact Ideal.mul_mem_left _ _ (Ideal.subset_span (by simp))
+  have e : (-4 * y₁ ^ 4) * (z₁ ^ 2 + x + x ^ 2 * y₁ ^ 4) +
+      (1 + 2 * x * y₁ ^ 4) * (1 + 2 * x * y₁ ^ 4) + (2 * y₁ ^ 4 * z₁) * (2 * z₁) = 1 := by
     ring
-  rw [e]
-  refine Ideal.add_mem _ (Ideal.add_mem _ ?_ ?_) ?_ <;>
-    exact Ideal.mul_mem_left _ _ (Ideal.subset_span (by simp))
+  rw [e] at hmem
+  exact (Ideal.eq_top_iff_one _).mpr hmem
 
 /-- On the exceptional curve `y = 0` of the `y`-chart, `H = z_1^2 + y^2 + y x_1^3 = 0` and `H_y = 2y + x_1^3 = 0` give `x_1 = z_1 = 0` (Volume 4, Example 2.3.12, part 2 of the handbook). -/
 theorem eSix_yChart_exceptional [IsDomain R] {y x₁ z₁ : R} (hy : y = 0)

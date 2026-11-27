@@ -5,6 +5,7 @@ Released under the Apache 2.0 licence as described in the file LICENSE.
 import Mathlib.Algebra.GroupWithZero.Basic
 import Mathlib.RingTheory.Ideal.Span
 import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.Ring
 import Mathlib.Tactic.NormNum
 
 /-!

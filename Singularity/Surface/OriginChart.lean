@@ -4,6 +4,7 @@ Released under the Apache 2.0 licence as described in the file LICENSE.
 -/
 import Mathlib.RingTheory.MvPolynomial.Homogeneous
 import Mathlib.RingTheory.Localization.FractionRing
+import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.FinCases
 
 /-!
@@ -73,8 +74,11 @@ theorem originXChart_of_isHomogeneous {P : MvPolynomial (Fin 3) k} {d : ℕ}
 noncomputable def originXChartInv [IsDomain k] :
     MvPolynomial (Fin 3) k →+* FractionRing (MvPolynomial (Fin 3) k) :=
   eval₂Hom ((algebraMap (MvPolynomial (Fin 3) k) (FractionRing (MvPolynomial (Fin 3) k))).comp C)
-    ![algebraMap _ _ (X 0), algebraMap _ _ (X 1) / algebraMap _ _ (X 0),
-      algebraMap _ _ (X 2) / algebraMap _ _ (X 0)]
+    ![algebraMap (MvPolynomial (Fin 3) k) (FractionRing (MvPolynomial (Fin 3) k)) (X 0),
+      algebraMap (MvPolynomial (Fin 3) k) (FractionRing (MvPolynomial (Fin 3) k)) (X 1) /
+        algebraMap (MvPolynomial (Fin 3) k) (FractionRing (MvPolynomial (Fin 3) k)) (X 0),
+      algebraMap (MvPolynomial (Fin 3) k) (FractionRing (MvPolynomial (Fin 3) k)) (X 2) /
+        algebraMap (MvPolynomial (Fin 3) k) (FractionRing (MvPolynomial (Fin 3) k)) (X 0)]
 
 /-- The composite of the `x`-chart and `y_1 ↦ y/x`, `z_1 ↦ z/x` is the inclusion of `k[x, y, z]` in its field of fractions. -/
 theorem originXChartInv_comp [IsDomain k] :
@@ -86,7 +90,10 @@ theorem originXChartInv_comp [IsDomain k] :
   · intro r
     simp [originXChartInv, originXChart]
   · intro i
-    fin_cases i <;> simp [originXChartInv, originXChart, mul_div_cancel₀ _ h0]
+    fin_cases i <;> simp [originXChartInv, originXChart] <;>
+      first
+      | exact mul_div_cancel₀ _ h0
+      | field_simp
 
 /-- The `x`-chart `F ↦ F(x, x y_1, x z_1)` is injective (Volume 4, Lemma 1.1.6 of the handbook). -/
 theorem originXChart_injective [IsDomain k] : Function.Injective (originXChart k) := by
