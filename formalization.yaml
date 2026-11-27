@@ -1854,6 +1854,30 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 3, Example 1.2.7 of the handbook. Z^n with the lexicographic order has exactly n + 1 convex subgroups. The claim that the rational rank is n is not proved.'
+    - name: Singularity.mem_coarsening_and_inv_mem_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Lemma 2.3.2, part 1 of the handbook. For a convex subgroup H and x not 0, x and its inverse are in the coarsening W if and only if v(x) is in H. The isomorphism of the value group of W with the quotient by H is not proved.'
+    - name: Singularity.mem_nonunits_coarsening_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Lemma 2.3.2, part 1 of the handbook. The maximal ideal of the coarsening W is the set of the x with v(x) below each element of H.'
+    - name: Singularity.not_exists_center_inftyValuation_polynomial
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 1.4.6 of the handbook. The valuation at infinity on F(x) has no center on F[x].'
+    - name: Singularity.mem_centerIdeal_inftyChart_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 1.4.6 of the handbook. The center of the valuation at infinity on F[1/x] is the ideal (1/x). The claims on the valuation ring as a localization, the value group, the residue field and the dimension are not proved.'
+    - name: Singularity.valuation_ne_of_sq_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 3.1.7, case 2 of the handbook. If v(t) = exp m with m odd and s^2 = t, then w(s) is not a value of K, so e is at least 2. The equality e = 2 is not proved.'
+    - name: Singularity.valuation_sub_eq_one_of_sq_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 3.1.7, case 3 of the handbook. If w is trivial on k and s^2 = c with c not a square in k, then w(s - b) = 1 for each b in k, so the residue of s is not in k. The equality f = 2 is not proved.'
     - name: Singularity.aChain_chart_mul
       kind: theorem
       status: proved
