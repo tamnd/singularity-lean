@@ -189,7 +189,8 @@ theorem IsDiffOp.map_pow_mul {p : ℕ} [Fact p.Prime] [CharP A p] {e n : ℕ} {D
     funext F
     simp [ad, diffComm, l]
   have hpow : (ad ^ p ^ e) D = diffComm D (a ^ p ^ e) := by
-    rw [sub_pow_char_pow_of_commute p e (LinearMap.commute_mulLeft_right l l).symm,
+    show ((LinearMap.mulRight k l - LinearMap.mulLeft k l) ^ p ^ e) D = _
+    rw [sub_pow_char_pow_of_commute p e (LinearMap.commute_mulLeft_right (R := k) l l).symm,
       LinearMap.pow_mulRight, LinearMap.pow_mulLeft, LinearMap.pow_mulLeft]
     simp [diffComm, l]
   have h0 : diffComm D (a ^ p ^ e) = 0 := by
