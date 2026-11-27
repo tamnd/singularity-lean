@@ -21,6 +21,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Fidelity/LocalUniformization.lean` | the trivial valuation of a function field has local uniformization, a field with a valuation that has local uniformization is a function field, and local uniformization implies a regular center on one affine model |
 | `Singularity/Fidelity/Embedded.lean` | the identity is an embedded resolution of the empty subscheme, and the zero ideal sheaf is not a divisor with simple normal crossings |
 | `Singularity/Algebra/Regular.lean` | regular local rings: the quotient by a parameter, a regular local ring is a domain, and in dimension 1 regular is the same as integrally closed |
+| `Singularity/Algebra/RegularSystem.lean` | Volume 1, Corollary 1.2.7 of the handbook. If $x_1, \dots, x_d$ generate the maximal ideal of a regular local ring of dimension $d$, then $R/(x_1, \dots, x_i)$ is regular of dimension $d - i$ for each $i \le d$ (`isRegularLocalRing_quotient_span_range`) |
 | `Singularity/Algebra/Normalization.lean` | the integral closure of a domain is finite over it, when its fraction field is separable over a Noetherian normal subring, and for each finitely generated domain in characteristic 0 |
 | `Singularity/Scheme/NormalDimOne.lean` | a locally Noetherian scheme of dimension at most 1 with integrally closed local domains is regular |
 | `Singularity/Algebra/NormalizationCharP.lean` | the normalization of a domain that is a finitely generated algebra over a field is finite, in each characteristic (E. Noether) |

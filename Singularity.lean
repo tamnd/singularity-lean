@@ -4,6 +4,7 @@ import Singularity.Statements.Core
 import Singularity.Statements.Embedded
 import Singularity.Statements.LocalUniformization
 import Singularity.Algebra.Regular
+import Singularity.Algebra.RegularSystem
 import Singularity.Algebra.RegularSequence
 import Singularity.Algebra.ExtCriterion
 import Singularity.Algebra.GlobalDimension
