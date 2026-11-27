@@ -29,7 +29,7 @@ theorem isField_range {F R : Type*} [Field F] [CommRing R] [Nontrivial R] (f : F
   have hinj : Function.Injective f.rangeRestrict := fun x y h =>
     f.injective (congrArg Subtype.val h)
   exact MulEquiv.isField (Field.toIsField F)
-    (RingEquiv.ofBijective f.rangeRestrict ⟨hinj, f.rangeRestrict_surjective⟩).toMulEquiv
+    (RingEquiv.ofBijective f.rangeRestrict ⟨hinj, f.rangeRestrict_surjective⟩).symm.toMulEquiv
 
 /-- A local ring contains a field if and only if it is equicharacteristic (Volume 1, Lemma 4.4.2 of the handbook). Let `(R, m, κ)` be a local ring. Then a subring of `R` is a field if and only if `char R = char κ`. -/
 theorem exists_isField_subring_iff_ringChar_eq {R : Type*} [CommRing R] [IsLocalRing R] :
