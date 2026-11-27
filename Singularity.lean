@@ -111,6 +111,7 @@ import Singularity.Invariant.OriginRunsCorner
 import Singularity.Invariant.OriginRunsLimit
 import Singularity.Invariant.OriginChartResidualOrder
 import Singularity.Invariant.Translations
+import Singularity.Invariant.PlanarRuns
 import Singularity.Invariant.OriginChartIota
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
