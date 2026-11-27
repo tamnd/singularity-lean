@@ -2302,3 +2302,67 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 4, Example 2.3.13, part 2 of the handbook. On y = 0 in the y-chart, the equation and its derivative in y vanish only at x_1 = z_1 = 0.'
+    - name: Singularity.reynolds_mem
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 3.1.8 of the handbook. If |G| is a unit of B, the Reynolds operator sends B into the ring of invariants B^G.'
+    - name: Singularity.reynolds_mul_of_mem
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 3.1.8 of the handbook. The Reynolds operator is B^G-linear: rho(a b) = a rho(b) for a in B^G.'
+    - name: Singularity.reynolds_of_mem
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 3.1.8 of the handbook. rho(a) = a for a in B^G, so B^G is a direct summand of B.'
+    - name: Singularity.comap_map_invariantSubring
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 3.1.8 of the handbook. If |G| is a unit of B, then I B meets B^G in I for each ideal I of B^G.'
+    - name: Singularity.wildSigma_wildSigma
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Example 3.1.9 of the handbook. In characteristic 2, the map s to s, t to t + s of k[s, t] is an involution.'
+    - name: Singularity.wildSigma_eq_self_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Example 3.1.9 of the handbook. The invariants of the involution are k[s, n] with n = t (t + s).'
+    - name: Singularity.exists_eq_add_mul_X_one
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Example 3.1.9 of the handbook. Each element of k[s, t] is a + b t with a, b in k[s, n].'
+    - name: Singularity.eq_zero_of_add_mul_X_one_eq_zero
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Example 3.1.9 of the handbook. If a + b t = 0 with a, b in k[s, n], then a = b = 0.'
+    - name: Singularity.exists_add_wildSigma_eq_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Example 3.1.9 of the handbook. In characteristic 2, the image of the trace f to f + sigma(f) is s k[s, n].'
+    - name: Singularity.traceToBase_algebraMap
+      kind: theorem
+      status: proved
+      note: 'Used in Volume 8, Proposition 1.3.2 of the handbook. The trace of a in A is [L:K] a.'
+    - name: Singularity.exists_leftInverse_algebraMap_of_isUnit_finrank
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 1.3.2 of the handbook, the affine case. If [L:K] is a unit of the normal domain A, and B is an A-subalgebra of L that is integral over A, then A to B has an A-linear left inverse. The gluing is not proved.'
+    - name: Singularity.isIntegral_algEquiv_apply
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 3.1.4, part 1 of the handbook. A K-automorphism of L'' maps an element integral over A to an element integral over A.'
+    - name: Singularity.mem_integralClosure_and_fixed_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 3.1.4, part 2 of the handbook. The elements of the integral closure of A in L'' fixed by H are the elements of L''^H integral over A.'
+    - name: Singularity.exists_algebraMap_eq_pow_of_isPurelyInseparable
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 3.1.4, part 3 of the handbook. If M/K is purely inseparable and b in M is integral over the normal domain A, then b^(q^n) is in A for some n.'
+    - name: Singularity.eq_of_comap_eq_of_forall_exists_pow
+      kind: theorem
+      status: proved
+      note: 'Used in Volume 8, Proposition 3.1.4, part 3 of the handbook. If each element of S has a positive power in the image of R, two primes of S over the same prime of R are equal.'
+    - name: Singularity.eq_of_comap_eq_integralClosure
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 3.1.4, part 3 of the handbook. For M/K purely inseparable, Spec A_M to Spec A is injective. Surjectivity and the universal homeomorphism are not proved.'

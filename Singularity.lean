@@ -159,6 +159,10 @@ import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement
 import Singularity.Alteration.Trace
 import Singularity.Alteration.GaloisDegree
+import Singularity.Alteration.TraceSplitting
+import Singularity.Alteration.Reynolds
+import Singularity.Alteration.WildInvolution
+import Singularity.Alteration.InseparableQuotient
 import Singularity.Algebra.Hypersurface
 import Singularity.Algebra.Frobenius
 import Singularity.Algebra.FlatLocal
