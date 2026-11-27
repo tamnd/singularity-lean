@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.64 - 2026-11-28
+
 ### Added
 
 - `Singularity/Invariant/MaximalContactSmall.lean`: Volume 6, Proposition 1.2.5 of the handbook at the points with coordinates in the base ring. The proof needs only that $m$ is a unit.
