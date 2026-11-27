@@ -7,11 +7,13 @@ import Singularity.Algebra.Regular
 import Singularity.Algebra.RegularSystem
 import Singularity.Algebra.RegularComponent
 import Singularity.Algebra.RegularParameter
+import Singularity.Algebra.MonomialParameter
 import Singularity.Algebra.CofinalChains
 import Singularity.Algebra.FrobeniusLocalization
 import Singularity.Algebra.FrobeniusBasis
 import Singularity.Algebra.FrobeniusBasisPoly
 import Singularity.Algebra.FrobeniusFlat
+import Singularity.Algebra.PowerSeriesBaseChange
 import Singularity.Algebra.InverseLimitExact
 import Singularity.Algebra.PBasis
 import Singularity.Algebra.PBasisDifferentials
@@ -59,6 +61,7 @@ import Singularity.Invariant.Order
 import Singularity.Invariant.OrderAlong
 import Singularity.Invariant.Newton
 import Singularity.Invariant.Residual
+import Singularity.Invariant.QuadricConeChart
 import Singularity.Invariant.OrderBlowup
 import Singularity.Invariant.MaxOrderChart
 import Singularity.Invariant.DerivTransformChart
@@ -131,6 +134,7 @@ import Singularity.Fidelity.LocalUniformization
 import Singularity.Scheme.Embedded
 import Singularity.Valuation.Abhyankar
 import Singularity.Valuation.AbhyankarEquality
+import Singularity.Valuation.AbhyankarResidue
 import Singularity.Valuation.ZariskiRiemann
 import Singularity.Valuation.SchemeCenter
 import Singularity.Valuation.CenterExists

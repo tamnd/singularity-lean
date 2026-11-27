@@ -4,6 +4,13 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/AbhyankarResidue.lean`: Volume 3, Lemma 2.2.1 of the handbook, the residue field part `K_0 w_0 = Kv(ȳ_1, ..., ȳ_s)`, in the relative form of the handbook. The equality of the value groups is not stated as an equality of groups.
+- `Singularity/Algebra/MonomialParameter.lean`: Volume 8, Corollary 2.1.4 of the handbook, given Lemma 2.1.3 as a hypothesis. Lemma 2.1.3 is not in Lean.
+- `Singularity/Algebra/PowerSeriesBaseChange.lean`: Volume 1, Corollary 6.4.4 of the handbook when `[K : L]` is finite, and Proposition 6.4.5 when `[K : K^p]` is finite. Lemma 6.4.3 and the infinite cases are not in Lean.
+- `Singularity/Invariant/QuadricConeChart.lean`: Volume 4, Example 3.1.5 of the handbook, the chart computation for the blowup of `xy - z^2` at the origin. The regularity of the blowup and the normal crossings are not in Lean.
+
 ## 0.4.62 - 2026-11-27
 
 ### Added
