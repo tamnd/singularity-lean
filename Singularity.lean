@@ -90,6 +90,7 @@ import Singularity.Invariant.LogJacobianCenter
 import Singularity.Invariant.LogJacobianCenterNonincrease
 import Singularity.Invariant.LogJacobianCenterAdapted
 import Singularity.Invariant.Tschirnhausen
+import Singularity.Invariant.MaximalContactSmall
 import Singularity.Invariant.LogJacobianEndCase
 import Singularity.Invariant.CossartPiltantOmega
 import Singularity.Invariant.CossartPiltantOmegaBounds
@@ -172,6 +173,7 @@ import Singularity.Valuation.LatticeLemma
 import Singularity.Valuation.LatticeLemmaOrdered
 import Singularity.Valuation.LocalUniformizationMonomial
 import Singularity.Valuation.MonomialGroundField
+import Singularity.Valuation.MonomialValuationConstruction
 import Singularity.Valuation.MonomialNegativeWeights
 import Singularity.Valuation.LocalUniformizationTrdegTwo
 import Singularity.Valuation.DegreePSteps
@@ -222,6 +224,7 @@ import Singularity.Algebra.ArtinRees
 import Singularity.Algebra.Completion
 import Singularity.Algebra.Hensel
 import Singularity.Algebra.Equicharacteristic
+import Singularity.Algebra.HypersurfaceHeight
 import Singularity.Algebra.CohenMap
 import Singularity.Algebra.CohenQuotient
 import Singularity.Algebra.DifferentialOperator

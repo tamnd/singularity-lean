@@ -4,6 +4,12 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/MaximalContactSmall.lean`: Volume 6, Proposition 1.2.5 of the handbook at the points with coordinates in the base ring. The proof needs only that $m$ is a unit.
+- `Singularity/Valuation/MonomialValuationConstruction.lean`: Volume 3, Lemma 1.6.1 of the handbook, the monomial valuation of $k(x_1, \dots, x_n)$ with values in an ordered group.
+- `Singularity/Algebra/HypersurfaceHeight.lean`: Volume 4, Lemma 1.2.6 of the handbook, the dimension of the local rings and the condition $R_1$. The condition $S_2$ and the normality are not in Lean, because Mathlib does not have the criterion of Serre.
+
 ## 0.4.63 - 2026-11-27
 
 ### Added
