@@ -4,6 +4,15 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.60 - 2026-11-27
+
+### Added
+
+- `Singularity/Algebra/PBasis.lean`: Volume 1, Corollary 6.2.4 of the handbook, without the claim `dim_K Ω_{K/k} = |B|`, which needs Theorem 6.2.3. The file defines the finite p-bases (`IsPBasis`) and proves `[K : kK^p] = p^|B|` (`finrank_pSubring_eq`) and that two finite p-bases have the same size (`IsPBasis.card_eq`).
+- `Singularity/Valuation/CenterExists.lean`: Volume 3, Proposition 1.4.4 of the handbook. On an integral scheme that is proper over a field `k`, each valuation ring of the function field that contains `k` has exactly one center (`Singularity.Scheme.existsUnique_isCenter`).
+- `Singularity/Valuation/CenterMap.lean`: Volume 3, Proposition 1.5.2 of the handbook. The center map `c_B : ZR(K/B) → Spec B` is continuous and surjective (`Singularity.ZariskiRiemann.continuous_and_surjective_centerMap`).
+- `Singularity/Valuation/ZariskiRiemannCover.lean`: Volume 3, Corollary 1.5.4 of the handbook. Finitely many of the given neighbourhoods of the centers cover the Zariski-Riemann space (`Singularity.ZariskiRiemann.exists_finset_forall_exists_centerMap_mem`). The Lean form does not need the hypothesis `Frac B_v = K`.
+
 ## 0.4.59 - 2026-11-27
 
 ### Added
@@ -15,10 +24,6 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 - `Singularity/Algebra/FrobeniusLocalization.lean`: Volume 1, Lemma 6.4.2 of the handbook. Let `R` be a ring of characteristic `p`. Then the Frobenius of `R` is flat if and only if the Frobenius of `R_P` is flat for each prime `P` (`flat_frobenius_iff_forall_localization`). The file also gives the instance that `R_P` has characteristic `p`.
 - `Singularity/Algebra/InverseLimitExact.lean`: Volume 1, Lemma 4.2.3 of the handbook. Let `0 → (A_n) → (B_n) → (C_n) → 0` be exact at each level, and let the transition maps of `(A_n)` be surjective. Then the sequence of inverse limits is exact (`injOn_invLimMap`, `exists_invLim_of_invLimMap_eq_zero`, `surjOn_invLimMap`). The limit is the set of the compatible families (`invLim`).
 - `Singularity/Valuation/SchemeCenter.lean`: Volume 3, Proposition 1.4.3 of the handbook. On an integral separated scheme, each valuation ring of the function field has at most one center (`Singularity.Scheme.eq_of_isCenter`). The proof uses the valuative criterion of separatedness in Mathlib.
-- `Singularity/Algebra/PBasis.lean`: Volume 1, Corollary 6.2.4 of the handbook, without the claim `dim_K Ω_{K/k} = |B|`, which needs Theorem 6.2.3. The file defines the finite p-bases (`IsPBasis`) and proves `[K : kK^p] = p^|B|` (`finrank_pSubring_eq`) and that two finite p-bases have the same size (`IsPBasis.card_eq`).
-- `Singularity/Valuation/CenterExists.lean`: Volume 3, Proposition 1.4.4 of the handbook. On an integral scheme that is proper over a field `k`, each valuation ring of the function field that contains `k` has exactly one center (`Singularity.Scheme.existsUnique_isCenter`).
-- `Singularity/Valuation/CenterMap.lean`: Volume 3, Proposition 1.5.2 of the handbook. The center map `c_B : ZR(K/B) → Spec B` is continuous and surjective (`Singularity.ZariskiRiemann.continuous_and_surjective_centerMap`).
-- `Singularity/Valuation/ZariskiRiemannCover.lean`: Volume 3, Corollary 1.5.4 of the handbook. Finitely many of the given neighbourhoods of the centers cover the Zariski-Riemann space (`Singularity.ZariskiRiemann.exists_finset_forall_exists_centerMap_mem`). The Lean form does not need the hypothesis `Frac B_v = K`.
 
 ## 0.4.58 - 2026-11-27
 
