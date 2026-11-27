@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.59 - 2026-11-27
+
 ### Added
 
 - `Singularity/Invariant/LogJacobianRhoConstant.lean`: Corollary 3.15 of research note 03, the points where `ρ` stays lie in the directrix. Let `g ≠ 0` be clean with `ord g ≥ p`, let `g = x^r G`, and let `I = Θ̃_C(G)` if `σ = ρ` and `I = Θ̃(G)` if `σ = ρ + 1` (`residualLogJacobianCaseIdeal`). Let the chart `π = pointChart j t` give `π(g) = x_j^p g'`, and let `v = (1, t)` be the vector of the chart. If `ρ(g'_c) = ρ` for the new divisor, then for each `ψ ∈ I` the part `ψ_ρ` of degree `ρ` is invariant under the translation by `v` (`chartVector_mem_directrix_of_mem_residualLogJacobianCaseIdeal`), so `v` lies in the directrix `T_ρ(g)` (`chartVector_mem_logJacobianDirectrix`). This holds at each kangaroo point, where `d' = d + 1` (`chartVector_mem_logJacobianDirectrix_of_residualOrderAlong_eq_add_one`). If `v` is not in the directrix of `ψ_ρ` for some `ψ ∈ I`, then `ρ(g'_c) < ρ` (`logJacobianOrder_cleanPart_lt_of_not_mem_directrix`). The result is for polynomials of `k[x]` and the points of the charts of the point blowup. The form for the local rings of a regular scheme is not proved.
