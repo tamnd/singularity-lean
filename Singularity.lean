@@ -134,6 +134,7 @@ import Singularity.Invariant.Translations
 import Singularity.Invariant.PlanarRuns
 import Singularity.Invariant.PlanarRunsCondition
 import Singularity.Invariant.PlanarRunsRestart
+import Singularity.Invariant.PlanarRunsConjectureP
 import Singularity.Invariant.OriginChartIota
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
