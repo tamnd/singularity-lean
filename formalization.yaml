@@ -1806,6 +1806,26 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 3, Proposition 1.4.3 of the handbook. A valuation ring has at most one center on a separated integral scheme.'
+    - name: Singularity.Algebra.finrank_pSubring_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Corollary 6.2.4 of the handbook, the first claim. The claim on the differentials is not in Lean.'
+    - name: Singularity.Algebra.IsPBasis.card_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Corollary 6.2.4 of the handbook, the last claim. Two finite p-bases have the same size.'
+    - name: Singularity.Scheme.existsUnique_isCenter
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Proposition 1.4.4 of the handbook. A valuation ring over k has exactly one center on a proper integral scheme over k.'
+    - name: Singularity.ZariskiRiemann.continuous_and_surjective_centerMap
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Proposition 1.5.2 of the handbook. The center map is continuous and surjective.'
+    - name: Singularity.ZariskiRiemann.exists_finset_forall_exists_centerMap_mem
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Corollary 1.5.4 of the handbook. Finitely many neighbourhoods of the centers cover the Zariski-Riemann space.'
     - name: Singularity.Algebra.isRegularLocalRing_quotient_span_range
       kind: theorem
       status: proved
