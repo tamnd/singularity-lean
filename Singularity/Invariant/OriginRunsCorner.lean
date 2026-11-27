@@ -33,9 +33,10 @@ monomials of `F` with `σ ≤ σ(T)` and the monomials that satisfy Lemma 3.14.6
 3. Each corner curve `C_t = V(x_i : i ≠ t)`, `t ∈ L`, has `ν^G = d_m`
    (`originRun_orderGAlong_corner`), and `ν^G ≥ ρ` (`originRun_logJacobianOrder_le_orderGAlong`).
 
-The form for an infinite run is `originRun_cornerCurves`. The limit argument of Proposition 3.14.4
-and Lemma 3.14.6, which gives the point `m_0` after which the inequalities hold, is not proved. The
-statement that the initial form of `G_m` is `h`, part 4 and part 5 are not proved.
+The form for an infinite run is `originRun_cornerCurves`. The limit argument of Lemma 3.14.6, which
+gives the point `m_0` after which the inequalities hold, is in the file
+`Singularity/Invariant/OriginRunsLimit.lean` (`originRun_cornerCurves_eventually`). The statement
+that the initial form of `G_m` is `h`, part 4 and part 5 are not proved.
 
 ## Example 3.14.9
 

@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/OriginRunsLimit.lean`: Lemma 3.14.6 of Volume 7 of the handbook for polynomials, and parts 1, 2 and 3 of Theorem 3.14.7 with no hypothesis on the inequalities. For an integer vector `δ` on `L`, the vector `(δ · c_s)_{s ∈ L}` follows the step `δ_j ← Σ δ` of Lemma 3.14.2 (`OriginRuns.colDot_colSteps`, `OriginRuns.qDot_sub_cols`). The step keeps `δ ≠ 0` (`OriginRuns.diffSteps_ne_zero`), and for `δ ≥ 0` it does not make an entry smaller (`OriginRuns.le_diffSteps_of_nonneg`). Let `k ≥ 2`. If `δ ≥ 0` and `δ ≠ 0`, then after `w` windows with all the letters each entry is at least `w` (`OriginRuns.add_length_le_diffSteps`). So after `Φ(δ) + B` windows, each entry is at least `B` or each entry is at most `-B` (`OriginRuns.diffSteps_windows_sign`). In a run where each letter occurs an infinite number of times, this sign stays from some point on (`OriginRuns.eventually_sign`). For a finite set `S` of exponent vectors, there are `T ∈ S` and `m₀` such that for each `m ≥ m₀` and each `μ ∈ S`, either `q(μ) = q(T)` and `σ(μ) ≤ σ(T)`, or `Δq(μ) · c_s ≥ max(1, Δσ(μ))` for each `s ∈ L` (`OriginRuns.exists_corner_le_eventually`). This gives `CornerIneq` (`OriginRuns.exists_cornerIneq_eventually`). Thus for a clean `g ≠ 0` and an origin run in the letters of `L ⊆ Δ` where each letter of `L` occurs an infinite number of times, each point after `m₀` has `r_s = E_s(T)`, `d_m = σ(T) - r_U` and `ν^G = d_m ≥ ρ` along each corner curve (`OriginRuns.originRun_cornerCurves_eventually`). The proof does not use the limit ray `ω` of Proposition 3.14.4. The initial form in part 2, parts 4 and 5 of Theorem 3.14.7 and Proposition 3.14.4 are not proved.
+
 ## 0.4.43 - 2026-11-27
 
 ### Added
