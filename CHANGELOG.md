@@ -4,6 +4,14 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Algebra/QuadraticTransform.lean`: Volume 5, Proposition 1.1.3 and Lemma 1.1.5 of the handbook, in a large part. The setting with a valuation and the length in part (3) are not in Lean.
+- `Singularity/Algebra/LocalPolynomialCompletion.lean`: Volume 1, Corollary 4.3.4 of the handbook, the isomorphism with the power series ring. The regularity of the completion is not in Lean.
+- `Singularity/Algebra/PIndependence.lean`: Volume 1, Lemma 6.2.2 of the handbook for finite sets.
+- `Singularity/Valuation/LexMonomialValuation.lean`: Volume 3, Example 1.6.8 of the handbook, the rank 2 valuation and its coarsening. The valuation ring of the coarsening and its residue field are not in Lean.
+- `Singularity/Invariant/ClassicalCoefficientIdeal.lean`: Volume 2, Example 3.2.7 of the handbook, the order of a function in Weierstrass form.
+
 ## 0.4.64 - 2026-11-28
 
 ### Added

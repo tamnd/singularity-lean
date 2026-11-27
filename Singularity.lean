@@ -24,6 +24,7 @@ import Singularity.Algebra.CuspFrobenius
 import Singularity.Algebra.CuspFrobeniusLocal
 import Singularity.Algebra.InverseLimitExact
 import Singularity.Algebra.PBasis
+import Singularity.Algebra.PIndependence
 import Singularity.Algebra.PBasisDifferentials
 import Singularity.Algebra.PBasisExistence
 import Singularity.Algebra.RegularSequence
@@ -47,6 +48,7 @@ import Singularity.Algebra.HilbertSerre
 import Singularity.Algebra.Multiplicity
 import Singularity.Algebra.MultiplicityRegular
 import Singularity.Algebra.BlowupChart
+import Singularity.Algebra.QuadraticTransform
 import Singularity.Algebra.CurveOnSurface
 import Singularity.Algebra.MvHasse
 import Singularity.Algebra.DerivationIdealPow
@@ -66,6 +68,7 @@ import Singularity.Known.DimZero
 import Singularity.Hypotheses.Integral
 import Singularity.Bridge.FormalConjectures
 import Singularity.Invariant.Order
+import Singularity.Invariant.ClassicalCoefficientIdeal
 import Singularity.Invariant.OrderAlong
 import Singularity.Invariant.Newton
 import Singularity.Invariant.Residual
@@ -175,6 +178,7 @@ import Singularity.Valuation.LatticeLemmaOrdered
 import Singularity.Valuation.LocalUniformizationMonomial
 import Singularity.Valuation.MonomialGroundField
 import Singularity.Valuation.MonomialValuationConstruction
+import Singularity.Valuation.LexMonomialValuation
 import Singularity.Valuation.MonomialNegativeWeights
 import Singularity.Valuation.LocalUniformizationTrdegTwo
 import Singularity.Valuation.DegreePSteps
@@ -228,6 +232,7 @@ import Singularity.Algebra.Equicharacteristic
 import Singularity.Algebra.HypersurfaceHeight
 import Singularity.Algebra.CohenMap
 import Singularity.Algebra.CohenQuotient
+import Singularity.Algebra.LocalPolynomialCompletion
 import Singularity.Algebra.DifferentialOperator
 import Singularity.Surface.AChainChart
 import Singularity.Surface.AnBlowupChart

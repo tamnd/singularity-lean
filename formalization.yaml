@@ -1942,6 +1942,30 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 4, Lemma 1.2.6 of the handbook, the condition R1.'
+    - name: Singularity.Algebra.isRegularLocalRing_quadraticChart
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Proposition 1.1.3 of the handbook, the local rings of the chart.'
+    - name: Singularity.Algebra.le_of_quadraticStrictTransform_mem_maximalIdeal_pow
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Lemma 1.1.5 of the handbook, the bound on the order of the strict transform.'
+    - name: Singularity.Algebra.isDomain_adicCompletion_localPolynomialRing
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Corollary 4.3.4 of the handbook, the completion is a domain.'
+    - name: Singularity.Algebra.IsPIndependent.exists_isPBasis_superset
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 6.2.2 of the handbook for finite sets.'
+    - name: Singularity.RankTwoExample.v_pos_iff_constantCoeff_eq_zero
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 1.6.8 of the handbook, the center of the rank 2 valuation.'
+    - name: Singularity.le_ord_classicalF_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Example 3.2.7 of the handbook, the order of a function in Weierstrass form.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved
