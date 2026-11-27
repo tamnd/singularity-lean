@@ -1990,6 +1990,22 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 1, Example 1.2.11 of the handbook, the ramified discrete valuation ring.'
+    - name: Singularity.derivation_eq_zero_of_isSeparable
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Lemma 2.1.1 of the handbook, a derivation kills the separable elements.'
+    - name: Singularity.MvPowerSeries.derivation_eq_pderiv
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Lemma 2.1.1 of the handbook, the partial derivatives of power series.'
+    - name: Singularity.finiteDimensional_iff_trdeg_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 1.1.4 of the handbook, the step on the transcendence degree.'
+    - name: Singularity.exists_ne_zero_moduleFinite_localization
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 1.1.4 of the handbook, the generic finiteness.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved

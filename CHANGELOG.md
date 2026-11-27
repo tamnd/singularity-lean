@@ -6,6 +6,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Algebra/DerivationSeparable.lean`: Volume 2, Lemma 2.1.1 of the handbook, the statements on derivations. The existence and the uniqueness of the coefficient field are not in Lean.
+- `Singularity/Alteration/DimensionCriterion.lean`: Volume 8, Lemma 1.1.4 of the handbook, the two algebraic steps of the proof. The statement for schemes is not in Lean.
 - `Singularity/Algebra/SurfaceRegularExamples.lean`: Volume 1, Example 1.2.11 of the handbook, the surfaces $A_m$ and the ramified discrete valuation ring. The dimensions and the statement that $R/(p)$ is not regular are not in Lean.
 - `Singularity/Invariant/PurelyInseparableOrder.lean`: Volume 6, Lemma 2.3.2 of the handbook, the derivatives, the translation and the order of $z^p + G$. The equality of the order and the multiplicity, and the Jacobian criterion, are not in Lean.
 - `Singularity/Example/CleanBlowupExamples.lean`: Volume 6, Examples 4.3.3 and 4.3.5 of the handbook, the polynomial computations. The invariants $\omega$ and $\iota$ and the condition (E) are not in Lean.
