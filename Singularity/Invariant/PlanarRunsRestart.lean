@@ -54,6 +54,14 @@ be the monomial `M_m`, and let `Δ : σ → K` be the tail `Δ_m = Φ_∞ - Φ_m
   `Λ^{(m)}_0 + p v(M_m) = Λ_0` for each first derivative.
 * `map_cl_eval_restart_add` (Corollary 3.19.3, part 3):
   `v(cl g^{(m)}(Δ / M)) + p v(M) = v(cl g(φ + Δ))`.
+* `cl0_eval_hasse_pow_restart` (Lemma 3.19.2, part 4, the identity): for `e ≥ 1`, in
+  characteristic `p`, the part of class `0` of `H = (g^{(m)})^{[p^e e_i]}(Δ / M)`, that is,
+  `H - cl H`, is `M^{p^e - p}` times the part of class `0` of the sum `restartSum` over the set
+  `S^e_i` (`restartIndex`) of the `k` with `g^{[k]} ≠ 0`, some `k_l` not divisible by `p`, and
+  `C(k_i, p^e)` prime to `p`. Each `k ∈ S^e_i` has `k_i ≥ p^e` (`le_of_mem_restartIndex`).
+* `exists_le_map_cl0_restart` (Lemma 3.19.2, part 4, the bound): if `v(Δ_l) ≥ γ` for each
+  `l`, `v(M) = r` and `v(x - cl x) ≥ v(x)` for each `x`, and `H - cl H ≠ 0`, then there is
+  `k ∈ S^e_i` with `v(H - cl H) ≥ v(g^{[k]}(φ)) + (p^e - p) r + (|k| - p^e) γ`.
 * `totalDegree_restart` (Lemma 3.19.1, part 3): if `g` is clean (`IsClean`), that is, `cl c = c`
   for each coefficient `c` of a monomial `X^k` with `p ∣ k_i` for each `i`, and `M ≠ 0`, then
   `g^{(m)}` has the same total degree as `g`.
@@ -65,8 +73,8 @@ of `cl`.
 
 The file does not build the corner runs, the Hahn field and its classes. So it does not prove
 that `restart p cl φ M g` is the function of `P_m` (Lemma 3.17.1, part 2), and it does not
-prove parts 1, 2 and 4 of Lemma 3.19.1. The bound on the values of the terms of class `0` in
-part 4 of Lemma 3.19.2 is not proved.
+prove parts 1, 2 and 4 of Lemma 3.19.1. The classes are only kept through `K0` and `cl`, so
+part 4 of Lemma 3.19.2 is on the part `H - cl H` and on its value, and not on its terms.
 
 ## References
 
@@ -572,6 +580,188 @@ theorem totalDegree_restart (hcl : IsClassPart p K0 cl) (φ : σ → K) {M : K} 
     simpa [Finsupp.sum, degree_apply] using this
 
 end Degree
+
+section ClassZero
+
+open Classical
+
+variable {σ K : Type*} [Fintype σ] [DecidableEq σ] [Field K]
+variable {p : ℕ} {K0 : Subring K} {cl : K →+ K}
+
+omit [Fintype σ] [DecidableEq σ] in
+theorem IsClassPart.cl_cl (hcl : IsClassPart p K0 cl) (x : K) : cl (cl x) = cl x := by
+  have h := hcl.map_eq_zero _ (hcl.sub_mem x)
+  rw [map_sub, sub_eq_zero] at h
+  exact h.symm
+
+omit [Fintype σ] [DecidableEq σ] in
+theorem IsClassPart.mul_sub_cl (hcl : IsClassPart p K0 cl) {a : K} (ha : a ∈ K0) (x : K) :
+    a * x - cl (a * x) = a * (x - cl x) := by
+  rw [hcl.map_mul a ha, mul_sub]
+
+theorem ord_tsub_single (k : σ →₀ ℕ) {i : σ} {n : ℕ} (h : n ≤ k i) :
+    ord (k - single i n) + n = ord k := by
+  have hs : ∑ l, (single i n : σ →₀ ℕ) l = n := by
+    rw [Finset.sum_eq_single i]
+    · simp
+    · intro l _ hl
+      simp [Ne.symm hl]
+    · simp
+  have key : ∑ l, ((k - single i n) l + (single i n : σ →₀ ℕ) l) = ∑ l, k l := by
+    refine Finset.sum_congr rfl fun l _ => ?_
+    rw [Finsupp.tsub_apply]
+    have : (single i n : σ →₀ ℕ) l ≤ k l := by
+      rw [single_apply]
+      split_ifs with hil
+      · rw [← hil]; exact h
+      · exact Nat.zero_le _
+    omega
+  rw [Finset.sum_add_distrib, hs] at key
+  exact key
+
+/-- The set `S^e_i` of Lemma 3.19.2, part 4: the indices `k` in the box with `g^{[k]} ≠ 0`,
+with some `k_l` not divisible by `p`, and with `C(k_i, p^e)` prime to `p`. -/
+noncomputable def restartIndex (p : ℕ) (g : MvPolynomial σ K) (i : σ) (e N : ℕ) :
+    Finset (σ →₀ ℕ) :=
+  (box σ N).filter fun k => hasse k g ≠ 0 ∧ ¬ (∀ l, p ∣ k l) ∧ ¬ p ∣ (k i).choose (p ^ e)
+
+theorem mem_restartIndex {g : MvPolynomial σ K} {i : σ} {e N : ℕ} {k : σ →₀ ℕ} :
+    k ∈ restartIndex p g i e N ↔
+      k ∈ box σ N ∧ hasse k g ≠ 0 ∧ ¬ (∀ l, p ∣ k l) ∧ ¬ p ∣ (k i).choose (p ^ e) := by
+  rw [restartIndex, Finset.mem_filter]
+
+/-- Each `k ∈ S^e_i` has `k_i ≥ p^e`. -/
+theorem le_of_mem_restartIndex {g : MvPolynomial σ K} {i : σ} {e N : ℕ} {k : σ →₀ ℕ}
+    (hk : k ∈ restartIndex p g i e N) : p ^ e ≤ k i := by
+  have h := (mem_restartIndex.mp hk).2.2.2
+  by_contra hlt
+  exact h (by rw [Nat.choose_eq_zero_of_lt (not_le.mp hlt)]; exact dvd_zero p)
+
+/-- The sum over `S^e_i` in part 4 of Lemma 3.19.2:
+`Σ_{k ∈ S^e_i} C(k_i, p^e) g^{[k]}(φ) Δ^{k - p^e e_i}`. -/
+noncomputable def restartSum (p : ℕ) (g : MvPolynomial σ K) (φ Δ : σ → K) (i : σ) (e N : ℕ) : K :=
+  ∑ k ∈ restartIndex p g i e N, (((k i).choose (p ^ e) : ℕ) : K) * eval φ (hasse k g) *
+    ∏ l, Δ l ^ (k l - single i (p ^ e) l)
+
+/-- Lemma 3.19.2, part 4, the identity: for `e ≥ 1` the part of class `0` of
+`H = (g^{(m)})^{[p^e e_i]}(Δ / M)` is `M^{p^e - p}` times the part of class `0` of the sum over
+`S^e_i`. The part of class `0` of `x` is `x - cl x`. -/
+theorem cl0_eval_hasse_pow_restart [CharP K p] (hcl : IsClassPart p K0 cl) (φ Δ : σ → K)
+    {M : K} (hM : M ≠ 0) (g : MvPolynomial σ K) {N : ℕ} (hN : ∀ i, degreeOf i g ≤ N) (i : σ)
+    {e : ℕ} (he : 1 ≤ e) :
+    eval (fun l => Δ l / M) (hasse (single i (p ^ e)) (restart p cl φ M g)) -
+        cl (eval (fun l => Δ l / M) (hasse (single i (p ^ e)) (restart p cl φ M g))) =
+      M ^ (p ^ e - p) * (restartSum p g φ Δ i e N - cl (restartSum p g φ Δ i e N)) := by
+  have hpe : p ∣ p ^ e := dvd_pow_self p (by omega)
+  have hple : p ≤ p ^ e := by
+    rcases Nat.eq_zero_or_pos p with h0 | hpos
+    · subst h0; simp
+    · exact Nat.le_of_dvd (pow_pos hpos e) hpe
+  have hz : M ^ (((p ^ e : ℕ) : ℤ) - p) = M ^ (p ^ e - p) := by
+    rw [← Nat.cast_sub hple, zpow_natCast]
+  have ha : M ^ (p ^ e - p) ∈ K0 := hcl.pow_mul_mem M (Nat.dvd_sub hpe dvd_rfl)
+  rw [eval_hasse_pow_restart_eq_sum hcl φ Δ hM g hN i e, hz, hcl.mul_sub_cl ha]
+  congr 1
+  set t : (σ →₀ ℕ) → K := fun k => (((k i).choose (p ^ e) : ℕ) : K) *
+    clCoeff p cl k (eval φ (hasse k g)) * ∏ l, Δ l ^ (k l - single i (p ^ e) l) with ht
+  have hS : restartSum p g φ Δ i e N =
+      ∑ k ∈ (box σ N).filter
+        (fun k => hasse k g ≠ 0 ∧ ¬ (∀ l, p ∣ k l) ∧ ¬ p ∣ (k i).choose (p ^ e)), t k := by
+    rw [restartSum, restartIndex]
+    refine Finset.sum_congr rfl fun k hk => ?_
+    have hk' := (Finset.mem_filter.mp hk).2.2.1
+    rw [ht]
+    simp only [clCoeff, hk', ↓reduceIte]
+  have hR : ∀ k ∈ (box σ N).filter
+      (fun k => ¬ (fun k => hasse k g ≠ 0 ∧ ¬ (∀ l, p ∣ k l) ∧ ¬ p ∣ (k i).choose (p ^ e)) k),
+      cl (t k) = t k := by
+    intro k hk
+    have hk' := (Finset.mem_filter.mp hk).2
+    simp only [not_and_or, not_not] at hk'
+    rcases hk' with h0 | hdiv | hch
+    · rw [ht]
+      simp only [h0, map_zero, clCoeff_zero, mul_zero, zero_mul]
+    · have hprod : ∏ l, Δ l ^ (k l - single i (p ^ e) l) ∈ K0 := by
+        refine Subring.prod_mem _ fun l _ => hcl.pow_mul_mem _ ?_
+        rw [single_apply]
+        split_ifs with hil
+        · rw [← hil]; exact Nat.dvd_sub (hdiv i) hpe
+        · simpa using hdiv l
+      have hn : (((k i).choose (p ^ e) : ℕ) : K) * ∏ l, Δ l ^ (k l - single i (p ^ e) l) ∈ K0 :=
+        Subring.mul_mem _ (natCast_mem K0 _) hprod
+      have hc : clCoeff p cl k (eval φ (hasse k g)) = cl (eval φ (hasse k g)) := by
+        rw [clCoeff, ite_eq_left_of_eq_true _ _ (eq_true hdiv)]
+      have heq : t k = ((((k i).choose (p ^ e) : ℕ) : K) * ∏ l, Δ l ^ (k l - single i (p ^ e) l)) *
+          cl (eval φ (hasse k g)) := by
+        rw [ht]
+        simp only
+        rw [hc]
+        ring
+      rw [heq, hcl.map_mul _ hn, hcl.cl_cl]
+    · have h0 : (((k i).choose (p ^ e) : ℕ) : K) = 0 := (CharP.cast_eq_zero_iff K p _).mpr hch
+      rw [ht]
+      simp only [h0, zero_mul, map_zero]
+  rw [hS, ← Finset.sum_filter_add_sum_filter_not (box σ N)
+    (fun k => hasse k g ≠ 0 ∧ ¬ (∀ l, p ∣ k l) ∧ ¬ p ∣ (k i).choose (p ^ e)) t,
+    map_add, map_sum cl t ((box σ N).filter fun k => ¬
+      (fun k => hasse k g ≠ 0 ∧ ¬ (∀ l, p ∣ k l) ∧ ¬ p ∣ (k i).choose (p ^ e)) k),
+    Finset.sum_congr rfl hR]
+  ring
+
+/-- Lemma 3.19.2, part 4, the bound on the values: if `v(Δ_l) ≥ γ` for each `l`, `v(M) = r`,
+and `cl` does not lower values on the part of class `0`, then for `cl_0 H ≠ 0` there is
+`k ∈ S^e_i` with `v(cl_0 H) ≥ (p^e - p) r + v(g^{[k]}(φ)) + (|k| - p^e) γ`. -/
+theorem exists_le_map_cl0_restart [CharP K p] (hp : p.Prime) (hcl : IsClassPart p K0 cl)
+    (v : AddValuation K (WithTop ℝ)) (hv0 : ∀ x, v x ≤ v (x - cl x)) (φ Δ : σ → K) {M : K}
+    (hM : M ≠ 0) {r γ : ℝ} (hr : v M = r) (hΔ : ∀ l, (γ : WithTop ℝ) ≤ v (Δ l))
+    (g : MvPolynomial σ K) {N : ℕ} (hN : ∀ i, degreeOf i g ≤ N) (i : σ) {e : ℕ} (he : 1 ≤ e)
+    (hH : eval (fun l => Δ l / M) (hasse (single i (p ^ e)) (restart p cl φ M g)) -
+        cl (eval (fun l => Δ l / M) (hasse (single i (p ^ e)) (restart p cl φ M g))) ≠ 0) :
+    ∃ k ∈ restartIndex p g i e N,
+      v (eval φ (hasse k g)) + (((((p ^ e : ℕ) : ℝ) - p) * r + ((ord k : ℝ) - (p ^ e : ℕ)) * γ :
+          ℝ) : WithTop ℝ) ≤
+        v (eval (fun l => Δ l / M) (hasse (single i (p ^ e)) (restart p cl φ M g)) -
+          cl (eval (fun l => Δ l / M) (hasse (single i (p ^ e)) (restart p cl φ M g)))) := by
+  rw [cl0_eval_hasse_pow_restart hcl φ Δ hM g hN i he] at hH ⊢
+  set S := restartIndex p g i e N with hSdef
+  set t : (σ →₀ ℕ) → K := fun k => (((k i).choose (p ^ e) : ℕ) : K) * eval φ (hasse k g) *
+    ∏ l, Δ l ^ (k l - single i (p ^ e) l) with ht
+  have hne : S.Nonempty := by
+    rw [Finset.nonempty_iff_ne_empty]
+    intro h0
+    apply hH
+    rw [restartSum, ← hSdef, h0, Finset.sum_empty, map_zero, sub_zero, mul_zero]
+  obtain ⟨k, hk, hmin⟩ := Finset.exists_min_image S (fun k => v (t k)) hne
+  refine ⟨k, hk, ?_⟩
+  have hpe : p ^ e ≤ k i := le_of_mem_restartIndex hk
+  have hple : p ≤ p ^ e := by
+    have hpe' : p ∣ p ^ e := dvd_pow_self p (by omega)
+    exact Nat.le_of_dvd (pow_pos hp.pos e) hpe'
+  -- the value of the least term
+  have hch := (mem_restartIndex.mp hk).2.2.2
+  have hvt : v (eval φ (hasse k g)) + ((((ord k : ℝ) - (p ^ e : ℕ)) * γ : ℝ) : WithTop ℝ) ≤
+      v (t k) := by
+    have h1 := le_map_mul_prod_pow v hΔ (eval φ (hasse k g)) (k - single i (p ^ e))
+    have hord := ord_tsub_single k hpe
+    have hc : (((∑ l, (k - single i (p ^ e)) l : ℕ) : ℝ)) = (ord k : ℝ) - (p ^ e : ℕ) := by
+      have : (∑ l, (k - single i (p ^ e)) l : ℕ) = ord (k - single i (p ^ e)) := rfl
+      rw [this, ← hord]
+      push_cast
+      ring
+    rw [hc] at h1
+    rw [ht]
+    simp only
+    rw [mul_assoc, AddValuation.map_mul, v.map_natCast_eq_zero hp hch, zero_add]
+    simpa [Finsupp.tsub_apply] using h1
+  have hvS : v (t k) ≤ v (restartSum p g φ Δ i e N - cl (restartSum p g φ Δ i e N)) := by
+    refine le_trans ?_ (hv0 _)
+    exact AddValuation.map_le_sum v fun k' hk' => hmin k' hk'
+  have hvM : v (M ^ (p ^ e - p)) = (((((p ^ e : ℕ) : ℝ) - p) * r : ℝ) : WithTop ℝ) := by
+    rw [AddValuation.map_pow, hr, ← WithTop.coe_nsmul, nsmul_eq_mul, Nat.cast_sub hple]
+  rw [AddValuation.map_mul, hvM, WithTop.coe_add, add_left_comm]
+  exact add_le_add le_rfl (hvt.trans hvS)
+
+end ClassZero
 
 end PlanarRuns
 

@@ -48,12 +48,23 @@ which the hypotheses hold, does not exist. The proof is the pigeonhole on the fi
 pairs `(e, k)` (Step 4), the limit `m → ∞`, and Statement D for `g_{X_i}` at the index
 `k - e_i` with `p ∤ k_i` (Step 5).
 
+`conjectureP_of_restart_model`: the same result in the model of
+`Singularity.Invariant.PlanarRunsRestart`, where the function of `P_m` is
+`restart p cl Φ_m M_m g` and its limit is `Δ_m / M_m` with `Δ_m = Φ_∞ - Φ_m`. Here `hH1` is
+proved by Lemma 3.19.2, part 1, and the bound on `μ_m` is proved by Lemma 3.19.2, part 4
+(`exists_le_map_cl0_restart`). The hypotheses are the facts on the classes (`IsClassPart`, and
+`v(x - cl x) ≥ v(x)`), the bound `v(Δ_m) ≥ v(M_{m+1})`, Statement D for the nonzero derivatives
+of `g`, and, for each large `m`, Theorem 3.18.32, part 1, and Corollary 3.18.33 for the run from
+`P_m`. The form of Corollary 3.18.33 is: `cl_0 H^{(m)}_{e, i} ≠ 0` and
+`v(cl_0 H^{(m)}_{e, i}) ≤ μ_m` for some `i`, with `cl_0 x = x - cl x`.
+
 ## What is not proved
 
-The hypotheses `hD` (for degrees at least `p`) and `hrun` are not proved in Lean. They need
-Theorem 3.18.26 in each degree, Theorem 3.18.32, Corollary 3.18.33, Lemma 3.19.1 and the value
-bound of Lemma 3.19.2, part 4, and so the corner runs, the Hahn field and Lemmas 3.18.8 and
-3.18.10.
+Theorem 3.18.26 for degrees at least `p`, Theorem 3.18.32 and Corollary 3.18.33 at the points
+`P_m`, and parts 1, 2 and 4 of Lemma 3.19.1, which transfer them to the run from `P_m`, are not
+proved in Lean. They need the corner runs, the Hahn field and Lemmas 3.18.8 and 3.18.10. Also
+Lemma 3.17.1, part 2, which says that `restart p cl Φ_m M_m g` is the function of `P_m`, is not
+proved.
 
 ## References
 
@@ -248,6 +259,73 @@ theorem conjectureP_of_restart {p : ℕ} [CharP K p] (hp : p.Prime) (g : MvPolyn
     rw [add_assoc, ← WithTop.coe_add, hr]
     exact h4
   exact absurd (hm1.trans_le h5) (lt_irrefl _)
+
+theorem hasse_map {R S : Type*} [CommSemiring R] [CommSemiring S] (f : R →+* S)
+    (k : σ →₀ ℕ) (g : MvPolynomial σ R) : hasse k (map f g) = map f (hasse k g) := by
+  ext m
+  rw [coeff_hasse, coeff_map, coeff_map, coeff_hasse, map_nsmul]
+
+/-- Theorem 3.19.6 (Conjecture P) in the model of `PlanarRunsRestart`. The function of `P_m` is
+`restart p cl Φ_m M_m g`, its limit is `Δ_m / M_m` with `Δ_m = Φ_∞ - Φ_m`, and
+`H^{(m)}_{e, i}` is its Hasse derivative of order `p^e e_i` at this limit. Lemma 3.19.2, part 1,
+and the bound of part 4 are proved. The hypotheses are:
+
+* `hcl` and `hv0`: the facts 1 to 3 of the classes, with `cl_0 x = x - cl x`.
+* `hΔ`: each entry of `Δ_m` has a value at least `v(M_{m+1})`.
+* `hD`: Theorem 3.18.26 for the nonzero derivatives of `g`.
+* `hrun`: for each large `m`, with `e = e(m) ≥ 1`, Theorem 3.18.32, part 1, for the run from
+  `P_m`, that is, `μ_m + p^e δ_m ≤ v(g^{(m)}_{X_i}(Δ_m / M_m)) + δ_m` for each `i`, and
+  Corollary 3.18.33 for this run: the least term of `H^{(m)}_{e, i}` for some `i` has the
+  class `0`, that is, `cl_0 H^{(m)}_{e, i} ≠ 0` and `v(cl_0 H^{(m)}_{e, i}) ≤ μ_m`. -/
+theorem conjectureP_of_restart_model {p : ℕ} [CharP K p] (hp : p.Prime) (g : MvPolynomial σ F)
+    (vM : ℕ → ℝ) (hvM : Tendsto vM atTop (𝓝 Θ)) (Mm : ℕ → K) (hMv : ∀ m, v (Mm m) = vM m)
+    (hM0 : ∀ m, Mm m ≠ 0) (K0 : Subring K) (cl : K →+ K) (hcl : IsClassPart p K0 cl)
+    (hv0 : ∀ x, v x ≤ v (x - cl x))
+    (hΔ : ∀ m l, ((vM (m + 1) : ℝ) : WithTop ℝ) ≤ v (Φi l - Φ m l))
+    (hD : ∀ k, hasse k g ≠ 0 → StatementDHolds v F Φ Φi Θ (hasse k g))
+    (μ : ℕ → WithTop ℝ)
+    (hrun : ∀ᶠ m in atTop, ∃ e, 1 ≤ e ∧
+      (∀ i, μ m + ((((p ^ e : ℕ) : ℝ) * (Θ - vM m) : ℝ) : WithTop ℝ) ≤
+        v (eval (fun l => (Φi l - Φ m l) / Mm m) (hasse (single i 1)
+          (restart p cl (fun l => (Φ m l : K)) (Mm m) (map F.subtype g)))) +
+          ((Θ - vM m : ℝ) : WithTop ℝ)) ∧
+      ∃ i, eval (fun l => (Φi l - Φ m l) / Mm m) (hasse (single i (p ^ e))
+          (restart p cl (fun l => (Φ m l : K)) (Mm m) (map F.subtype g))) -
+        cl (eval (fun l => (Φi l - Φ m l) / Mm m) (hasse (single i (p ^ e))
+          (restart p cl (fun l => (Φ m l : K)) (Mm m) (map F.subtype g)))) ≠ 0 ∧
+      v (eval (fun l => (Φi l - Φ m l) / Mm m) (hasse (single i (p ^ e))
+          (restart p cl (fun l => (Φ m l : K)) (Mm m) (map F.subtype g))) -
+        cl (eval (fun l => (Φi l - Φ m l) / Mm m) (hasse (single i (p ^ e))
+          (restart p cl (fun l => (Φ m l : K)) (Mm m) (map F.subtype g))))) ≤ μ m) :
+    False := by
+  set gK := map F.subtype g with hgK
+  have hevalK : ∀ (x : σ → F) (k : σ →₀ ℕ),
+      eval (fun l => (x l : K)) (hasse k gK) = ((eval x (hasse k g) : F) : K) := by
+    intro x k
+    rw [hgK, hasse_map, eval_map, coe_eval]
+  have hsum : ∀ m, (fun l => (Φ m l : K)) + (fun l => Φi l - Φ m l) = Φi := by
+    intro m
+    funext l
+    simp
+  set N := ∑ i, degreeOf i gK with hNdef
+  have hN : ∀ i, degreeOf i gK ≤ N := fun i =>
+    Finset.single_le_sum (f := fun i => degreeOf i gK) (fun _ _ => Nat.zero_le _)
+      (Finset.mem_univ i)
+  refine conjectureP_of_restart hp g vM hvM Mm hMv hM0
+    (fun m i => eval (fun l => (Φi l - Φ m l) / Mm m) (hasse (single i 1)
+      (restart p cl (fun l => (Φ m l : K)) (Mm m) gK))) ?_ hD μ ?_
+  · intro m i
+    rw [eval_hasse_single_restart cl _ _ (hM0 m), hsum, hgK, hasse_map, eval_map]
+  · filter_upwards [hrun] with m ⟨e, he, h1, i, hne, hle⟩
+    obtain ⟨k, hk, hbound⟩ := exists_le_map_cl0_restart hp hcl v hv0 (fun l => (Φ m l : K))
+      (fun l => Φi l - Φ m l) (hM0 m) (hMv m) (hΔ m) gK hN i he hne
+    obtain ⟨-, hk0, hk1, hk2⟩ := mem_restartIndex.mp hk
+    refine ⟨e, he, k, ?_, hk1, ⟨i, hk2⟩, h1, ?_⟩
+    · intro h0
+      apply hk0
+      rw [hgK, hasse_map, h0, map_zero]
+    · rw [← hevalK]
+      exact hbound.trans hle
 
 end PlanarRuns
 
