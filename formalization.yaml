@@ -1890,6 +1890,10 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 3, Lemma 2.2.1 of the handbook, the directness of the sum.'
+    - name: Singularity.valueGroup_fg_and_residueField_fg_of_trdeg_le
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Theorem 2.2.2 of the handbook, with x and y given as hypotheses.'
     - name: Singularity.valuation_chartEval_inv_div_lt_one_iff
       kind: theorem
       status: proved

@@ -136,7 +136,8 @@ import Singularity.Scheme.Embedded
 import Singularity.Valuation.Abhyankar
 import Singularity.Valuation.AbhyankarEquality
 import Singularity.Valuation.AbhyankarResidue
-import Singularity.Valuation.AbhyankarValueGroup
+import Singularity.Valuation.AbhyankarValueGroupSum
+import Singularity.Valuation.AbhyankarFiniteGeneration
 import Singularity.Valuation.ZariskiRiemann
 import Singularity.Valuation.SchemeCenter
 import Singularity.Valuation.CenterExists
