@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/PlanarRunsCondition.lean`: Volume 7, Theorems 3.18.34 and 3.18.35 of the handbook, the algebraic part. The predicate `CondC p g` is condition (C): for each `e ≥ 1` and each variable `i`, the Hasse derivative `hasse (single i (p ^ e)) g` is a constant (`condC_iff`). Condition (C) holds if the total degree of `g` is at most `p` (`condC_of_totalDegree_le`). In characteristic `p` it also holds for `g = ∑ e ∈ s, ∑ i, α e i * X i ^ (p ^ e) + h` with `deg h < p` (`condC_of_eq_sum`). The proof uses that `p` divides `(p ^ e).choose (p ^ f)` for `f < e`. The statements on runs, that a run under (C) is not planar and that it is linear, are not proved.
+
 ## 0.4.61 - 2026-11-27
 
 ### Added
