@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.47 - 2026-11-27
+
 ### Added
 
 - `Singularity/Algebra/QuadraticTransformFactor.lean`: Volume 5, Lemma 1.1.6 of the handbook, under hypotheses. Let `R` be a unique factorization domain and let `R_1` be a domain with `R → R_1` injective, `x` prime in `R_1`, and each element of `R_1` of the form `r / s` with `s` an associate of a power of `x`. If `f` and `g` have no common prime factor in `R` and `x` does not divide the strict transform `f'`, then `f'` and `g'` have no common prime factor in `R_1` (`exists_prime_forall_dvd_of_prime`, `not_prime_dvd_transform`). The hypothesis on `R_1` holds for a localization of a ring between `R` and `R_x` (`exists_mul_eq_algebraMap_of_isLocalization`), and so for a localization of the chart `R[𝔪/x]` (`not_prime_dvd_transform_blowupChart`).
