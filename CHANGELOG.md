@@ -6,6 +6,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Algebra/CohenQuotient.lean`: Volume 1, Corollary 4.4.8 of the handbook. The existence of a coefficient field is a hypothesis, because Mathlib does not have it.
+- `Singularity/Invariant/ProjPolyhedronWeight.lean`: Volume 6, Lemma 3.1.2 (1) to (3) of the handbook, and the easy direction of (4).
+- `Singularity/Invariant/QuadricConeBlowup.lean`: Volume 4, Example 2.3.7 (1) and (2) of the handbook, as statements on rings. The scheme, the sheaf $\mathcal{O}(2)$ and part (3) are not in Lean.
+- `Singularity/Invariant/AutomorphismNearIdentity.lean`: Volume 2, Proposition 3.2.10 of the handbook for a polynomial ring over a field of characteristic 0, and the last step of Corollary 3.2.11.
 - `Singularity/Invariant/CoefficientIdealTransform.lean`: Volume 2, Lemma 3.2.2 (2) of the handbook for the blowup of a point, in one chart. A general center is not in Lean.
 - `Singularity/Algebra/CohenMap.lean`: Volume 1, Theorem 4.4.6 of the handbook, for finitely many elements and an $\mathfrak{m}$-adically complete local ring. The proof does not use that $R$ is Noetherian.
 - `Singularity/Algebra/CuspFrobeniusLocal.lean`: Volume 1, Example 6.4.9 of the handbook, the local form, for the subring $k[t^2, t^3]$ of $k[t]$.

@@ -70,11 +70,13 @@ import Singularity.Invariant.OrderAlong
 import Singularity.Invariant.Newton
 import Singularity.Invariant.Residual
 import Singularity.Invariant.QuadricConeChart
+import Singularity.Invariant.QuadricConeBlowup
 import Singularity.Invariant.OrderBlowup
 import Singularity.Invariant.MaxOrderChart
 import Singularity.Invariant.DerivTransformChart
 import Singularity.Invariant.Directrix
 import Singularity.Invariant.CharacteristicPolyhedron
+import Singularity.Invariant.ProjPolyhedronWeight
 import Singularity.Invariant.MohBound
 import Singularity.Invariant.CharacteristicPolyhedronClean
 import Singularity.Invariant.CharacteristicPolyhedronExamples
@@ -117,6 +119,7 @@ import Singularity.Invariant.LogJacobianKangarooExample
 import Singularity.Invariant.DerivativeOrder
 import Singularity.Invariant.CoefficientIdealOrder
 import Singularity.Invariant.CoefficientIdealTransform
+import Singularity.Invariant.AutomorphismNearIdentity
 import Singularity.Invariant.FibonacciOrder
 import Singularity.Invariant.LogJacobianCurveRuns
 import Singularity.Invariant.LogJacobianSurfaceRuns
@@ -220,6 +223,7 @@ import Singularity.Algebra.Completion
 import Singularity.Algebra.Hensel
 import Singularity.Algebra.Equicharacteristic
 import Singularity.Algebra.CohenMap
+import Singularity.Algebra.CohenQuotient
 import Singularity.Algebra.DifferentialOperator
 import Singularity.Surface.AChainChart
 import Singularity.Surface.AnBlowupChart
