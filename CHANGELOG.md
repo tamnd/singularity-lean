@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.48 - 2026-11-27
+
 ### Added
 
 - `Singularity/Invariant/LogJacobianTypeSwitch.lean`: Corollary 3.14 of research note 03, kangaroo points are type switches. Let `g ≠ 0` be clean with `ord g ≥ p`, let `pointChart j t g = x_j^p g'`, and let `d'`, `ρ'` and `τ'` be the residual order, the log-Jacobian order and the type of `cleanPart p g'` along `blowupDivisor Δ j t`. If `d' = d + 1`, then `ρ' = ρ = d`, `τ = 0` and `τ' = 1` (`kangaroo_type_switch`, `logJacobianType_cleanPart_eq_one_of_residualOrderAlong_eq_add_one`). The proof uses the chain `d' ≤ ρ' + 1 ≤ ρ + 1 ≤ d + 1` of `residualOrderAlong_pointChart_le_logJacobianOrder`. Here `d'` is measured in the coordinates of the chart only, and only `k`-rational points are covered.
