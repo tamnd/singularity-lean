@@ -52,6 +52,7 @@ import Singularity.Algebra.QuadraticTransform
 import Singularity.Algebra.CurveOnSurface
 import Singularity.Algebra.MvHasse
 import Singularity.Algebra.DerivationIdealPow
+import Singularity.Algebra.DerivationLocalPow
 import Singularity.Algebra.QuadraticTransformFactor
 import Singularity.Algebra.IntersectionNumber
 import Singularity.Algebra.PartialDerivCharP
@@ -68,6 +69,7 @@ import Singularity.Known.DimZero
 import Singularity.Hypotheses.Integral
 import Singularity.Bridge.FormalConjectures
 import Singularity.Invariant.Order
+import Singularity.Invariant.PurelyInseparableOrder
 import Singularity.Invariant.ClassicalCoefficientIdeal
 import Singularity.Invariant.OrderAlong
 import Singularity.Invariant.Newton
@@ -147,6 +149,7 @@ import Singularity.Example.CharZeroExamples
 import Singularity.Example.XYWThreefold
 import Singularity.Example.ThreefoldPolyhedronExamples
 import Singularity.Example.ThreefoldInvariantExamples
+import Singularity.Example.CleanBlowupExamples
 import Singularity.Fidelity.Embedded
 import Singularity.Fidelity.LocalUniformization
 import Singularity.Scheme.Embedded
@@ -219,6 +222,7 @@ import Singularity.Alteration.Statement
 import Singularity.Alteration.Trace
 import Singularity.Alteration.GaloisDegree
 import Singularity.Alteration.TraceSplitting
+import Singularity.Alteration.GenericEtale
 import Singularity.Alteration.Reynolds
 import Singularity.Alteration.WildInvolution
 import Singularity.Alteration.InseparableQuotient

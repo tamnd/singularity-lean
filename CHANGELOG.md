@@ -6,6 +6,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Invariant/PurelyInseparableOrder.lean`: Volume 6, Lemma 2.3.2 of the handbook, the derivatives, the translation and the order of $z^p + G$. The equality of the order and the multiplicity, and the Jacobian criterion, are not in Lean.
+- `Singularity/Example/CleanBlowupExamples.lean`: Volume 6, Examples 4.3.3 and 4.3.5 of the handbook, the polynomial computations. The invariants $\omega$ and $\iota$ and the condition (E) are not in Lean.
+- `Singularity/Algebra/DerivationLocalPow.lean`: Volume 6, Lemma 2.3.3 of the handbook, the algebraic part. The geometric setting and the condition (E) are not in Lean.
+- `Singularity/Alteration/GenericEtale.lean`: Volume 8, Lemma 1.1.5 of the handbook in the affine form. The proof uses that the étale locus is open, and not the discriminant.
 - `Singularity/Invariant/PlanarRunsRestart.lean`: Volume 7, Lemma 3.17.1, parts 1, 3 and 4, and Corollary 3.19.3, parts 1 and 3, of the handbook. Part 1 of Lemma 3.17.1 is the identity `x_0 = φ_m + M_m x_m` for the recursions `M_{m+1} = M_m L_m`, `φ_{m+1} = φ_m + a_m M_{m+1}` and `x_m = L_m (x_{m+1} + a_m)` (`eq_cornerSum_add_cornerMono_mul`). Part 3 gives the coefficients of the cleaned chart `cl(g̃_m)` (`coeff_clean_chart`), and part 4 gives `∂_{X_i} cl(g̃_m) = M g_{X_i}(φ + M X)` in characteristic `p` (`hasse_single_clean_chart`). Corollary 3.19.3, part 1, is `v(g^{(m)}_{X_i}(Δ / M)) + δ_m + p v(M) = v(g_{X_i}(φ + Δ)) + Θ` (`map_hasse_single_restart_add`), and part 3 is `v(cl g^{(m)}(Δ / M)) + p v(M) = v(cl g(φ + Δ))` (`map_cl_eval_restart_add`). The lemma `map_zpow_one_sub` moves from `PlanarRunsConjectureP.lean` to this file. Part 2 of Lemma 3.17.1, which says that `restart p cl φ M g` is the function of `P_m`, is not proved, because the library does not have the corner runs.
 
 ## 0.4.65 - 2026-11-28
