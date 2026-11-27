@@ -64,6 +64,7 @@ import Singularity.Invariant.LogJacobianBlowup
 import Singularity.Invariant.LogJacobianNonincrease
 import Singularity.Invariant.LogJacobianCenter
 import Singularity.Invariant.LogJacobianCenterNonincrease
+import Singularity.Invariant.LogJacobianCenterAdapted
 import Singularity.Invariant.Tschirnhausen
 import Singularity.Invariant.LogJacobianEndCase
 import Singularity.Invariant.CossartPiltantOmega
