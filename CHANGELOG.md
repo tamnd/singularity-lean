@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.50 - 2026-11-27
+
 ### Added
 
 - `Singularity/Invariant/LogJacobianCoordinates.lean`: part 3 of Lemma 3.6 of research note 03 and Corollary 3.8 of the note, for the changes of coordinates of `k[x]` adapted to the divisor. Let `φ` and `ψ` be `k`-algebra endomorphisms of `k[x]` with `ψ ∘ φ = id`, and let `φ(x_l) = c_l x_l` with `c_l ∈ k` for each `l ∈ Δ`. The images of the free coordinates are arbitrary. The chain rule is `∂_i φ(h) = ∑_l φ(∂_l h) ∂_i φ(x_l)` (`pderiv_algHom`). Then `Θ(φ(h)) ⊆ φ(Θ(h))` (`logJacobian_le_map_of_adapted`), `ψ(x_l) = c_l⁻¹ x_l` (`exists_eq_C_mul_X_of_inverse`), and if also `φ ∘ ψ = id`, then `φ(Θ(h)) = Θ(φ(h))` (`map_logJacobian_eq_of_adapted`). If `φ` and `ψ` fix the origin, then `φ` keeps the order of ideals (`idealOrd_map_eq_of_inverse`). Let `g ≠ 0` be clean and let `Θ(F) = φ(Θ(g))`, for example `F = φ(g) + h^p` (`logJacobian_map_add_pow_eq`). Then the clean part of `F` is not `0` (`cleanPart_ne_zero_of_adapted`), it has the same exponents `r` along `Δ` (`divisorExponent_cleanPart_eq_of_adapted`) and the same `ρ` (`logJacobianOrder_cleanPart_eq_of_adapted`), and `ρ ≤ d(F) ≤ ρ + 1` for the residual order `d(F)` of `z^p + F` (`logJacobianOrder_le_residualOrderAlong_of_adapted`, `residualOrderAlong_le_logJacobianOrder_add_one_of_adapted`). The changes of coordinates of the power series ring, with `x'_l = u_l x_l` for a unit `u_l` that is not a constant, are not covered. So the bound on `d^max` over all regular systems of parameters is not proved.
