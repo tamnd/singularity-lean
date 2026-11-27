@@ -173,10 +173,8 @@ theorem pderiv_whitneyEq_z : pderiv 2 (whitneyEq R) = -(X 1 ^ 2) := by
 /-- **Volume 2, Example 1.3.3 (2) of the handbook**, the translation. With `z = c + t`, `f = x^2 - c y^2 - y^2 t`. -/
 theorem aeval_whitneyEq_translate (c : R) :
     aeval ![X 0, X 1, C c + X 2] (whitneyEq R) = X 0 ^ 2 - C c * X 1 ^ 2 - X 1 ^ 2 * X 2 := by
-  have h0 : (![X 0, X 1, C c + X 2] : Fin 3 → MvPolynomial (Fin 3) R) 0 = X 0 := rfl
-  have h1 : (![X 0, X 1, C c + X 2] : Fin 3 → MvPolynomial (Fin 3) R) 1 = X 1 := rfl
-  have h2 : (![X 0, X 1, C c + X 2] : Fin 3 → MvPolynomial (Fin 3) R) 2 = C c + X 2 := rfl
-  simp only [whitneyEq, map_sub, map_mul, map_pow, aeval_X, h0, h1, h2]
+  simp only [whitneyEq, map_sub, map_mul, map_pow, aeval_X]
+  show (X 0 : MvPolynomial (Fin 3) R) ^ 2 - X 1 ^ 2 * (C c + X 2) = _
   ring
 
 end Whitney
@@ -198,7 +196,7 @@ theorem whitneyEq_singular_iff (h2 : (2 : k) ≠ 0) (a : Fin 3 → k) :
   rw [hf, h0, h1, h2']
   constructor
   · rintro ⟨-, hx, -, hz⟩
-    exact ⟨(mul_eq_zero.mp hx).resolve_left h2, pow_eq_zero (neg_eq_zero.mp hz)⟩
+    exact ⟨(mul_eq_zero.mp hx).resolve_left h2, by simpa using hz⟩
   · rintro ⟨ha, hb⟩
     rw [ha, hb]
     refine ⟨?_, ?_, ?_, ?_⟩ <;> ring
@@ -217,7 +215,7 @@ theorem ord_whitneyEq : ord (whitneyEq k) = 2 := by
 theorem ord_whitneyEq_translate (c : k) :
     ord (X 0 ^ 2 - C c * X 1 ^ 2 - X 1 ^ 2 * X 2 : MvPolynomial (Fin 3) k) = 2 := by
   have hX : ∀ i, (X i : MvPolynomial (Fin 3) k) ∈ idealOfVars (Fin 3) k := fun i =>
-    mem_idealOfVars_iff.mpr (constantCoeff_X i)
+    mem_idealOfVars_iff.mpr (by simp)
   refine le_antisymm ?_ ?_
   · have hφ : ∀ i, constantCoeff (![X 0, 0, 0] i : MvPolynomial (Fin 3) k) = 0 := by
       intro i
@@ -394,16 +392,20 @@ theorem sub_not_mem_mc : (X 1 - X 0 : MvPolynomial (Fin 2) k) ∉ Ideal.span {X 
 
 /-- **Volume 2, Example 2.3.5 of the handbook**, the restriction to `H = (y = 0)`. The restriction of `y^2 - x^5` has order `5`. -/
 theorem ord_restrict_H :
-    ord (aeval ![(X 0 : MvPolynomial (Fin 2) k), 0] (X 1 ^ 2 - X 0 ^ 5)) = 5 := by
-  have e : aeval ![(X 0 : MvPolynomial (Fin 2) k), 0] (X 1 ^ 2 - X 0 ^ 5) = -(X 0 ^ 5) := by
+    ord (aeval ![(X 0 : MvPolynomial (Fin 2) k), 0]
+      (X 1 ^ 2 - X 0 ^ 5 : MvPolynomial (Fin 2) k)) = 5 := by
+  have e : aeval ![(X 0 : MvPolynomial (Fin 2) k), 0]
+      (X 1 ^ 2 - X 0 ^ 5 : MvPolynomial (Fin 2) k) = -(X 0 ^ 5) := by
     simp
   rw [e, ord_neg]
   exact (ord_X_pow 0 5).trans (by norm_num)
 
 /-- **Volume 2, Example 2.3.5 of the handbook**, the restriction to `H' = (y = x)`. The restriction of `y^2 - x^5` is `x^2 - x^5`, of order `2`. -/
 theorem ord_restrict_H' :
-    ord (aeval ![(X 0 : MvPolynomial (Fin 2) k), X 0] (X 1 ^ 2 - X 0 ^ 5)) = 2 := by
-  have e : aeval ![(X 0 : MvPolynomial (Fin 2) k), X 0] (X 1 ^ 2 - X 0 ^ 5) =
+    ord (aeval ![(X 0 : MvPolynomial (Fin 2) k), X 0]
+      (X 1 ^ 2 - X 0 ^ 5 : MvPolynomial (Fin 2) k)) = 2 := by
+  have e : aeval ![(X 0 : MvPolynomial (Fin 2) k), X 0]
+      (X 1 ^ 2 - X 0 ^ 5 : MvPolynomial (Fin 2) k) =
       X 0 ^ 2 - X 0 ^ 5 := by
     simp
   have e1 : ord (X 0 ^ 2 : MvPolynomial (Fin 2) k) = 2 := (ord_X_pow 0 2).trans (by norm_num)
