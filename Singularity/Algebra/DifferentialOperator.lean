@@ -64,7 +64,7 @@ theorem isDiffOp_mulLeft (c : A) : IsDiffOp 0 (LinearMap.mulLeft k c) := fun a b
   simp only [LinearMap.mulLeft_apply]
   exact mul_left_comm c a b
 
-theorem isDiffOp_one : IsDiffOp 0 (1 : Module.End k A) := fun a b => rfl
+theorem isDiffOp_one : IsDiffOp 0 (1 : Module.End k A) := fun _ _ => rfl
 
 /-- An operator of order at most `n` has order at most `n + 1`. -/
 theorem IsDiffOp.succ : ∀ {n : ℕ} {D : Module.End k A}, IsDiffOp n D → IsDiffOp (n + 1) D
@@ -172,8 +172,7 @@ theorem IsDiffOp.iterate_diffComm_of_lt {n m : ℕ} {D : Module.End k A} (hD : I
 theorem charP_end_end (p : ℕ) [CharP A p] : CharP (Module.End k (Module.End k A)) p := by
   refine ⟨fun n => ⟨fun h => ?_, fun h => ?_⟩⟩
   · have h1 := congrArg (fun T : Module.End k (Module.End k A) => T 1 1) h
-    simp only [Module.End.natCast_apply, LinearMap.smul_apply, Module.End.one_apply,
-      LinearMap.zero_apply, nsmul_eq_mul, mul_one] at h1
+    simp only [Module.End.natCast_apply, LinearMap.zero_apply, nsmul_eq_mul, mul_one] at h1
     exact (CharP.cast_eq_zero_iff A p n).mp h1
   · refine LinearMap.ext fun F => LinearMap.ext fun b => ?_
     rw [Module.End.natCast_apply, LinearMap.smul_apply, LinearMap.zero_apply, LinearMap.zero_apply,
@@ -182,17 +181,27 @@ theorem charP_end_end (p : ℕ) [CharP A p] : CharP (Module.End k (Module.End k 
 /-- Let `A` have characteristic `p`, let `q = p ^ e` and let `D` have order at most `n` with `n < q`. Then `D (a ^ q * b) = a ^ q * D b` for all `a` and `b` (Volume 1, Lemma 6.3.5 of the handbook). -/
 theorem IsDiffOp.map_pow_mul {p : ℕ} [Fact p.Prime] [CharP A p] {e n : ℕ} {D : Module.End k A}
     (hD : IsDiffOp n D) (hn : n < p ^ e) (a b : A) : D (a ^ p ^ e * b) = a ^ p ^ e * D b := by
-  haveI := charP_end_end (k := k) (A := A) p
+  have := charP_end_end (k := k) (A := A) p
   set l : Module.End k A := LinearMap.mulLeft k a
-  let ad : Module.End k (Module.End k A) := LinearMap.mulRight k l - LinearMap.mulLeft k l
-  have had : ⇑ad = fun F => diffComm F a := by
+  let X : Module.End k (Module.End k A) := LinearMap.mulRight k l
+  let Y : Module.End k (Module.End k A) := LinearMap.mulLeft k l
+  have hXY : Commute X Y := (LinearMap.commute_mulLeft_right l l).symm
+  have hX : ∀ m : ℕ, ∀ F : Module.End k A, (X ^ m) F = F * l ^ m := by
+    intro m
+    induction m with
+    | zero => intro F; simp
+    | succ m ih => intro F; rw [pow_succ', Module.End.mul_apply, ih, pow_succ, ← mul_assoc]; rfl
+  have hY : ∀ m : ℕ, ∀ F : Module.End k A, (Y ^ m) F = l ^ m * F := by
+    intro m
+    induction m with
+    | zero => intro F; simp
+    | succ m ih => intro F; rw [pow_succ', Module.End.mul_apply, ih, pow_succ', mul_assoc]; rfl
+  have had : ⇑(X - Y) = fun F => diffComm F a := by
     funext F
-    simp [ad, diffComm, l]
-  have hpow : (ad ^ p ^ e) D = diffComm D (a ^ p ^ e) := by
-    show ((LinearMap.mulRight k l - LinearMap.mulLeft k l) ^ p ^ e) D = _
-    rw [sub_pow_char_pow_of_commute p e (LinearMap.commute_mulLeft_right (R := k) l l).symm,
-      LinearMap.pow_mulRight, LinearMap.pow_mulLeft, LinearMap.pow_mulLeft]
-    simp [diffComm, l]
+    simp [X, Y, diffComm, l]
+  have hpow : ((X - Y) ^ p ^ e) D = diffComm D (a ^ p ^ e) := by
+    rw [sub_pow_char_pow_of_commute (R := Module.End k (Module.End k A)) p e hXY, LinearMap.sub_apply, hX, hY, LinearMap.pow_mulLeft]
+    rfl
   have h0 : diffComm D (a ^ p ^ e) = 0 := by
     rw [← hpow, Module.End.pow_apply, had]
     exact hD.iterate_diffComm_of_lt a hn
