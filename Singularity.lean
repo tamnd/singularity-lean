@@ -15,6 +15,7 @@ import Singularity.Algebra.FrobeniusBasisPoly
 import Singularity.Algebra.FrobeniusFlat
 import Singularity.Algebra.PowerSeriesBaseChange
 import Singularity.Algebra.FlatnessModPowers
+import Singularity.Algebra.PowerSeriesFlat
 import Singularity.Algebra.InverseLimitExact
 import Singularity.Algebra.PBasis
 import Singularity.Algebra.PBasisDifferentials

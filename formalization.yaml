@@ -1902,6 +1902,14 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 1, Lemma 6.4.3 of the handbook, with (A/I^n) tensor B in place of B/I^nB.'
+    - name: Singularity.Algebra.flat_mvPowerSeries_of_field
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Corollary 6.4.4 of the handbook, for finitely many variables.'
+    - name: Singularity.Algebra.frobenius_mvPowerSeries_flat
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 6.4.5 of the handbook, for finitely many variables.'
     - name: Singularity.Algebra.iff_sum_eq_one_of_iff_notMem_sq
       kind: theorem
       status: proved

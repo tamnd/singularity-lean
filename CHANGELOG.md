@@ -6,6 +6,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Algebra/PowerSeriesFlat.lean`: Volume 1, Corollary 6.4.4 and Proposition 6.4.5 of the handbook in full, for finitely many variables. The proof uses Lemma 6.4.3 with the ideal of the variables, and a basis of `(A/J) ⊗_A B` for the ideal `J` of the powers `x_i^(n+1)`.
 - `Singularity/Valuation/AbhyankarFiniteGeneration.lean`: Volume 3, Theorem 2.2.2 of the handbook. The theorem takes the elements `x` and `y` of Theorem 2.1.4 as hypotheses, with `trdeg(L/K) ≤ r + s`. The choice of `x` and `y` from the rational rank and the residue transcendence degree is not in Lean.
 - `Singularity/Algebra/FlatnessModPowers.lean`: Volume 1, Lemma 6.4.3 of the handbook, the flatness criterion modulo the powers of an ideal. The hypothesis uses `(A/I^n) ⊗_A B` in place of `B/I^n B`.
 - `Singularity/Valuation/AbhyankarValueGroupSum.lean`: Volume 3, Lemma 2.2.1 of the handbook, the equality of the value groups, with the independence of the `γ_i` and the directness. With `AbhyankarEquality.lean` and `AbhyankarResidue.lean`, Lemma 2.2.1 is in Lean.
