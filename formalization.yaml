@@ -1782,6 +1782,10 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 8, Lemma 1.1.11 of the handbook. Part of a regular system of parameters if and only if the quotient is regular of the expected dimension.'
+    - name: Singularity.Algebra.bijOn_chainLimitMap
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Lemma 4.2.4 of the handbook. Cofinal chains of submodules give the same inverse limit.'
     - name: Singularity.Algebra.isRegularLocalRing_quotient_span_range
       kind: theorem
       status: proved

@@ -7,6 +7,7 @@ import Singularity.Algebra.Regular
 import Singularity.Algebra.RegularSystem
 import Singularity.Algebra.RegularComponent
 import Singularity.Algebra.RegularParameter
+import Singularity.Algebra.CofinalChains
 import Singularity.Algebra.RegularSequence
 import Singularity.Algebra.ExtCriterion
 import Singularity.Algebra.GlobalDimension
