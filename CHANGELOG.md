@@ -7,6 +7,9 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 ### Added
 
 - `Singularity/Statements/Fundamental.lean` and `Singularity/Statements/Principalization.lean`: the statements of Sections 3.24 and 3.29 of Volume 9 of the handbook. They state `PILU_4` (`PurelyInseparableLocalUniformizationFour`), `Fund_4` (`FundamentalTheoremFour`), `LU_4^-` and `LU_4`, `Res_4^pr` (`RegularModificationInDim`), Theorem 3.24.4 (`resolution_iff_weakLocalUniformization_fundamental_four`), Theorem 3.24.5 (`resolution_iff_pilu_fundamental_four`), `Princ_4^w` (`WeakPrincipalizationFour`), `Princ_4^vw`, `Emb_3^bd` and `Emb_3^bd,iso` (`EmbeddedResolutionThreefoldBoundaryIso`), and Theorems 3.29.11 and 3.29.12 (Theorems 95.8 and 95.9 of the research notes). `Fund_4` uses complete models in the sense of Zariski in place of projective models, `Res_4^pr` uses proper morphisms in place of projective morphisms, and the statements of `Princ_4` and `Emb_3` keep only the properties of the result of the blowups. `Singularity/Fidelity/Fundamental.lean` and `Singularity/Fidelity/Principalization.lean` prove that `LU_n` implies `PILU_n` (`pilu_of_affineLocalUniformization`), that Theorem 3.24.4 implies one direction of Theorem 3.24.5 (`pilu_fundamental_of_resolution`), that `Princ_4^w` implies `Princ_4^vw` and that `Emb_3^bd,iso` implies `Emb_3^bd`, with checks that the statements are not empty and that the zero ideal has no principalization. Theorems 3.24.4, 3.24.5, 3.29.11 and 3.29.12, and Theorem 96.6, are not proved.
+### Changed
+
+- The comparator of the base package runs in the bwrap sandbox, in the new job comparator-base of the trust workflow. The job copies the sources of Singularity into base/.lake, because the sandbox lets the comparator see and write only the directory base. The option `--inadvisably-no-sandbox` is no longer used.
 
 ## 0.4.73 - 2026-11-28
 
