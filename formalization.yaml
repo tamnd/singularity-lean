@@ -2478,6 +2478,42 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Theorem 2.3.3 of the handbook, part 1 in one chart.'
+    - name: Singularity.Algebra.dimension_theorem
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Theorem 1.1.2 of the handbook.'
+    - name: Singularity.Algebra.exists_primary_isEventuallyPolynomial_hilbertSamuel
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Remark 3.1.7 of the handbook, for one primary ideal with dim R generators.'
+    - name: Singularity.Algebra.exists_surjective_mvPowerSeries_adicCompletion
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Theorem 4.2.9 of the handbook, the surjection from a power series ring.'
+    - name: Singularity.Algebra.isNoetherianRing_adicCompletion
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Theorem 4.2.9 of the handbook.'
+    - name: Singularity.Algebra.ringKrullDim_adicCompletion
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Theorem 4.3.3 of the handbook, the dimension.'
+    - name: Singularity.Algebra.isRegularLocalRing_adicCompletion_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Theorem 4.3.3 of the handbook, regularity.'
+    - name: Singularity.Algebra.IsCoefficientField.eq
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Theorem 4.4.4 of the handbook, the uniqueness in characteristic p with a perfect residue field.'
+    - name: Singularity.Algebra.exists_isLocalHom_padicInt
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Theorem 4.4.9 of the handbook, for the residue field F_p.'
+    - name: Singularity.Algebra.free_mvPowerSeries_and_finrank
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Remark 6.4.8 of the handbook, the step on the coefficients.'
     - name: Singularity.isSeparable_of_finrank_eq_one
       kind: theorem
       status: proved

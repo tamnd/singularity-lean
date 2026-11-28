@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Algebra/CompletionCores.lean`: Volume 1 of the handbook. Theorem 1.1.2 (the dimension theorem), Theorem 4.2.9 (the completion of a Noetherian ring is Noetherian) and Theorem 4.3.3 (the completion keeps the dimension, the embedding dimension and regularity) are proved in full. The uniqueness part of Theorem 4.4.4, Theorem 4.4.9 for the residue field $\mathbb{F}_p$, and parts of Remarks 3.1.7 and 6.4.8 are proved.
+
 ## 0.4.69 - 2026-11-28
 
 ### Added
