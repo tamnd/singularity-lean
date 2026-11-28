@@ -3586,3 +3586,67 @@ status:
       kind: theorem
       status: proved
       note: 'If g is in the fraction field of a regular local ring R and g^n is in R for some n at least 1, then g is in R.'
+    - name: Singularity.exists_taylor
+      kind: theorem
+      status: proved
+      note: 'Lemma 1 of the note on the foliated criterion for one derivation. If delta^p = 0 and delta y = 1, then each a is the sum of y^i a_i over i < p with delta a_i = 0.'
+    - name: Singularity.taylor_coeff_unique
+      kind: theorem
+      status: proved
+      note: 'Lemma 1 of the note on the foliated criterion for one derivation, the uniqueness. The coefficients a_i with delta a_i = 0 in the Taylor formula are unique.'
+    - name: Singularity.linearIndependent_taylorMonomial
+      kind: theorem
+      status: proved
+      note: 'Lemma 1 of the note on the foliated criterion, the independence. The monomials y^c with c_j < p are linearly independent over the common constants.'
+    - name: Singularity.span_taylorMonomial
+      kind: theorem
+      status: proved
+      note: 'Lemma 1 of the note on the foliated criterion, the spanning. For commuting derivations with delta_j^p = 0, the monomials y^c with c_j < p span A over the common constants.'
+    - name: Singularity.taylorBasis_apply
+      kind: theorem
+      status: proved
+      note: 'Lemma 1 of the note on the foliated criterion. The basis taylorBasis of A over the common constants has the monomials y^c with c_j < p as basis vectors.'
+    - name: Singularity.sum_gradingProj_apply
+      kind: theorem
+      status: proved
+      note: 'Lemma 2 of the note on the foliated criterion for one derivation. Each element is the sum of its components pi_i g, where pi_i = 1 - (delta - i)^(p-1).'
+    - name: Singularity.gradingProj_mem
+      kind: theorem
+      status: proved
+      note: 'Lemma 2 of the note on the foliated criterion for one derivation. If delta^p = delta, then pi_i g is in the eigenspace R_i.'
+    - name: Singularity.eq_zero_of_sum_weightSpace
+      kind: theorem
+      status: proved
+      note: 'Lemma 2 of the note on the foliated criterion for one derivation. The sum of the eigenspaces R_i is direct.'
+    - name: Singularity.mul_mem_weightSpace
+      kind: theorem
+      status: proved
+      note: 'Lemma 2 of the note on the foliated criterion for one derivation. The Leibniz rule gives R_i R_j in R_(i+j).'
+    - name: Singularity.exists_sum_commonWeightSpace
+      kind: theorem
+      status: proved
+      note: 'Lemma 2 of the note on the foliated criterion. For commuting derivations with delta_l^p = delta_l, each element is a sum of components in the common eigenspaces.'
+    - name: Singularity.eq_zero_of_sum_commonWeightSpace
+      kind: theorem
+      status: proved
+      note: 'Lemma 2 of the note on the foliated criterion. The sum of the common eigenspaces is direct.'
+    - name: Singularity.mul_mem_commonWeightSpace
+      kind: theorem
+      status: proved
+      note: 'Lemma 2 of the note on the foliated criterion. The grading is multiplicative.'
+    - name: Singularity.forall_derivation_mem_iff
+      kind: theorem
+      status: proved
+      note: 'Lemma 2 of the note on the foliated criterion. An ideal is stable under all delta_l if and only if it contains the components of each of its elements.'
+    - name: Singularity.mem_maximalIdeal_of_mem_commonWeightSpace
+      kind: theorem
+      status: proved
+      note: 'Lemma 2 of the note on the foliated criterion. In a local ring with delta_l(R) in the maximal ideal, the eigenspaces of nonzero weight are in the maximal ideal.'
+    - name: Singularity.isUnit_zero_of_sum_commonWeightSpace
+      kind: theorem
+      status: proved
+      note: 'Lemma 2 of the note on the foliated criterion. In a local ring with delta_l(R) in the maximal ideal, the component of weight 0 of a unit is a unit.'
+    - name: Singularity.exists_mem_commonWeightSpace_span_eq
+      kind: theorem
+      status: proved
+      note: 'Lemma 2 of the note on the foliated criterion. In a local ring, a principal ideal that is stable under all delta_l has a generator in some common eigenspace.'

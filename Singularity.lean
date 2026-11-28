@@ -61,6 +61,7 @@ import Singularity.Algebra.MvHasse
 import Singularity.Algebra.DerivationIdealPow
 import Singularity.Algebra.DerivationLocalPow
 import Singularity.Algebra.DerivationSeparable
+import Singularity.Algebra.DerivationGradings
 import Singularity.Algebra.QuadraticTransformFactor
 import Singularity.Algebra.IntersectionNumber
 import Singularity.Algebra.PartialDerivCharP
