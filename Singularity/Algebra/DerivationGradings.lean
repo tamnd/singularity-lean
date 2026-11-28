@@ -13,7 +13,7 @@ import Mathlib.Data.Nat.Prime.Factorial
 /-!
 # The Taylor lemma and the grading lemma for derivations in characteristic `p`
 
-This file proves Lemma 1 (Taylor) and Lemma 2 (gradings) of Section 4 of the note on the foliated criterion. The two lemmas are the algebraic tools of the proof of Theorem A of the note.
+This file proves the Taylor lemma and the grading lemma for derivations in characteristic `p`. The two lemmas are the algebraic tools of the proof of the log-Jacobian criterion (Volume 5, Chapter 4 of the handbook).
 
 Let `A` be a commutative ring of characteristic `p`, with `p` prime. Let `δ_1, …, δ_s` be commuting derivations of `A` over a base ring `k` with `δ_j^p = 0`, and let `y_1, …, y_s ∈ A` with `δ_j y_l = 1` if `j = l` and `0` if not. Let `A'` be the subalgebra of common constants. The Taylor lemma says that the monomials `y^c` with `c_j < p` are a basis of `A` over `A'`.
 
@@ -45,21 +45,21 @@ Let `R` be a commutative ring of characteristic `p` and let `δ_1, …, δ_q` be
 
 ## The proof
 
-The Taylor formula for one derivation uses induction on the least `m` with `δ^m a = 0`. The element `c = δ^(m-1) a` is a constant, and `a - y^(m-1) c / (m-1)!` is killed by `δ^(m-1)`, because `δ^(m-1) (y^(m-1)) = (m-1)!` is a unit for `m ≤ p`. This replaces the operator `P` of the note and gives the same formula. The proof is relative to a subalgebra `B` that is stable under `δ` and contains `y`, so that the coefficients stay in `B`. The independence applies `δ^(m-1)` to a relation of length `m`: it kills `y^i` for `i < m - 1` and gives `(m-1)!` times the last coefficient.
+The Taylor formula for one derivation uses induction on the least `m` with `δ^m a = 0`. The element `c = δ^(m-1) a` is a constant, and `a - y^(m-1) c / (m-1)!` is killed by `δ^(m-1)`, because `δ^(m-1) (y^(m-1)) = (m-1)!` is a unit for `m ≤ p`. This gives the same formula as the proof with the operator `1 - y δ + y^2 δ^2 / 2! - …`. The proof is relative to a subalgebra `B` that is stable under `δ` and contains `y`, so that the coefficients stay in `B`. The independence applies `δ^(m-1)` to a relation of length `m`: it kills `y^i` for `i < m - 1` and gives `(m-1)!` times the last coefficient.
 
 The general case uses induction on a finite set `S` of indices. For the spanning, `B` is the subalgebra of the elements that the `δ_l` with `l ∉ S ∪ {j}` kill. It is stable under `δ_j` because the derivations commute, and it contains `y_j`. For the independence, a relation is split by the exponent of `y_j` into a relation of length `p` for `δ_j`, with coefficients in `ker δ_j`.
 
 For the grading lemma, `X^p - X = (X - i)^p - (X - i)` in characteristic `p` gives `(δ - i) π_i = (δ - i) - (δ - i)^p = 0`. The identity `Σ_i (1 - (X - i)^(p-1)) = 1` holds in `F_p[X]`, because the polynomial has degree less than `p` and takes the value `1` at each point of `F_p`. On `R_j` the map `π_i` is multiplication by `1 - (j - i)^(p-1)`, which is `1` if `i = j` and `0` if not. For a family of derivations, the projections `π_(l, i)` lie in the subalgebra of the endomorphisms that the `δ_l` generate. This subalgebra is commutative, so `π_χ = Π_l π_(l, χ_l)` satisfies `Σ_χ π_χ = Π_l Σ_i π_(l, i) = 1`. A stable ideal is stable under this subalgebra, so it contains the components of its elements.
 
-For the homogeneous generator, write `g = Σ_χ g_χ` with `g_χ = h_χ g`. Then `(1 - Σ_χ h_χ) g = 0`. If `g ≠ 0`, then `1 - Σ_χ h_χ` is not a unit, so `Σ_χ h_χ` is a unit and some `h_χ` is a unit. Then `g_χ` generates the ideal. This makes exact the step "`Σ h_χ = 1`" of the note, which holds only if `g` is not a zero divisor.
+For the homogeneous generator, write `g = Σ_χ g_χ` with `g_χ = h_χ g`. Then `(1 - Σ_χ h_χ) g = 0`. If `g ≠ 0`, then `1 - Σ_χ h_χ` is not a unit, so `Σ_χ h_χ` is a unit and some `h_χ` is a unit. Then `g_χ` generates the ideal. The simpler relation `Σ h_χ = 1` holds only if `g` is not a zero divisor, so the proof does not use it.
 
 ## What is not proved
 
-All the statements of Lemma 1 and Lemma 2 of the note are proved. The decomposition is stated with `Finset.sum` over all weights `χ : ι → ZMod p`, and not with `DirectSum.IsInternal`. The derivations are `k`-derivations for a base ring `k`, so the statements apply to additive derivations with `k = ℤ`. The uses of the lemmas in the proof of Theorem A of the note (the regularity of the ring of constants and the construction of the monomial first integral) are not in this file.
+All the statements of the Taylor lemma and of the grading lemma are proved. The decomposition is stated with `Finset.sum` over all weights `χ : ι → ZMod p`, and not with `DirectSum.IsInternal`. The derivations are `k`-derivations for a base ring `k`, so the statements apply to additive derivations with `k = ℤ`. The uses of the lemmas in the proof of the log-Jacobian criterion (the regularity of the ring of constants and the construction of the monomial first integral) are not in this file.
 
 ## References
 
-* The note on the foliated criterion: "02. The foliated criterion: a principal log Jacobian ideal gives a monomial first integral", Section 4, Lemma 1 and Lemma 2.
+* Volume 5, Chapter 4 of the handbook.
 * H. Matsumura, Commutative ring theory, Cambridge University Press, 1986.
 -/
 
@@ -439,7 +439,7 @@ theorem span_taylorMonomial (hcomm : ∀ l j a, δ l (δ j a) = δ j (δ l a))
   rintro x ⟨c, hlt, -, rfl⟩
   exact ⟨fun l => ⟨c l, hlt l⟩, rfl⟩
 
-/-- The Taylor lemma (Lemma 1 of the note). Let `A` be a commutative ring of characteristic `p`, let `δ_1, …, δ_s` be commuting derivations of `A` with `δ_j^p = 0`, and let `y_1, …, y_s ∈ A` with `δ_j y_l = 1` if `j = l` and `0` if not. Then the monomials `y^c`, `c : ι → Fin p`, are a basis of `A` over the subalgebra `A' = ⋂_j ker δ_j`. -/
+/-- The Taylor lemma. Let `A` be a commutative ring of characteristic `p`, let `δ_1, …, δ_s` be commuting derivations of `A` with `δ_j^p = 0`, and let `y_1, …, y_s ∈ A` with `δ_j y_l = 1` if `j = l` and `0` if not. Then the monomials `y^c`, `c : ι → Fin p`, are a basis of `A` over the subalgebra `A' = ⋂_j ker δ_j`. -/
 noncomputable def taylorBasis (hcomm : ∀ l j a, δ l (δ j a) = δ j (δ l a))
     (hδ : ∀ l, (δ l).toLinearMap ^ p = 0) (hy : ∀ j l, δ j (y l) = if j = l then 1 else 0) :
     Module.Basis (ι → Fin p) (constants δ) A :=
