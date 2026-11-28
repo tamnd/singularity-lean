@@ -53,6 +53,7 @@ import Singularity.Algebra.Multiplicity
 import Singularity.Algebra.MultiplicityRegular
 import Singularity.Algebra.HypersurfaceMultiplicity
 import Singularity.Algebra.RegularOrderMul
+import Singularity.Algebra.MultiplicityOne
 import Singularity.Algebra.MvPolynomialOrigin
 import Singularity.Algebra.SamuelExamples
 import Singularity.Algebra.RegularIntegrallyClosed
@@ -167,6 +168,7 @@ import Singularity.Invariant.PlanarRunsFrobenius
 import Singularity.Invariant.PlanarRunsRho
 import Singularity.Invariant.PlanarRunsDominance
 import Singularity.Invariant.OriginChartIota
+import Singularity.Invariant.PointBlowupOmega
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
@@ -274,6 +276,7 @@ import Singularity.Alteration.Reynolds
 import Singularity.Alteration.WildInvolution
 import Singularity.Alteration.Induction
 import Singularity.Alteration.AlgebraicCores
+import Singularity.Alteration.NodeCores
 import Singularity.Alteration.InseparableQuotient
 import Singularity.Algebra.Hypersurface
 import Singularity.Algebra.Frobenius
