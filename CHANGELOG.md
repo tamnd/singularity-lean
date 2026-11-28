@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.69 - 2026-11-28
+
 ### Added
 
 - `Singularity/Valuation/UniformizationCorollaries.lean`: Volume 5, Corollaries 1.4.6, 2.2.3 and 4.1.3 and Proposition 3.1.2 of the handbook, with the theorems of Hironaka, Knaf-Kuhlmann and Temkin as hypotheses where they are used, and two steps of Proposition 4.1.2. Volume 6, the algebra of Proposition 2.2.1, the stability of case 1 of Theorem 1.2.6, the flatness step of Corollary 1.1.5, and the example $X^2 + u^3$ for Theorem 3.1.5.
