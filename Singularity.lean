@@ -176,6 +176,7 @@ import Singularity.Invariant.PlanarRunsDominance
 import Singularity.Invariant.PlanarRunsLeastTerm
 import Singularity.Invariant.PlanarRunsDerivative
 import Singularity.Invariant.PlanarRunsStar
+import Singularity.Invariant.PlanarRunsCleanValue
 import Singularity.Invariant.OriginChartIota
 import Singularity.Invariant.PointBlowupOmega
 import Singularity.Example.HauserPerlega
