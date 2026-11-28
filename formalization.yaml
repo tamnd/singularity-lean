@@ -2262,6 +2262,34 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 8, Proposition 2.4.4 of the handbook, the chart t1 for mu equal to 2.'
+    - name: Singularity.Algebra.adicCompletionQuotientPowAlgEquiv
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 4.2.8 of the handbook, the quotients.'
+    - name: Singularity.Algebra.isAdicComplete_map_adicCompletion
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 4.2.8 of the handbook, completeness.'
+    - name: Singularity.Algebra.samuelMultiplicity_affineOriginRing
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Example 3.1.6 of the handbook.'
+    - name: Singularity.Algebra.samuelMultiplicity_germ
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Example 3.3.16 of the handbook, the multiplicity is the order.'
+    - name: Singularity.Algebra.hilbertSamuel_planeCurve
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Example 3.3.16 of the handbook, plane curves.'
+    - name: Singularity.Algebra.isPBasis_ratFunc_X
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 6.2.5 of the handbook, the case k(t).'
+    - name: Singularity.Algebra.isRegularRing_example_1_8_19
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Example 1.8.19 of the handbook, regularity.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved
