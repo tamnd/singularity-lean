@@ -226,6 +226,7 @@ import Singularity.Valuation.DecompositionField
 import Singularity.Valuation.AbhyankarSubfield
 import Singularity.Valuation.GroundFieldTrdeg
 import Singularity.Valuation.AbhyankarResidueField
+import Singularity.Valuation.UniformizationCorollaries
 import Singularity.Valuation.AbhyankarValueGroup
 import Singularity.Valuation.FactorialSeries
 import Singularity.Valuation.FactorialArc
