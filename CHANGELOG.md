@@ -7,6 +7,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 ### Added
 
 - `Singularity/Valuation/MonomialEndCases.lean`: Proposition E of Volume 5, Chapter 4 of the handbook, and two end cases of the monomial step. Let $z^p = y$ with $y$ in the regular local ring $R$ at the centre. If the class of $y$ is not a $p$-th power in the residue field, or if $y \in \mathfrak{m} \setminus \mathfrak{m}^2$, then the regular centre passes up to $E(z)$. This gives the monomial step for a form of the residual type, and for a form of the ramified type where the monomial is one regular parameter. The theorems are not joined to `MonomialInseparableStep`. The normal form and the toric case are not in Lean.
+- `Singularity/Surface/LipmanCores.lean`: Volume 4, Definitions 1.1.8, 2.1.1 and 2.3.8, Corollaries 1.1.9 and 3.1.9, Remarks 1.1.10 and 2.3.3, and Theorem 3.1.8 (1) of the handbook. The degree on $\mathbb{P}^1$ is a model by transition functions, the intersection matrices are explicit, and Lemma 3.1.7 (5) is a hypothesis.
 
 ## 0.4.68 - 2026-11-28
 

@@ -2450,6 +2450,38 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Theorem 2.3.3 of the handbook, part 1 in one chart.'
+    - name: Singularity.conormal_dual_degree
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Corollary 1.1.9 of the handbook, with the degree on P^1 by transition functions.'
+    - name: Singularity.exceptional_selfIntersection_eq_neg_one
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Corollary 1.1.9 of the handbook, the second proof in numerical form.'
+    - name: Singularity.strictTransform_selfIntersection
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Remark 1.1.10 of the handbook, the numerical part.'
+    - name: Singularity.isNormalModification_id
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Definition 2.1.1 of the handbook, the identity.'
+    - name: Singularity.irreducible_X_pow_sub_xy
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Remark 2.3.3 of the handbook, the degree of the extension.'
+    - name: Singularity.eEightMatrix_mulVec_fundamentalCycle
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Definition 2.3.8 of the handbook, the fundamental cycle of E_8.'
+    - name: Singularity.blowups_le_delta
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Theorem 3.1.8 (1) of the handbook, with Lemma 3.1.7 (5) as a hypothesis.'
+    - name: Singularity.delta_eq_sum_of_blowups
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Corollary 3.1.9 of the handbook, with Lemma 3.1.7 (5) as a hypothesis.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved
