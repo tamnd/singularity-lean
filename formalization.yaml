@@ -1969,6 +1969,34 @@ status:
       kind: theorem
       status: proved
       note: Volume 5, Lemma 2.1.3 of the handbook. The order of V needs only to be compatible with addition. The proof uses the lattice lemma, not the theorem of Hoelder.
+    - name: Singularity.cone_relations_induction
+      kind: theorem
+      status: proved
+      note: Used in Volume 5, Chapter 4 of the handbook, the cone argument. Strong induction on a set on which a real function is below a bound and has finite sublevel sets below the bound.
+    - name: Singularity.exists_coeff_of_cone_relations
+      kind: theorem
+      status: proved
+      note: Volume 5, Chapter 4 of the handbook, the cone argument, step 2. Each n in X has the form n - n* = sum over P of c_beta (beta - n*) with rational c_beta at least 0.
+    - name: Singularity.exists_le_of_cone_relations
+      kind: theorem
+      status: proved
+      note: Volume 5, Chapter 4 of the handbook, the cone argument, step 3. Each n in X has some beta in P with s(beta) at most s(n).
+    - name: Singularity.sub_le_sup'_of_cone_relations
+      kind: theorem
+      status: proved
+      note: Volume 5, Chapter 4 of the handbook, the cone argument, step 3. The bound of Lambda - s(n) by the maximum of Lambda - s(beta) over beta in P.
+    - name: Singularity.eq_empty_of_cone_relations
+      kind: theorem
+      status: proved
+      note: Volume 5, Chapter 4 of the handbook, the cone argument, step 3. If P is empty, then X is empty.
+    - name: Singularity.coeff_mul_le_of_cone_relations
+      kind: theorem
+      status: proved
+      note: Volume 5, Chapter 4 of the handbook, the cone argument, step 4. The bound of c_beta (Lambda - s(beta)) by the sum of Lambda - s(gamma) over gamma in P.
+    - name: Singularity.finite_of_cone_relations
+      kind: theorem
+      status: proved
+      note: Volume 5, Chapter 4 of the handbook, the combinatorial step of the cone argument. The set X of integer vectors is finite. The valuation-theoretic statements that give the relations are not in Lean.
     - name: Singularity.mem_maximalIdeal_of_valuation_sum_lt
       kind: theorem
       status: proved

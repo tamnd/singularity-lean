@@ -260,6 +260,7 @@ import Singularity.Valuation.FactorialSeries
 import Singularity.Valuation.FactorialArc
 import Singularity.Valuation.QuadraticSequence
 import Singularity.Valuation.ConeLemma
+import Singularity.Valuation.ConeRelationsFinite
 import Singularity.Valuation.GradedIndependence
 import Singularity.Valuation.AbhyankarRankOne
 import Singularity.Valuation.ConvexSubgroup
