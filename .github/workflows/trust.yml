@@ -8,7 +8,7 @@ name: trust
 #
 # The job nanoda-base does the same for the package SingularityBase. It exports the declarations of the modules of SingularityBase, together with all the declarations that they use: the theorems of resolutionorg/hironaka, the declarations of Singularity and Mathlib. nanoda then checks the export. This is check Q3 for the base package.
 #
-# The job comparator runs `lake comparator --paranoid` with comparator.json. The challenge comparator/Challenge.lean states the proved theorems again from the files of Singularity/Statements/. The comparator checks that the theorems of the package have the same statements, use only propext, Quot.sound and Classical.choice, and are accepted by the kernel of Lean and by the checkers that the toolchain bundles: leanchecker-paranoid, lean4lean, nanoda, con-leche and con-ron. The comparator builds and exports the code in a bwrap sandbox. This is check Q4 of spec 14, and the second part of Q3. The job base runs the same check for the base package, with base/comparator.json.
+# The job comparator runs `lake comparator --paranoid` with comparator.json. The challenge comparator/Challenge.lean states the proved theorems again from the files of Singularity/Statements/. The comparator checks that the theorems of the package have the same statements, use only propext, Quot.sound and Classical.choice, and are accepted by the kernel of Lean and by the checkers that the toolchain bundles: leanchecker-paranoid, lean4lean, nanoda, con-leche and con-ron. The comparator builds and exports the code in a bwrap sandbox. This is check Q4 of spec 14, and the second part of Q3. The job comparator-base runs the same check for the base package, with base/comparator.json, also in the sandbox. It copies the sources of Singularity into base/.lake, because the sandbox lets the comparator see and write only the directory base.
 on:
   schedule:
     - cron: "17 3 * * 1"
@@ -47,7 +47,7 @@ jobs:
           echo "the replay took $(( $(date +%s) - start )) s"
 
   base:
-    name: leanchecker --fresh and lake comparator on SingularityBase
+    name: leanchecker --fresh SingularityBase
     runs-on: ubuntu-latest
     timeout-minutes: 350
     defaults:
@@ -88,12 +88,6 @@ jobs:
           start=$(date +%s)
           lake env leanchecker --fresh SingularityBase
           echo "the replay took $(( $(date +%s) - start )) s"
-      # The comparator of the base uses base/comparator.json and the challenge base/comparator/ChallengeBase.lean. The base package requires Singularity at the path "..", and the bwrap sandbox of the comparator binds only the directory base. Thus the comparator of the base runs without the sandbox. The kernel checks and the statement check are the same as in the job comparator. Only the isolation of the build is not there, so the record of check Q4 says this.
-      - name: compare
-        run: |
-          start=$(date +%s)
-          lake comparator --paranoid --inadvisably-no-sandbox
-          echo "the comparator took $(( $(date +%s) - start )) s"
 
   lean4lean:
     name: lean4lean on the modules of Singularity
@@ -285,6 +279,58 @@ jobs:
       # The Mathlib cache writes lake-manifest.json, which the comparator needs. The comparator then builds Challenge and Singularity again in its sandbox.
       - name: get the Mathlib cache
         run: lake exe cache get
+      - name: compare
+        run: |
+          start=$(date +%s)
+          lake comparator --paranoid
+          echo "the comparator took $(( $(date +%s) - start )) s"
+
+  comparator-base:
+    name: lake comparator --paranoid on SingularityBase
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    defaults:
+      run:
+        working-directory: base
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o elan-init.sh
+          sh elan-init.sh -y --default-toolchain none
+          rm elan-init.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: install bubblewrap
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q bubblewrap
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+          bwrap --ro-bind / / --dev /dev --proc /proc --unshare-all true
+      # The sandbox of the comparator hides the home directories, binds the project directory base read-only and lets only base/.lake be written. The base package requires Singularity at the path "..", which is outside the sandbox. This step copies the sources of Singularity into base/.lake/singularity-src and changes the path of the require to that directory, so that the comparator builds Singularity in the sandbox too.
+      - name: put Singularity in the sandbox
+        run: |
+          mkdir -p .lake/singularity-src
+          cp -R ../Singularity ../Singularity.lean ../lakefile.toml ../lean-toolchain ../comparator .lake/singularity-src/
+          sed -i 's|^path = "\.\."$|path = ".lake/singularity-src"|' lakefile.toml
+          grep -q '^path = ".lake/singularity-src"$' lakefile.toml
+      # The Mathlib cache writes lake-manifest.json, which the comparator needs.
+      - name: get the Mathlib cache
+        run: lake exe cache get
+      - name: read the pin of the base
+        id: pin
+        run: |
+          rev=$(grep -A3 'name = "hironaka"' lakefile.toml | sed -n 's/^rev = "\(.*\)"/\1/p')
+          echo "rev=$rev" >> "$GITHUB_OUTPUT"
+          mods=$(grep -h '^import Hironaka' SingularityBase/*.lean | sort -u | sha256sum | cut -c1-16)
+          echo "mods=$mods" >> "$GITHUB_OUTPUT"
+      - name: restore the build of the base
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: base/.lake/packages/hironaka/.lake/build
+          key: hironaka-${{ steps.pin.outputs.rev }}-${{ hashFiles('lean-toolchain') }}-${{ steps.pin.outputs.mods }}
+          restore-keys: hironaka-${{ steps.pin.outputs.rev }}-${{ hashFiles('lean-toolchain') }}
       - name: compare
         run: |
           start=$(date +%s)
