@@ -2450,6 +2450,114 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Theorem 2.3.3 of the handbook, part 1 in one chart.'
+    - name: Singularity.ramificationIdx_mul_inertiaDeg_eq_finrank_of_primesOver_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Theorem 3.1.4 of the handbook, with one prime above.'
+    - name: Singularity.ramificationIdx_mul_inertiaDeg_eq_finrank_of_isLocalRing
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Theorem 3.1.4 of the handbook, for a finite flat local extension.'
+    - name: Singularity.ramificationIdx_mul_inertiaDeg_eq_finrank_fractionRing
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Theorem 3.1.4 of the handbook, the Dedekind form with one prime above.'
+    - name: Singularity.abhyankar_local_of_isDiscreteValuationRing
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Theorem 2.3.3 of the handbook, for a discrete valuation ring.'
+    - name: Singularity.add_le_of_choose_mul_choose_le
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Theorem 2.3.3 of the handbook, the numerical step.'
+    - name: Singularity.isOpen_setOf_regularCenter
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Proposition 4.1.2 of the handbook, the openness step.'
+    - name: Singularity.exists_finset_affineModel_regularCenter
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Proposition 4.1.2 of the handbook, for affine models, with the openness of the regular locus as a hypothesis.'
+    - name: Singularity.Algebra.IsGeometricallyRegular.isRegularRing
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 5.1.2 of the handbook, one direction.'
+    - name: Singularity.Algebra.isGeometricallyRegular_of_charZero
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 5.1.2 of the handbook, the converse for a field over a field of characteristic 0.'
+    - name: Singularity.Algebra.isRegularAlgebra_adicCompletion_bot
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 5.1.6 of the handbook, the step at the prime 0.'
+    - name: Singularity.Algebra.isGRing_of_field
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 5.1.6 of the handbook, for a field.'
+    - name: Singularity.Algebra.isRegularAlgebra_adicCompletion
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Theorem 5.1.7 (4) of the handbook, the map to the completion of a complete ring.'
+    - name: Singularity.Algebra.isCatenary_of_krullDimLE_one
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Theorem 5.2.5 of the handbook, in dimension at most 1.'
+    - name: Singularity.Algebra.IsUniversallyCatenary.of_surjective
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 5.2.6 of the handbook, the last step.'
+    - name: Singularity.Algebra.isQuasiExcellent_of_field
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Theorem 5.2.8 (1) of the handbook, for a field, without universal catenarity.'
+    - name: Singularity.Algebra.IsExcellent.isJ2_of_finiteType
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Theorem 5.2.8 (2) of the handbook, the J-2 part.'
+    - name: Singularity.Algebra.isJ2_of_finiteType_field
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Corollary 5.2.9 of the handbook, the J-2 part.'
+    - name: Singularity.Algebra.tmul_eq_tmul_of_isReduced
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 5.3.8 of the handbook, step 3.'
+    - name: Singularity.Algebra.not_finite_of_not_finite_of_finite
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Example 5.3.9 of the handbook, the last step.'
+    - name: Singularity.conormal_dual_degree
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Corollary 1.1.9 of the handbook, with the degree on P^1 by transition functions.'
+    - name: Singularity.exceptional_selfIntersection_eq_neg_one
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Corollary 1.1.9 of the handbook, the second proof in numerical form.'
+    - name: Singularity.strictTransform_selfIntersection
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Remark 1.1.10 of the handbook, the numerical part.'
+    - name: Singularity.isNormalModification_id
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Definition 2.1.1 of the handbook, the identity.'
+    - name: Singularity.irreducible_X_pow_sub_xy
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Remark 2.3.3 of the handbook, the degree of the extension.'
+    - name: Singularity.eEightMatrix_mulVec_fundamentalCycle
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Definition 2.3.8 of the handbook, the fundamental cycle of E_8.'
+    - name: Singularity.blowups_le_delta
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Theorem 3.1.8 (1) of the handbook, with Lemma 3.1.7 (5) as a hypothesis.'
+    - name: Singularity.delta_eq_sum_of_blowups
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Corollary 3.1.9 of the handbook, with Lemma 3.1.7 (5) as a hypothesis.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved

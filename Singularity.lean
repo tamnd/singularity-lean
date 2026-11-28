@@ -70,6 +70,7 @@ import Singularity.Scheme.Components
 import Singularity.Scheme.Reduction
 import Singularity.Scheme.RegularLocus
 import Singularity.Scheme.RegularLocusJ2
+import Singularity.Algebra.ExcellenceCores
 import Singularity.Curves.Resolution
 import Singularity.Fidelity.Positive
 import Singularity.Fidelity.Negative
@@ -185,6 +186,7 @@ import Singularity.Valuation.CenterMap
 import Singularity.Valuation.ZariskiRiemannCover
 import Singularity.Valuation.DefectlessDistance
 import Singularity.Valuation.RatFuncPlaces
+import Singularity.Valuation.OstrowskiCases
 import Singularity.Valuation.KeyPolynomials
 import Singularity.Valuation.Augmentation
 import Singularity.Valuation.MacLaneStep
@@ -277,6 +279,7 @@ import Singularity.Surface.AChainChart
 import Singularity.Surface.AnBlowupChart
 import Singularity.Surface.WhitneyUmbrella
 import Singularity.Surface.BlowupRationalCore
+import Singularity.Surface.LipmanCores
 import Singularity.Surface.IdealChart
 import Singularity.Surface.IdealChartUniversal
 import Singularity.Surface.LipmanRational
