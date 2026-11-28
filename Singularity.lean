@@ -172,6 +172,7 @@ import Singularity.Valuation.AbhyankarFiniteGeneration
 import Singularity.Valuation.AbhyankarRationalRank
 import Singularity.Valuation.ZariskiRiemann
 import Singularity.Valuation.SchemeCenter
+import Singularity.Valuation.CenterAlong
 import Singularity.Valuation.CenterExists
 import Singularity.Valuation.CenterMap
 import Singularity.Valuation.ZariskiRiemannCover
@@ -220,6 +221,7 @@ import Singularity.Valuation.ValuationProperties
 import Singularity.Valuation.Chevalley
 import Singularity.Valuation.Center
 import Singularity.Valuation.ExtensionComparable
+import Singularity.Valuation.FundamentalInequality
 import Singularity.Valuation.AffineModelLocalization
 import Singularity.Valuation.ArtinSchreier
 import Singularity.Valuation.ArtinSchreierValue
