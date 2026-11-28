@@ -37,6 +37,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Algebra/CofinalChains.lean` | Volume 1, Lemma 4.2.4 of the handbook. If two descending chains of submodules are cofinal, the natural map between the inverse limits of the quotients is bijective (`bijOn_chainLimitMap`) |
 | `Singularity/Algebra/Normalization.lean` | the integral closure of a domain is finite over it, when its fraction field is separable over a Noetherian normal subring, and for each finitely generated domain in characteristic 0 |
 | `Singularity/Scheme/NormalDimOne.lean` | a locally Noetherian scheme of dimension at most 1 with integrally closed local domains is regular |
+| `Singularity/Scheme/AffineDimension.lean` | the affine case of map node SG0000002Y. The Krull dimension of a finitely generated domain over a field is its transcendence degree (`exists_ringKrullDim_eq_and_trdeg_eq`, `ringKrullDim_eq_toENat_trdeg`). The proof uses Noether normalization |
 | `Singularity/Algebra/NormalizationCharP.lean` | the normalization of a domain that is a finitely generated algebra over a field is finite, in each characteristic (E. Noether) |
 | `Singularity/Curves/Affine.lean` | the normalization of an affine curve over a field is a Dedekind domain, so it is a regular ring |
 | `Singularity/Algebra/NormalLocus.lean` | the normal locus of a domain with a finite normalization is open: the conductor argument |
