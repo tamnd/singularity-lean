@@ -39,14 +39,12 @@ Let `(S, 𝔪)` be a regular local ring of dimension `n + 1`, let `d ≥ 1` and 
   `Singularity.Algebra.hilbertSamuel_and_samuelMultiplicity_of_notMem_sq` proves the whole
   proposition for `d = 1`, with `e_n(𝔪R, R) = 1`.
 
-## What is not proved
+## The colon hypothesis
 
-The colon equality `(𝔪^(N+d) : f) = 𝔪^N` for `f ∈ 𝔪^d \ 𝔪^(d+1)` is taken as the hypothesis
-`hcolon` in the last two results. The handbook proves it from the fact that `gr_𝔪(S)` is a
-domain (Proposition 1.10.1): the initial form of `f g` is the product of the initial forms. That
-fact is not in the project library nor in Mathlib. Note that `hcolon` with `N = 1` already
-forces `f ∉ 𝔪^(d+1)`. Without `hcolon`, only the values `χ_R(N)` for `N ≤ d` and the lower bound
-for `N ≥ d` are proved, except in the case `d = 1`, which is complete.
+The colon equality `(𝔪^(N+d) : f) = 𝔪^N` for `f ∈ 𝔪^d \ 𝔪^(d+1)` is the hypothesis `hcolon` in
+the last two results. The file `Singularity.Algebra.RegularOrderMul` proves it for each regular
+local ring (`mem_maximalIdeal_pow_of_mul_mem_of_notMem_pow_succ`), and it gives the statement
+without the hypothesis (`samuelMultiplicity_hypersurface_of_notMem`).
 -/
 
 universe u

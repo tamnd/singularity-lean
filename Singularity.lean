@@ -49,6 +49,7 @@ import Singularity.Algebra.HilbertSerre
 import Singularity.Algebra.Multiplicity
 import Singularity.Algebra.MultiplicityRegular
 import Singularity.Algebra.HypersurfaceMultiplicity
+import Singularity.Algebra.RegularOrderMul
 import Singularity.Algebra.BlowupChart
 import Singularity.Algebra.QuadraticTransform
 import Singularity.Algebra.CurveOnSurface
@@ -64,6 +65,7 @@ import Singularity.Curves.Affine
 import Singularity.Scheme.Components
 import Singularity.Scheme.Reduction
 import Singularity.Scheme.RegularLocus
+import Singularity.Scheme.RegularLocusJ2
 import Singularity.Curves.Resolution
 import Singularity.Fidelity.Positive
 import Singularity.Fidelity.Negative
@@ -105,6 +107,7 @@ import Singularity.Invariant.LogJacobianEndCase
 import Singularity.Invariant.CossartPiltantOmega
 import Singularity.Invariant.CossartPiltantOmegaBounds
 import Singularity.Invariant.IotaIndexOrder
+import Singularity.Invariant.IotaInduction
 import Singularity.Invariant.LogJacobianNearPoint
 import Singularity.Invariant.LogJacobianDirectrix
 import Singularity.Invariant.LogJacobianDirectrixCaseA
@@ -254,6 +257,7 @@ import Singularity.Surface.WhitneyUmbrella
 import Singularity.Surface.IdealChart
 import Singularity.Surface.IdealChartUniversal
 import Singularity.Surface.LipmanRational
+import Singularity.Surface.LipmanResolution
 import Singularity.Surface.IsolatedSingular
 import Singularity.Surface.CuspPairBlowup
 import Singularity.Surface.InseparableBlowup
