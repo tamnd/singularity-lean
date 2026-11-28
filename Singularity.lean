@@ -267,6 +267,7 @@ import Singularity.Alteration.DimensionCriterion
 import Singularity.Alteration.Reynolds
 import Singularity.Alteration.WildInvolution
 import Singularity.Alteration.Induction
+import Singularity.Alteration.AlgebraicCores
 import Singularity.Alteration.InseparableQuotient
 import Singularity.Algebra.Hypersurface
 import Singularity.Algebra.Frobenius

@@ -2478,6 +2478,50 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Theorem 2.3.3 of the handbook, part 1 in one chart.'
+    - name: Singularity.isSeparable_of_finrank_eq_one
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 1.2.3 of the handbook, the degree 1 step.'
+    - name: Singularity.bijective_algebraMap_of_finrank_eq_one
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 1.3.4 of the handbook, the case d = 1.'
+    - name: Singularity.exists_leftInverse_tensorOneMap_of_isUnit_finrank
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 1.3.6 of the handbook, the affine splitting.'
+    - name: Singularity.exists_leftInverse_algebraMap_of_free
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 1.3.8 of the handbook, the trace splitting of a free algebra.'
+    - name: Singularity.fourPoints_chart
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Example 2.2.3 of the handbook, the chart computation.'
+    - name: Singularity.exists_prime_three_le_ne_zero
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 2.2.6 of the handbook, the first step.'
+    - name: Singularity.isGalois_and_finrank_fixedPoints
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 2.2.9 of the handbook, the theorem of Artin.'
+    - name: Singularity.not_three_disjoint_of_card_le_two
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 2.4.1 of the handbook, the counting step.'
+    - name: Singularity.exists_eq_tmul_one_of_forall_fixed
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 3.1.7 of the handbook, the invariants of the Galois action.'
+    - name: Singularity.not_dvd_finrank_fixedField_sylow_of_isPurelyInseparable
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 3.2.3 of the handbook, the degree.'
+    - name: Singularity.not_dvd_finrank_tower_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Corollary 3.2.5 of the handbook, the degree in a tower.'
     - name: Singularity.hasLocalUniformization_of_affineResolution
       kind: theorem
       status: proved
