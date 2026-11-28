@@ -1113,6 +1113,14 @@ status:
       kind: theorem
       status: proved
       note: The theorem of Temkin and the step of degree p give local uniformization over a perfect field. The two inputs are explicit hypotheses (localUniformization_inseparable and RegularCenterInseparableStep) that the library does not prove. The step is open in transcendence degree 4.
+    - name: Singularity.WeakLogMonomialization
+      kind: statement
+      status: open
+      note: Weak log monomialization along a valuation, for extensions of transcendence degree n. An element of the model that is not a p-th power becomes monomial modulo p-th powers in the local ring at the centre of a larger model. This is a definition of a proposition. The package does not prove it. It is open for n at least 4.
+    - name: Singularity.MonomialInseparableStep
+      kind: statement
+      status: known
+      note: The monomial step of degree p. A p-th root of an element that is monomial modulo p-th powers has a regular centre. Volume 5, Chapter 4 of the handbook gives the proof by a toric argument. This is a definition of a proposition. The package does not prove it.
     - name: Singularity.regularCenterInseparableStep_of_weakLogMonomialization
       kind: theorem
       status: proved
