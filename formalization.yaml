@@ -2450,6 +2450,34 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Theorem 2.3.3 of the handbook, part 1 in one chart.'
+    - name: Singularity.ramificationIdx_mul_inertiaDeg_eq_finrank_of_primesOver_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Theorem 3.1.4 of the handbook, with one prime above.'
+    - name: Singularity.ramificationIdx_mul_inertiaDeg_eq_finrank_of_isLocalRing
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Theorem 3.1.4 of the handbook, for a finite flat local extension.'
+    - name: Singularity.ramificationIdx_mul_inertiaDeg_eq_finrank_fractionRing
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Theorem 3.1.4 of the handbook, the Dedekind form with one prime above.'
+    - name: Singularity.abhyankar_local_of_isDiscreteValuationRing
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Theorem 2.3.3 of the handbook, for a discrete valuation ring.'
+    - name: Singularity.add_le_of_choose_mul_choose_le
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Theorem 2.3.3 of the handbook, the numerical step.'
+    - name: Singularity.isOpen_setOf_regularCenter
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Proposition 4.1.2 of the handbook, the openness step.'
+    - name: Singularity.exists_finset_affineModel_regularCenter
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Proposition 4.1.2 of the handbook, for affine models, with the openness of the regular locus as a hypothesis.'
     - name: Singularity.Algebra.IsGeometricallyRegular.isRegularRing
       kind: theorem
       status: proved
