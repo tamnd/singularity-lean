@@ -2038,6 +2038,30 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Lemma 2.2.6 of the handbook, the derivative in the center variable.'
+    - name: Singularity.monoPart_mul_nonmonoPart
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Lemma 3.3.7 of the handbook, part 1 in the local form.'
+    - name: Singularity.monomialStep_lt_mark
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Theorem 3.3.8 of the handbook, the key inequality of the proof.'
+    - name: Singularity.mem_iff_exists_mem_of_descent
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Theorem 1.2.6 of the handbook, with the descent step as a hypothesis.'
+    - name: Singularity.existsUnique_algHom_idealChart
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Theorem 1.1.2 of the handbook, part 3 on one chart.'
+    - name: Singularity.Lipman.subalgebra_eq_bot_of_finite
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Lemma 2.1.2 of the handbook, the affine step of part 1.'
+    - name: Singularity.Lipman.length_quot_sup_le_one
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Corollary 2.1.10 of the handbook, the length count.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved

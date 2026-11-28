@@ -72,6 +72,7 @@ import Singularity.Known.DimZero
 import Singularity.Hypotheses.Integral
 import Singularity.Bridge.FormalConjectures
 import Singularity.Invariant.Order
+import Singularity.Invariant.MonomialPart
 import Singularity.Invariant.PurelyInseparableOrder
 import Singularity.Invariant.ClassicalCoefficientIdeal
 import Singularity.Invariant.OrderAlong
@@ -203,6 +204,7 @@ import Singularity.Valuation.AbhyankarResidueField
 import Singularity.Valuation.AbhyankarValueGroup
 import Singularity.Valuation.FactorialSeries
 import Singularity.Valuation.FactorialArc
+import Singularity.Valuation.QuadraticSequence
 import Singularity.Valuation.ConeLemma
 import Singularity.Valuation.GradedIndependence
 import Singularity.Valuation.AbhyankarRankOne
@@ -250,6 +252,8 @@ import Singularity.Surface.AChainChart
 import Singularity.Surface.AnBlowupChart
 import Singularity.Surface.WhitneyUmbrella
 import Singularity.Surface.IdealChart
+import Singularity.Surface.IdealChartUniversal
+import Singularity.Surface.LipmanRational
 import Singularity.Surface.IsolatedSingular
 import Singularity.Surface.CuspPairBlowup
 import Singularity.Surface.InseparableBlowup

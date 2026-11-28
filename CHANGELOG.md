@@ -4,6 +4,13 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/MonomialPart.lean`: Volume 2, Lemma 3.3.7 of the handbook in the local form at one divisor, and the two inequalities in the proof of Theorem 3.3.8. The sheaf form, the blowups and the termination are not in Lean.
+- `Singularity/Valuation/QuadraticSequence.lean`: Volume 5, Theorem 1.2.6 of the handbook with the descent step as a hypothesis, and the first steps of Corollaries 1.2.7 and 1.2.8. The descent step needs Lemmas 1.2.3 and 1.2.4 and Proposition 1.2.5, and these are not in Lean.
+- `Singularity/Surface/IdealChartUniversal.lean`: Volume 4, Theorem 1.1.2, parts 2 and 3, on one affine chart. The gluing of the charts is not in Lean.
+- `Singularity/Surface/LipmanRational.lean`: Volume 4, Lemma 2.1.2, part 1, Proposition 2.1.7, Proposition 2.1.9, part 2, and Corollary 2.1.10, part 2, of the handbook, the algebra and length steps only. The cohomology is not in Lean.
+
 ## 0.4.66 - 2026-11-28
 
 ### Added
