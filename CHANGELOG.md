@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.70 - 2026-11-28
+
 ### Added
 
 - `Singularity/Invariant/PlanarRunsLambda.lean`: part 3 of Theorem 3.18.26 of Volume 7 of the handbook, for the abstract tail `IsFrobTail` (`lambda_le_of_frob`) and for the planar corner runs of the Hahn model over a perfect field (`lambda_le_corner`). Each term $\beta_k(f) + |k|(1 + \theta)$ of $\Lambda(f)$ is at least a term $\beta_{p^e e_i}(f) + p^e(1 + \theta)$, with a strict inequality if $k \ne p^e e_i$. So $\Lambda(f) = \min_e \Lambda_e(f)$, and the minimum is attained only at the indices of $p$-power form. The minimum $\Lambda(f)$ is not a definition: the statement compares its terms.
