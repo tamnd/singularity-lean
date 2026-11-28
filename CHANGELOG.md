@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.74 - 2026-11-28
+
 ### Added
 
 - `Singularity/Valuation/GroundFieldTrdeg.lean`: the last claim of Volume 5, Lemma 1.4.2 of the handbook. `residueAdjoinHom` is the residue map `k(y) → κ_v`, and `isAlgebraic_range_residueAdjoinHom` proves that `κ_v` is algebraic over its image when the residues of the `y_i` form a transcendence basis of `κ_v` over `k`. Thus `V` is zero-dimensional over `k(y)`, and all claims of the lemma are now proved.
