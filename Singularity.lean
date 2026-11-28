@@ -10,6 +10,7 @@ import Singularity.Algebra.RegularParameter
 import Singularity.Algebra.MonomialParameter
 import Singularity.Algebra.NodeChart
 import Singularity.Algebra.NodeChartTwo
+import Singularity.Algebra.NodeBlowupCharts
 import Singularity.Algebra.NodeRegular
 import Singularity.Algebra.SurfaceRegularExamples
 import Singularity.Algebra.CofinalChains
@@ -259,6 +260,7 @@ import Singularity.Surface.IdealChart
 import Singularity.Surface.IdealChartUniversal
 import Singularity.Surface.LipmanRational
 import Singularity.Surface.LipmanResolution
+import Singularity.Surface.CubicConeBlowup
 import Singularity.Surface.IsolatedSingular
 import Singularity.Surface.CuspPairBlowup
 import Singularity.Surface.InseparableBlowup
