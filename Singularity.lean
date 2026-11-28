@@ -94,6 +94,7 @@ import Singularity.Invariant.CharacteristicPolyhedron
 import Singularity.Invariant.ProjPolyhedronWeight
 import Singularity.Invariant.MohBound
 import Singularity.Invariant.CharacteristicPolyhedronClean
+import Singularity.Invariant.PolyhedronInvariants
 import Singularity.Invariant.CharacteristicPolyhedronExamples
 import Singularity.Invariant.RigidLayer
 import Singularity.Invariant.LogJacobian
