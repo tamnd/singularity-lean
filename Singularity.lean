@@ -137,6 +137,7 @@ import Singularity.Invariant.LogJacobianKangarooExample
 import Singularity.Invariant.DerivativeOrder
 import Singularity.Invariant.CoefficientIdealOrder
 import Singularity.Invariant.CoefficientIdealTransform
+import Singularity.Invariant.MarkedTransform
 import Singularity.Invariant.AutomorphismNearIdentity
 import Singularity.Invariant.FibonacciOrder
 import Singularity.Invariant.LogJacobianCurveRuns
@@ -249,6 +250,7 @@ import Singularity.Alteration.NormalizationFinite
 import Singularity.Alteration.DimensionCriterion
 import Singularity.Alteration.Reynolds
 import Singularity.Alteration.WildInvolution
+import Singularity.Alteration.Induction
 import Singularity.Alteration.InseparableQuotient
 import Singularity.Algebra.Hypersurface
 import Singularity.Algebra.Frobenius
