@@ -2062,6 +2062,42 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 4, Corollary 2.1.10 of the handbook, the length count.'
+    - name: Singularity.isJ2_of_resolution
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Corollary 5.3.5 of the handbook, part 2.'
+    - name: Singularity.Algebra.samuelMultiplicity_hypersurface_of_notMem
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 3.3.15 of the handbook.'
+    - name: Singularity.Algebra.mul_notMem_maximalIdeal_pow_succ
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 3.2.3 of the handbook, part 4, the equality for a regular local ring.'
+    - name: Singularity.subset_regularLocus_of_isIso_restrict
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 5.3.4 of the handbook.'
+    - name: Singularity.IotaIndex.exists_regular
+      kind: theorem
+      status: proved
+      note: 'Volume 6, Proposition 3.2.12 of the handbook, with properties 1 to 4 as hypotheses.'
+    - name: Singularity.sum_sub_add_le_of_minimal
+      kind: theorem
+      status: proved
+      note: 'Volume 6, Proposition 3.2.9 of the handbook, the bound in the proof.'
+    - name: Singularity.Examples.example_3_2_13_pointChart_invariants
+      kind: theorem
+      status: proved
+      note: 'Volume 6, Example 3.2.13 of the handbook, the point blowup.'
+    - name: Singularity.Lipman.moduleFinite_integralClosure_of_subalgebra
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Proposition 2.2.2 of the handbook, the affine step.'
+    - name: Singularity.Lipman.exists_forall_subsingleton_of_length_le
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Proposition 2.2.6 of the handbook, part 3 for the lengths.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved

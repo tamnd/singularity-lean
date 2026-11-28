@@ -6,6 +6,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Algebra/RegularOrderMul.lean`: Volume 1, Proposition 3.3.15 of the handbook in full, and the equality case of Proposition 3.2.3, part 4, for a regular local ring. The isomorphism of the graded ring with a polynomial ring is not stated.
+- `Singularity/Scheme/RegularLocusJ2.lean`: Volume 1, Proposition 5.3.4 and Corollary 5.3.5 of the handbook, and Propositions 5.3.2 and 5.3.3 with J-2 in place of quasi-excellent. G-rings and excellent rings are not defined in Lean.
+- `Singularity/Invariant/IotaInduction.lean`: Volume 6, Proposition 3.2.12 of the handbook with properties 1 to 4 as hypotheses, the combinatorial part of the proof of Proposition 3.2.9, and the computations of Example 3.2.13. The polyhedra and $\delta$ are not in Lean.
+- `Singularity/Surface/LipmanResolution.lean`: Volume 4, Propositions 2.2.2 and 2.2.6 of the handbook, the algebra and length steps. The cohomology is not in Lean.
 - `Singularity/Invariant/MonomialPart.lean`: Volume 2, Lemma 3.3.7 of the handbook in the local form at one divisor, and the two inequalities in the proof of Theorem 3.3.8. The sheaf form, the blowups and the termination are not in Lean.
 - `Singularity/Valuation/QuadraticSequence.lean`: Volume 5, Theorem 1.2.6 of the handbook with the descent step as a hypothesis, and the first steps of Corollaries 1.2.7 and 1.2.8. The descent step needs Lemmas 1.2.3 and 1.2.4 and Proposition 1.2.5, and these are not in Lean.
 - `Singularity/Surface/IdealChartUniversal.lean`: Volume 4, Theorem 1.1.2, parts 2 and 3, on one affine chart. The gluing of the charts is not in Lean.
