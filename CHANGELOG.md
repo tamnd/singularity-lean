@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Valuation/UniformizationCores.lean`: Volume 5, Lemmas 1.2.3 and 1.2.4, Propositions 1.2.5, 2.3.10 and 4.2.1, Corollary 1.3.6 and Examples 3.2.1 and 4.2.2 of the handbook, the algebraic and numerical cores. Theorem 1.3.5 and the geometric parts are not in Lean.
+
 ## 0.4.67 - 2026-11-28
 
 ### Added

@@ -202,6 +202,7 @@ import Singularity.Valuation.PerronStep
 import Singularity.Valuation.PerronAlgorithm
 import Singularity.Valuation.PerronCoordinates
 import Singularity.Valuation.PerronMatrix
+import Singularity.Valuation.UniformizationCores
 import Singularity.Valuation.PerronMonomial
 import Singularity.Valuation.MonomialValuationConstruction
 import Singularity.Valuation.LexMonomialValuation

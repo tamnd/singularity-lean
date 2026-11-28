@@ -2346,6 +2346,38 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 4, Lemma 2.3.9 of the handbook, part 2.'
+    - name: Singularity.length_quotient_smul_eq_of_finiteLength
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Lemma 1.2.3 of the handbook, the first half.'
+    - name: Singularity.sum_mul_min_eq_of_branches
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Lemma 1.2.4 of the handbook, the count.'
+    - name: Singularity.noether_inequality_of_branches
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Proposition 1.2.5 of the handbook, with the branch formulas as hypotheses.'
+    - name: Singularity.valuation_eq_one_of_isAlgebraic
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Corollary 1.3.6 of the handbook, a step.'
+    - name: Singularity.Perron.transpose_runMatrix_eq_prod
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Proposition 2.3.10 of the handbook, part 3.'
+    - name: Singularity.not_mem_of_isSeparable_of_pow_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Example 3.2.1 of the handbook, a step.'
+    - name: Singularity.isHomeomorph_comap_integralClosure
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Proposition 4.2.1 of the handbook, the homeomorphism.'
+    - name: Singularity.surface_relation_mem_sq
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Example 4.2.2 of the handbook, a step of part 4.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved
