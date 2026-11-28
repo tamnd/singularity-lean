@@ -149,6 +149,7 @@ import Singularity.Invariant.CoefficientIdealOrder
 import Singularity.Invariant.CoefficientIdealTransform
 import Singularity.Invariant.MarkedTransform
 import Singularity.Invariant.RestrictionMaximalContact
+import Singularity.Invariant.CoordinateCenterCharts
 import Singularity.Invariant.AutomorphismNearIdentity
 import Singularity.Invariant.FibonacciOrder
 import Singularity.Invariant.LogJacobianCurveRuns

@@ -50,6 +50,7 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Algebra/FiniteDifference.lean` | functions $\mathbb{N} \to \mathbb{Z}$ that are eventually polynomial, with the criterion by forward differences |
 | `Singularity/Algebra/HilbertSerre.lean` | the theorem of Hilbert and Serre for graded modules, and the Hilbert-Samuel function as an eventual polynomial of degree at most the number of generators of the ideal |
 | `Singularity/Algebra/CompletionCores.lean` | Volume 1, Theorems 1.1.2, 4.2.9 and 4.3.3 in full, the uniqueness in Theorem 4.4.4, Theorem 4.4.9 for the residue field $\mathbb{F}_p$, and parts of Remarks 3.1.7 and 6.4.8. |
+| `Singularity/Invariant/CoordinateCenterCharts.lean` | Volume 2, blowups of coordinate centers in one affine chart: Lemma 2.2.2, Definition 2.2.3, Theorems 3.2.4, 3.3.5, 3.3.6, 3.3.10 and 3.3.11, and cores of Theorems 1.1.5 to 1.1.8 and 1.2.1. |
 | `Singularity/Invariant/ToricStepCores.lean` | Volume 5, Lemma 4.3.12, Steps 1 to 3 and the monomial parts of Steps 6 and 7, Example 4.3.13, and the first direction of Corollary 4.4.17 in the polynomial model. |
 | `Singularity/Alteration/CrossRatio.lean` | Volume 8, Example 2.2.3 (the cross-ratio of four points of the projective line), the counting cores of Lemmas 2.3.3 and 2.3.4, and the easy direction of Volume 4, Remark 2.1.4. |
 | `Singularity/Surface/NormalRationalCores.lean` | Volume 4, the affine steps of Corollary 1.2.5 and Remark 2.2.3, and Definition 2.1.3 of rational singularities with sheaf cohomology. |
