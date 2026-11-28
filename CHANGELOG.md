@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.70 - 2026-11-28
+
 ### Added
 
 - `Singularity/Invariant/PlanarRunsDominance.lean`: Lemma 3.15.4 of Volume 7 of the handbook (the dominance lemma) along a corner run in the Hahn model. Let $S$ be a set of exponents with nonnegative exponents at $P_m$ and a unique minimiser $q_*$ of the value. Then there is $m_0 \ge m$ such that for each $m' \ge m_0$ and each $q \in S$ other than $q_*$, both exponents of $q - q_*$ at $P_{m'}$ are positive (`IsCornerWord.dominance`). The proof uses the columns from $P_m$ to $P_{m'}$ (`coord_col`) and $v(y_m), v(z_m) \to 0$ (`IsCornerWord.tendsto_val_expY_expZ`). The irrationality of $\theta_m$ is replaced by the hypothesis that the minimiser is unique.
