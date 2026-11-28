@@ -2134,6 +2134,26 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 8, Proposition 2.4.3 of the handbook, the chart t1.'
+    - name: Singularity.Scheme.exists_isCenter_of_isCenterAlong
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Proposition 1.4.5 of the handbook, the lift of the center.'
+    - name: Singularity.Scheme.exists_isCenter_isRegularLocalRing_of_isCenterAlong
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Proposition 1.4.5 of the handbook, first part.'
+    - name: Singularity.exists_isEtaleGenerator_top_iff_isSeparable
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Theorem 3.1.5 of the handbook, the trivial valuation.'
+    - name: Singularity.sum_ramificationIdx_mul_inertiaDeg_le_finrank_of_isDedekindDomain
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Theorem 3.1.2 of the handbook, the Dedekind case.'
+    - name: Singularity.finrank_eq_one_of_henselian
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Proposition 3.1.6 of the handbook.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved
