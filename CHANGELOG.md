@@ -6,6 +6,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Invariant/MarkedTransform.lean`: Volume 2, Lemma 2.2.4 (1) to (3) of the handbook, Lemma 3.2.2 (2) for a coordinate center, and the first step of Proposition 3.2.3 for one blowup. Lemma 2.2.4 (4) and the sequences of blowups are not in Lean.
+- `Singularity/Alteration/Induction.lean`: Volume 8, Lemmas 2.3.1, 2.3.2 and 2.3.5 and Propositions 2.4.2 and 2.4.4 of the handbook, the algebraic and topological cores. Lemmas 2.3.3, 2.3.4 and 2.4.1 are not in Lean.
 - `Singularity/Invariant/PolyhedronInvariants.lean`: Volume 6, Definitions 3.1.3, 3.2.1 and 3.2.3 and Proposition 3.2.2 of the handbook in fixed minimal coordinates, and the computations of Examples 4.1.1 and 1.2.7. The existence of minimal coordinates, the invariant $\omega$ and Corollary 4.3.2 are not in Lean.
 - `Singularity/Valuation/CenterAlong.lean`: Volume 5, Proposition 1.4.5 of the handbook, the first part, and Theorem 3.1.5 and Proposition 3.1.4 for the trivial valuation. The "in particular" claim and the nontrivial valuations are not in Lean.
 - `Singularity/Valuation/FundamentalInequality.lean`: Volume 3, Theorem 3.1.2 of the handbook for finite flat extensions and Dedekind domains, and Proposition 3.1.6 in full. The general valuation case of Theorem 3.1.2 is not in Lean.

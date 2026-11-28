@@ -2222,6 +2222,46 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 6, Example 1.2.7 of the handbook, characteristic 3.'
+    - name: Singularity.markedTransform_mul
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Lemma 2.2.4 of the handbook, part 1.'
+    - name: Singularity.markedTransform_sup
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Lemma 2.2.4 of the handbook, part 2.'
+    - name: Singularity.markedTransform_le_of_mark_le
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Lemma 2.2.4 of the handbook, part 3.'
+    - name: Singularity.centerChartTransformIdeal_iSup_pow
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Lemma 3.2.2 of the handbook, part 2, for a coordinate center.'
+    - name: Singularity.centerChartTransformIdeal_coeffIdeal
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Proposition 3.2.3 of the handbook, the step for one blowup.'
+    - name: Singularity.DeJongSolution.of_isAlteration
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 2.3.1 of the handbook, without the generically etale part.'
+    - name: Singularity.exists_eq_biUnion_of_subset_iUnion
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 2.3.2 of the handbook, the topological core.'
+    - name: Singularity.isSeparable_of_tensorProduct_equiv
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 2.3.5 of the handbook, the generic fibre.'
+    - name: Singularity.algebraMap_bijective_of_isIntegral_of_birational
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 2.4.2 of the handbook, the last step.'
+    - name: Singularity.nodeBlowupQOneEquiv
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 2.4.4 of the handbook, the chart t1 for mu equal to 2.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved
