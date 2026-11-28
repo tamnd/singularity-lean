@@ -3777,6 +3777,14 @@ status:
       kind: theorem
       status: proved
       note: Volume 5, Lemma 1.4.2 of the handbook, the formula for the transcendence degree. If the residues of the y_i form a transcendence basis of the residue field over k, then trdeg of K over k(y) plus trdeg of the residue field is trdeg of K over k.
+    - name: Singularity.residueAdjoinHom
+      kind: definition
+      status: proved
+      note: Volume 5, Lemma 1.4.2 of the handbook. The residue map from k(y) to the residue field, as a homomorphism of k-algebras. It exists because k(y) is a subset of V.
+    - name: Singularity.isAlgebraic_range_residueAdjoinHom
+      kind: theorem
+      status: proved
+      note: Volume 5, Lemma 1.4.2 of the handbook, the last claim. If the residues of the y_i form a transcendence basis of the residue field over k, then the residue field is algebraic over the image of k(y). Thus V is zero-dimensional over k(y).
     - name: Singularity.cpKappa_eq_one_iff
       kind: theorem
       status: proved
