@@ -1353,6 +1353,10 @@ status:
       kind: theorem
       status: proved
       note: The end case with the order of G (Proposition 3.5.1 of Volume 7, Section 3.5 of the handbook). For a clean g, rho = 0 if and only if ord G = 0 and p does not divide r_i for some i in Delta, or ord G = 1 and the constant term of the derivative of G along x_j is not 0 for some j not in Delta.
+    - name: Singularity.isMonomialModPow_of_logJacobianOrder_eq_zero
+      kind: theorem
+      status: proved
+      note: The end case gives a monomial modulo p-th powers (Proposition 3.5.1 and Theorem 3.5.3 of Volume 7, Section 3.5 of the handbook). For a clean g with rho = 0, the image of g in the local ring of the polynomial ring at the origin has the ramified type of IsMonomialModPow. Type 0 and type 1 both give the ramified type.
     - name: Singularity.cpOmega_of_exists
       kind: theorem
       status: proved
@@ -2354,6 +2358,22 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 1, Example 3.1.6 of the handbook.'
+    - name: Singularity.Algebra.isRegularLocalRing_originLocalRing
+      kind: theorem
+      status: proved
+      note: 'Volume 7, Section 3.5 of the handbook, the local ring of the polynomial ring at the origin is regular, for a general finite index type.'
+    - name: Singularity.Algebra.ringKrullDim_originLocalRing
+      kind: theorem
+      status: proved
+      note: 'Volume 7, Section 3.5 of the handbook, the local ring at the origin has dimension the number of variables.'
+    - name: Singularity.Algebra.isRegularSystemOfParameters_X
+      kind: theorem
+      status: proved
+      note: 'Volume 7, Section 3.5 of the handbook, the variables are a regular system of parameters of the local ring at the origin.'
+    - name: Singularity.Algebra.isRegularSystemOfParameters_insert
+      kind: theorem
+      status: proved
+      note: 'Volume 7, Section 3.5 of the handbook, a polynomial G with G(0) = 0 and a derivative along x_j that is not 0 at the origin can replace the parameter x_j.'
     - name: Singularity.Algebra.samuelMultiplicity_germ
       kind: theorem
       status: proved

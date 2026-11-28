@@ -53,6 +53,7 @@ import Singularity.Algebra.Multiplicity
 import Singularity.Algebra.MultiplicityRegular
 import Singularity.Algebra.HypersurfaceMultiplicity
 import Singularity.Algebra.RegularOrderMul
+import Singularity.Algebra.MvPolynomialOrigin
 import Singularity.Algebra.SamuelExamples
 import Singularity.Algebra.RegularIntegrallyClosed
 import Singularity.Algebra.BlowupChart
@@ -112,6 +113,7 @@ import Singularity.Invariant.LogJacobianCenterAdapted
 import Singularity.Invariant.Tschirnhausen
 import Singularity.Invariant.MaximalContactSmall
 import Singularity.Invariant.LogJacobianEndCase
+import Singularity.Invariant.LogJacobianMonomial
 import Singularity.Invariant.CossartPiltantOmega
 import Singularity.Invariant.CossartPiltantOmegaBounds
 import Singularity.Invariant.IotaIndexOrder
