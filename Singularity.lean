@@ -51,6 +51,7 @@ import Singularity.Algebra.Multiplicity
 import Singularity.Algebra.MultiplicityRegular
 import Singularity.Algebra.HypersurfaceMultiplicity
 import Singularity.Algebra.RegularOrderMul
+import Singularity.Algebra.RegularIntegrallyClosed
 import Singularity.Algebra.BlowupChart
 import Singularity.Algebra.QuadraticTransform
 import Singularity.Algebra.CurveOnSurface
