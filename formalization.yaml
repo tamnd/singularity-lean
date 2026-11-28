@@ -153,6 +153,30 @@ status:
       kind: theorem
       status: proved
       note: A monomial valuation of rank 1 with residue field k has local uniformization, in each characteristic (Volume 5, Theorem 2.1.5 of the handbook, in rank 1, node SG0000004D).
+    - name: Singularity.Perron.sum_runExp_mul_runWeight
+      kind: theorem
+      status: proved
+      note: A valid run of elementary steps does not change the value of an exponent (Volume 5, Section 2.3 of the handbook).
+    - name: Singularity.Perron.runWeight_independent
+      kind: theorem
+      status: proved
+      note: A valid run of elementary steps keeps the weight linearly independent over the integers (Volume 5, Section 2.3 of the handbook).
+    - name: Singularity.Perron.exists_isValidRun_runExp_nonneg
+      kind: theorem
+      status: proved
+      note: The Perron algorithm with elementary steps. For a positive weight that is linearly independent over the integers and an exponent of positive value, there is a valid run after which each entry of the exponent is at least 0 (Volume 5, Section 2.3 of the handbook).
+    - name: Singularity.Perron.exists_isValidRun_forall_runExp_nonneg
+      kind: theorem
+      status: proved
+      note: One valid run makes each exponent of a finite set of exponents of positive value nonnegative (Volume 5, Section 2.3 of the handbook).
+    - name: Singularity.Perron.exists_isValidRun_runExp_le
+      kind: theorem
+      status: proved
+      note: If the exponent B has a smaller value than the exponent C, then after a valid run each entry of B is at most the entry of C, so the monomial of B divides the monomial of C (Volume 5, Section 2.3 of the handbook).
+    - name: Singularity.Perron.exists_isValidRun_forall_runExp_le
+      kind: theorem
+      status: proved
+      note: In a finite set of exponents, the monomial of least value divides the others after one valid run, so a monomial ideal becomes principal (Volume 5, Section 2.3 of the handbook).
     - name: Singularity.latticeLemma
       kind: theorem
       status: proved
