@@ -3313,6 +3313,26 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 3, Example 3.2.6 (2) of the handbook, the first step. If v(eta^n - eta) = 1 and n >= 2, then v(eta) = 1.'
+    - name: Singularity.exists_valuation_sub_pow_lt
+      kind: theorem
+      status: proved
+      note: "Volume 5, Chapter 4 of the handbook, the improvement lemma, in multiplicative notation. If the residue field is perfect and v(f - h^p) = v(a^p) with a nonzero, then v(f - h'^p) < v(f - h^p) for some h'."
+    - name: Singularity.valuation_sub_pow_ne_of_isLeast
+      kind: theorem
+      status: proved
+      note: "Volume 5, Chapter 4 of the handbook. If v(f - h^p) is the best approximation of f by p-th powers and f is not h^p, then v(f - h^p) is not in p times the value group."
+    - name: Singularity.valuation_sub_algebraMap_pow
+      kind: theorem
+      status: proved
+      note: "Volume 5, Chapter 4 of the handbook. If theta^p = f and w extends v, then w(theta - h)^p = v(f - h^p)."
+    - name: Singularity.valuation_sub_algebraMap_ne_of_isLeast
+      kind: theorem
+      status: proved
+      note: "Volume 5, Chapter 4 of the handbook. In the case of a best approximation h, the value w(theta - h) is not a value of v."
+    - name: Singularity.exists_valuation_sub_algebraMap_lt_of_not_exists
+      kind: theorem
+      status: proved
+      note: "Volume 5, Chapter 4 of the handbook. If the values v(f - h^p) have no best element, then theta has no best approximation in K. The file does not prove that K(theta)/K is immediate."
     - name: Singularity.rankOne_iff_mulArchimedean
       kind: theorem
       status: proved
