@@ -52,6 +52,7 @@ import Singularity.Algebra.Multiplicity
 import Singularity.Algebra.MultiplicityRegular
 import Singularity.Algebra.HypersurfaceMultiplicity
 import Singularity.Algebra.RegularOrderMul
+import Singularity.Algebra.SamuelExamples
 import Singularity.Algebra.RegularIntegrallyClosed
 import Singularity.Algebra.BlowupChart
 import Singularity.Algebra.QuadraticTransform
@@ -94,6 +95,7 @@ import Singularity.Invariant.CharacteristicPolyhedron
 import Singularity.Invariant.ProjPolyhedronWeight
 import Singularity.Invariant.MohBound
 import Singularity.Invariant.CharacteristicPolyhedronClean
+import Singularity.Invariant.PolyhedronInvariants
 import Singularity.Invariant.CharacteristicPolyhedronExamples
 import Singularity.Invariant.RigidLayer
 import Singularity.Invariant.LogJacobian
@@ -136,6 +138,7 @@ import Singularity.Invariant.LogJacobianKangarooExample
 import Singularity.Invariant.DerivativeOrder
 import Singularity.Invariant.CoefficientIdealOrder
 import Singularity.Invariant.CoefficientIdealTransform
+import Singularity.Invariant.MarkedTransform
 import Singularity.Invariant.AutomorphismNearIdentity
 import Singularity.Invariant.FibonacciOrder
 import Singularity.Invariant.LogJacobianCurveRuns
@@ -197,6 +200,8 @@ import Singularity.Valuation.LocalUniformizationMonomial
 import Singularity.Valuation.MonomialGroundField
 import Singularity.Valuation.PerronStep
 import Singularity.Valuation.PerronAlgorithm
+import Singularity.Valuation.PerronCoordinates
+import Singularity.Valuation.PerronMatrix
 import Singularity.Valuation.PerronMonomial
 import Singularity.Valuation.MonomialValuationConstruction
 import Singularity.Valuation.LexMonomialValuation
@@ -208,6 +213,7 @@ import Singularity.Valuation.EtaleGenerator
 import Singularity.Valuation.EtaleGeneratorExistence
 import Singularity.Valuation.MonomialFiniteExtension
 import Singularity.Valuation.DegreePTowers
+import Singularity.Valuation.RegularCenterTowers
 import Singularity.Valuation.InertiaField
 import Singularity.Valuation.DecompositionField
 import Singularity.Valuation.AbhyankarSubfield
@@ -248,6 +254,7 @@ import Singularity.Alteration.NormalizationFinite
 import Singularity.Alteration.DimensionCriterion
 import Singularity.Alteration.Reynolds
 import Singularity.Alteration.WildInvolution
+import Singularity.Alteration.Induction
 import Singularity.Alteration.InseparableQuotient
 import Singularity.Algebra.Hypersurface
 import Singularity.Algebra.Frobenius
