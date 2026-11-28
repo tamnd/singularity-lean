@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.71 - 2026-11-28
+
 ### Added
 
 - `Singularity/Invariant/ToricStepCores.lean`: Volume 5 of the handbook. Steps 1 to 3 of Lemma 4.3.12 (the toric step): the vectors $e_i$ with $p e_z = e_1 + \sum r_i e_i$, the character $\chi$, the order by $\ell$ in the lexicographic product, and a basis $u_l$ with $\ell(u_l) \ge 0$ such that $z$ and each $x_i$ are monomials in $U_l = \chi(u_l)$ with exponents in $\mathbb{N}$ (`exists_toric_chart`). The monomial parts of Steps 6 and 7, Example 4.3.13, and the first direction of Corollary 4.4.17 in the polynomial model are proved. The link with the valuation, Steps 4, 5, 8 and 9, and the converse of Corollary 4.4.17 are not proved.
