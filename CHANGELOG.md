@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.66 - 2026-11-28
+
 ### Added
 
 - `Singularity/Invariant/CenterChartDeriv.lean`: Volume 2, Lemma 2.2.6 of the handbook for the chart of affine space. The local coordinates on a smooth variety are not in Lean.
