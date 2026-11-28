@@ -2590,6 +2590,34 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Theorem 2.3.3 of the handbook, part 1 in one chart.'
+    - name: Singularity.map_chartSeqMap_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Definition 2.2.3 of the handbook, the pullback along a sequence of charts.'
+    - name: Singularity.le_idealOrd_iff_le_idealOrd_restrict_coefficientIdeal
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Theorem 3.2.4 of the handbook, at the origin.'
+    - name: Singularity.maximalContact_coefficientIdeal
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Corollary 3.2.5 of the handbook, at the origin.'
+    - name: Singularity.idealOrd_centerChartTransformIdeal_singleton_lt
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Theorem 3.3.5 of the handbook, for a coordinate hypersurface.'
+    - name: Singularity.principal_monomial_orderReduction
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Theorem 3.3.6 of the handbook, for a principal monomial ideal.'
+    - name: Singularity.exists_map_chartSeqMap_eq_span_monomial
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Theorem 3.3.11 of the handbook, in the chart model.'
+    - name: Singularity.principalization_chartCenterIdeal_pow
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Theorems 1.1.5 to 1.1.7 of the handbook, for a power of a coordinate center.'
     - name: Singularity.exists_toric_chart
       kind: theorem
       status: proved
