@@ -34,6 +34,7 @@ import Singularity.Algebra.ExtCriterion
 import Singularity.Algebra.GlobalDimension
 import Singularity.Algebra.SerreConverse
 import Singularity.Algebra.RegularLocalization
+import Singularity.Algebra.AdjoinRootRegular
 import Singularity.Algebra.RegularLocus
 import Singularity.Algebra.Jacobian
 import Singularity.Algebra.GenericRegular
