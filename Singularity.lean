@@ -183,6 +183,7 @@ import Singularity.Valuation.CenterExists
 import Singularity.Valuation.CenterMap
 import Singularity.Valuation.ZariskiRiemannCover
 import Singularity.Valuation.DefectlessDistance
+import Singularity.Valuation.RatFuncPlaces
 import Singularity.Valuation.KeyPolynomials
 import Singularity.Valuation.Augmentation
 import Singularity.Valuation.MacLaneStep

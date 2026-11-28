@@ -6,6 +6,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Valuation/RatFuncPlaces.lean`: Volume 3, Examples 1.4.5, 1.5.6 and 2.4.5 and Corollaries 2.3.4, 3.2.2 and 4.2.3 of the handbook, the algebraic parts. Theorems 2.3.3 and 3.1.4 are not in Lean.
 - `Singularity/Valuation/UniformizationCores.lean`: Volume 5, Lemmas 1.2.3 and 1.2.4, Propositions 1.2.5, 2.3.10 and 4.2.1, Corollary 1.3.6 and Examples 3.2.1 and 4.2.2 of the handbook, the algebraic and numerical cores. Theorem 1.3.5 and the geometric parts are not in Lean.
 
 ## 0.4.67 - 2026-11-28

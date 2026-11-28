@@ -2378,6 +2378,30 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 5, Example 4.2.2 of the handbook, a step of part 4.'
+    - name: Singularity.valuationSubring_ratFunc_trichotomy
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 1.5.6 of the handbook, the valuation rings of k(x).'
+    - name: Singularity.centerIdeal_idealX_and_ofPrime_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 1.4.5 of the handbook, the algebraic part.'
+    - name: Singularity.isLeast_delta_one_lexValueX
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 2.4.5 of the handbook, the convex subgroup.'
+    - name: Singularity.add_trdeg_eq_dim_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Corollary 2.3.4 of the handbook, the algebraic part.'
+    - name: Singularity.mul_eq_of_eq_pow_mul
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Corollary 3.2.2 of the handbook, with Theorem 3.1.4 as a hypothesis.'
+    - name: Singularity.exists_forall_valuation_sub_le_of_eq_pow_mul
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Corollary 4.2.3 of the handbook, with the families as hypotheses.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved
