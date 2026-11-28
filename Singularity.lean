@@ -53,6 +53,7 @@ import Singularity.Algebra.Multiplicity
 import Singularity.Algebra.MultiplicityRegular
 import Singularity.Algebra.HypersurfaceMultiplicity
 import Singularity.Algebra.RegularOrderMul
+import Singularity.Algebra.MultiplicityOne
 import Singularity.Algebra.MvPolynomialOrigin
 import Singularity.Algebra.SamuelExamples
 import Singularity.Algebra.RegularIntegrallyClosed
@@ -108,6 +109,7 @@ import Singularity.Invariant.FrobeniusNewtonCriterion
 import Singularity.Invariant.LogJacobianBlowup
 import Singularity.Invariant.LogJacobianNonincrease
 import Singularity.Invariant.LogJacobianCenter
+import Singularity.Invariant.LogDerivations
 import Singularity.Invariant.LogJacobianCenterNonincrease
 import Singularity.Invariant.LogJacobianCenterAdapted
 import Singularity.Invariant.Tschirnhausen
@@ -167,6 +169,7 @@ import Singularity.Invariant.PlanarRunsFrobenius
 import Singularity.Invariant.PlanarRunsRho
 import Singularity.Invariant.PlanarRunsDominance
 import Singularity.Invariant.OriginChartIota
+import Singularity.Invariant.PointBlowupOmega
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
 import Singularity.Example.Narasimhan
@@ -274,6 +277,7 @@ import Singularity.Alteration.Reynolds
 import Singularity.Alteration.WildInvolution
 import Singularity.Alteration.Induction
 import Singularity.Alteration.AlgebraicCores
+import Singularity.Alteration.NodeCores
 import Singularity.Alteration.InseparableQuotient
 import Singularity.Algebra.Hypersurface
 import Singularity.Algebra.Frobenius
@@ -292,6 +296,7 @@ import Singularity.Surface.AnBlowupChart
 import Singularity.Surface.WhitneyUmbrella
 import Singularity.Surface.BlowupRationalCore
 import Singularity.Surface.LipmanCores
+import Singularity.Surface.NormalRationalCores
 import Singularity.Surface.IdealChart
 import Singularity.Surface.IdealChartUniversal
 import Singularity.Surface.LipmanRational
