@@ -2590,6 +2590,30 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Theorem 2.3.3 of the handbook, part 1 in one chart.'
+    - name: Singularity.exists_toric_chart
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Lemma 4.3.12 of the handbook, Steps 1 to 3.'
+    - name: Singularity.IsFoliatedMonomialPoly.exists_derivationIdeal_eq_span
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Corollary 4.4.17 of the handbook, the first direction in the polynomial model.'
+    - name: Singularity.exists_mulVec_of_crossRatio_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Example 2.2.3 of the handbook, the cross-ratio identifies the orbits of four distinct points.'
+    - name: Singularity.crossRatio_comp_perm_mem
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Example 2.2.3 of the handbook, the action of the permutations.'
+    - name: Singularity.exists_forall_eval_ne_zero
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 2.3.3 of the handbook, the choice of a general point.'
+    - name: Singularity.le_card_rootSet_of_separable
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 2.3.4 of the handbook, the count of points on a transversal hyperplane.'
     - name: Singularity.regularLocus_compl_ne_univ
       kind: theorem
       status: proved
