@@ -4,6 +4,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+### Added
+
+- `Singularity/Invariant/PlanarRunsLeastTerm.lean`: Proposition 3.18.29 of Volume 7 of the handbook for the Hahn model of a planar corner run. For a nonzero `f` with coefficients that are power series in `y_N, z_N`, the term `c ν` of least value of `f(Φ_∞)` is a monomial at `P_m` for `m` large, the coefficient of `ν` in `A_0` is `c`, and `ν` divides each coefficient `A_d` of the transform at `P_m` (`IsCornerWord.leastTerm`). The cone of the monomials at `P_m` and the divisibility of a value at a point (`Above.eval`) are proved.
+
 ## 0.4.70 - 2026-11-28
 
 ### Added
