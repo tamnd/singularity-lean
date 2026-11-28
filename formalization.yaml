@@ -1093,6 +1093,14 @@ status:
       kind: theorem
       status: proved
       note: The theorem of Temkin and the step of degree p give local uniformization over a perfect field. The two inputs are explicit hypotheses (localUniformization_inseparable and RegularCenterInseparableStep) that the library does not prove. The step is open in transcendence degree 4.
+    - name: Singularity.regularCenterInseparableStep_of_weakLogMonomialization
+      kind: theorem
+      status: proved
+      note: Weak log monomialization along a valuation and the monomial step give the step of degree p. The two inputs are explicit hypotheses (WeakLogMonomialization and MonomialInseparableStep) that the library does not prove.
+    - name: Singularity.hasLocalUniformization_of_weakLogMonomialization
+      kind: theorem
+      status: proved
+      note: The theorem of Temkin, weak log monomialization along a valuation and the monomial step give local uniformization over a perfect field. The three inputs are explicit hypotheses that the library does not prove. Weak log monomialization is open in transcendence degree 4.
     - name: Singularity.hasLocalUniformization_of_isGalois
       kind: theorem
       status: proved

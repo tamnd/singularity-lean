@@ -208,6 +208,7 @@ import Singularity.Valuation.EtaleGeneratorExistence
 import Singularity.Valuation.MonomialFiniteExtension
 import Singularity.Valuation.DegreePTowers
 import Singularity.Valuation.RegularCenterTowers
+import Singularity.Valuation.WeakLogMonomialization
 import Singularity.Valuation.InertiaField
 import Singularity.Valuation.DecompositionField
 import Singularity.Valuation.AbhyankarSubfield
