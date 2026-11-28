@@ -7,6 +7,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 ### Added
 
 - `Singularity/Invariant/CoordinateCenterCharts.lean`: Volume 2 of the handbook, blowups of coordinate centers in one affine chart. The chart map is injective and pulls the center back to $(y_c)$ (Lemma 2.2.2). The transform along a sequence of charts is the exceptional factor times the last transform (Definition 2.2.3). The coefficient ideal detects the order at the origin (Theorem 3.2.4 and Corollary 3.2.5). The order goes down for a coordinate hypersurface of maximal contact (Theorem 3.3.5) and for a principal monomial ideal (Theorem 3.3.6), and a power of a coordinate center becomes principal after one blowup (Theorems 1.1.5 to 1.1.7). Schemes, gluing, divisors with simple normal crossings and Theorems 1.1.3 and 1.1.4 are not proved.
+- `Singularity/Invariant/PlanarRunsStar.lean`: Proposition 3.17.3 of Volume 7 of the handbook for the Hahn model of a corner run. If the criterion (★★) holds for the function `M_m^{-p} g_m` of `P_m`, that is its constant coefficient is not zero and has a value less than the values of the other coefficients, then there is an `m₀` such that `ρ = 0` at each regular point `P_{m'}` with `m' ≥ m₀`, for each choice of the later translations (`IsCornerWord.rhoAt_eq_zero_of_starStar`). So (★★) fails at each point of a run that keeps `ρ ≥ 1` (`KeepsRho.not_starStar`). The proof uses the dominance lemma (Lemma 3.15.4) and the fact that the cleaning keeps the least term, since its class is not `0`.
 
 ## 0.4.71 - 2026-11-28
 
