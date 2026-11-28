@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.73 - 2026-11-28
+
 ### Added
 
 - `Singularity/Invariant/PlanarRunsGermClass.lean`: Corollary 3.18.33 of Volume 7 of the handbook for the Hahn model of a planar corner run over a perfect field, with `θ` irrational and the coefficients in `𝔽`. If the run keeps `ρ ≥ 1`, `e ≥ 1`, and the derivative `g^{[p^e e_i]}` attains `Λ`, then the order `ν_e` of `g^{[p^e e_i]}(Φ_∞)` has the class `0` (`IsCornerWord.classHom_germ_eq_zero`). This is the contrapositive form of the corollary. The proof uses Step 4 of the proof of Theorem 3.18.26 with a given index of least value (`exists_coeff_germ_ne_zero`) and Theorem 3.18.32, part 2.
