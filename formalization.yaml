@@ -2450,6 +2450,42 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Theorem 2.3.3 of the handbook, part 1 in one chart.'
+    - name: Singularity.hasLocalUniformization_of_affineResolution
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Corollary 1.4.6 of the handbook, with resolution of affine models as a hypothesis.'
+    - name: Singularity.hasLocalUniformization_of_isAbhyankarValuation_of_perfectField
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Corollary 2.2.3 of the handbook, with the theorem of Knaf-Kuhlmann as a hypothesis.'
+    - name: Singularity.hasLocalUniformization_of_trdeg_eq_two_of_one_le
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Proposition 3.1.2 of the handbook, when the residue field is not algebraic.'
+    - name: Singularity.exists_isAffineModel_subset_valuationSubring
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Proposition 4.1.2 of the handbook, a step.'
+    - name: Singularity.hasLocalUniformization_of_localUniformization_inseparable
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Corollary 4.1.3 of the handbook, with the theorem of Temkin as a hypothesis.'
+    - name: Singularity.flat_of_injective_algebraMap
+      kind: theorem
+      status: proved
+      note: 'Volume 6, Corollary 1.1.5 of the handbook, the flatness step.'
+    - name: Singularity.minpoly_eq_X_pow_sub_C
+      kind: theorem
+      status: proved
+      note: 'Volume 6, Proposition 2.2.1 of the handbook, the algebra of Step 3.'
+    - name: Singularity.taylor_X_pow_sub_C_char
+      kind: theorem
+      status: proved
+      note: 'Volume 6, Theorem 1.2.6 of the handbook, the stability of case 1.'
+    - name: Singularity.order_eval_sq_add_X_pow_three_le
+      kind: theorem
+      status: proved
+      note: 'Volume 6, Theorem 3.1.5 of the handbook, an example.'
     - name: Singularity.ramificationIdx_mul_inertiaDeg_eq_finrank_of_primesOver_eq
       kind: theorem
       status: proved
