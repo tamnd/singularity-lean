@@ -1145,6 +1145,34 @@ status:
       kind: theorem
       status: proved
       note: The monomial step for a form of the ramified type where the monomial is one regular parameter. The normal form and the toric case of the monomial step are not proved.
+    - name: Singularity.FoliatedLogMonomialization
+      kind: statement
+      status: open
+      note: Foliated log monomialization along a valuation. An element of the model that is not a p-th power becomes foliated monomial (it lies in E^p(t) for some t of monomial type) in the local ring at the centre of a larger model. This is a definition of a proposition. The package does not prove it. It follows from WeakLogMonomialization, and it is open in transcendence degree 4.
+    - name: Singularity.IsMonomialModPow.isFoliatedMonomial
+      kind: theorem
+      status: proved
+      note: An element that is monomial modulo p-th powers is foliated monomial, for p at least 2.
+    - name: Singularity.exists_eq_sum_of_eq_sum
+      kind: theorem
+      status: proved
+      note: In a field E of characteristic p, if f is in E^p(t) and f is not a p-th power, then t is in E^p(f).
+    - name: Singularity.adjoin_eq_adjoin_of_eq_sum
+      kind: theorem
+      status: proved
+      note: If f is in E^p(t) and f is not a p-th power in E, then E(f^(1/p)) = E(t^(1/p)) in each extension of E that contains the two roots.
+    - name: Singularity.foliatedLogMonomialization_of_weakLogMonomialization
+      kind: theorem
+      status: proved
+      note: Weak log monomialization along a valuation gives foliated log monomialization.
+    - name: Singularity.regularCenterInseparableStep_of_foliatedLogMonomialization
+      kind: theorem
+      status: proved
+      note: Foliated log monomialization along a valuation and the monomial step give the step of degree p. The two inputs are explicit hypotheses (FoliatedLogMonomialization and MonomialInseparableStep) that the library does not prove.
+    - name: Singularity.hasLocalUniformization_of_foliatedLogMonomialization
+      kind: theorem
+      status: proved
+      note: The theorem of Temkin, foliated log monomialization along a valuation and the monomial step give local uniformization over a perfect field. The three inputs are explicit hypotheses that the library does not prove. Foliated log monomialization is open in transcendence degree 4.
     - name: Singularity.hasLocalUniformization_of_isGalois
       kind: theorem
       status: proved
