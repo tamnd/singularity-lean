@@ -112,6 +112,65 @@ status:
     - name: Singularity.Fidelity.exists_regularCenter_of_hasLocalUniformization
       kind: theorem
       status: proved
+    - name: Singularity.PurelyInseparableLocalUniformizationFour
+      kind: statement
+      status: open
+      note: The purely inseparable step of local uniformization in dimension 4, PILU_4 (Conjecture 3.24.2, node SG000000BR).
+    - name: Singularity.FundamentalTheoremFour
+      kind: statement
+      status: open
+      note: The fundamental theorem of Zariski in dimension 4, Fund_4 (Conjecture 3.24.3, node SG000000BQ), with complete models in place of projective models.
+    - name: Singularity.resolution_iff_weakLocalUniformization_fundamental_four
+      kind: statement
+      status: known
+      note: Theorem 3.24.4 (node SG000000BS): LU_4^- and Fund_4 imply Res_4^pr, and Res_4^pr implies LU_4 and Fund_4. This is a definition of a proposition. The package does not prove it.
+    - name: Singularity.resolution_iff_pilu_fundamental_four
+      kind: statement
+      status: known
+      note: Theorem 3.24.5 (node SG000000BT): Res_4^pr holds if and only if PILU_4 and Fund_4 hold. This is a definition of a proposition. The package proves one direction from Theorem 3.24.4.
+    - name: Singularity.WeakPrincipalizationFour
+      kind: statement
+      status: open
+      note: Weak principalization of ideals on regular 4-folds, Princ_4^w (Definition 85.1 of research note 85), over a given field.
+    - name: Singularity.EmbeddedResolutionThreefoldBoundaryIso
+      kind: statement
+      status: open
+      note: Global embedded resolution of 3-folds with boundary and the isomorphism clause, Emb_3^bd,iso (Definition 3.29.1), over a given field.
+    - name: Singularity.weakPrincipalization_of_embeddedResolution
+      kind: statement
+      status: known
+      note: Theorem 3.29.11 (Theorem 95.8): over an infinite perfect field, Emb_3^bd,iso implies Princ_4^w. This is a definition of a proposition. The package does not prove it.
+    - name: Singularity.veryWeakPrincipalization_of_embeddedResolution
+      kind: statement
+      status: known
+      note: Theorem 3.29.12 (Theorem 95.9): over each field, Emb_3^bd implies Princ_4^vw. This is a definition of a proposition. The package does not prove it.
+    - name: Singularity.Fidelity.fundamental_self
+      kind: theorem
+      status: proved
+    - name: Singularity.Fidelity.pilu_of_affineLocalUniformization
+      kind: theorem
+      status: proved
+    - name: Singularity.Fidelity.pilu_of_localUniformization
+      kind: theorem
+      status: proved
+    - name: Singularity.Fidelity.pilu_fundamental_of_resolution
+      kind: theorem
+      status: proved
+    - name: Singularity.Fidelity.isWeakPrincipalization_id_top
+      kind: theorem
+      status: proved
+    - name: Singularity.Fidelity.not_isVeryWeakPrincipalization_bot
+      kind: theorem
+      status: proved
+    - name: Singularity.Fidelity.veryWeakPrincipalizationFour_of_weakPrincipalizationFour
+      kind: theorem
+      status: proved
+    - name: Singularity.Fidelity.isBoundaryResolutionIso_id_top
+      kind: theorem
+      status: proved
+    - name: Singularity.Fidelity.embeddedResolutionThreefoldBoundary_of_iso
+      kind: theorem
+      status: proved
     - name: Singularity.hasLocalUniformization_of_trdeg_le_one
       kind: theorem
       status: proved

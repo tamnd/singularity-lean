@@ -6,6 +6,8 @@ import Singularity.Statements.Main
 import Singularity.Statements.Core
 import Singularity.Statements.Embedded
 import Singularity.Statements.LocalUniformization
+import Singularity.Statements.Fundamental
+import Singularity.Statements.Principalization
 import Mathlib.RingTheory.Valuation.ValuationSubring
 import Mathlib.RingTheory.AlgebraicIndependent.Basic
 import Mathlib.LinearAlgebra.Dimension.Localization
@@ -153,6 +155,58 @@ theorem Fidelity.exists_regularCenter_of_hasLocalUniformization {V : ValuationSu
       IsRegularLocalRing (Localization.AtPrime (valuationCenter V A hA)) := sorry
 
 end LocalUniformization
+
+section Fundamental
+
+/-- `Singularity/Fidelity/Fundamental.lean`: the conclusion of `Fund_n` holds when the two models are the same. -/
+theorem Fidelity.fundamental_self {k K : Type*} [Field k] [Field K] [Algebra k K]
+    {M : Set (Subalgebra k K)} (hM : IsCompleteNormalModel k M) :
+    ∃ W : Set (Subalgebra k K), IsCompleteNormalModel k W ∧ ModelDominates W M ∧
+      ModelDominates W M ∧ ∀ V : ValuationSubring K,
+        HasRegularCenterOn V M ∨ HasRegularCenterOn V M → HasRegularCenterOn V W := sorry
+
+/-- `Singularity/Fidelity/Fundamental.lean`: `LU_n` implies `PILU_n` (Theorem 3.24.5, second half of the proof). -/
+theorem Fidelity.pilu_of_affineLocalUniformization {p n : ℕ} (hp : p.Prime)
+    (h : AffineLocalUniformizationInDim.{u} p n) :
+    PurelyInseparableLocalUniformizationInDim.{u} p n := sorry
+
+/-- `Singularity/Fidelity/Fundamental.lean`: local uniformization in transcendence degree `n` implies `PILU_n`. -/
+theorem Fidelity.pilu_of_localUniformization {p n : ℕ} (hp : p.Prime)
+    (h : LocalUniformizationInDim.{u} p n) : PurelyInseparableLocalUniformizationInDim.{u} p n :=
+  sorry
+
+/-- `Singularity/Fidelity/Fundamental.lean`: Theorem 3.24.4 implies one direction of Theorem 3.24.5. -/
+theorem Fidelity.pilu_fundamental_of_resolution
+    (h : resolution_iff_weakLocalUniformization_fundamental_four.{u}) {p : ℕ} (hp : p.Prime)
+    (hres : RegularModificationInDim.{u} p 4) :
+    PurelyInseparableLocalUniformizationInDim.{u} p 4 ∧ FundamentalTheoremInDim.{u} p 4 := sorry
+
+end Fundamental
+
+section Principalization
+
+/-- `Singularity/Fidelity/Principalization.lean`: the identity is a weak principalization of the unit ideal sheaf of a regular scheme. -/
+theorem Fidelity.isWeakPrincipalization_id_top {U : Scheme.{u}} (hU : IsRegularScheme U) :
+    IsWeakPrincipalization (⊤ : U.IdealSheafData) (𝟙 U) := sorry
+
+/-- `Singularity/Fidelity/Principalization.lean`: the zero ideal sheaf on a nonempty scheme has no very weak principalization. -/
+theorem Fidelity.not_isVeryWeakPrincipalization_bot {U W : Scheme.{u}} (σ : W ⟶ U) (u : U) :
+    ¬ IsVeryWeakPrincipalization (⊥ : U.IdealSheafData) σ := sorry
+
+/-- `Singularity/Fidelity/Principalization.lean`: `Princ_4^w` implies `Princ_4^vw`. -/
+theorem Fidelity.veryWeakPrincipalizationFour_of_weakPrincipalizationFour (k : Type u) [Field k]
+    (h : WeakPrincipalizationFour k) : VeryWeakPrincipalizationFour k := sorry
+
+/-- `Singularity/Fidelity/Principalization.lean`: the identity is an embedded resolution of the empty hypersurface with a boundary with simple normal crossings. -/
+theorem Fidelity.isBoundaryResolutionIso_id_top {Y : Scheme.{u}} (hY : IsRegularScheme Y)
+    {E : Y.IdealSheafData} (hE : IsSncDivisor E) :
+    IsBoundaryResolutionIso (⊤ : Y.IdealSheafData) E (𝟙 Y) ⊤ E := sorry
+
+/-- `Singularity/Fidelity/Principalization.lean`: `Emb_3^bd,iso` implies `Emb_3^bd`. -/
+theorem Fidelity.embeddedResolutionThreefoldBoundary_of_iso (k : Type u) [Field k]
+    (h : EmbeddedResolutionThreefoldBoundaryIso k) : EmbeddedResolutionThreefoldBoundary k := sorry
+
+end Principalization
 
 section LocalUniformizationCurves
 
