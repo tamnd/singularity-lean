@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.68 - 2026-11-28
+
 ### Added
 
 - `Singularity/Invariant/RestrictionMaximalContact.lean`: Volume 2, Proposition 2.1.7, Lemma 3.1.2 and Theorem 3.1.3 (2) of the handbook on affine space, Remark 3.2.12 for the tuned ideal, and chart steps of Theorem 2.3.3 and Lemma 3.3.3. Lemmas 3.3.2 and 3.3.4 and the statements for sequences of blowups are not in Lean.
