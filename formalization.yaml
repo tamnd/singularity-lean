@@ -2566,6 +2566,22 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Theorem 2.3.3 of the handbook, part 1 in one chart.'
+    - name: Singularity.regularLocus_compl_ne_univ
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Corollary 1.2.5 of the handbook, the step that the singular locus is not all of X.'
+    - name: Singularity.ringKrullDim_integralClosure_le
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Corollary 1.2.5 of the handbook, the dimension step of the normalization.'
+    - name: Singularity.not_moduleFinite_of_not_moduleFinite_integralClosure
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Remark 2.2.3 of the handbook, the affine step.'
+    - name: Singularity.HasRationalSingularities
+      kind: definition
+      status: proved
+      note: 'Volume 4, Definition 2.1.3 of the handbook, without the hypotheses of excellence.'
     - name: Singularity.tangentDerivations_X_eq_span
       kind: theorem
       status: proved
