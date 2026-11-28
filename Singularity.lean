@@ -166,6 +166,7 @@ import Singularity.Invariant.PlanarRunsHahn
 import Singularity.Invariant.PlanarRunsFiniteType
 import Singularity.Invariant.PlanarRunsAnyDegree
 import Singularity.Invariant.PlanarRunsFrobenius
+import Singularity.Invariant.PlanarRunsLambda
 import Singularity.Invariant.PlanarRunsRho
 import Singularity.Invariant.PlanarRunsDominance
 import Singularity.Invariant.OriginChartIota
