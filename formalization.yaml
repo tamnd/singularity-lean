@@ -1061,6 +1061,22 @@ status:
       kind: theorem
       status: proved
       note: Step 3 of the reduction of Cossart-Piltant, from the separable closure, with the explicit hypothesis LocalUniformizationInseparableStep that the library does not prove.
+    - name: Singularity.hasRegularCenter_of_isPurelyInseparable
+      kind: theorem
+      status: proved
+      note: Regular centres pass up a finite purely inseparable tower. The passage through one step of degree p is an explicit hypothesis (RegularCenterInseparableStep) that the library does not prove.
+    - name: Singularity.exists_intermediateField_hasRegularCenter_of_isPurelyInseparable
+      kind: theorem
+      status: proved
+      note: The Frobenius descent. A regular centre on a finite purely inseparable extension L of K gives a regular centre on a subfield of K that is isomorphic to L, over a perfect field.
+    - name: Singularity.HasRegularCenter.union_of_pow_mem
+      kind: theorem
+      status: proved
+      note: A regular centre takes in a finite set of elements whose powers lie in the model, because a regular local ring is integrally closed.
+    - name: Singularity.hasLocalUniformization_of_regularCenterInseparableStep
+      kind: theorem
+      status: proved
+      note: The theorem of Temkin and the step of degree p give local uniformization over a perfect field. The two inputs are explicit hypotheses (localUniformization_inseparable and RegularCenterInseparableStep) that the library does not prove. The step is open in transcendence degree 4.
     - name: Singularity.hasLocalUniformization_of_isGalois
       kind: theorem
       status: proved
