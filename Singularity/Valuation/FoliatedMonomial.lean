@@ -7,7 +7,7 @@ import Singularity.Valuation.WeakLogMonomialization
 /-!
 # Foliated monomial elements and the step of degree p
 
-Let `k` be a field of characteristic `p > 0`, and let `E` be an extension of `k`. The file `Singularity/Valuation/WeakLogMonomialization.lean` reduces the step of degree `p` to two hypotheses. The first hypothesis, weak log monomialization (`WeakLogMonomialization`), makes an element `f` monomial modulo `p`-th powers: `f = h ^ p + g ^ p * t` with `t` a unit times a monomial. This file replaces it by a weaker hypothesis. An element `f` of a local ring `R` with fraction field `E` is foliated monomial if `f` is in the subfield `E ^ p (t)` for an element `t ∈ R` of monomial type. The hypothesis `FoliatedLogMonomialization` asks for this weaker form. The field theory of this file shows that `E(f ^ (1 / p)) = E(t ^ (1 / p))`. So the monomial step for `t` gives the step of degree `p` for `f`. The text is in Definitions 2 and 3 and the Corollary after Theorem A of the note on the foliated criterion.
+Let `k` be a field of characteristic `p > 0`, and let `E` be an extension of `k`. The file `Singularity/Valuation/WeakLogMonomialization.lean` reduces the step of degree `p` to two hypotheses. The first hypothesis, weak log monomialization (`WeakLogMonomialization`), makes an element `f` monomial modulo `p`-th powers: `f = h ^ p + g ^ p * t` with `t` a unit times a monomial. This file replaces it by a weaker hypothesis. An element `f` of a local ring `R` with fraction field `E` is foliated monomial if `f` is in the subfield `E ^ p (t)` for an element `t ∈ R` of monomial type. The hypothesis `FoliatedLogMonomialization` asks for this weaker form. The field theory of this file shows that `E(f ^ (1 / p)) = E(t ^ (1 / p))`. So the monomial step for `t` gives the step of degree `p` for `f`. The text is in Volume 5, Chapter 4 of the handbook.
 
 ## Main definitions
 
@@ -33,13 +33,12 @@ For the step of degree `p`, choose `θ ∉ E` with `θ ^ p = f` in a model `A` a
 
 ## What is not proved
 
-`FoliatedLogMonomialization` and `MonomialInseparableStep` are hypotheses. The library does not prove them. Foliated log monomialization is weaker than weak log monomialization, but it is also open in transcendence degree 4. Theorem A of the note (a principal log Jacobian ideal gives a foliated monomial element) is not in Lean. The residual type of `IsMonomialType` has the same shape as in `IsMonomialModPow`: `t = u * ∏ x ∈ s, x ^ a x` with all `a x = 0`. In a regular local ring this is the same as "`t` is a unit with a class that is not a `p`-th power" (`IsMonomialType.of_isUnit` and `IsMonomialType.isUnit_of_residual`). This file does not prove local uniformization in dimension 4.
+`FoliatedLogMonomialization` and `MonomialInseparableStep` are hypotheses. The library does not prove them. Foliated log monomialization is weaker than weak log monomialization, but it is also open in transcendence degree 4. The log-Jacobian criterion (a principal log-Jacobian ideal gives a foliated monomial element) is not in Lean. The residual type of `IsMonomialType` has the same shape as in `IsMonomialModPow`: `t = u * ∏ x ∈ s, x ^ a x` with all `a x = 0`. In a regular local ring this is the same as "`t` is a unit with a class that is not a `p`-th power" (`IsMonomialType.of_isUnit` and `IsMonomialType.isUnit_of_residual`). This file does not prove local uniformization in dimension 4.
 
 ## References
 
 * [CP19] V. Cossart and O. Piltant, *Resolution of singularities of arithmetical threefolds*, J. Algebra 529 (2019).
 * [Tem13] M. Temkin, *Inseparable local uniformization*, J. Algebra 373 (2013).
-* The note on the foliated criterion, Definitions 2 and 3 and the Corollary after Theorem A.
 * Volume 5, Chapter 4 of the handbook.
 -/
 open IntermediateField Module Polynomial
