@@ -118,6 +118,7 @@ import Singularity.Invariant.MaximalContactSmall
 import Singularity.Invariant.LogJacobianEndCase
 import Singularity.Invariant.LogJacobianMonomial
 import Singularity.Invariant.LogJacobianFirstIntegral
+import Singularity.Invariant.LogJacobianCriterion
 import Singularity.Invariant.CossartPiltantOmega
 import Singularity.Invariant.CossartPiltantOmegaBounds
 import Singularity.Invariant.IotaIndexOrder
