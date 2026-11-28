@@ -46,6 +46,7 @@ import Singularity.Algebra.RegularLocusField
 import Singularity.Algebra.Normalization
 import Singularity.Algebra.NormalizationCharP
 import Singularity.Scheme.NormalDimOne
+import Singularity.Scheme.AffineDimension
 import Singularity.Algebra.NormalLocus
 import Singularity.Algebra.HilbertSamuel
 import Singularity.Algebra.FiniteDifference

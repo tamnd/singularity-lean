@@ -3877,6 +3877,14 @@ status:
       kind: theorem
       status: proved
       note: Volume 5, Lemma 1.4.2 of the handbook, the formula for the transcendence degree. If the residues of the y_i form a transcendence basis of the residue field over k, then trdeg of K over k(y) plus trdeg of the residue field is trdeg of K over k.
+    - name: Singularity.exists_ringKrullDim_eq_and_trdeg_eq
+      kind: theorem
+      status: proved
+      note: Map node SG0000002Y, the affine case. For a finitely generated domain A over a field k there is a natural number n with dim A = n and trdeg of A over k = n. The proof uses Noether normalization.
+    - name: Singularity.ringKrullDim_eq_toENat_trdeg
+      kind: theorem
+      status: proved
+      note: Map node SG0000002Y, the affine case. The Krull dimension of a finitely generated domain over a field is its transcendence degree.
     - name: Singularity.residueAdjoinHom
       kind: definition
       status: proved
