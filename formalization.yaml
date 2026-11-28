@@ -2098,6 +2098,18 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 4, Proposition 2.2.6 of the handbook, part 3 for the lengths.'
+    - name: Singularity.cubicCone_fermat_finrank
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.3.14 of the handbook, the degree of the exceptional curve.'
+    - name: Singularity.blowupCurve_finrank
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Lemma 3.1.7 of the handbook, part 3.'
+    - name: Singularity.Algebra.nodeBlowupQ_t₁_isRegular
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Proposition 2.4.3 of the handbook, the chart t1.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved
