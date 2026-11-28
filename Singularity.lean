@@ -48,6 +48,7 @@ import Singularity.Algebra.NormalLocus
 import Singularity.Algebra.HilbertSamuel
 import Singularity.Algebra.FiniteDifference
 import Singularity.Algebra.HilbertSerre
+import Singularity.Algebra.CompletionCores
 import Singularity.Algebra.Multiplicity
 import Singularity.Algebra.MultiplicityRegular
 import Singularity.Algebra.HypersurfaceMultiplicity
