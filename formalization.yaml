@@ -3313,6 +3313,26 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 3, Example 3.2.6 (2) of the handbook, the first step. If v(eta^n - eta) = 1 and n >= 2, then v(eta) = 1.'
+    - name: Singularity.exists_valuation_sub_pow_lt
+      kind: theorem
+      status: proved
+      note: "Volume 5, Chapter 4 of the handbook, the improvement lemma, in multiplicative notation. If the residue field is perfect and v(f - h^p) = v(a^p) with a nonzero, then v(f - h'^p) < v(f - h^p) for some h'."
+    - name: Singularity.valuation_sub_pow_ne_of_isLeast
+      kind: theorem
+      status: proved
+      note: "Volume 5, Chapter 4 of the handbook. If v(f - h^p) is the best approximation of f by p-th powers and f is not h^p, then v(f - h^p) is not in p times the value group."
+    - name: Singularity.valuation_sub_algebraMap_pow
+      kind: theorem
+      status: proved
+      note: "Volume 5, Chapter 4 of the handbook. If theta^p = f and w extends v, then w(theta - h)^p = v(f - h^p)."
+    - name: Singularity.valuation_sub_algebraMap_ne_of_isLeast
+      kind: theorem
+      status: proved
+      note: "Volume 5, Chapter 4 of the handbook. In the case of a best approximation h, the value w(theta - h) is not a value of v."
+    - name: Singularity.exists_valuation_sub_algebraMap_lt_of_not_exists
+      kind: theorem
+      status: proved
+      note: "Volume 5, Chapter 4 of the handbook. If the values v(f - h^p) have no best element, then theta has no best approximation in K. The file does not prove that K(theta)/K is immediate."
     - name: Singularity.rankOne_iff_mulArchimedean
       kind: theorem
       status: proved
@@ -4237,3 +4257,31 @@ status:
       kind: theorem
       status: proved
       note: 'The grading lemma. In a local ring, a principal ideal that is stable under all delta_l has a generator in some common eigenspace.'
+    - name: Singularity.eval_sub_eval_eq_sum_hasseDeriv
+      kind: theorem
+      status: proved
+      note: The Taylor formula f(x) - f(c) = sum over 1 <= k <= n of f_k(c) (x - c)^k, with f_k the k-th Hasse derivative and n >= deg f.
+    - name: Singularity.valuation_eval_sub_eval_le
+      kind: theorem
+      status: proved
+      note: Volume 5, Lemma 4.5.9, part 2, the inequality, with a multiplicative valuation. If v(f_k(c)) * v(x - c)^k <= g for each 1 <= k <= deg f, then v(f(x) - f(c)) <= g.
+    - name: Singularity.valuation_eval_sub_eval_eq_of_dominant
+      kind: theorem
+      status: proved
+      note: Volume 5, Lemma 4.5.9, part 2, the equality at one point. If the term of index k_* of the Taylor sum has a value strictly larger than each other term of index 1 <= k <= deg f, then v(f(x) - f(c)) is the value of this term. The finiteness of the exceptional set E_h is not proved.
+    - name: Singularity.valuation_eval_eq_of_constant_dominant
+      kind: theorem
+      status: proved
+      note: A dominant constant term. If v(f_j(c)) * v(x - c)^j < v(f(c)) for each 1 <= j <= deg f, then v(f(x)) = v(f(c)).
+    - name: Singularity.valuation_eval_hasseDeriv_eq_of_lt
+      kind: theorem
+      status: proved
+      note: The stability of the Taylor coefficients, the elementary part of Volume 5, Lemma 4.5.9. If v(f_(j+k)(c)) * v(c' - c)^j < v(f_k(c)) for each 1 <= j <= deg f - k, then v(f_k(c')) = v(f_k(c)). Part 1 of Lemma 4.5.9 is not proved.
+    - name: Singularity.valuation_eval_hasseDeriv_eq_of_choose_lt
+      kind: theorem
+      status: proved
+      note: The stability of the Taylor coefficients with the Taylor coefficients C(j + k, j) f_(j+k)(c) of f_k at c.
+    - name: Singularity.exists_dominant_index_window
+      kind: theorem
+      status: proved
+      note: Volume 5, Lemma 4.5.11, the window, for real numbers phi_k and Lambda. The statement that k_* is a power of p (Lemma 4.5.10) is not proved, and the real numbers are not connected to a valuation.
