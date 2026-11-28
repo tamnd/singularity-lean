@@ -2346,6 +2346,86 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 4, Lemma 2.3.9 of the handbook, part 2.'
+    - name: Singularity.length_quotient_smul_eq_of_finiteLength
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Lemma 1.2.3 of the handbook, the first half.'
+    - name: Singularity.sum_mul_min_eq_of_branches
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Lemma 1.2.4 of the handbook, the count.'
+    - name: Singularity.noether_inequality_of_branches
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Proposition 1.2.5 of the handbook, with the branch formulas as hypotheses.'
+    - name: Singularity.valuation_eq_one_of_isAlgebraic
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Corollary 1.3.6 of the handbook, a step.'
+    - name: Singularity.Perron.transpose_runMatrix_eq_prod
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Proposition 2.3.10 of the handbook, part 3.'
+    - name: Singularity.not_mem_of_isSeparable_of_pow_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Example 3.2.1 of the handbook, a step.'
+    - name: Singularity.isHomeomorph_comap_integralClosure
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Proposition 4.2.1 of the handbook, the homeomorphism.'
+    - name: Singularity.surface_relation_mem_sq
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Example 4.2.2 of the handbook, a step of part 4.'
+    - name: Singularity.valuationSubring_ratFunc_trichotomy
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 1.5.6 of the handbook, the valuation rings of k(x).'
+    - name: Singularity.centerIdeal_idealX_and_ofPrime_eq
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 1.4.5 of the handbook, the algebraic part.'
+    - name: Singularity.isLeast_delta_one_lexValueX
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 2.4.5 of the handbook, the convex subgroup.'
+    - name: Singularity.add_trdeg_eq_dim_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Corollary 2.3.4 of the handbook, the algebraic part.'
+    - name: Singularity.mul_eq_of_eq_pow_mul
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Corollary 3.2.2 of the handbook, with Theorem 3.1.4 as a hypothesis.'
+    - name: Singularity.exists_forall_valuation_sub_le_of_eq_pow_mul
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Corollary 4.2.3 of the handbook, with the families as hypotheses.'
+    - name: Singularity.mem_varsIdeal_pow_of_le_ordAtPoint
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Proposition 2.1.7 of the handbook, on affine space.'
+    - name: Singularity.hyperplaneRestrict_comp_chartSubst
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Lemma 3.1.2 of the handbook, part 1.'
+    - name: Singularity.map_hyperplaneRestrict_centerChartTransformIdeal
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Lemma 3.1.2 of the handbook, part 2.'
+    - name: Singularity.le_idealOrd_iff_restrict_derivIdeal_iterate
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Theorem 3.1.3 of the handbook, part 2 at the origin.'
+    - name: Singularity.le_idealOrd_iff_le_idealOrd_tuningIdeal
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Remark 3.2.12 of the handbook, the tuned ideal.'
+    - name: Singularity.X_mem_centerChartTransformIdeal_one
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Theorem 2.3.3 of the handbook, part 1 in one chart.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved

@@ -139,6 +139,7 @@ import Singularity.Invariant.DerivativeOrder
 import Singularity.Invariant.CoefficientIdealOrder
 import Singularity.Invariant.CoefficientIdealTransform
 import Singularity.Invariant.MarkedTransform
+import Singularity.Invariant.RestrictionMaximalContact
 import Singularity.Invariant.AutomorphismNearIdentity
 import Singularity.Invariant.FibonacciOrder
 import Singularity.Invariant.LogJacobianCurveRuns
@@ -183,6 +184,7 @@ import Singularity.Valuation.CenterExists
 import Singularity.Valuation.CenterMap
 import Singularity.Valuation.ZariskiRiemannCover
 import Singularity.Valuation.DefectlessDistance
+import Singularity.Valuation.RatFuncPlaces
 import Singularity.Valuation.KeyPolynomials
 import Singularity.Valuation.Augmentation
 import Singularity.Valuation.MacLaneStep
@@ -202,6 +204,7 @@ import Singularity.Valuation.PerronStep
 import Singularity.Valuation.PerronAlgorithm
 import Singularity.Valuation.PerronCoordinates
 import Singularity.Valuation.PerronMatrix
+import Singularity.Valuation.UniformizationCores
 import Singularity.Valuation.PerronMonomial
 import Singularity.Valuation.MonomialValuationConstruction
 import Singularity.Valuation.LexMonomialValuation
