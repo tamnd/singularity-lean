@@ -191,6 +191,8 @@ import Singularity.Valuation.LatticeLemma
 import Singularity.Valuation.LatticeLemmaOrdered
 import Singularity.Valuation.LocalUniformizationMonomial
 import Singularity.Valuation.MonomialGroundField
+import Singularity.Valuation.PerronStep
+import Singularity.Valuation.PerronAlgorithm
 import Singularity.Valuation.MonomialValuationConstruction
 import Singularity.Valuation.LexMonomialValuation
 import Singularity.Valuation.MonomialNegativeWeights
