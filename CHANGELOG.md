@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.69 - 2026-11-28
+
 ### Added
 
 - `Singularity/Alteration/AlgebraicCores.lean`: Volume 8 of the handbook, the field theory and the linear algebra of Propositions 1.2.3, 1.3.4, 1.3.6, 1.3.8, 2.2.6, 3.1.7 and 3.2.3, Lemmas 2.2.9 and 2.4.1, Example 2.2.3 and Corollary 3.2.5. No statement on schemes, sheaves or cohomology is proved.
