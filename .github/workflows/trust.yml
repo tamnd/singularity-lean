@@ -6,6 +6,8 @@ name: trust
 #
 # The job nanoda exports the declarations of the package Singularity with leanexport, together with all the declarations that they use, Mathlib included. nanoda, a type checker for Lean written in Rust, then checks the export. nanoda is built from a pinned commit of ammkrn/nanoda_lib. This is also check Q3.
 #
+# The job nanoda-base does the same for the package SingularityBase. It exports the declarations of the modules of SingularityBase, together with all the declarations that they use: the theorems of resolutionorg/hironaka, the declarations of Singularity and Mathlib. nanoda then checks the export. This is check Q3 for the base package.
+#
 # The job comparator runs `lake comparator --paranoid` with comparator.json. The challenge comparator/Challenge.lean states the proved theorems again from the files of Singularity/Statements/. The comparator checks that the theorems of the package have the same statements, use only propext, Quot.sound and Classical.choice, and are accepted by the kernel of Lean and by the checkers that the toolchain bundles: leanchecker-paranoid, lean4lean, nanoda, con-leche and con-ron. The comparator builds and exports the code in a bwrap sandbox. This is check Q4 of spec 14, and the second part of Q3. The job base runs the same check for the base package, with base/comparator.json.
 on:
   schedule:
@@ -163,6 +165,80 @@ jobs:
           lake env lean --run scripts/Decls.lean Singularity > "$RUNNER_TEMP/decls.txt"
           mapfile -t decls < "$RUNNER_TEMP/decls.txt"
           lake env leanexport Singularity -- "${decls[@]}" > "$RUNNER_TEMP/export.ndjson"
+          echo "the export has $(wc -l < "$RUNNER_TEMP/export.ndjson") lines and $(du -h "$RUNNER_TEMP/export.ndjson" | cut -f1)"
+          echo "the export took $(( $(date +%s) - start )) s"
+      - name: check
+        run: |
+          cat > "$RUNNER_TEMP/nanoda.json" <<EOF
+          {
+            "export_file_path": "$RUNNER_TEMP/export.ndjson",
+            "use_stdin": false,
+            "num_threads": 4,
+            "permitted_axioms": ["propext", "Classical.choice", "Quot.sound"],
+            "unpermitted_axiom_hard_error": true,
+            "nat_extension": true,
+            "string_extension": true,
+            "print_axioms": true,
+            "pp_to_stdout": true,
+            "print_success_message": true
+          }
+          EOF
+          start=$(date +%s)
+          "$RUNNER_TEMP/nanoda_lib/target/release/nanoda_bin" "$RUNNER_TEMP/nanoda.json"
+          echo "the check took $(( $(date +%s) - start )) s"
+
+  nanoda-base:
+    name: nanoda on the export of SingularityBase
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    defaults:
+      run:
+        working-directory: base
+    env:
+      # The same commit as in the job nanoda.
+      NANODA_REV: 0da9f98feadd3a0a2ef4b3dbcf52a298a6fef929
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o elan-init.sh
+          sh elan-init.sh -y --default-toolchain none
+          rm elan-init.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: get the Mathlib cache
+        run: lake exe cache get
+      - name: read the pin of the base
+        id: pin
+        run: |
+          rev=$(grep -A3 'name = "hironaka"' lakefile.toml | sed -n 's/^rev = "\(.*\)"/\1/p')
+          echo "rev=$rev" >> "$GITHUB_OUTPUT"
+          mods=$(grep -h '^import Hironaka' SingularityBase/*.lean | sort -u | sha256sum | cut -c1-16)
+          echo "mods=$mods" >> "$GITHUB_OUTPUT"
+      - name: restore the build of the base
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: base/.lake/packages/hironaka/.lake/build
+          key: hironaka-${{ steps.pin.outputs.rev }}-${{ hashFiles('lean-toolchain') }}-${{ steps.pin.outputs.mods }}
+          restore-keys: hironaka-${{ steps.pin.outputs.rev }}-${{ hashFiles('lean-toolchain') }}
+      - name: build
+        run: |
+          mapfile -t mods < <(grep -h '^import Hironaka' SingularityBase/*.lean | sed 's/^import //' | sort -u)
+          lake build "${mods[@]}"
+          lake build SingularityBase
+      - name: build nanoda
+        run: |
+          git clone -q https://github.com/ammkrn/nanoda_lib "$RUNNER_TEMP/nanoda_lib"
+          git -C "$RUNNER_TEMP/nanoda_lib" checkout -q "$NANODA_REV"
+          cd "$RUNNER_TEMP/nanoda_lib"
+          cargo build --release --locked
+      - name: export
+        run: |
+          start=$(date +%s)
+          lake env lean --run ../scripts/Decls.lean SingularityBase > "$RUNNER_TEMP/decls.txt"
+          mapfile -t decls < "$RUNNER_TEMP/decls.txt"
+          lake env leanexport SingularityBase -- "${decls[@]}" > "$RUNNER_TEMP/export.ndjson"
           echo "the export has $(wc -l < "$RUNNER_TEMP/export.ndjson") lines and $(du -h "$RUNNER_TEMP/export.ndjson" | cut -f1)"
           echo "the export took $(( $(date +%s) - start )) s"
       - name: check
