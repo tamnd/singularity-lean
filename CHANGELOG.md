@@ -15,6 +15,10 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 - `Singularity/Invariant/PlanarRunsAnyDegree.lean`: Volume 7, Theorem 3.18.26 of the handbook in the abstract setting, Steps 1 and 2. For `k_i ≠ 0`, with `p^e` the exact power of `p` in `k_i`, the binomial coefficient `C(k_i, p^e)` is prime to `p` (Lucas), and `∂^{k - p^e e_i} ∂^{p^e e_i} f = C(k_i, p^e) ∂^k f`. With the tail condition `IsFrobTail`, which has the Frobenius powers `Δ_{m, i}^{p^e}` in place of `Δ_{m, i}`, Statement D holds for each nonzero `f`, with no condition on the degrees (`statementD_frob`).
 - `Singularity/Invariant/PlanarRunsFrobenius.lean`: Volume 7, Lemmas 3.18.23, 3.18.24 and 3.18.25 and Theorem 3.18.26 of the handbook for the planar corner runs of the Hahn model, with `θ` irrational and `k` perfect of characteristic `p`. The exponents of `y_m` and `z_m` have determinant `1` (`det_expY_expZ`), so `p` does not divide `U_m` (`not_dvd_expU`). The equation `p^e M_{j+1} = d + p^{e'} M_{j'+1}` with `(e, d) ≠ (e', 0)` has solutions for only a finite number of `j` (`finite_smul_expM_eq`). On a planar run, `v(c + Σ_{i, e} α_{i, e} Δ_{m, i}^{p^e}) < min_{i, e} (v(α_{i, e}) + p^e (1 + θ))` (`hahnVal_add_sum_mul_tail_pow_lt`). This gives `IsFrobTail` (`isFrobTail_corner`) and Statement D for each nonzero polynomial over `𝔽` (`statementDHolds_corner_frob`). In `conjectureP_planarRun_perfect`, Theorem 3.19.6 (Conjecture P) for the planar corner runs over a perfect field, the hypothesis on Theorem 3.18.26 is removed. Theorem 3.18.32, part 1, and Corollary 3.18.33 for the run from each `P_m` stay hypotheses.
 
+### Fixed
+
+- `Singularity/Valuation/UniformizationCorollaries.lean`: the section on surfaces now puts `k` and `K` in one universe, as Volume 3, Proposition 4.1.8 needs. Without this the build failed.
+
 ## 0.4.68 - 2026-11-28
 
 ### Added

@@ -314,7 +314,7 @@ end Abhyankar
 
 section Surfaces
 
-variable {k K : Type*} [Field k] [Field K] [Algebra k K]
+variable {k K : Type u} [Field k] [Field K] [Algebra k K]
 
 /-- **Volume 5, Proposition 3.1.2, for valuations with a transcendental residue.** Let `K/k` be a
 function field of transcendence degree 2, and let `V` be a valuation of `K/k` whose residue field
