@@ -111,6 +111,7 @@ import Singularity.Invariant.FrobeniusNewtonCriterion
 import Singularity.Invariant.LogJacobianBlowup
 import Singularity.Invariant.LogJacobianNonincrease
 import Singularity.Invariant.LogJacobianCenter
+import Singularity.Invariant.LogJacobianTransformationLaw
 import Singularity.Invariant.LogDerivations
 import Singularity.Invariant.ToricStepCores
 import Singularity.Invariant.LogJacobianCenterNonincrease
