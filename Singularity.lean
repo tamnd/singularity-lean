@@ -271,6 +271,7 @@ import Singularity.Algebra.DifferentialOperator
 import Singularity.Surface.AChainChart
 import Singularity.Surface.AnBlowupChart
 import Singularity.Surface.WhitneyUmbrella
+import Singularity.Surface.BlowupRationalCore
 import Singularity.Surface.IdealChart
 import Singularity.Surface.IdealChartUniversal
 import Singularity.Surface.LipmanRational
