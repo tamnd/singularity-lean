@@ -11,6 +11,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 - `Singularity/Invariant/RestrictionMaximalContact.lean`: Volume 2, Proposition 2.1.7, Lemma 3.1.2 and Theorem 3.1.3 (2) of the handbook on affine space, Remark 3.2.12 for the tuned ideal, and chart steps of Theorem 2.3.3 and Lemma 3.3.3. Lemmas 3.3.2 and 3.3.4 and the statements for sequences of blowups are not in Lean.
 - `Singularity/Valuation/RatFuncPlaces.lean`: Volume 3, Examples 1.4.5, 1.5.6 and 2.4.5 and Corollaries 2.3.4, 3.2.2 and 4.2.3 of the handbook, the algebraic parts. Theorems 2.3.3 and 3.1.4 are not in Lean.
 - `Singularity/Valuation/UniformizationCores.lean`: Volume 5, Lemmas 1.2.3 and 1.2.4, Propositions 1.2.5, 2.3.10 and 4.2.1, Corollary 1.3.6 and Examples 3.2.1 and 4.2.2 of the handbook, the algebraic and numerical cores. Theorem 1.3.5 and the geometric parts are not in Lean.
+- `Singularity/Valuation/MonomialEndCases.lean`: Proposition E of Volume 5, Chapter 4 of the handbook, and two end cases of the monomial step. Let $z^p = y$ with $y$ in the regular local ring $R$ at the centre. If the class of $y$ is not a $p$-th power in the residue field, or if $y \in \mathfrak{m} \setminus \mathfrak{m}^2$, then the regular centre passes up to $E(z)$. This gives the monomial step for a form of the residual type, and for a form of the ramified type where the monomial is one regular parameter. The theorems are not joined to `MonomialInseparableStep`. The normal form and the toric case are not in Lean.
 
 ## 0.4.67 - 2026-11-28
 

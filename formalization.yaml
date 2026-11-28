@@ -1121,6 +1121,30 @@ status:
       kind: theorem
       status: proved
       note: The theorem of Temkin, weak log monomialization along a valuation and the monomial step give local uniformization over a perfect field. The three inputs are explicit hypotheses that the library does not prove. Weak log monomialization is open in transcendence degree 4.
+    - name: Singularity.hasRegularCenter_insert_of_rootHom
+      kind: theorem
+      status: proved
+      note: The general form of Proposition E of Volume 5, Chapter 4 of the handbook. If R[X] / (X ^ p - y) is a regular local ring and its maximal ideal maps to elements whose value is not 1, then W has a regular centre on a model that contains z, where z ^ p = y.
+    - name: Singularity.hasRegularCenter_insert_of_forall_pow_ne
+      kind: theorem
+      status: proved
+      note: Proposition E, case (i). Let E'/E have prime degree p, let T_A be regular and let z ^ p = y with z not in E. If the class of y is not a p-th power in the residue field, then W has a regular centre on a model that contains z.
+    - name: Singularity.hasRegularCenter_insert_of_mem_maximalIdeal
+      kind: theorem
+      status: proved
+      note: Proposition E, case (ii). Let E'/E have prime degree p, let T_A be regular and let z ^ p = y with z not in E. If y is in the maximal ideal and not in its square, then W has a regular centre on a model that contains z.
+    - name: Singularity.exists_pow_eq_of_eq_add
+      kind: theorem
+      status: proved
+      note: If theta ^ p = h ^ p + g ^ p * y with g not zero and theta not in E, then z = (theta - h) / g is not in E and z ^ p = y.
+    - name: Singularity.hasRegularCenter_of_eq_add_unit
+      kind: theorem
+      status: proved
+      note: The monomial step for a form of the residual type, where the class of the unit is not a p-th power in the residue field. The theorem is not yet joined to MonomialInseparableStep.
+    - name: Singularity.hasRegularCenter_of_eq_add_parameter
+      kind: theorem
+      status: proved
+      note: The monomial step for a form of the ramified type where the monomial is one regular parameter. The normal form and the toric case of the monomial step are not proved.
     - name: Singularity.hasLocalUniformization_of_isGalois
       kind: theorem
       status: proved
