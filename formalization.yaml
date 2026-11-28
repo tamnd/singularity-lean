@@ -177,6 +177,18 @@ status:
       kind: theorem
       status: proved
       note: In a finite set of exponents, the monomial of least value divides the others after one valid run, so a monomial ideal becomes principal (Volume 5, Section 2.3 of the handbook).
+    - name: Singularity.Perron.runHom_monomial
+      kind: theorem
+      status: proved
+      note: A run of the Perron algorithm acts on polynomials by a substitution, and it maps the monomial with the exponent d to the monomial with the exponent after the run (Volume 5, Section 2.3 of the handbook).
+    - name: Singularity.Perron.exists_isValidRun_runHom_eq_monomial_mul_coeff
+      kind: theorem
+      status: proved
+      note: After a valid run, a nonzero polynomial is the transform of its monomial of least value times a polynomial whose constant coefficient is the coefficient of that monomial (Volume 5, Section 2.3 of the handbook).
+    - name: Singularity.Perron.exists_isValidRun_forall_runHom_eq_monomial_mul
+      kind: theorem
+      status: proved
+      note: One valid run makes each polynomial of a finite set a monomial times a polynomial with a nonzero constant coefficient (Volume 5, Section 2.3 of the handbook).
     - name: Singularity.latticeLemma
       kind: theorem
       status: proved
