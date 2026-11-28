@@ -162,6 +162,7 @@ import Singularity.Invariant.PlanarRunsHahn
 import Singularity.Invariant.PlanarRunsFiniteType
 import Singularity.Invariant.PlanarRunsAnyDegree
 import Singularity.Invariant.PlanarRunsFrobenius
+import Singularity.Invariant.PlanarRunsRho
 import Singularity.Invariant.OriginChartIota
 import Singularity.Example.HauserPerlega
 import Singularity.Example.HauserPerlegaCycle
