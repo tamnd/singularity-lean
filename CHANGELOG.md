@@ -4,6 +4,8 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ## Unreleased
 
+## 0.4.67 - 2026-11-28
+
 ### Added
 
 - `Singularity/Surface/BlowupRationalCore.lean`: Volume 4, Definitions 1.1.1, 1.1.4 and 1.2.1, Example 2.2.4 and Lemma 2.3.9 (2) of the handbook, and the ring theoretic steps of Lemmas 2.1.5, 2.1.8 and 2.2.5. Nothing is proved on schemes, and the cohomology is not in Lean.
