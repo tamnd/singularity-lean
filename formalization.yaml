@@ -2566,6 +2566,34 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 2, Theorem 2.3.3 of the handbook, part 1 in one chart.'
+    - name: Singularity.tangentDerivations_X_eq_span
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Lemma 4.4.3 of the handbook, part 1 in the polynomial model.'
+    - name: Singularity.derivationIdeal_tangentDerivations_X
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Lemma 4.4.3 of the handbook, part 4 in the polynomial model.'
+    - name: Singularity.derivationIdeal_add_pow
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Lemma 4.4.4 of the handbook, part 1.'
+    - name: Singularity.logJacobian_eq_bot_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Lemma 4.4.4 of the handbook, part 2 in the polynomial model over a perfect field.'
+    - name: Singularity.logJacobian_eq_span_of_monomial
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Proposition 4.4.15 of the handbook, part 1 in the polynomial model with the unit 1.'
+    - name: Singularity.derivationIdeal_center
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Lemma 4.4.18 of the handbook, part 1 in the polynomial model.'
+    - name: Singularity.logJacobianCenter_of_subset
+      kind: theorem
+      status: proved
+      note: 'Volume 5, Corollary 4.4.19 of the handbook, the first claim of part 2 in the polynomial model.'
     - name: Singularity.isDomain_node_polynomialModel
       kind: theorem
       status: proved
