@@ -1145,6 +1145,66 @@ status:
       kind: theorem
       status: proved
       note: The monomial step for a form of the ramified type where the monomial is one regular parameter. The normal form and the toric case of the monomial step are not proved.
+    - name: Singularity.exists_units_pow_mul_pow_eq
+      kind: theorem
+      status: proved
+      note: If p and m are coprime, then each unit u of a commutative monoid is v ^ m * w ^ p for units v and w.
+    - name: Singularity.IsUnit.exists_pow_mul_pow_eq
+      kind: theorem
+      status: proved
+      note: The same statement for an element u with IsUnit u.
+    - name: Singularity.changeParam_apply
+      kind: theorem
+      status: proved
+      note: The member of changeParam x i v at j is e * x j, with e = v at i and e = 1 at the other indices.
+    - name: Singularity.prod_changeParam_pow
+      kind: theorem
+      status: proved
+      note: The monomial in the new parameters is v ^ (a i) times the monomial in the old parameters.
+    - name: Singularity.mul_prod_eq_pow_mul_prod_changeParam
+      kind: theorem
+      status: proved
+      note: If u = v ^ (a i) * w ^ p, then u * x ^ a = w ^ p * x' ^ a.
+    - name: Singularity.span_range_changeParam
+      kind: theorem
+      status: proved
+      note: If v is a unit, then the family x' generates the same ideal as x.
+    - name: Singularity.IsRegularSystemOfParameters.of_span_eq_of_card_le
+      kind: theorem
+      status: proved
+      note: In a Noetherian local ring, a finite set that generates the same ideal as a regular system of parameters and has at most as many elements is a regular system of parameters.
+    - name: Singularity.IsRegularSystemOfParameters.image_changeParam
+      kind: theorem
+      status: proved
+      note: In a Noetherian local ring, if the image of an injective family x is a regular system of parameters, then the image of x' is one.
+    - name: Singularity.exists_eq_add_pow_mul_prod_changeParam
+      kind: theorem
+      status: proved
+      note: Volume 5, Lemma 4.3.7 of the handbook, part 2. If f = h ^ p + u * x ^ a with u a unit and p coprime to a i, then f = h ^ p + w ^ p * x' ^ a with x'_i = v x_i, and x' generates the same ideal as x.
+    - name: Singularity.div_pow_eq_of_eq_add
+      kind: theorem
+      status: proved
+      note: In characteristic p, if f = h ^ p + w ^ p * y with w a unit and z ^ p = f, then ((z - h) / w) ^ p = y.
+    - name: Singularity.adjoin_simple_eq_adjoin_simple_div
+      kind: theorem
+      status: proved
+      note: If w is a unit, then E(z) = E((z - h) / w).
+    - name: Singularity.exists_normalForm_adjoin_eq
+      kind: theorem
+      status: proved
+      note: Volume 5, Lemma 4.3.7 of the handbook, part 2, with the field statement. The normal form holds, and z' = (z - h) / w has z' ^ p = x' ^ a and E(z) = E(z').
+    - name: Singularity.exists_eq_add_prod_of_mem
+      kind: theorem
+      status: proved
+      note: In a Noetherian local ring, a form h ^ p + g ^ p * (u * prod of x ^ a x) over a regular system of parameters, with p prime not dividing a x_0, becomes a form with the unit 1 over a new regular system of parameters.
+    - name: Singularity.IsMonomialModPow.exists_eq_add_prod_or
+      kind: theorem
+      status: proved
+      note: In a Noetherian local ring, an element that is monomial modulo p-th powers has a form of the ramified type with the unit 1 or a form of the residual type.
+    - name: Singularity.isMonomialModPow_of_eq_add_prod
+      kind: theorem
+      status: proved
+      note: A form of the ramified type with the unit 1 is monomial modulo p-th powers.
     - name: Singularity.FoliatedLogMonomialization
       kind: statement
       status: open
