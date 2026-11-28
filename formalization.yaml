@@ -1532,6 +1532,38 @@ status:
       kind: theorem
       status: proved
       note: Theorem 4.4.16 of Volume 5, Chapter 4 of the handbook, Case 2 (transversal), for the local ring of affine space at the origin with the partial derivatives that extend pderiv.
+    - name: Singularity.exists_eq_sum_pow_of_mul_eq_mul
+      kind: theorem
+      status: proved
+      note: Lemma 4.4.5 of Volume 5, Chapter 4 of the handbook, direction 3 to 2, in coordinates. In a field E of characteristic p with coordinates x_j and dual derivations D_j that determine each derivation, and whose common constants are p-th powers, if D_j0 t is not 0 and D_j f * D_j0 t = D_j t * D_j0 f for each j, then f is a sum over i < p of c_i ^ p * t ^ i.
+    - name: Singularity.exists_eq_sum_pow_of_forall_derivation
+      kind: theorem
+      status: proved
+      note: Lemma 4.4.5 of Volume 5, Chapter 4 of the handbook, in coordinates. If each derivation of the field that kills t kills f, then f is a sum over i < p of c_i ^ p * t ^ i.
+    - name: Singularity.exists_eq_sum_pow_of_first_integral
+      kind: theorem
+      status: proved
+      note: The passage from R to a field E that contains R in Theorem 4.4.16 of Volume 5, Chapter 4 of the handbook. If each log derivation of R that kills f kills t and D_j0 t is not 0, then f is a sum over i < p of c_i ^ p * t ^ i in E. The extension of the D_j to E and the two properties of E are hypotheses.
+    - name: Singularity.isMonomialType_of_prod
+      kind: theorem
+      status: proved
+      note: A unit times a product of the parameters of a regular system of parameters has monomial type (Definition 4.4.6 of Volume 5, Chapter 4 of the handbook, ramified type) if p does not divide one exponent.
+    - name: Singularity.isMonomialType_contact
+      kind: theorem
+      status: proved
+      note: In Case 2 of Theorem 4.4.16 of Volume 5, Chapter 4 of the handbook, if zeta is in the maximal ideal and D_j0 zeta is a unit, then zeta replaces x_j0 in the regular system of parameters, and zeta * prod over Delta of x_i ^ a_i has the ramified type.
+    - name: Singularity.isFoliatedMonomial_of_derivLogJacobian_eq_span_ramified
+      kind: theorem
+      status: proved
+      note: Theorem 4.4.16 of Volume 5, Chapter 4 of the handbook, Case 1, with the conclusion that f is foliated monomial. The hypotheses on the field E are not proved, and all coordinates are parameters.
+    - name: Singularity.isFoliatedMonomial_of_derivLogJacobian_eq_span_transversal
+      kind: theorem
+      status: proved
+      note: Theorem 4.4.16 of Volume 5, Chapter 4 of the handbook, Case 2, with the conclusion that f is foliated monomial. It includes Steps 10 and 11 of the proof (zeta - e ^ p). The hypotheses on the field E are not proved, and all coordinates are parameters.
+    - name: Singularity.isFoliatedMonomial_of_derivLogJacobian_eq_span
+      kind: theorem
+      status: proved
+      note: Theorem 4.4.16 of Volume 5, Chapter 4 of the handbook. If the log-Jacobian ideal of f is principal with a generator not 0, then f is foliated monomial. The extension of the derivations to E and the two properties of E are hypotheses, and all coordinates are parameters. The existence of a model with a principal log-Jacobian ideal in dimension 4 is open.
     - name: Singularity.cpOmega_of_exists
       kind: theorem
       status: proved

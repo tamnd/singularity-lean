@@ -123,6 +123,7 @@ import Singularity.Invariant.LogJacobianMonomial
 import Singularity.Invariant.LogJacobianFirstIntegral
 import Singularity.Invariant.LogJacobianCriterion
 import Singularity.Invariant.LogJacobianCriterionTransversal
+import Singularity.Invariant.LogJacobianCriterionField
 import Singularity.Invariant.CossartPiltantOmega
 import Singularity.Invariant.CossartPiltantOmegaBounds
 import Singularity.Invariant.IotaIndexOrder
