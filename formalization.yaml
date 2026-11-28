@@ -189,6 +189,26 @@ status:
       kind: theorem
       status: proved
       note: One valid run makes each polynomial of a finite set a monomial times a polynomial with a nonzero constant coefficient (Volume 5, Section 2.3 of the handbook).
+    - name: Singularity.Perron.runMatrix_mulVec
+      kind: theorem
+      status: proved
+      note: The matrix of a run of the Perron algorithm acts on exponents as the run (Volume 5, Proposition 2.3.10 of the handbook).
+    - name: Singularity.Perron.det_runMatrix
+      kind: theorem
+      status: proved
+      note: The matrix of a valid run has determinant 1. Its entries are nonnegative by runMatrix_nonneg (Volume 5, Proposition 2.3.10 of the handbook).
+    - name: Singularity.Perron.latticeLemma_real_of_pos_of_perron
+      kind: theorem
+      status: proved
+      note: The lattice lemma for positive real weights from the Perron algorithm, with a matrix C that has nonnegative entries (Volume 5, Proposition 2.3.10 of the handbook).
+    - name: Singularity.Perron.laurentMonomial_runCoord_runExp
+      kind: theorem
+      status: proved
+      note: A run of the Perron algorithm does not change the Laurent monomials, when the coordinates and the exponents change together (Volume 5, Corollary 2.3.11 of the handbook).
+    - name: Singularity.Perron.exists_isValidRun_forall_mem_adjoin_runCoord
+      kind: theorem
+      status: proved
+      note: The algebraic part of Volume 5, Corollary 2.3.11 of the handbook. For a monomial valuation with positive weights, a finite subset of the valuation ring lies in the local ring of one chart of a valid run. The blowups as schemes are not in Lean.
     - name: Singularity.latticeLemma
       kind: theorem
       status: proved

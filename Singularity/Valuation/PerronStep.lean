@@ -207,6 +207,17 @@ theorem isValidRun_append (w : ι → ℝ) (l₁ l₂ : List (ι × ι)) :
     simp only [List.cons_append, IsValidRun, runWeight, ih]
     tauto
 
+/-- **A valid run has distinct indices in each step.** -/
+theorem fst_ne_snd_of_isValidRun {w : ι → ℝ} {l : List (ι × ι)} (hl : IsValidRun w l) :
+    ∀ s ∈ l, s.1 ≠ s.2 := by
+  induction l generalizing w with
+  | nil => simp
+  | cons s l ih =>
+    intro t ht
+    rcases List.mem_cons.mp ht with rfl | ht
+    · exact fst_ne_snd_of_lt hl.1
+    · exact ih hl.2 t ht
+
 /-- **A valid run does not change the value** (Volume 5, Section 2.3 of the handbook). -/
 theorem sum_runExp_mul_runWeight [Fintype ι] {w : ι → ℝ} {l : List (ι × ι)} (hl : IsValidRun w l)
     (D : ι → ℤ) : ∑ i, (runExp l D i : ℝ) * runWeight w l i = ∑ i, (D i : ℝ) * w i := by

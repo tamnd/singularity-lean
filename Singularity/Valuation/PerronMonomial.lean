@@ -120,17 +120,6 @@ theorem runExpNat_injective {l : List (ι × ι)} (hl : ∀ s ∈ l, s.1 ≠ s.2
     exact (ih fun t ht => hl t (List.mem_cons_of_mem s ht)).comp
       (stepExpNat_injective (hl s List.mem_cons_self))
 
-/-- **A valid run has distinct indices in each step.** -/
-theorem fst_ne_snd_of_isValidRun {w : ι → ℝ} {l : List (ι × ι)} (hl : IsValidRun w l) :
-    ∀ s ∈ l, s.1 ≠ s.2 := by
-  induction l generalizing w with
-  | nil => simp
-  | cons s l ih =>
-    intro t ht
-    rcases List.mem_cons.mp ht with rfl | ht
-    · exact fst_ne_snd_of_lt hl.1
-    · exact ih hl.2 t ht
-
 /-! ### The substitutions -/
 
 variable (k) in
