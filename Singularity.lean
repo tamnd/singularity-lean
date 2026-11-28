@@ -70,6 +70,7 @@ import Singularity.Scheme.Components
 import Singularity.Scheme.Reduction
 import Singularity.Scheme.RegularLocus
 import Singularity.Scheme.RegularLocusJ2
+import Singularity.Algebra.ExcellenceCores
 import Singularity.Curves.Resolution
 import Singularity.Fidelity.Positive
 import Singularity.Fidelity.Negative
