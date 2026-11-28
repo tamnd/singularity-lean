@@ -110,6 +110,7 @@ import Singularity.Invariant.LogJacobianBlowup
 import Singularity.Invariant.LogJacobianNonincrease
 import Singularity.Invariant.LogJacobianCenter
 import Singularity.Invariant.LogDerivations
+import Singularity.Invariant.ToricStepCores
 import Singularity.Invariant.LogJacobianCenterNonincrease
 import Singularity.Invariant.LogJacobianCenterAdapted
 import Singularity.Invariant.Tschirnhausen
@@ -282,6 +283,7 @@ import Singularity.Alteration.WildInvolution
 import Singularity.Alteration.Induction
 import Singularity.Alteration.AlgebraicCores
 import Singularity.Alteration.NodeCores
+import Singularity.Alteration.CrossRatio
 import Singularity.Alteration.InseparableQuotient
 import Singularity.Algebra.Hypersurface
 import Singularity.Algebra.Frobenius
