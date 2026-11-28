@@ -2006,6 +2006,38 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 8, Lemma 1.1.4 of the handbook, the generic finiteness.'
+    - name: Singularity.Algebra.samuelMultiplicity_hypersurface
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 3.3.15 of the handbook, with the colon condition as a hypothesis.'
+    - name: Singularity.Algebra.ringKrullDim_quotient_span_singleton_of_isRegularLocalRing
+      kind: theorem
+      status: proved
+      note: 'Volume 1, Proposition 3.3.15 of the handbook, the dimension.'
+    - name: Singularity.Examples.example_4_3_6_strictTransform
+      kind: theorem
+      status: proved
+      note: 'Volume 6, Example 4.3.6 of the handbook, the chart.'
+    - name: Singularity.FactorialSeries.arcOrder_Y_sub_sum
+      kind: theorem
+      status: proved
+      note: 'Volume 3, Example 1.6.9 of the handbook, the values of the valuation.'
+    - name: Singularity.moduleFinite_integralClosure_of_charZero
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 1.1.7 of the handbook, the finiteness in characteristic 0.'
+    - name: Singularity.exists_etale_away_integralClosure_iff_isSeparable
+      kind: theorem
+      status: proved
+      note: 'Volume 8, Lemma 1.1.7 of the handbook, the generically etale part.'
+    - name: Singularity.pderiv_aeval_eq_sum
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Lemma 2.2.6 of the handbook, the chain rule.'
+    - name: Singularity.chartSubst_pderiv_center
+      kind: theorem
+      status: proved
+      note: 'Volume 2, Lemma 2.2.6 of the handbook, the derivative in the center variable.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved

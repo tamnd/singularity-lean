@@ -48,6 +48,7 @@ import Singularity.Algebra.FiniteDifference
 import Singularity.Algebra.HilbertSerre
 import Singularity.Algebra.Multiplicity
 import Singularity.Algebra.MultiplicityRegular
+import Singularity.Algebra.HypersurfaceMultiplicity
 import Singularity.Algebra.BlowupChart
 import Singularity.Algebra.QuadraticTransform
 import Singularity.Algebra.CurveOnSurface
@@ -81,6 +82,7 @@ import Singularity.Invariant.QuadricConeBlowup
 import Singularity.Invariant.OrderBlowup
 import Singularity.Invariant.MaxOrderChart
 import Singularity.Invariant.DerivTransformChart
+import Singularity.Invariant.CenterChartDeriv
 import Singularity.Invariant.Directrix
 import Singularity.Invariant.CharacteristicPolyhedron
 import Singularity.Invariant.ProjPolyhedronWeight
@@ -152,6 +154,7 @@ import Singularity.Example.XYWThreefold
 import Singularity.Example.ThreefoldPolyhedronExamples
 import Singularity.Example.ThreefoldInvariantExamples
 import Singularity.Example.CleanBlowupExamples
+import Singularity.Example.CleanBlowupExample436
 import Singularity.Fidelity.Embedded
 import Singularity.Fidelity.LocalUniformization
 import Singularity.Scheme.Embedded
@@ -199,6 +202,7 @@ import Singularity.Valuation.GroundFieldTrdeg
 import Singularity.Valuation.AbhyankarResidueField
 import Singularity.Valuation.AbhyankarValueGroup
 import Singularity.Valuation.FactorialSeries
+import Singularity.Valuation.FactorialArc
 import Singularity.Valuation.ConeLemma
 import Singularity.Valuation.GradedIndependence
 import Singularity.Valuation.AbhyankarRankOne
@@ -225,6 +229,7 @@ import Singularity.Alteration.Trace
 import Singularity.Alteration.GaloisDegree
 import Singularity.Alteration.TraceSplitting
 import Singularity.Alteration.GenericEtale
+import Singularity.Alteration.NormalizationFinite
 import Singularity.Alteration.DimensionCriterion
 import Singularity.Alteration.Reynolds
 import Singularity.Alteration.WildInvolution
