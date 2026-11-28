@@ -284,6 +284,7 @@ import Singularity.Valuation.LexConvexSubgroup
 import Singularity.Valuation.Coarsening
 import Singularity.Valuation.InftyPlace
 import Singularity.Valuation.QuadraticExtension
+import Singularity.Valuation.PthPowerApproximation
 import Singularity.Alteration.Basic
 import Singularity.Alteration.Statement
 import Singularity.Alteration.Trace
