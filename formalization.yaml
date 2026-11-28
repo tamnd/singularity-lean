@@ -2310,6 +2310,34 @@ status:
       kind: theorem
       status: proved
       note: 'Volume 1, Example 1.8.19 of the handbook, regularity.'
+    - name: Singularity.range_reesChartMap
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Definition 1.1.1 of the handbook, the chart of the Rees algebra.'
+    - name: Singularity.mem_chartStrictTransform_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Definition 1.1.4 of the handbook, the strict transform in a chart.'
+    - name: Singularity.awaySaturation_span_pow_mul_eq_span
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Lemma 1.1.6 of the handbook, the saturation step.'
+    - name: Singularity.isIntegrallyClosed_affineNormalization
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Definition 1.2.1 of the handbook, the affine case.'
+    - name: Singularity.whitneyNormalization_finite
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Example 2.2.4 of the handbook, finiteness.'
+    - name: Singularity.isRegularLocalRing_localization_atPrime_iff
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Lemma 2.2.5 of the handbook, the local step.'
+    - name: Singularity.finrank_add_finrank_eq_of_natDegree_le
+      kind: theorem
+      status: proved
+      note: 'Volume 4, Lemma 2.3.9 of the handbook, part 2.'
     - name: Singularity.sInf_linWeight_projPolyhedron
       kind: theorem
       status: proved
