@@ -6,6 +6,7 @@ All changes that a user can see are in this file. The format follows Keep a Chan
 
 ### Added
 
+- `Singularity/Surface/BlowupRationalCore.lean`: Volume 4, Definitions 1.1.1, 1.1.4 and 1.2.1, Example 2.2.4 and Lemma 2.3.9 (2) of the handbook, and the ring theoretic steps of Lemmas 2.1.5, 2.1.8 and 2.2.5. Nothing is proved on schemes, and the cohomology is not in Lean.
 - `Singularity/Algebra/SamuelExamples.lean`: Volume 1, Proposition 4.2.8 of the handbook for a finitely generated ideal, the Hilbert-Samuel functions of Examples 3.1.6 and 3.3.16, Proposition 6.2.5 for $k(t)$ with $k$ perfect, and the derivation steps of Example 1.8.19. Proposition 6.2.5 in general is not in Lean.
 - `Singularity/Invariant/MarkedTransform.lean`: Volume 2, Lemma 2.2.4 (1) to (3) of the handbook, Lemma 3.2.2 (2) for a coordinate center, and the first step of Proposition 3.2.3 for one blowup. Lemma 2.2.4 (4) and the sequences of blowups are not in Lean.
 - `Singularity/Alteration/Induction.lean`: Volume 8, Lemmas 2.3.1, 2.3.2 and 2.3.5 and Propositions 2.4.2 and 2.4.4 of the handbook, the algebraic and topological cores. Lemmas 2.3.3, 2.3.4 and 2.4.1 are not in Lean.
