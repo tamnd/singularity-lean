@@ -3,6 +3,8 @@ import Singularity.Statements.Main
 import Singularity.Statements.Core
 import Singularity.Statements.Embedded
 import Singularity.Statements.LocalUniformization
+import Singularity.Statements.Fundamental
+import Singularity.Statements.Principalization
 import Singularity.Algebra.Regular
 import Singularity.Algebra.RegularSystem
 import Singularity.Algebra.RegularComponent
@@ -192,6 +194,8 @@ import Singularity.Example.CleanBlowupExamples
 import Singularity.Example.CleanBlowupExample436
 import Singularity.Fidelity.Embedded
 import Singularity.Fidelity.LocalUniformization
+import Singularity.Fidelity.Fundamental
+import Singularity.Fidelity.Principalization
 import Singularity.Scheme.Embedded
 import Singularity.Valuation.Abhyankar
 import Singularity.Valuation.AbhyankarEquality

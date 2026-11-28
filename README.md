@@ -15,11 +15,15 @@ The map of the project, the milestones and the site are in [tamnd/singularity](h
 | `Singularity/Statements/Core.lean` | the purely inseparable hypersurfaces $z^p + g = 0$, the core case of route R5 |
 | `Singularity/Statements/Embedded.lean` | `EmbeddedResolutionSurface`, the embedded resolution of surfaces [CJS20], with simple normal crossings, permissible centers and the strict transform |
 | `Singularity/Statements/LocalUniformization.lean` | local uniformization of valuations of function fields: `HasLocalUniformization`, `IsAbhyankarValuation`, the known cases of Knaf-Kuhlmann [KK05], Temkin [Tem13] and Cossart-Piltant, and the open cases `LocalUniformizationFour` and `resolution_of_localUniformization_four` |
+| `Singularity/Statements/Fundamental.lean` | the global step in dimension 4 (Section 3.24 of Volume 9): models in the sense of Zariski, `PILU_4`, `Fund_4`, `Res_4^pr`, and Theorems 3.24.4 and 3.24.5 |
+| `Singularity/Statements/Principalization.lean` | weak principalization `Princ_4^w` and `Princ_4^vw`, embedded resolution of 3-folds with boundary `Emb_3^bd` and `Emb_3^bd,iso`, and Theorems 3.29.11 and 3.29.12 (Section 3.29 of Volume 9) |
 | `Singularity/Fidelity/Positive.lean` | check F2: the identity of a regular scheme is a resolution |
 | `Singularity/Fidelity/Negative.lean` | check F3: the codiagonal $X \sqcup X \to X$ is not a resolution |
 | `Singularity/Fidelity/Core.lean` | the core problem P1 is a special case of the main statement |
 | `Singularity/Fidelity/LocalUniformization.lean` | the trivial valuation of a function field has local uniformization, a field with a valuation that has local uniformization is a function field, and local uniformization implies a regular center on one affine model |
 | `Singularity/Fidelity/Embedded.lean` | the identity is an embedded resolution of the empty subscheme, and the zero ideal sheaf is not a divisor with simple normal crossings |
+| `Singularity/Fidelity/Fundamental.lean` | a model dominates itself, `LU_n` implies `PILU_n`, Theorem 3.24.4 implies one direction of Theorem 3.24.5, and the identity of a regular scheme is a regular modification |
+| `Singularity/Fidelity/Principalization.lean` | the identity principalizes the unit ideal, the zero ideal has no principalization, `Princ_4^w` implies `Princ_4^vw`, and `Emb_3^bd,iso` implies `Emb_3^bd` |
 | `Singularity/Algebra/Regular.lean` | regular local rings: the quotient by a parameter, a regular local ring is a domain, and in dimension 1 regular is the same as integrally closed |
 | `Singularity/Algebra/RegularSystem.lean` | Volume 1, Corollary 1.2.7 of the handbook. If $x_1, \dots, x_d$ generate the maximal ideal of a regular local ring of dimension $d$, then $R/(x_1, \dots, x_i)$ is regular of dimension $d - i$ for each $i \le d$ (`isRegularLocalRing_quotient_span_range`) |
 | `Singularity/Algebra/RegularComponent.lean` | Volume 1, Corollary 1.3.4 of the handbook, in affine form. If $A_\mathfrak{q}$ is a regular local ring, then exactly one minimal prime of $A$ is contained in $\mathfrak{q}$ (`existsUnique_minimalPrimes_le_of_isRegularLocalRing`) |
